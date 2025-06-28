@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-29T00:08:36+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
+
+<p>Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:</p>
+
+<p>✅ Bước 1: Tạo repository trên GitHub</p>
+
+<ol>
+  <li>Truy cập: https://github.com/new -&gt; Tạo repository với format tên như sau : ten_tai_khoan.github.io</li>
+  <li>Ví dụ: Nếu tài khoản là npngocthanh99, tên repo là npngocthanh99.github.io</li>
+  <li>Đặt là Public</li>
+  <li>Check chọn “Initialize this repository with a README” -&gt; Bấm “Create repository”</li>
+</ol>
+
+<p>✅ Bước 2: Kích hoạt GitHub Pages</p>
+
+<ol>
+  <li>Vào repo bạn vừa tạo -&gt; Click Settings &gt; Tab Pages</li>
+  <li>Ở mục Source, chọn:
+    <ul>
+      <li>Branch: main</li>
+      <li>Folder: / (root)</li>
+    </ul>
+  </li>
+  <li>Bấm Save</li>
+  <li>GitHub sẽ build trang blog tại: https://ten_tai_khoan.github.io ( trang blog của mình tại npngocthanh99.github.io)</li>
+</ol>
+
+<p>✅ Bước 3: Cài giao diện blog với Jekyll (ví dụ: Minima)</p>
+
+<ol>
+  <li>
+    <p>Tạo file index.md với nội dung sau:</p>
+
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">```yaml
+---
+</span>layout: home
+<span class="gh">title: My Blog
+---
+</span><span class="p">```</span><span class="nl">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Tạo file _config.yml với nội dung cấu hình:</p>
+
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">yaml
+</span><span class="na">title</span><span class="pi">:</span> <span class="s">My Blog</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">Welcome to my GitHub blog!</span>
+<span class="na">theme</span><span class="pi">:</span> <span class="s">minima</span>
+<span class="p">```</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )</p>
+  </li>
+</ol>
+
+<p>✅ Bước 4: Tạo bài viết mới</p>
+
+<ol>
+  <li>Tạo thư mục mới: _posts</li>
+  <li>Tạo file bài viết với cú pháp: YYYY-MM-DD-ten-bai-viet.md
+Ví dụ: _posts/2025-06-28-hello-github-blog.md</li>
+  <li>
+    <p>Nội dung bài viết mẫu:</p>
+
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">```yaml
+---
+</span>layout: post
+title: "Hello GitHub Blog"
+<span class="gh">date: 2025-06-28
+---
+</span>Đây là bài viết đầu tiên của mình trên GitHub Pages!
+<span class="p">```</span><span class="nl">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>✅ Bước 5: Push và xem blog</p>
+
+<ol>
+  <li>Commit &amp; push tất cả file lên GitHub</li>
+  <li>Truy cập: https://ten_tai_khoan.github.io</li>
+</ol>
+
+<p>🎨 Tuỳ chỉnh giao diện
+Bạn có thể:</p>
+
+<ul>
+  <li>Sử dụng các theme Jekyll có sẵn: https://jekyllthemes.io/free</li>
+  <li>Clone một theme về và chỉnh trong _config.yml</li>
+  <li>Tuỳ chỉnh layout, css trong thư mục _layouts, _includes, assets</li>
+</ul>
+
+<p>📦 Option: Tạo blog bằng template có sẵn
+Bạn có thể fork template có sẵn như:</p>
+
+<ul>
+  <li>chirpy</li>
+  <li>minimal-mistakes
+Sau đó vào Settings &gt; Pages để kích hoạt GitHub Pages.</li>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!]]></summary></entry></feed>

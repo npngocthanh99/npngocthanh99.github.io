@@ -1,24 +1,30 @@
-<ul class="social-media-list">
+<ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; align-items: center; padding-left: 0"
+>
   {%- for entry in site.minima.social_links -%}
-  <li>
+  <li style="list-style: none">
     <a
       rel="me"
       href="{{ entry.url }}"
       target="_blank"
       title="{{ entry.title }}"
+      style="text-decoration: none; color: inherit"
     >
-      <span class="grey fa-brands fa-{{ entry.icon }} fa-lg"></span>
+      <span class="grey fa-brands fa-{{ entry.icon }} fa-xl"></span>
     </a>
   </li>
-  {% unless site.minima.hide_site_feed_link %}
-  <li>
+  {%- endfor -%}
+
+  <!-- LinkedIn cá nhân -->
+  <li style="list-style: none">
     <a
       href="https://www.linkedin.com/in/thanhnpn/"
       target="_blank"
-      title="Kết nối LinkedIn"
+      title="Kết nối với tôi trên LinkedIn"
+      style="text-decoration: none; color: inherit"
     >
-      <span class="grey fa-brands fa-linkedin fa-lg"></span>
+      <span class="grey fa-brands fa-linkedin fa-xl"></span>
     </a>
   </li>
-  {% endunless %}
 </ul>
