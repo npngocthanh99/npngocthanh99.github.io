@@ -52,7 +52,7 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
   title: "Hello GitHub Blog"
   date: 2025-06-28
   ---
-  Đây là bài viết đầu tiên của mình trên GitHub Pages!
+  Đây là bài viết đầu tiên của mình trên GitHub Pages!```
 
 
 ✅ Bước 5: Push và xem blog
