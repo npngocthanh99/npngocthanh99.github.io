@@ -7,7 +7,7 @@ date: 2025-06-28
 Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!
 
 ![image](https://github.com/user-attachments/assets/bce3e017-3702-45cd-8a07-079fc33acd92) Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau: <br />
-✅ Bước 1: Tạo repository trên GitHub
+✅ Bước 1: Tạo repository trên GitHub  
   1. Truy cập: https://github.com/new -> Tạo repository với format tên như sau : ten_tai_khoan.github.io
   2. Ví dụ: Nếu tài khoản là npngocthanh99, tên repo là npngocthanh99.github.io
   3. Đặt là Public
@@ -33,7 +33,7 @@ date: 2025-06-28
      description: Welcome to my GitHub blog!
      theme: minima
      
-  3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
+  3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )<br />
 ✅ Bước 4: Tạo bài viết mới
   1. Tạo thư mục mới: _posts
   2. Tạo file bài viết với cú pháp: YYYY-MM-DD-ten-bai-viet.md
@@ -46,17 +46,17 @@ date: 2025-06-28
      date: 2025-06-28
      ---
 
-Đây là bài viết đầu tiên của mình trên GitHub Pages!
+Đây là bài viết đầu tiên của mình trên GitHub Pages!<br />  
 ✅ Bước 5: Push và xem blog
   1. Commit & push tất cả file lên GitHub
   2. Truy cập: https://ten_tai_khoan.github.io
-
+<br />
 🎨 Tuỳ chỉnh giao diện
  Bạn có thể:
    - Sử dụng các theme Jekyll có sẵn: https://jekyllthemes.io/free
    - Clone một theme về và chỉnh trong _config.yml
    - Tuỳ chỉnh layout, css trong thư mục _layouts, _includes, assets
-
+<br />
 📦 Option: Tạo blog bằng template có sẵn
  Bạn có thể fork template có sẵn như:
    - chirpy
