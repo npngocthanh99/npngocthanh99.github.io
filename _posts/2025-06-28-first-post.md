@@ -6,7 +6,7 @@ date: 2025-06-28
 
 Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!
 
-Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:
+Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau: <br />
 ✅ Bước 1: Tạo repository trên GitHub
   - Truy cập: https://github.com/new -> Tạo repository với format tên như sau : ten_tai_khoan.github.io
   - Ví dụ: Nếu tài khoản là npngocthanh99, tên repo là npngocthanh99.github.io
