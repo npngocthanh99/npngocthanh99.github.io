@@ -32,24 +32,27 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
      ---
 
   2. Tạo file _config.yml với nội dung cấu hình:
-
-     <pre>```title: My Blog description: Welcome to my GitHub blog! theme: minima```</pre>
      
-  3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
+     ```yaml
+     title: My Blog
+     description: Welcome to my GitHub blog!
+     theme: minima
+     
+  4. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
 
 ✅ Bước 4: Tạo bài viết mới
   1. Tạo thư mục mới: _posts
   2. Tạo file bài viết với cú pháp: YYYY-MM-DD-ten-bai-viet.md
      Ví dụ: _posts/2025-06-28-hello-github-blog.md
   3. Nội dung bài viết mẫu:
-
-    <pre>```---
-     layout: post
-     title: "Hello GitHub Blog"
-     date: 2025-06-28
-     ---```</pre>
-
-     Đây là bài viết đầu tiên của mình trên GitHub Pages!
+  
+  ```yaml
+  ---
+  layout: post
+  title: "Hello GitHub Blog"
+  date: 2025-06-28
+  ---
+  Đây là bài viết đầu tiên của mình trên GitHub Pages!
 
 ✅ Bước 5: Push và xem blog
   1. Commit & push tất cả file lên GitHub
