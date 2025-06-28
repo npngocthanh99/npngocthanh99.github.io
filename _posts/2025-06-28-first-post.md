@@ -25,7 +25,7 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
 ✅ Bước 3: Cài giao diện blog với Jekyll (ví dụ: Minima)
   1. Tạo file index.md với nội dung sau:
 
-     <pre> ```--- layout: home title: My Blog ---```</pre>
+     <pre> ```yaml --- layout: home title: My Blog --- ``` </pre>
 
   2. Tạo file _config.yml với nội dung cấu hình:
 
