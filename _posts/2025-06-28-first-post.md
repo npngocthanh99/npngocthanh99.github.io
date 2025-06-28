@@ -25,11 +25,11 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
 ✅ Bước 3: Cài giao diện blog với Jekyll (ví dụ: Minima)
   1. Tạo file index.md với nội dung sau:
 
-     pre> ```--- layout: home title: My Blog ---```</pre>
+     <pre> ```--- layout: home title: My Blog ---```</pre>
 
   2. Tạo file _config.yml với nội dung cấu hình:
 
-     pre>```title: My Blog description: Welcome to my GitHub blog! theme: minima```</pre>
+     <pre>```title: My Blog description: Welcome to my GitHub blog! theme: minima```</pre>
      
   3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
 
@@ -39,7 +39,7 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
      Ví dụ: _posts/2025-06-28-hello-github-blog.md
   3. Nội dung bài viết mẫu:
 
-    pre> ``` ---
+    <pre> ``` ---
      layout: post
      title: "Hello GitHub Blog"
      date: 2025-06-28
