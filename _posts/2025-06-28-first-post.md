@@ -30,13 +30,13 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
      title: My Blog
      ---
 
-  3. Tạo file _config.yml với nội dung cấu hình:
+  2. Tạo file _config.yml với nội dung cấu hình:
 
      title: My Blog
      description: Welcome to my GitHub blog!
      theme: minima
 
-  4. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
+  3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
 
 ✅ Bước 4: Tạo bài viết mới
   1. Tạo thư mục mới: _posts
