@@ -6,19 +6,19 @@ date: 2025-06-28
 
 Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!
 
-Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau: <br />
+Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau: 
 ✅ Bước 1: Tạo repository trên GitHub  
   1. Truy cập: https://github.com/new -> Tạo repository với format tên như sau : ten_tai_khoan.github.io
   2. Ví dụ: Nếu tài khoản là npngocthanh99, tên repo là npngocthanh99.github.io
   3. Đặt là Public
-  4. Check chọn “Initialize this repository with a README” -> Bấm “Create repository” <br />
+  4. Check chọn “Initialize this repository with a README” -> Bấm “Create repository” 
 ✅ Bước 2: Kích hoạt GitHub Pages
   1. Vào repo bạn vừa tạo -> Click Settings > Tab Pages
   2. Ở mục Source, chọn:
-     - Branch: main <br />
-     - Folder: / (root) <br />
-  3. Bấm Save <br />
-  4. GitHub sẽ build trang blog tại: https://ten_tai_khoan.github.io ( trang blog của mình tại npngocthanh99.github.io)<br />
+     - Branch: main 
+     - Folder: / (root) 
+  3. Bấm Save 
+  4. GitHub sẽ build trang blog tại: https://ten_tai_khoan.github.io ( trang blog của mình tại npngocthanh99.github.io)
 ✅ Bước 3: Cài giao diện blog với Jekyll (ví dụ: Minima)
   1. Tạo file index.md với nội dung sau:
 
@@ -32,8 +32,8 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
      title: My Blog
      description: Welcome to my GitHub blog!
      theme: minima
-     
-  3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )<br />
+
+  3. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
 ✅ Bước 4: Tạo bài viết mới
   1. Tạo thư mục mới: _posts
   2. Tạo file bài viết với cú pháp: YYYY-MM-DD-ten-bai-viet.md
@@ -45,18 +45,15 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
      title: "Hello GitHub Blog"
      date: 2025-06-28
      ---
-
-Đây là bài viết đầu tiên của mình trên GitHub Pages!<br />  
+Đây là bài viết đầu tiên của mình trên GitHub Pages!
 ✅ Bước 5: Push và xem blog
   1. Commit & push tất cả file lên GitHub
   2. Truy cập: https://ten_tai_khoan.github.io
-<br />
 🎨 Tuỳ chỉnh giao diện
  Bạn có thể:
    - Sử dụng các theme Jekyll có sẵn: https://jekyllthemes.io/free
    - Clone một theme về và chỉnh trong _config.yml
    - Tuỳ chỉnh layout, css trong thư mục _layouts, _includes, assets
-<br />
 📦 Option: Tạo blog bằng template có sẵn
  Bạn có thể fork template có sẵn như:
    - chirpy
