@@ -29,14 +29,14 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
      ---
      layout: home
      title: My Blog
-     ---
+     --- ```
 
   2. Tạo file _config.yml với nội dung cấu hình:
      
      ```yaml
      title: My Blog
      description: Welcome to my GitHub blog!
-     theme: minima
+     theme: minima ```
      
   4. Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )
 
@@ -52,7 +52,7 @@ Mình xin phép được hướng dẫn các bước để cách viết blog tr�
   title: "Hello GitHub Blog"
   date: 2025-06-28
   ---
-  Đây là bài viết đầu tiên của mình trên GitHub Pages!```
+  Đây là bài viết đầu tiên của mình trên GitHub Pages! ```
 
 
 ✅ Bước 5: Push và xem blog
