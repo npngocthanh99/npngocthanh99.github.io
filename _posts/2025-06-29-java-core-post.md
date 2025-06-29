@@ -37,3 +37,38 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             + Portable: bytecode chạy trên mọi hệ điều hành.  
             + Secure: sandbox, kiểm soát bộ nhớ chặt chẽ  
             + Automatic Memory Management: thông qua Garbage Collector  
+            
+**II. Biến, Kiểu dữ liệu, Toán tử (Variables, Data Types, Operators)**  
+    **1. Kiểu dữ liệu nguyên thủy (Primitive Data Types)**  
+        - Java có **8 kiểu dữ liệu nguyên thủy**, dùng để lưu trữ các giá trị đơn giản và hiệu quả về bộ nhớ (lưu ở Stack memory)  
+   ```
+      |          Kiểu        | Kích Thước |            Miêu tả            |                Giá trị mặc định                |
+      |----------------------|------------|-------------------------------|------------------------------------------------|
+      |            | byte    | 1 byte     | Số nguyên nhỏ (-128 đến 127)  | 0                                              |
+      |Số Nguyên   | short   | 2 byte     | Số nguyên ngắn                | 0                                              |  
+      |            | int     | 4 byte     | Số nguyên thường dùng nhất    | 0                                              |
+      |            | long    | 8 byte     | Số nguyên lớn                 | 0L                                             |
+      |--------------------------------------------------------------------------------------------------------------------| 
+      |Số Thực/    | float   | 4 byte     | Số thực chính xác đơn         | 0.0f                                           |         
+      |Số thập phân| double  | 8 byte     | Số thực chính xác kép         | 0.0d                                           |
+      |--------------------------------------------------------------------------------------------------------------------|
+      |Kí tự       | char    | 2 byte     | Ký tự unicode                 | '\u0000' đại diện cho ký tự có mã Unicode là 0,|
+      |            |         |            |                               |  hay còn gọi là null character(ký tự null      |
+      |--------------------------------------------------------------------------------------------------------------------|
+      |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |
+      |--------------------------------------------------------------------------------------------------------------------|```
+
+    **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**  
+        - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
+        - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...  
+    **Lưu ý: So sánh 2 kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu.  
+        + Kiểu dữ liệu nguyên thủy ít tốn bộ nhớ hơn, tốc độ xử lý dữ liệu nhanh hơn. Vì kiểu giữ liệu nguyên thủy lưu trữ giá trị trực tiếp. Còn dữ liệu tham chiếu lưu trử trong Heap Memory, mỗi lấy lấy giá trị nó phải lấy địa chỉ lưu trong Stack Memory rồi từ địa chỉ đó trỏ tới giá trị nằm trong Heap Memory.  
+        + Kiểu dữ liệu nguyên thủy không chấp giá trị null. Kiểu dữ liệu tham chiếu chấp giá trị null.  
+        + Để so sánh giá trị nguyên thủy dùng toán tử == . Trong khi kiểu dữ liệu tham chiếu không thể dùng toán tử == vì lúc đó nó sẽ so sánh địa chỉ của chúng, kiểu dữ liệu tham chiếu được hỗ trợ bởi các phương thức có sẵn vì vậy để so sánh giá trị chúng ta dùng phương thức .equals() để so sánh giá trị.  
+
+   **3. Biến (Variables) - Local, Instance, Static**  
+
+
+
+
+ 
