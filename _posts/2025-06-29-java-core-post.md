@@ -70,26 +70,28 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
          a. Local Variable (biến cục bộ)  
              + Khai báo trong phương thức hoặc khối mã  
              + Không có giá trị mặc định -> bắt buộc gán giá trị trước khi dùng  
-                ``` void show(){  
-                        int x = 10; // local  
-                        System.out.pribtln(x);  
-                    }```  
+                ``` 
+                void show(){   </br>
+                        int x = 10; // local   </br>
+                        System.out.pribtln(x);   </br>
+                    }  </br>
+                ```  
         b. Instance variable (biến đối tượng)  
             + Khai báo trong class nhưng ngoài phương thức  
             + Mỗi đối tượng có một bản sao riêng  
                ```   
-                   public class Student {  
-                      String name; // instance  
-                   }  
+                   public class Student {  </br>
+                      String name; // instance   </br>
+                   }   </br>
                ```  
        c. Static variable (biến tĩnh)  
             + Biến tĩnh là biến được khaai báo với từ khóa static trong một class  
             + Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào  
             + Tất cả các đối tượng của class đó **dùng chung một biến tĩnh.**  
             ```  
-            public class Student {  
-                static String school = "ABC School" // static  
-              }  
+            public class Student {   </br>
+                static String school = "ABC School" // static   </br>
+              }   </br>
             ```  
             + **Biến tĩnh được dùng như nào ?**  
             Dùng để đếm số lượng đối tượng được tạo, ví dụ: Dùng static int counter để đếm  
