@@ -72,7 +72,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
              + Không có giá trị mặc định -> bắt buộc gán giá trị trước khi dùng  
           void show(){  
                  int x = 10; // local  
-                   System.out.pribtln(x);
+                   System.out.pribtln(x);  
              }  
          b. Instance variable (biến đối tượng)  
             + Khai báo trong class nhưng ngoài phương thức  
@@ -86,7 +86,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             + Tất cả các đối tượng của class đó **dùng chung một biến tĩnh.**
             public class Student {   
                 static String school = "ABC School" // static  
-            }   
+            }  
             + **Biến tĩnh được dùng như nào ?**  
             Dùng để đếm số lượng đối tượng được tạo, ví dụ: Dùng static int counter để đếm  
             Chia sẻ cấu hình chung, ví dụ: tên công ty, tỷ lệ thuế...  
