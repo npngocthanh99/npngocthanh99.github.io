@@ -1,4 +1,4 @@
- ---
+---
 layout: post
 title: "Tổng hợp kiến thức Java Core"
 date: 2025-06-29
