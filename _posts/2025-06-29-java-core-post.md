@@ -17,11 +17,13 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
        - JRE - Java Runtime Environment: Là môi trường chạy Java. Nó bao gồm JVM + các thư viện chuẩn(Java Class Libraries). Đề chạy ứng dụng Java, chỉ cần cài JRE.  
        - JDK - Java Development Kit: Là bộ công cụ phát triển Java. Nó bao gồm JRE + các công cụ để viết và biên dịch code Java(javac,java,javadoc,jarsigner,...). Đề lập trình Java cần cài JDK.  
        - Mình sẽ tóm tắt gọn bằng bảng dưới đây:  
-           `|    Tìm hiểu  | Thành phần         | Dùng để                             |`  
-           `|------------- |--------------------|-------------------------------------|`  
-           `| JVM          | Máy ảo Java        | Thực thi bytecode                   |`  
-           `| JRE          | JVM + thư viện     | Chạy chương trình Java              |`  
-           `| JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |`  
+       ```
+           |    Tìm hiểu  | Thành phần         | Dùng để                             |
+           |------------- |--------------------|-------------------------------------|
+           | JVM          | Máy ảo Java        | Thực thi bytecode                   |
+           | JRE          | JVM + thư viện     | Chạy chương trình Java              |
+           | JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |
+      ``` 
   **3. Cách Java hoạt động (Compile -> Run)**  
        *3.1. Quy trình chạy một chương trình Java*  
          a. Viết mã Java bằng notepad và lưu file với đuôi .java (ví dụ Hello.java)  
