@@ -18,13 +18,13 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
        - JDK - Java Development Kit: Là bộ công cụ phát triển Java. Nó bao gồm JRE + các công cụ để viết và biên dịch code Java(javac,java,javadoc,jarsigner,...). Đề lập trình Java cần cài JDK.  
        - Mình sẽ tóm tắt gọn bằng bảng dưới đây:   
        
-
+           |-------------------------------------------------------------------------|
            |    Tìm hiểu  | Thành phần         | Dùng để                             |  
            |------------- |--------------------|-------------------------------------|  
            | JVM          | Máy ảo Java        | Thực thi bytecode                   |  
            | JRE          | JVM + thư viện     | Chạy chương trình Java              |  
            | JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |  
-   
+           |-------------------------------------------------------------------------|
         
   **3. Cách Java hoạt động (Compile -> Run)**  
        *3.1. Quy trình chạy một chương trình Java*  
@@ -57,6 +57,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             |            |         |            |                               |  hay còn gọi là null character(ký tự null      |   
             |--------------------------------------------------------------------------------------------------------------------|   
             |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |  
+            |--------------------------------------------------------------------------------------------------------------------|  
    **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**  
         - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
         - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...  
