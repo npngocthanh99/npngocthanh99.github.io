@@ -70,7 +70,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
          a. Local Variable (biến cục bộ)  
              + Khai báo trong phương thức hoặc khối mã  
              + Không có giá trị mặc định -> bắt buộc gán giá trị trước khi dùng  
-             ```  
+             ```java  
              void show(){  
                  int x = 10; // local  
                  System.out.pribtln(x);  
@@ -79,7 +79,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
          b. Instance variable (biến đối tượng)  
             + Khai báo trong class nhưng ngoài phương thức  
             + Mỗi đối tượng có một bản sao riêng  
-            ```  
+            ```java  
             public class Student {  
                      String name; // instance  
             }  
@@ -88,7 +88,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             + Biến tĩnh là biến được khaai báo với từ khóa static trong một class  
             + Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào  
             + Tất cả các đối tượng của class đó **dùng chung một biến tĩnh.**  
-            ```  
+            ```java  
             public class Student {  
                   static String school = "ABC School" // static  
             }  
