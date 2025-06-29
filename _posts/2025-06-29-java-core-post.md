@@ -20,7 +20,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
            `|    Tìm hiểu  | Thành phần         | Dùng để                             |`  
            `|------------- |--------------------|-------------------------------------|`  
            `| JVM          | Máy ảo Java        | Thực thi bytecode                   |`  
-           `| JRE          | JVM + thư viện     | Chạy chương trình Java              |` 
+           `| JRE          | JVM + thư viện     | Chạy chương trình Java              |`  
            `| JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |`  
   **3. Cách Java hoạt động (Compile -> Run)**  
        *3.1. Quy trình chạy một chương trình Java*  
