@@ -56,9 +56,8 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             |            |         |            |                               |  hay còn gọi là null character(ký tự null      |   
             |--------------------------------------------------------------------------------------------------------------------|   
             |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |   
-            |--------------------------------------------------------------------------------------------------------------------|```</br>
-            
-    **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**
+            |--------------------------------------------------------------------------------------------------------------------|``` 
+</br>**2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**
 
         - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
         - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...
