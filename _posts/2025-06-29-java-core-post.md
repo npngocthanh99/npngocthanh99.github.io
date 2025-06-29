@@ -42,7 +42,6 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
     **1. Kiểu dữ liệu nguyên thủy (Primitive Data Types)**  
         - Java có **8 kiểu dữ liệu nguyên thủy**, dùng để lưu trữ các giá trị đơn giản và hiệu quả về bộ nhớ (lưu ở Stack memory)  
         
-         ```
             |--------------------------------------------------------------------------------------------------------------------|
             |          Kiểu        | Kích Thước |            Miêu tả            |                Giá trị mặc định                |
             |----------------------|------------|-------------------------------|------------------------------------------------|  
@@ -57,10 +56,8 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             |Kí tự       | char    | 2 byte     | Ký tự unicode                 | '\u0000' đại diện cho ký tự có mã Unicode là 0,|   
             |            |         |            |                               |  hay còn gọi là null character(ký tự null      |   
             |--------------------------------------------------------------------------------------------------------------------|   
-            |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |   
-            |--------------------------------------------------------------------------------------------------------------------|
-        ``` 
-**2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**  
+            |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |  
+   **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**  
         - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
         - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...  
     **Lưu ý: So sánh 2 kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu.**
