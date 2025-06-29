@@ -1,0 +1,89 @@
+/* ==== Reset đơn giản ==== */
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  background-color: #fdfdfd;
+  color: #222;
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* ==== Header ==== */
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+header a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+header a:hover {
+  text-decoration: underline;
+}
+
+/* ==== Footer ==== */
+footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  background-color: #eee;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ==== Post List ==== */
+ul.post-list {
+  list-style: none;
+  padding: 0;
+}
+ul.post-list li {
+  margin: 1rem 0;
+}
+ul.post-list li a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007acc;
+  text-decoration: none;
+}
+ul.post-list li a:hover {
+  text-decoration: underline;
+}
+
+/* ==== Bài viết ==== */
+article h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+article p {
+  margin-bottom: 1rem;
+}
+
+/* ==== Code block ==== */
+pre,
+code {
+  background: #f4f4f4;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+    font-size: 15px;
+  }
+}
