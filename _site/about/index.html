@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>About me | My Blog</title>
+    <title>Giới thiệu | My Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link
@@ -16,7 +16,8 @@
     />
   </head>
   <body>
-    <header class="site-header">
+    <div class="site-wrapper">
+      <header class="site-header">
   <nav class="nav-left">
     <a href="/">Trang chủ</a>
     <a href="/posts/">Bài viết</a>
@@ -26,19 +27,77 @@
   <div class="nav-right">
     <i class="fa-solid fa-user"></i>
     <span>Nguyễn Phúc Ngọc Thành</span>
+    <button
+      id="toggle-theme"
+      style="background: none; border: none; cursor: pointer; color: white"
+      title="Chuyển nền"
+    >
+      🌓
+    </button>
   </div>
 </header>
 
+      <main><article>
+  <h1>Giới thiệu</h1>
+  <h1 id="-xin-chào">👋 Xin chào!</h1>
 
-    <main><article>
-  <h1>About me</h1>
-  <p>Chào mừng bạn đến với trang blog của mình!</p>
+<p>Mình là <strong>Nguyễn Phúc Ngọc Thành</strong> — một người đam mê công nghệ và lập trình. Blog này là nơi mình chia sẻ lại những kiến thức học được trong quá trình làm việc và khám phá công nghệ.</p>
+
+<hr />
+
+<h2 id="-mình-viết-gì-ở-đây">🧠 Mình viết gì ở đây?</h2>
+
+<p>Tại blog này, bạn sẽ tìm thấy các nội dung:</p>
+
+<ul>
+  <li>📘 Tổng hợp kiến thức lập trình Java, Spring Boot...</li>
+  <li>🛠️ Kỹ thuật sử dụng các IDE, Tool lập trình</li>
+  <li>🚀 Kinh nghiệm triển khai dự án cá nhân</li>
+  <li>💡 Những mẹo nhỏ khi làm việc với công nghệ web</li>
+</ul>
+
+<hr />
+
+<h2 id="-kỹ-năng-và-công-cụ">💼 Kỹ năng và Công cụ</h2>
+
+<ul>
+  <li>Java, PHP, JavaScript</li>
+  <li>Spring Boot, JPA</li>
+  <li>Git, Linux, Terminal</li>
+</ul>
+
+<hr />
+
+<h2 id="-kết-nối-với-mình">📬 Kết nối với mình</h2>
+
+<ul style="list-style: none; padding-left: 0;">
+  <li style="margin-bottom: 8px;">
+    <i class="fa-solid fa-envelope"></i>
+    <a href="mailto:ngocthanhxs2@gmail.com"> Gmail</a>
+  </li>
+  <li style="margin-bottom: 8px;">
+    <i class="fa-brands fa-github"></i>
+    <a href="https://github.com/npngocthanh99" target="_blank"> GitHub</a>
+  </li>
+  <li style="margin-bottom: 8px;">
+    <i class="fa-brands fa-linkedin"></i>
+    <a href="https://www.linkedin.com/in/thanhnpn/" target="_blank"> LinkedIn</a>
+  </li>
+  <li>
+    <i class="fa-brands fa-facebook"></i>
+    <a href="https://www.facebook.com/NguyenPhucNgocThanh03.01.99/" target="_blank"> Facebook</a>
+  </li>
+</ul>
+
+<hr />
+
+<p>Cảm ơn bạn đã ghé thăm blog!<br />
+Chúc bạn học tập và làm việc hiệu quả 💪</p>
 
 </article>
 </main>
-
-    <footer style="padding: 2rem 0; text-align: center; background: #f4f4f4">
-  <p>&copy; 2025 </p>
+      <footer>
+  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
 
   <div style="margin-top: 0.5rem"><ul
   class="social-media-list"
@@ -117,5 +176,23 @@
 </div>
 </footer>
 
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
+
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light"
+        );
+      });
+    </script>
   </body>
 </html>

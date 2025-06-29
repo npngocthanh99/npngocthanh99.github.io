@@ -16,10 +16,27 @@
     />
   </head>
   <body>
-    {% include header.html %}
+    <div class="site-wrapper">
+      {% include header.html %}
+      <main>{{ content }}</main>
+      {% include footer.html %}
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
 
-    <main>{{ content }}</main>
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
 
-    {% include footer.html %}
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light"
+        );
+      });
+    </script>
   </body>
 </html>

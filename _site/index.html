@@ -16,7 +16,8 @@
     />
   </head>
   <body>
-    <header class="site-header">
+    <div class="site-wrapper">
+      <header class="site-header">
   <nav class="nav-left">
     <a href="/">Trang chủ</a>
     <a href="/posts/">Bài viết</a>
@@ -26,11 +27,17 @@
   <div class="nav-right">
     <i class="fa-solid fa-user"></i>
     <span>Nguyễn Phúc Ngọc Thành</span>
+    <button
+      id="toggle-theme"
+      style="background: none; border: none; cursor: pointer; color: white"
+      title="Chuyển nền"
+    >
+      🌓
+    </button>
   </div>
 </header>
 
-
-    <main><article>
+      <main><article>
   <h1>Trang chủ</h1>
   <h1 id="-xin-chào-mình-là-nguyễn-phúc-ngọc-thành">👋 Xin chào, mình là Nguyễn Phúc Ngọc Thành</h1>
 
@@ -58,9 +65,8 @@
 
 </article>
 </main>
-
-    <footer style="padding: 2rem 0; text-align: center; background: #f4f4f4">
-  <p>&copy; 2025 </p>
+      <footer>
+  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
 
   <div style="margin-top: 0.5rem"><ul
   class="social-media-list"
@@ -139,5 +145,23 @@
 </div>
 </footer>
 
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
+
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light"
+        );
+      });
+    </script>
   </body>
 </html>
