@@ -57,7 +57,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
       |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |   
       |--------------------------------------------------------------------------------------------------------------------| 
 ```
-=
+=  
     **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**
 
         - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
