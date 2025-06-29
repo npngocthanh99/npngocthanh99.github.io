@@ -66,8 +66,33 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
         + Kiểu dữ liệu nguyên thủy không chấp giá trị null. Kiểu dữ liệu tham chiếu chấp giá trị null.  
         + Để so sánh giá trị nguyên thủy dùng toán tử == . Trong khi kiểu dữ liệu tham chiếu không thể dùng toán tử == vì lúc đó nó sẽ so sánh địa chỉ của chúng, kiểu dữ liệu tham chiếu được hỗ trợ bởi các phương thức có sẵn vì vậy để so sánh giá trị chúng ta dùng phương thức .equals() để so sánh giá trị.  
    **3. Biến (Variables) - Local, Instance, Static**  
-
-
+      - Java có 3 loại biến chính:  
+         a. Local Variable (biến cục bộ)  
+             + Khai báo trong phương thức hoặc khối mã  
+             + Không có giá trị mặc định -> bắt buộc gán giá trị trước khi dùng  
+                ``` void show(){  
+                        int x = 10; // local  
+                        System.out.pribtln(x);  
+                    }```  
+        b. Instance variable (biến đối tượng)  
+            + Khai báo trong class nhưng ngoài phương thức  
+            + Mỗi đối tượng có một bản sao riêng  
+               ``` public class Student {  
+                      String name; // instance
+                   }```  
+       c. Static variable (biến tĩnh)  
+            + Biến tĩnh là biến được khaai báo với từ khóa static trong một class  
+            + Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào  
+            + Tất cả các đối tượng của class đó **dùng chung một biến tĩnh.**  
+            ``` public class Student {  
+                   static String school = "ABC School" // static  
+                }```  
+            + **Biến tĩnh được dùng như nào ?**  
+            Dùng để đếm số lượng đối tượng được tạo, ví dụ: Dùng static int counter để đếm  
+            Chia sẻ cấu hình chung, ví dụ: tên công ty, tỷ lệ thuế...  
+            Hằng số toàn cục(kết hợp với final), ví dụ public static final double PI = 3.14.  
+     - Ngoài ra còn có loại biến như: Final variable (Biến hằng số), Transient variable(Biến tạm thời), Volatile variable.  
+  **4. Toán tử (Operators)**  
 
 
  
