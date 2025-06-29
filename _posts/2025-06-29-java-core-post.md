@@ -57,16 +57,13 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
             |--------------------------------------------------------------------------------------------------------------------|   
             |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |   
             |--------------------------------------------------------------------------------------------------------------------|``` 
-</br>**2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**
-
+**2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**  
         - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
-        - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...
-
+        - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...  
     **Lưu ý: So sánh 2 kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu.**
         + Kiểu dữ liệu nguyên thủy ít tốn bộ nhớ hơn, tốc độ xử lý dữ liệu nhanh hơn. Vì kiểu giữ liệu nguyên thủy lưu trữ giá trị trực tiếp. Còn dữ liệu tham chiếu lưu trử trong Heap Memory, mỗi lấy lấy giá trị nó phải lấy địa chỉ lưu trong Stack Memory rồi từ địa chỉ đó trỏ tới giá trị nằm trong Heap Memory.  
         + Kiểu dữ liệu nguyên thủy không chấp giá trị null. Kiểu dữ liệu tham chiếu chấp giá trị null.  
-        + Để so sánh giá trị nguyên thủy dùng toán tử == . Trong khi kiểu dữ liệu tham chiếu không thể dùng toán tử == vì lúc đó nó sẽ so sánh địa chỉ của chúng, kiểu dữ liệu tham chiếu được hỗ trợ bởi các phương thức có sẵn vì vậy để so sánh giá trị chúng ta dùng phương thức .equals() để so sánh giá trị.
-
+        + Để so sánh giá trị nguyên thủy dùng toán tử == . Trong khi kiểu dữ liệu tham chiếu không thể dùng toán tử == vì lúc đó nó sẽ so sánh địa chỉ của chúng, kiểu dữ liệu tham chiếu được hỗ trợ bởi các phương thức có sẵn vì vậy để so sánh giá trị chúng ta dùng phương thức .equals() để so sánh giá trị.  
    **3. Biến (Variables) - Local, Instance, Static**  
 
 
