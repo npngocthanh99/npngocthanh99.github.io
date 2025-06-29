@@ -18,11 +18,12 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
        - JDK - Java Development Kit: Là bộ công cụ phát triển Java. Nó bao gồm JRE + các công cụ để viết và biên dịch code Java(javac,java,javadoc,jarsigner,...). Đề lập trình Java cần cài JDK.  
        - Mình sẽ tóm tắt gọn bằng bảng dưới đây:  
        
-        ```|    Tìm hiểu  | Thành phần         | Dùng để                             |
+```        |    Tìm hiểu  | Thành phần         | Dùng để                             |
            |------------- |--------------------|-------------------------------------|
            | JVM          | Máy ảo Java        | Thực thi bytecode                   |
            | JRE          | JVM + thư viện     | Chạy chương trình Java              |
-           | JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |```  
+           | JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |
+```  
         
   **3. Cách Java hoạt động (Compile -> Run)**  
        *3.1. Quy trình chạy một chương trình Java*  
@@ -40,23 +41,25 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
     **1. Kiểu dữ liệu nguyên thủy (Primitive Data Types)**  
         - Java có **8 kiểu dữ liệu nguyên thủy**, dùng để lưu trữ các giá trị đơn giản và hiệu quả về bộ nhớ (lưu ở Stack memory)  
    
-   ```|          Kiểu        | Kích Thước |            Miêu tả            |                Giá trị mặc định                |
-      |----------------------|------------|-------------------------------|------------------------------------------------|
-      |            | byte    | 1 byte     | Số nguyên nhỏ (-128 đến 127)  | 0                                              |
-      |Số Nguyên   | short   | 2 byte     | Số nguyên ngắn                | 0                                              |  
-      |            | int     | 4 byte     | Số nguyên thường dùng nhất    | 0                                              |
-      |            | long    | 8 byte     | Số nguyên lớn                 | 0L                                             |
-      |--------------------------------------------------------------------------------------------------------------------| 
-      |Số Thực/    | float   | 4 byte     | Số thực chính xác đơn         | 0.0f                                           |         
-      |Số thập phân| double  | 8 byte     | Số thực chính xác kép         | 0.0d                                           |
-      |--------------------------------------------------------------------------------------------------------------------|
-      |Kí tự       | char    | 2 byte     | Ký tự unicode                 | '\u0000' đại diện cho ký tự có mã Unicode là 0,|
-      |            |         |            |                               |  hay còn gọi là null character(ký tự null      |
-      |--------------------------------------------------------------------------------------------------------------------|
-      |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |
-      |--------------------------------------------------------------------------------------------------------------------|```
+```   |          Kiểu        | Kích Thước |            Miêu tả            |                Giá trị mặc định                |
+      |----------------------|------------|-------------------------------|------------------------------------------------|  
+      |            | byte    | 1 byte     | Số nguyên nhỏ (-128 đến 127)  | 0                                              |  
+      |Số Nguyên   | short   | 2 byte     | Số nguyên ngắn                | 0                                              |    
+      |            | int     | 4 byte     | Số nguyên thường dùng nhất    | 0                                              |  
+      |            | long    | 8 byte     | Số nguyên lớn                 | 0L                                             |  
+      |--------------------------------------------------------------------------------------------------------------------|   
+      |Số Thực/    | float   | 4 byte     | Số thực chính xác đơn         | 0.0f                                           |          
+      |Số thập phân| double  | 8 byte     | Số thực chính xác kép         | 0.0d                                           |   
+      |--------------------------------------------------------------------------------------------------------------------|  
+      |Kí tự       | char    | 2 byte     | Ký tự unicode                 | '\u0000' đại diện cho ký tự có mã Unicode là 0,|   
+      |            |         |            |                               |  hay còn gọi là null character(ký tự null      |   
+      |--------------------------------------------------------------------------------------------------------------------|   
+      |    boolean           | 1 bit      | Chỉ nhận 2 giá trị True/False | false                                          |   
+      |--------------------------------------------------------------------------------------------------------------------|    
+```
 
-    **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**  
+    **2. Kiểu dữ liệu tham chiểu (Referecen Date Types)**
+
         - Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)  
         - Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List...  
     **Lưu ý: So sánh 2 kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu.  
