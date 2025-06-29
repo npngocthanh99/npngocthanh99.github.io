@@ -12,21 +12,14 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-ycYt2DW0EM0ov1KXK5Xr8V0eL2QpTTgtZrUnb1pj5YLoKLaFD5AdO6mraHzUADVyVABJh+UiwHntnFylL1wPQA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
     />
   </head>
   <body>
-    <header>
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <nav>
-        <a href="{{ '/' | relative_url }}">Trang chủ</a> |
-        <a href="{{ '/about/' | relative_url }}">Giới thiệu</a>
-      </nav>
-    </header>
+    {% include header.html %}
+
     <main>{{ content }}</main>
+
     {% include footer.html %}
   </body>
 </html>

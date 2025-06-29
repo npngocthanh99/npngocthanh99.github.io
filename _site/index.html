@@ -12,81 +12,131 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-ycYt2DW0EM0ov1KXK5Xr8V0eL2QpTTgtZrUnb1pj5YLoKLaFD5AdO6mraHzUADVyVABJh+UiwHntnFylL1wPQA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
     />
   </head>
   <body>
-    <header>
-      <h1><a href="/">My Blog</a></h1>
-      <nav>
-        <a href="/">Trang chủ</a> |
-        <a href="/about/">Giới thiệu</a>
-      </nav>
-    </header>
-    <main><h1>My Blog</h1>
-<p>This is my blog hosted on GitHub Pages.</p>
+    <header class="site-header">
+  <nav class="nav-left">
+    <a href="/">Trang chủ</a>
+    <a href="/posts/">Bài viết</a>
+    <a href="/about/">Giới thiệu</a>
+  </nav>
 
-<ul>
+  <div class="nav-right">
+    <i class="fa-solid fa-user"></i>
+    <span>Nguyễn Phúc Ngọc Thành</span>
+  </div>
+</header>
+
+
+    <main><article>
+  <h1>Trang chủ</h1>
+  <h1 id="-xin-chào-mình-là-nguyễn-phúc-ngọc-thành">👋 Xin chào, mình là Nguyễn Phúc Ngọc Thành</h1>
+
+<p>Đây là nơi mình chia sẻ kiến thức về lập trình (Java, Spring Boot, React …), kinh nghiệm thực tế và những gì mình học được trong hành trình phát triển phần mềm.</p>
+
+<hr />
+
+<h2 id="-bài-viết-mới-nhất">📝 Bài viết mới nhất</h2>
+
+<ul class="post-list">
   
-  <li>
-    <a href="/2025/06/29/java-core-post.html">Tổng hợp kiến thức Java Core</a>
-    <small>29-06-2025</small>
-  </li>
+    <li>
+      <a href="/2025/06/29/java-core-post.html">Tổng hợp kiến thức Java Core</a>
+      <small>29-06-2025</small>
+    </li>
   
-  <li>
-    <a href="/2025/06/28/first-post.html">Bài viết đầu tiên...Hướng dẫn tạo Blog trên GitHub</a>
-    <small>28-06-2025</small>
-  </li>
+    <li>
+      <a href="/2025/06/28/first-post.html">Bài viết đầu tiên...Hướng dẫn tạo Blog trên GitHub</a>
+      <small>28-06-2025</small>
+    </li>
   
 </ul>
-</main>
-    <footer style="padding: 2rem 0; text-align: center; background: #f4f4f4">
-  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
 
-  <div class="social-links" style="margin-top: 0.5rem">
-    <!-- Gmail -->
+<p><a href="/posts/">📚 Xem tất cả bài viết →</a></p>
+
+</article>
+</main>
+
+    <footer style="padding: 2rem 0; text-align: center; background: #f4f4f4">
+  <p>&copy; 2025 </p>
+
+  <div style="margin-top: 0.5rem"><ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; justify-content: center; padding-left: 0"
+>
+  
+  <li style="list-style: none">
     <a
       href="mailto:ngocthanhxs2@gmail.com"
       target="_blank"
-      title="Gmail"
-      style="margin: 0 10px; color: #d14836"
+      title="Email"
+      style="text-decoration: none; color: inherit"
     >
-      <i class="fa-solid fa-envelope fa-xl"></i>
+      <i
+        class="
+            
+              fa-solid
+            
+            fa-envelope fa-xl"
+      ></i>
     </a>
-
-    <!-- Facebook -->
+  </li>
+  
+  <li style="list-style: none">
     <a
       href="https://www.facebook.com/NguyenPhucNgocThanh03.01.99/"
       target="_blank"
       title="Facebook"
-      style="margin: 0 10px; color: #1877f2"
+      style="text-decoration: none; color: inherit"
     >
-      <i class="fa-brands fa-facebook fa-xl"></i>
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-facebook fa-xl"
+      ></i>
     </a>
-
-    <!-- LinkedIn -->
+  </li>
+  
+  <li style="list-style: none">
     <a
       href="https://www.linkedin.com/in/thanhnpn/"
       target="_blank"
       title="LinkedIn"
-      style="margin: 0 10px; color: #0077b5"
+      style="text-decoration: none; color: inherit"
     >
-      <i class="fa-brands fa-linkedin fa-xl"></i>
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-linkedin fa-xl"
+      ></i>
     </a>
-
-    <!-- GitHub -->
+  </li>
+  
+  <li style="list-style: none">
     <a
       href="https://github.com/npngocthanh99"
       target="_blank"
       title="GitHub"
-      style="margin: 0 10px; color: #333"
+      style="text-decoration: none; color: inherit"
     >
-      <i class="fa-brands fa-github fa-xl"></i>
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-github fa-xl"
+      ></i>
     </a>
-  </div>
+  </li>
+  
+</ul>
+</div>
 </footer>
 
   </body>

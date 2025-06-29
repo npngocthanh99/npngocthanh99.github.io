@@ -1,25 +1,25 @@
-<ul class="social-media-list">
-  {%- for entry in site.minima.social_links -%}
-  <li>
+<ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; justify-content: center; padding-left: 0"
+>
+  {% for entry in site.minima.social_links %}
+  <li style="list-style: none">
     <a
-      rel="me"
       href="{{ entry.url }}"
       target="_blank"
       title="{{ entry.title }}"
+      style="text-decoration: none; color: inherit"
     >
-      <span class="fa-brands fa-{{ entry.icon }}"></span>
+      <i
+        class="
+            {% if entry.icon == 'envelope' %}
+              fa-solid
+            {% else %}
+              fa-brands
+            {% endif %}
+            fa-{{ entry.icon }} fa-xl"
+      ></i>
     </a>
   </li>
-  {%- endfor -%}
-
-  <!-- LinkedIn cá nhân -->
-  <li>
-    <a
-      href="https://www.linkedin.com/in/thanhnpn/"
-      target="_blank"
-      title="Kết nối với tôi trên LinkedIn"
-    >
-      <span class="fa-brands fa-linkedin"></span>
-    </a>
-  </li>
+  {% endfor %}
 </ul>
