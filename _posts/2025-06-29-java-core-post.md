@@ -73,7 +73,7 @@ Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong m�
              ```java  
              void show(){  
                  int x = 10; // local  
-                 System.out.pribtln(x);  
+                 System.out.println(x);  
               }  
               ```  
          b. Instance variable (biến đối tượng)  
