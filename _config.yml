@@ -2,3 +2,18 @@ title: My Blog
 description: This is my blog hosted on GitHub Pages.
 theme: minima
 author: Nguyen Phuc Ngoc Thanh
+
+minima:
+  social_links:
+    - title: Email
+      icon: envelope
+      url: mailto:ngocthanhxs2@gmail.com
+    - title: Facebook
+      icon: facebook
+      url: https://facebook.com/yourprofile
+    - title: LinkedIn
+      icon: linkedin
+      url: https://linkedin.com/in/yourprofile
+    - title: GitHub
+      icon: github
+      url: https://github.com/yourusername

@@ -5,6 +5,18 @@
     <title>{{ page.title }} | {{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ '/favicon.ico' | relative_url }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-ycYt2DW0EM0ov1KXK5Xr8V0eL2QpTTgtZrUnb1pj5YLoKLaFD5AdO6mraHzUADVyVABJh+UiwHntnFylL1wPQA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
@@ -14,11 +26,7 @@
         <a href="{{ '/about/' | relative_url }}">Giới thiệu</a>
       </nav>
     </header>
-
     <main>{{ content }}</main>
-
-    <footer>
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</p>
-    </footer>
+    {% include footer.html %}
   </body>
 </html>

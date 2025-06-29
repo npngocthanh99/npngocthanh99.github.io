@@ -1,30 +1,25 @@
-<ul
-  class="social-media-list"
-  style="display: flex; gap: 12px; align-items: center; padding-left: 0"
->
+<ul class="social-media-list">
   {%- for entry in site.minima.social_links -%}
-  <li style="list-style: none">
+  <li>
     <a
       rel="me"
       href="{{ entry.url }}"
       target="_blank"
       title="{{ entry.title }}"
-      style="text-decoration: none; color: inherit"
     >
-      <span class="grey fa-brands fa-{{ entry.icon }} fa-xl"></span>
+      <span class="fa-brands fa-{{ entry.icon }}"></span>
     </a>
   </li>
   {%- endfor -%}
 
   <!-- LinkedIn cá nhân -->
-  <li style="list-style: none">
+  <li>
     <a
       href="https://www.linkedin.com/in/thanhnpn/"
       target="_blank"
       title="Kết nối với tôi trên LinkedIn"
-      style="text-decoration: none; color: inherit"
     >
-      <span class="grey fa-brands fa-linkedin fa-xl"></span>
+      <span class="fa-brands fa-linkedin"></span>
     </a>
   </li>
 </ul>
