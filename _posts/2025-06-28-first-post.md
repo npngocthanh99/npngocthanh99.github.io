@@ -6,7 +6,7 @@ date: 2025-06-28
 
 Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!
 
-**I. Cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:**  
+**I. Cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:**
 
 ✅ Bước 1: Tạo repository trên GitHub
 
@@ -84,9 +84,10 @@ Bạn có thể fork template có sẵn như:
 
 - chirpy
 - minimal-mistakes  
-  Sau đó vào Settings > Pages để kích hoạt GitHub Pages.  
-**II. Hướng dẫn sử dụng Markdown**  
-```
+   Sau đó vào Settings > Pages để kích hoạt GitHub Pages.  
+  **II. Hướng dẫn sử dụng Markdown**
+
+````
       |Cấu trúc        |Mục đích                                   |               Cú pháp               |
       |----------------|-------------------------------------------|-------------------------------------|
       | # Tiêu đề      | Tạo các cấp tiêu đề (H1–H6)               | # đến ######                        |
@@ -98,4 +99,9 @@ Bạn có thể fork template có sẵn như:
       | ![ảnh](link)   | Hiển thị hình ảnh                         | ![alt](url)                         |
       | `code`         | Inline code                               | Dùng dấu backtick                   |
       | ```code```     | Block code nhiều dòng                     | Dùng 3 dấu backtick                 |
-```
+      | sử dụng &lt;   | Hiển thị <                                | Less than – dấu "nhỏ hơn"           |
+      | sử dụng &gt;   | Hiển thị >                                | Greater than – dấu "lớn hơn"        |
+      | sử dụng &amp;  | Hiển thị &                                | Ampersand – dấu &, dùng trong URL   |
+      | sử dụng &quot; | Hiển thị "                                | Double quote – dấu ngoặc kép        |
+      | sử dụng &apos; | Hiển thị '                                | Single quote – dấu nháy đơn         |
+````

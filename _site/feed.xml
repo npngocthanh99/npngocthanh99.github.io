@@ -1,8 +1,389 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-29T16:50:17+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My Blog</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …..</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-30T16:03:20+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …..</p>
 
-<p>Lưu ý: Vì là kiến thức bản thân tớ nên có thể sai sót mong mọi người góp ý !!!!</p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …..]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
+<p><strong>I. Giới thiệu về Java</strong><br />
+<strong>1. Lịch sử và phiên bản Java</strong></p>
 
-<p>Mình xin phép được hướng dẫn các bước để cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:</p>
+<ul>
+  <li>Lịch sử ra đời: Java được phát triển năm 1991 bởi James Gosling và nhóm Green Team tại Sun Microsystems. Phát hành chính thức lần đầu vào năm 1995, và năm 1996 thì phiên bản Java 1.0 (Phiên bản đầu tiên) chính thức phát hành. Năm 2010, Oracle Corporation chính thức mua lại Sun Microsystems, bao gồm toàn bộ công nghệ và tài sản trí tuệ liên quan đến Java. Từ đó, Oracle trở thành đơn vị quản lý và phát triển Java Standard Edition (SE), Java Enterprise Edition (EE) và công cụ phát triền Java như JDK, JRE.</li>
+  <li>Mục tiêu ban đầu: Viết một lần, chạy mọi nơi (Write Once, Run Anywhere -WORA). Java nổi bật với sự an toàn, đơn giản, hướng đối tượng, hỗ trợ đa nền tảng (cross-flatform)</li>
+</ul>
+
+<p><strong>2. JVM (Java Virtual Machine), JDK (Java Development Kit), JRE (Java Runtime Environment) là gì ?</strong></p>
+
+<ul>
+  <li>JVM - Java Virtual Machine: Là một máy ảo, chịu trách nhiệm chạy mã byteCode (.class). JVM dịch mã bytecode thành mã máy phù hợp với hệ điều hành cụ thể (Windows/Linux…) chạy cùng với Garbage Collector và quản lý bộ nhớ.</li>
+  <li>JRE - Java Runtime Environment: Là môi trường chạy Java. Nó bao gồm JVM + các thư viện chuẩn(Java Class Libraries). Đề chạy ứng dụng Java, chỉ cần cài JRE.</li>
+  <li>JDK - Java Development Kit: Là bộ công cụ phát triển Java. Nó bao gồm JRE + các công cụ để viết và biên dịch code Java(javac,java,javadoc,jarsigner,…). Đề lập trình Java cần cài JDK.</li>
+  <li>
+    <p>Mình sẽ tóm tắt gọn bằng bảng dưới đây:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------|
+   | Tìm hiểu     | Thành phần         | Dùng để                             |
+   |------------- |--------------------|-------------------------------------|
+   | JVM          | Máy ảo Java        | Thực thi bytecode                   |
+   | JRE          | JVM + thư viện     | Chạy chương trình Java              |
+   | JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |
+   |-------------------------------------------------------------------------|
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>3. Cách Java hoạt động (Compile -&gt; Run)</strong><br />
+ <em>3.1. Quy trình chạy một chương trình Java</em><br />
+a. Viết mã Java bằng notepad và lưu file với đuôi .java (ví dụ Hello.java)<br />
+ b. Biên dịch(compile): Dùng terminal sử dụng lệnh: javac Hello.java -&gt; để dịch file java thành file bytecode Hello.class<br />
+ c. Chạy chương trình: sử dụng lệnh java Hello (JVM sẽ chạy file Hello.class)<br />
+<em>3.2. Tóm tắt luồng chính:</em> Code Java(.java) —–[javac -compiler]–&gt; Bytecode(.class) —–[java - JVM]-&gt; Chạy chương trình trên OS cụ thể<br />
+<em>3.3. Tính năng nổi bật của Java runtime:</em></p>
+
+<ul>
+  <li>Portable: bytecode chạy trên mọi hệ điều hành.</li>
+  <li>Secure: sandbox, kiểm soát bộ nhớ chặt chẽ</li>
+  <li>Automatic Memory Management: thông qua Garbage Collector</li>
+</ul>
+
+<p><strong>II. Biến, Kiểu dữ liệu, Toán tử (Variables, Data Types, Operators)</strong><br />
+<strong>1. Kiểu dữ liệu nguyên thủy (Primitive Data Types)</strong></p>
+
+<ul>
+  <li>
+    <p>Java có <strong>8 kiểu dữ liệu nguyên thủy</strong>, dùng để lưu trữ các giá trị đơn giản và hiệu quả về bộ nhớ (lưu ở Stack memory)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |----------------------------------------------------------------------------------------------------------------------|
+   |           Kiểu         | Kích Thước |        Miêu tả                |                Giá trị mặc định                |
+   |------------------------|------------|-------------------------------|------------------------------------------------|
+   |            | byte      | 1 byte     | Số nguyên nhỏ (-128 đến 127)  |                  0                             |
+   |Số Nguyên   | short     | 2 byte     | Số nguyên ngắn                |                  0                             |
+   |            | int       | 4 byte     | Số nguyên thường dùng nhất    |                  0                             |
+   |            | long      | 8 byte     | Số nguyên lớn                 |                  0L                            |
+   |----------------------------------------------------------------------------------------------------------------------|
+   |Số Thực/    | float     | 4 byte     | Số thực chính xác đơn         |                  0.0f                          |
+   |Số thập phân| double    | 8 byte     | Số thực chính xác kép         |                  0.0d                          |
+   |----------------------------------------------------------------------------------------------------------------------|
+   |Kí tự       | char      | 2 byte     | Ký tự unicode                 | '\u0000' đại diện cho ký tự có mã Unicode là 0,|
+   |            |           |            |                               | hay còn gọi là null character(ký tự null)      |
+   |----------------------------------------------------------------------------------------------------------------------|
+   | boolean                | 1 bit      | Chỉ nhận 2 giá trị True/False |                  false                         |
+   |----------------------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>2. Kiểu dữ liệu tham chiểu (Referecen Date Types)</strong></p>
+
+<ul>
+  <li>Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)</li>
+  <li>Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List…</li>
+</ul>
+
+<p><strong>So sánh 2 kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu.</strong></p>
+
+<ul>
+  <li>Kiểu dữ liệu nguyên thủy ít tốn bộ nhớ hơn, tốc độ xử lý dữ liệu nhanh hơn. Vì kiểu giữ liệu nguyên thủy lưu trữ giá trị trực tiếp. Còn dữ liệu tham chiếu lưu trử trong Heap Memory, mỗi lấy lấy giá trị nó phải lấy địa chỉ lưu trong Stack Memory rồi từ địa chỉ đó trỏ tới giá trị nằm trong Heap Memory.</li>
+  <li>Kiểu dữ liệu nguyên thủy không chấp giá trị null. Kiểu dữ liệu tham chiếu chấp giá trị null.</li>
+  <li>Để so sánh giá trị nguyên thủy dùng toán tử == . Trong khi kiểu dữ liệu tham chiếu không thể dùng toán tử == vì lúc đó nó sẽ so sánh địa chỉ của chúng, kiểu dữ liệu tham chiếu được hỗ trợ bởi các phương thức có sẵn vì vậy để so sánh giá trị chúng ta dùng phương thức .equals() để so sánh giá trị.</li>
+</ul>
+
+<p><strong>3. Biến (Variables) - Local, Instance, Static</strong></p>
+
+<ul>
+  <li>Java có 3 loại biến chính:</li>
+</ul>
+
+<p>a. Local Variable (biến cục bộ)</p>
+
+<ul>
+  <li>Khai báo trong phương thức hoặc khối mã</li>
+  <li>Không có giá trị mặc định -&gt; bắt buộc gán giá trị trước khi dùng<br />
+void show(){
+int x = 10; // local<br />
+System.out.println(x);<br />
+}</li>
+</ul>
+
+<p>b. Instance variable (biến đối tượng)</p>
+
+<ul>
+  <li>Khai báo trong class nhưng ngoài phương thức</li>
+  <li>Mỗi đối tượng có một bản sao riêng<br />
+public class Student {<br />
+String name; // instance<br />
+}</li>
+</ul>
+
+<p>c. Static variable (biến tĩnh)</p>
+
+<ul>
+  <li>Biến tĩnh là biến được khaai báo với từ khóa static trong một class</li>
+  <li>Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào</li>
+  <li>Tất cả các đối tượng của class đó <strong>dùng chung một biến tĩnh.</strong><br />
+public class Student {<br />
+static String school = “ABC School” // static<br />
+}</li>
+</ul>
+
+<p><strong>Biến tĩnh được dùng như nào ?</strong></p>
+
+<ul>
+  <li>Dùng để đếm số lượng đối tượng được tạo, ví dụ: Dùng static int counter để đếm</li>
+  <li>Chia sẻ cấu hình chung, ví dụ: tên công ty, tỷ lệ thuế…</li>
+  <li>
+    <p>Hằng số toàn cục(kết hợp với final), ví dụ public static final double PI = 3.14.</p>
+  </li>
+  <li>Ngoài ra còn có loại biến như: Final variable (Biến hằng số), Transient variable(Biến tạm thời), Volatile variable.</li>
+</ul>
+
+<p><strong>4. Toán tử (Operators)</strong></p>
+
+<ul>
+  <li>Java hỗ trợ nhiều loại toán tử cho các phép tính toán và logic:</li>
+</ul>
+
+<p><strong>a. Toán tử số học(Arithmetic Operators)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------------------|
+     | Toán tử |      Chức năng                | Ví dụ              |
+     |--------------------------------------------------------------|
+     |    +    |     Cộng                      | a + b              |
+     |    -    |     Trừ                       | a - b              |
+     |    *    |     Nhân                      | a * b              |
+     |    /    |     Chia                      | a / b              |
+     |    %    |     Chia lấy phần dư          | a % b              |
+     |    ++   |     Tăng 1 (prefix/postfix)   | ++a hoặc a++       |
+     |    --   |     Giảm 1 (prefix/postfix)   | --a hoặc a--       |
+     |--------------------------------------------------------------|
+</code></pre></div></div>
+
+<p><strong>b. Toán tử So sánh (Relational Operators)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------|
+     |  Toán tử  |           Ý nghĩa                    |
+     |--------------------------------------------------|
+     |   ==      | Bằng                                 |
+     |   !=      | Không bằng                           |
+     |   &gt;       | Lớn hơn                              |
+     |   &lt;       | Nhỏ hơn                              |
+     |   &gt;=      | Lớn hơn hoặc bằng                    |
+     |   &lt;=      | Nhỏ hơn hoặc bằng                    |
+     |--------------------------------------------------|
+     - Trả về giá trị **boolean (true/false)
+</code></pre></div></div>
+
+<p><strong>c. Toán tử Gán (Assignment Operators)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------|
+     | Toán tử  | Ví dụ     | Ý nghĩa                   |
+     |--------------------------------------------------|
+     | =        | a = b    | Gán giá trị của b cho a    |
+     | +=       | a += 1   | a = a + 1                  |
+     | -=       | a -= 1   | a = a - 1                  |
+     | *=       | a *= 1   | a = a * 1                  |
+     | /=       | a /= 1   | a = /= 1                   |
+     | %=       | a %=5    | a = a % 5                  |
+     |--------------------------------------------------|
+</code></pre></div></div>
+
+<p><strong>d. Toán tử Logic (Logical Operators)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |---------------------------------------------------------------------------------------------------------------|
+     | Toán tử | Tên gọi       | Ý nghĩa                                            | Ví dụ         | Kết quả ví dụ  |
+     |---------------------------------------------------------------------------------------------------------------|
+     |    &amp;&amp;   | Logical AND   | Đúng nếu cả hai biểu thức trước đều đúng           | true &amp;&amp; false | false          |
+     |    ||   | Logical OR    | Đúng nếu ít nhất một biểu thức đúng                | true || false | true           |
+     |    !    | Logical NOT   | Phủ định giá trị boolean(trả về giá trị ngược lại) | !true         | false          |
+     |---------------------------------------------------------------------------------------------------------------|
+</code></pre></div></div>
+
+<p><strong>e. Toán tử Bit (Bitwise Operators)</strong></p>
+
+<ul>
+  <li>
+    <p>Bitwise Operators - Thao tác trên bit:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |--------------------------|
+   | Toán tử | Tác dụng       |
+   | -------------------------|
+   | &amp;       | AND            |
+   | |       | OR             |
+   | ^       | XOR            |
+   | ~       | NOT            |
+   | &lt;&lt;      | Dịch trái      |
+   | &gt;&gt;      | Dịch phải      |
+   |--------------------------|
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>f. Ternary Operator (Toán tử điều kiện 3 ngôi):</strong></p>
+
+<ul>
+  <li>Cú pháp:
+&lt;điều kiện&gt; ? &lt;giá trị nếu true&gt; : &lt;giá trị nếu false&gt;</li>
+</ul>
+
+<p><strong>III. Câu lệnh điều kiện và Vòng lặp (Control Flow Statements)</strong></p>
+
+<p><em>1. Câu lệnh if, else if, else</em></p>
+
+<ul>
+  <li>Cú pháp:<br />
+if(điều kiện 1) {<br />
+// thực thi block code nếu điều kiện 1 đúng<br />
+} else if(điều kiện 2) {<br />
+// nếu điều kiện 1 sai, kiểm tra điều kiện 2, nếu đúng thì thực thị block code này<br />
+} else {<br />
+// thực thi block code này nếu không có điều kiện nào đúng<br />
+}</li>
+</ul>
+
+<p><em>2. switch case</em></p>
+
+<ul>
+  <li>Cú pháp:<br />
+ switch (biểu thức) {<br />
+case giá_trị_1:<br />
+// code<br />
+break;<br />
+case giá_trị_2:<br />
+// code<br />
+break;<br />
+default:<br />
+// nếu không trùng case nào<br />
+}</li>
+</ul>
+
+<p><strong>Lưu ý:</strong></p>
+
+<ul>
+  <li>Nếu không có <strong>Break</strong>, chương trình sẽ chạy liên tiếp các case sau(gọi là fall through).</li>
+  <li>Từ Java 14+ cú pháp switch mới với -&gt;.</li>
+</ul>
+
+<p><em>3. Vòng lặp for, while, do-while</em></p>
+
+<p>a. for - vòng lặp xác định số lần lặp</p>
+
+<p>for (int i = 0; i &lt; 5; i++) {<br />
+System.out.println(“Lần thứ “ + i);<br />
+}</p>
+
+<p>b. while - lặp khi điều kiện còn đúng</p>
+
+<p>int i = 0;<br />
+while (i &lt; 5) {<br />
+System.out.println(“While lần “ + i);<br />
+i++;<br />
+}</p>
+
+<p>c. do-while – luôn chạy ít nhất 1 lần</p>
+
+<p>int i = 0;<br />
+do {<br />
+System.out.println(“Do-while lần “ + i);<br />
+i++;<br />
+} while (i &lt; 5);</p>
+
+<p><strong>- Khác biệt:</strong></p>
+
+<ul>
+  <li>while: kiểm tra trước – nếu sai, không chạy.</li>
+  <li>do-while: chạy trước – kiểm tra sau, luôn chạy ít nhất 1 lần.</li>
+</ul>
+
+<p><em>4. Câu lệnh điều hướng vòng lặp break, continue, return</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------|
+     | Lệnh      | Ý nghĩa                                               |
+     |-------------------------------------------------------------------|
+     | break     | Thoát hoàn toàn khỏi vòng lặp hoặc switch             |
+     | continue  | Bỏ qua vòng lặp hiện tại, chuyển sang lần lặp kế tiếp |
+     | return    | Trả về giá trị và thoát khỏi phương thức ngay lập tức |
+     |-------------------------------------------------------------------|
+</code></pre></div></div>
+
+<p><strong>IV. Mảng và Chuỗi (Arrays and Strings)</strong></p>
+
+<p><em>1. Mảng 1 chiều, 2 chiều (1D/2D Arrays)</em><br />
+a. Mảng 1 chiều (1D array)<br />
+-Lưu trữ danh sách các phần tử cùng kiểu, với chỉ số bắt đầu từ 0.</p>
+
+<ul>
+  <li>
+    <p>Cú pháp:</p>
+
+    <p>int[] numbers = new int[5]; // mảng có 5 phần tử<br />
+int[] scores = {90, 80, 70}; // khai báo và khởi tạo</p>
+  </li>
+  <li>
+    <p>Duyệt mảng:</p>
+
+    <p>for (int i = 0; i &lt; scores.length; i++) {<br />
+System.out.println(scores[i]);<br />
+}</p>
+  </li>
+</ul>
+
+<p>b. Mảng 2 chiều (2D array)</p>
+
+<ul>
+  <li>Giống như bảng hoặc ma trận.</li>
+  <li>
+    <p>Cú pháp:</p>
+  </li>
+  <li>Duyệt mảng:</li>
+</ul>
+
+<p><em>2. Duyệt mảng bằng for-each (Enhanced for loop)</em></p>
+
+<p>-Dùng để duyệt qua các phần tử trong mảng (array) hoặc collection (List, Set,…) mà không cần chỉ số (index).</p>
+
+<p>for (Kiểu_dữ_liệu biến : tập_hợp) {<br />
+// xử lý với biến<br />
+}</p>
+
+<p><strong>- Lưu ý:</strong></p>
+
+<ul>
+  <li>for-each không dùng được khi bạn cần biết chỉ số phần tử (index) hoặc muốn sửa giá trị trong mảng.</li>
+  <li>Nếu cần thêm/xóa phần tử trong vòng lặp, nên dùng Iterator thay vì for-each.</li>
+</ul>
+
+<p><em>3. String và thao tác chuỗi (substring, replace, split, etc.)</em></p>
+
+<ul>
+  <li>
+    <p>String trong Java là immutable (bất biến):
+String s = “Hello”;
+s.toUpperCase(); // không thay đổi s</p>
+  </li>
+  <li>
+    <p>Các phương thức thông dụng:</p>
+  </li>
+</ul>
+
+<p><em>4. StringBuilder, StringBuffer – hiệu suất thao tác chuỗi</em></p>
+
+<ul>
+  <li>StringBuilder :
+    <ul>
+      <li>Mutable (có thể thay đổi nội dung).</li>
+      <li>Không đồng bộ (non-synchronized) → Nhanh hơn StringBuffer</li>
+      <li>Dùng trong các ứng dụng single-thread.</li>
+    </ul>
+  </li>
+  <li>StringBuffer:
+    <ul>
+      <li>Mutable và synchronized → Thread-safe, dùng trong multi-threaded environments</li>
+      <li>Nhưng do việc đồng bộ nên sẽ chậm hơn StringBuilder.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><em>5. So sánh hiệu suất</em></p>
+
+<p><strong>V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)</strong></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …..]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
+
+<p><strong>I. Cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:</strong></p>
 
 <p>✅ Bước 1: Tạo repository trên GitHub</p>
 
@@ -98,6 +479,25 @@ Bạn có thể fork template có sẵn như:</p>
 
 <ul>
   <li>chirpy</li>
-  <li>minimal-mistakes
-Sau đó vào Settings &gt; Pages để kích hoạt GitHub Pages.</li>
-</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!]]></summary></entry></feed>
+  <li>minimal-mistakes<br />
+ Sau đó vào Settings &gt; Pages để kích hoạt GitHub Pages.<br />
+<strong>II. Hướng dẫn sử dụng Markdown</strong></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      |Cấu trúc        |Mục đích                                   |               Cú pháp               |
+      |----------------|-------------------------------------------|-------------------------------------|
+      | # Tiêu đề      | Tạo các cấp tiêu đề (H1–H6)               | # đến ######                        |
+      | **in đậm**     | In đậm chữ                                | **chữ** hoặc __chữ__                |
+      | *in nghiêng*   | In nghiêng chữ                            | *chữ* hoặc _chữ_                    |
+      | - danh sách    | Tạo danh sách gạch đầu dòng               | -, *, +                             |
+      | 1. danh sách   | Tạo danh sách có thứ tự                   | 1., 2....                           |
+      | [liên kết](url)| Tạo hyperlink                             | [Google](https://google.com)        |
+      | ![ảnh](link)   | Hiển thị hình ảnh                         | ![alt](url)                         |
+      | `code`         | Inline code                               | Dùng dấu backtick                   |
+      | ```code```     | Block code nhiều dòng                     | Dùng 3 dấu backtick                 |
+      | sử dụng &amp;lt;   | Hiển thị &lt;                                | Less than – dấu "nhỏ hơn"           |
+      | sử dụng &amp;gt;   | Hiển thị &gt;                                | Greater than – dấu "lớn hơn"        |
+      | sử dụng &amp;amp;  | Hiển thị &amp;                                | Ampersand – dấu &amp;, dùng trong URL   |
+      | sử dụng &amp;quot; | Hiển thị "                                | Double quote – dấu ngoặc kép        |
+      | sử dụng &amp;apos; | Hiển thị '                                | Single quote – dấu nháy đơn         |
+</code></pre></div></div>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!]]></summary></entry></feed>
