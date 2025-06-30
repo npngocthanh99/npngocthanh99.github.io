@@ -164,10 +164,10 @@ c. Static variable (biến tĩnh)
          |--------------------------------------------------|
          | =        | a = b    | Gán giá trị của b cho a    |
          | +=       | a += 1   | a = a + 1                  |
-         | -=       | a -= 1   | a = a - 1                  |
-         | *=       | a *= 1   | a = a * 1                  |
-         | /=       | a /= 1   | a = /= 1                   |
-         | %=       | a %=5    | a = a % 5                  |
+         | -=       | a -= 2   | a = a - 2                  |
+         | *=       | a *= 3   | a = a * 3                  |
+         | /=       | a /= 4   | a = a / 4                  |
+         | %=       | a %= 5    | a = a % 5                 |
          |--------------------------------------------------|
 
 **d. Toán tử Logic (Logical Operators)**
@@ -411,12 +411,185 @@ _5. So sánh hiệu suất_
 
 **V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)**
 
-**1. Lớp và Đối tượng (Class & Object)**
+**Lập trình hướng đối tượng(OOP)** là một phương pháp lập trình mà ở đó, chúng ta tổ chức và thiết kế chương trình dựa trên các đối tượng thay vì các hàm hay logic. Mục tiêu chính của OOP là **tái sử dụng mã nguồn**, giúp chương trình **dễ quản lý, mở rộng và bảo trì hơn.**
 
-**2. Tính đóng gói (Encapsulation)**
+**1. Lớp và Đối tượng(Class & Object)**
 
-**3. Kế thừa (Inheritance)**
+- **Lớp(Class)** có thể hình dung như một **bản thiết kế** hoặc một **khuôn mẫu** để tạo ra các đối tượng. Nó định nghĩa các **thuộc tính(attribute)** và **hành vi(methods)** mà các đối tượng thuộc lớp đó sẽ có. Ví dụ: chúng ta có một lớp **ConNguoi** có các thuộc tính như **tên, tuổi** và cách hành vi như **ăn, ngủ**.
+
+- **Đối tượng(Object)** chính là một thể hiện cụ thể của một lớp. Hay nói cách khác, nó là một 'sản phẩm' được tạo ra từ bản thiết kế đó. Ví dụ: 'Anh Hoàn' với 25 tuổi là một đối tượng cụ thể của lớp **ConNguoi**, hoặc 'Chị Thư' với 30 tuổi cũng là một đối tượng khác của lớp **ConNguoi**.
+
+**2. Tính đóng gói(Encapsulation)**
+
+- **Tính đóng gói(Encapsulation)** là một trong những nguyên lý cơ bản của OOP, hiểu đơn giản là việc **gom các thuộc tính và hành vi có liên quan lại thành một thể thống nhất** (là một lớp) và **ẩn đi các chi tiết triển khai bên trong**, chỉ cho phép truy cập thông qua các giao diện công khai (public methods)
+
+- Trong lập trình, tính đóng gói giúp **bảo vệ dữ liệu khỏi bị truy cập hoặc thay đổi trực tiếp một cách không mong muốn**, từ đó giúp mã nguồn **an toàn và dễ bảo trì hơn**.
+
+- **Kinh nghiệm dự án:** Với những dự án lớn có nhiều thành viên trong team, thì tính đóng gói giúp ngăn chặn các truy cập thay đổi, nhầm lẫn từ các thành viên khác. Khi khai báo các thuộc tính, và phương thức với access modifiers có thể hạn chế điều đó.
+
+**3. Kế thừa(Inheritance)**
+
+- **Kế thừa(Inheritance)** là một cơ chế trong OOP cho phép một **lớp con(subclass)** có thể **thừa hưởng các thuộc tính và hành vi từ một lớp cha(superclass)**. Điều này giúp chúng ta **tái sử dụng mã nguồn**, tránh việc phải viết lại những phần giống nhau.
+  - Ví dụ: chúng ta có lớp cha là **DongVat**. Các lớp con như **Cho**, **Meo**, **Chim** đều có thể kế thừa các thuộc tính chung như **soChan**, **mauLong** và các hành vi như **diChuyen**, **an**. Sau đó, mỗi lớp con có thể thêm vào những đặc điểm hoặc hành vi riêng của mình, ví dụ **Cho** có thêm hành vi **sua**, **Meo** có thêm hành vi **keuMeoMeo**.
 
 **4. Đa hình (Polymorphism)**
 
+- **Đa hình(Polymorphism)** nghĩa là một đối tượng có thể mang nhiều hình thái khác nhau, hoặc một hành động có thể được thực hiện theo nhiều cách khác nhau tùy thuộc vào ngữ cảnh. Có hai loại đã hình chính là:
+
+  - **Đa hình lúc biên dịch(Compile-time Polymorphism)**, thường được biết đến qua **nạp chồng phương thức(Method Overloading)**. tức là trong một lớp, chúng ta có thể có nhiều phương thức cùng tên nhưng khác nhau về số lượng hoặc kiểu dữ liệu của tham số, hoặc dữ liệu trả về. Ví dụ phương thức **tinhTong(int a, int b)** và **tinhTong(double a, double b, double c)**.
+  - **Đa hình lúc chạy(Runtime Polymorphism)**, thường được biết đến qua **ghi đè phương thức(Method Overriding)**. Tức là lớp con định nghĩa lại một phương thức đã có ở lớp cha. Ví dụ, lớp **DongVat** có phương thức **tiengKeu()**, nhưng lớp **Cho** và **Meo** đều ghi đè phương thức này để phát ra tiếng kêu riêng của chúng ('gâu gâu' và 'meo meo'). Điều này giúp chương trình linh hoạt hơn khi xử lý các đối tượng thuộc các lớp khác nhau nhưng có cùng một hành vi chung."
+
 **5. Trừu tượng (Abstraction)**
+
+- **Trừu tượng(Abstraction)** là quá trình **ẩn đi các chi tiết phức tạp** và chỉ **hiển thị những thông tin cần thiết** ra bên ngoài. Nó tập trung vào **'cái gì'** hơn là **'làm như thế nào'**. Trong OOP, chúng ta thường đạt được tính trừu tượng thông qua **lớp trừu tượng(Abstract Class)** và **giao diện(Interface)**.
+  - Ví dụ: Khi thiết kế phần xử lý thanh toán đơn hàng. Cụ thể, ta tạo một interface là **PaymentMethod** - trong đó định nghĩa các hành vi chung như **processPayment()** và **refund()**. Sau đó, chúng ta triển khai nhiều class khác nhau như **CreditCardPayment**, **PaypalPayment**, và **BankTransferPayment**, mỗi class sẽ có cách xử lý thanh toán riêng phù hợp với từng phương thức cụ thể. Nhờ vậy, ở bussiness logic, ví dụ như khi xử lý đơn hàng, chúng ta chỉ cần gọi **paymentMethod.processPayment()** mà không cần quan tâm chi tiết nó là thanh toán qua thẻ, qua PayPal hay chuyển khoản ngân hàng. Điều này giúp code dễ mở rộng, ví dụ sau này có thêm MOMO hay ZaloPay thì chỉ cần tạo thêm một class mới implement **PaymentMethod** mà không phải sửa code xử lý đơn hàng.
+
+**VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)** _(TODO)_
+
+1. this, super
+
+2. Constructor - Constructor overloading
+
+3. Method Overloading vs Overriding
+
+4. final, static, abstract, interface, enum
+
+**VII. Phạm vi truy cập(Access Modifiers)** _(TODO)_
+
+1. Private
+
+2. Default(package-private)
+
+3. Protected
+
+4. Public
+
+5. Tóm tắt về khả năng truy cập
+
+**VIII. Xử lý ngoại lệ(Exception Handlling)** _(TODO)_
+
+1. Try - Catch - Finally
+
+2. Throw và Throws
+
+3. Checked vs Unchecked Exception
+
+4. Tạo ngoại lệ tùy chỉnh(Custom Exception)
+
+**IX. Collection Framework** _(TODO)_
+
+1. Interfaces: List, Set, Map, Queue
+
+2. Implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap
+
+3. Iterator, ListIterator, for-each
+
+4. So sánh HashMap vs Hashtable
+
+**X. Generics** _(TODO)_
+
+1. Generic Class, Method
+
+2. Wildcards: ?, ? extends, ? super
+
+3. Type Inference (Diamond operator)
+
+**XI. Java I/O (Input/Output)** _(TODO)_
+
+1. File, FileReader, FileWriter
+
+2. BufferedReader, BufferedWriter
+
+3. InputStream, OutputStream
+
+4. Serialization / Deserialization
+
+**XII. Đa luồng & Xử lý đồng thời (Multithreading and Concurrency)** _(TODO)_
+
+1. Tạo Thread: Thread, Runnable
+
+2. Lifecycle của Thread
+
+3. synchronized, volatile, wait, notify, join
+
+4. ExecutorService, Callable, Future
+
+**XIII. Java 8+ Features** _(TODO)_
+
+1. Lambda Expression
+
+2. Functional Interface (Function, Predicate, Consumer, Supplier)
+
+3. Stream API
+
+4. Optional
+
+5. Method Reference, Constructor Reference
+
+**XIV. Annotation** _(TODO)_
+
+1. Annotation cơ bản: @Override, @Deprecated, @SuppressWarnings
+
+2. Annotation tùy chỉnh (Custom Annotation)
+
+3. Meta-annotations: @Target, @Retention
+
+**XV. Reflection** _(TODO)_
+
+1. Lấy thông tin class: Class<?>
+
+2. Truy cập method, field, constructor qua Reflection
+
+3. Gọi method, tạo instance bằng Reflection
+
+**XVI. Date & Time API** _(TODO)_
+
+1. Date, Calendar (truyền thống)
+
+2. Java 8: LocalDate, LocalTime, LocalDateTime
+
+3. Period, Duration
+
+4. DateTimeFormatter
+
+**XVII. Lớp lồng nhau (Nested & Inner Classes)** _(TODO)_
+
+1. Static Nested Class
+
+2. Member Inner Class
+
+3. Local Class
+
+4. Anonymous Inner Class
+
+**XVIII. Quản lý bộ nhớ (Memory Management)** _(TODO)_
+
+1. Stack vs Heap
+
+2. Garbage Collector
+
+3. Strong / Weak / Soft / Phantom References
+
+**XIX. Cơ chế hoạt động của JVM (JVM Internals)** _(TODO)_
+
+1. Classloader
+
+2. Memory Areas (Method Area, Heap, Stack, etc.)
+
+3. Bytecode & Execution Engine
+
+4. Garbage Collection Algorithms
+
+**XX. Best Practices & Clean Code** _(TODO)_
+
+1. Quy tắc đặt tên (Naming Conventions)
+
+2. Immutability
+
+3. Đọc hiểu code rõ ràng
+
+4. Tối ưu performance
+
+5. SOLID principles (nâng cao)
+
+**------------------------------------------------------------ TO BE CONTINUED ----------------------------------------------------------**

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-30T22:51:20+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-01T00:32:42+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
 
 <p><strong>I. Giới thiệu về Java</strong><br />
 <strong>1. Lịch sử và phiên bản Java</strong></p>
@@ -188,10 +188,10 @@ a. Viết mã Java bằng notepad và lưu file với đuôi .java (ví dụ Hel
      |--------------------------------------------------|
      | =        | a = b    | Gán giá trị của b cho a    |
      | +=       | a += 1   | a = a + 1                  |
-     | -=       | a -= 1   | a = a - 1                  |
-     | *=       | a *= 1   | a = a * 1                  |
-     | /=       | a /= 1   | a = /= 1                   |
-     | %=       | a %=5    | a = a % 5                  |
+     | -=       | a -= 2   | a = a - 2                  |
+     | *=       | a *= 3   | a = a * 3                  |
+     | /=       | a /= 4   | a = a / 4                  |
+     | %=       | a %= 5    | a = a % 5                 |
      |--------------------------------------------------|
 </code></pre></div></div>
 
@@ -451,15 +451,319 @@ a. Mảng 1 chiều (1D array)<br />
 
 <p><strong>V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)</strong></p>
 
-<p><strong>1. Lớp và Đối tượng (Class &amp; Object)</strong></p>
+<p><strong>Lập trình hướng đối tượng(OOP)</strong> là một phương pháp lập trình mà ở đó, chúng ta tổ chức và thiết kế chương trình dựa trên các đối tượng thay vì các hàm hay logic. Mục tiêu chính của OOP là <strong>tái sử dụng mã nguồn</strong>, giúp chương trình <strong>dễ quản lý, mở rộng và bảo trì hơn.</strong></p>
 
-<p><strong>2. Tính đóng gói (Encapsulation)</strong></p>
+<p><strong>1. Lớp và Đối tượng(Class &amp; Object)</strong></p>
 
-<p><strong>3. Kế thừa (Inheritance)</strong></p>
+<ul>
+  <li>
+    <p><strong>Lớp(Class)</strong> có thể hình dung như một <strong>bản thiết kế</strong> hoặc một <strong>khuôn mẫu</strong> để tạo ra các đối tượng. Nó định nghĩa các <strong>thuộc tính(attribute)</strong> và <strong>hành vi(methods)</strong> mà các đối tượng thuộc lớp đó sẽ có. Ví dụ: chúng ta có một lớp <strong>ConNguoi</strong> có các thuộc tính như <strong>tên, tuổi</strong> và cách hành vi như <strong>ăn, ngủ</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Đối tượng(Object)</strong> chính là một thể hiện cụ thể của một lớp. Hay nói cách khác, nó là một ‘sản phẩm’ được tạo ra từ bản thiết kế đó. Ví dụ: ‘Anh Hoàn’ với 25 tuổi là một đối tượng cụ thể của lớp <strong>ConNguoi</strong>, hoặc ‘Chị Thư’ với 30 tuổi cũng là một đối tượng khác của lớp <strong>ConNguoi</strong>.</p>
+  </li>
+</ul>
+
+<p><strong>2. Tính đóng gói(Encapsulation)</strong></p>
+
+<ul>
+  <li>
+    <p><strong>Tính đóng gói(Encapsulation)</strong> là một trong những nguyên lý cơ bản của OOP, hiểu đơn giản là việc <strong>gom các thuộc tính và hành vi có liên quan lại thành một thể thống nhất</strong> (là một lớp) và <strong>ẩn đi các chi tiết triển khai bên trong</strong>, chỉ cho phép truy cập thông qua các giao diện công khai (public methods)</p>
+  </li>
+  <li>
+    <p>Trong lập trình, tính đóng gói giúp <strong>bảo vệ dữ liệu khỏi bị truy cập hoặc thay đổi trực tiếp một cách không mong muốn</strong>, từ đó giúp mã nguồn <strong>an toàn và dễ bảo trì hơn</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Kinh nghiệm dự án:</strong> Với những dự án lớn có nhiều thành viên trong team, thì tính đóng gói giúp ngăn chặn các truy cập thay đổi, nhầm lẫn từ các thành viên khác. Khi khai báo các thuộc tính, và phương thức với access modifiers có thể hạn chế điều đó.</p>
+  </li>
+</ul>
+
+<p><strong>3. Kế thừa(Inheritance)</strong></p>
+
+<ul>
+  <li><strong>Kế thừa(Inheritance)</strong> là một cơ chế trong OOP cho phép một <strong>lớp con(subclass)</strong> có thể <strong>thừa hưởng các thuộc tính và hành vi từ một lớp cha(superclass)</strong>. Điều này giúp chúng ta <strong>tái sử dụng mã nguồn</strong>, tránh việc phải viết lại những phần giống nhau.
+    <ul>
+      <li>Ví dụ: chúng ta có lớp cha là <strong>DongVat</strong>. Các lớp con như <strong>Cho</strong>, <strong>Meo</strong>, <strong>Chim</strong> đều có thể kế thừa các thuộc tính chung như <strong>soChan</strong>, <strong>mauLong</strong> và các hành vi như <strong>diChuyen</strong>, <strong>an</strong>. Sau đó, mỗi lớp con có thể thêm vào những đặc điểm hoặc hành vi riêng của mình, ví dụ <strong>Cho</strong> có thêm hành vi <strong>sua</strong>, <strong>Meo</strong> có thêm hành vi <strong>keuMeoMeo</strong>.</li>
+    </ul>
+  </li>
+</ul>
 
 <p><strong>4. Đa hình (Polymorphism)</strong></p>
 
-<p><strong>5. Trừu tượng (Abstraction)</strong></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
+<ul>
+  <li>
+    <p><strong>Đa hình(Polymorphism)</strong> nghĩa là một đối tượng có thể mang nhiều hình thái khác nhau, hoặc một hành động có thể được thực hiện theo nhiều cách khác nhau tùy thuộc vào ngữ cảnh. Có hai loại đã hình chính là:</p>
+
+    <ul>
+      <li><strong>Đa hình lúc biên dịch(Compile-time Polymorphism)</strong>, thường được biết đến qua <strong>nạp chồng phương thức(Method Overloading)</strong>. tức là trong một lớp, chúng ta có thể có nhiều phương thức cùng tên nhưng khác nhau về số lượng hoặc kiểu dữ liệu của tham số, hoặc dữ liệu trả về. Ví dụ phương thức <strong>tinhTong(int a, int b)</strong> và <strong>tinhTong(double a, double b, double c)</strong>.</li>
+      <li><strong>Đa hình lúc chạy(Runtime Polymorphism)</strong>, thường được biết đến qua <strong>ghi đè phương thức(Method Overriding)</strong>. Tức là lớp con định nghĩa lại một phương thức đã có ở lớp cha. Ví dụ, lớp <strong>DongVat</strong> có phương thức <strong>tiengKeu()</strong>, nhưng lớp <strong>Cho</strong> và <strong>Meo</strong> đều ghi đè phương thức này để phát ra tiếng kêu riêng của chúng (‘gâu gâu’ và ‘meo meo’). Điều này giúp chương trình linh hoạt hơn khi xử lý các đối tượng thuộc các lớp khác nhau nhưng có cùng một hành vi chung.”</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>5. Trừu tượng (Abstraction)</strong></p>
+
+<ul>
+  <li><strong>Trừu tượng(Abstraction)</strong> là quá trình <strong>ẩn đi các chi tiết phức tạp</strong> và chỉ <strong>hiển thị những thông tin cần thiết</strong> ra bên ngoài. Nó tập trung vào <strong>‘cái gì’</strong> hơn là <strong>‘làm như thế nào’</strong>. Trong OOP, chúng ta thường đạt được tính trừu tượng thông qua <strong>lớp trừu tượng(Abstract Class)</strong> và <strong>giao diện(Interface)</strong>.
+    <ul>
+      <li>Ví dụ: Khi thiết kế phần xử lý thanh toán đơn hàng. Cụ thể, ta tạo một interface là <strong>PaymentMethod</strong> - trong đó định nghĩa các hành vi chung như <strong>processPayment()</strong> và <strong>refund()</strong>. Sau đó, chúng ta triển khai nhiều class khác nhau như <strong>CreditCardPayment</strong>, <strong>PaypalPayment</strong>, và <strong>BankTransferPayment</strong>, mỗi class sẽ có cách xử lý thanh toán riêng phù hợp với từng phương thức cụ thể. Nhờ vậy, ở bussiness logic, ví dụ như khi xử lý đơn hàng, chúng ta chỉ cần gọi <strong>paymentMethod.processPayment()</strong> mà không cần quan tâm chi tiết nó là thanh toán qua thẻ, qua PayPal hay chuyển khoản ngân hàng. Điều này giúp code dễ mở rộng, ví dụ sau này có thêm MOMO hay ZaloPay thì chỉ cần tạo thêm một class mới implement <strong>PaymentMethod</strong> mà không phải sửa code xử lý đơn hàng.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>this, super</p>
+  </li>
+  <li>
+    <p>Constructor - Constructor overloading</p>
+  </li>
+  <li>
+    <p>Method Overloading vs Overriding</p>
+  </li>
+  <li>
+    <p>final, static, abstract, interface, enum</p>
+  </li>
+</ol>
+
+<p><strong>VII. Phạm vi truy cập(Access Modifiers)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Private</p>
+  </li>
+  <li>
+    <p>Default(package-private)</p>
+  </li>
+  <li>
+    <p>Protected</p>
+  </li>
+  <li>
+    <p>Public</p>
+  </li>
+  <li>
+    <p>Tóm tắt về khả năng truy cập</p>
+  </li>
+</ol>
+
+<p><strong>VIII. Xử lý ngoại lệ(Exception Handlling)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Try - Catch - Finally</p>
+  </li>
+  <li>
+    <p>Throw và Throws</p>
+  </li>
+  <li>
+    <p>Checked vs Unchecked Exception</p>
+  </li>
+  <li>
+    <p>Tạo ngoại lệ tùy chỉnh(Custom Exception)</p>
+  </li>
+</ol>
+
+<p><strong>IX. Collection Framework</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Interfaces: List, Set, Map, Queue</p>
+  </li>
+  <li>
+    <p>Implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap</p>
+  </li>
+  <li>
+    <p>Iterator, ListIterator, for-each</p>
+  </li>
+  <li>
+    <p>So sánh HashMap vs Hashtable</p>
+  </li>
+</ol>
+
+<p><strong>X. Generics</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Generic Class, Method</p>
+  </li>
+  <li>
+    <p>Wildcards: ?, ? extends, ? super</p>
+  </li>
+  <li>
+    <p>Type Inference (Diamond operator)</p>
+  </li>
+</ol>
+
+<p><strong>XI. Java I/O (Input/Output)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>File, FileReader, FileWriter</p>
+  </li>
+  <li>
+    <p>BufferedReader, BufferedWriter</p>
+  </li>
+  <li>
+    <p>InputStream, OutputStream</p>
+  </li>
+  <li>
+    <p>Serialization / Deserialization</p>
+  </li>
+</ol>
+
+<p><strong>XII. Đa luồng &amp; Xử lý đồng thời (Multithreading and Concurrency)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Tạo Thread: Thread, Runnable</p>
+  </li>
+  <li>
+    <p>Lifecycle của Thread</p>
+  </li>
+  <li>
+    <p>synchronized, volatile, wait, notify, join</p>
+  </li>
+  <li>
+    <p>ExecutorService, Callable, Future</p>
+  </li>
+</ol>
+
+<p><strong>XIII. Java 8+ Features</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Lambda Expression</p>
+  </li>
+  <li>
+    <p>Functional Interface (Function, Predicate, Consumer, Supplier)</p>
+  </li>
+  <li>
+    <p>Stream API</p>
+  </li>
+  <li>
+    <p>Optional</p>
+  </li>
+  <li>
+    <p>Method Reference, Constructor Reference</p>
+  </li>
+</ol>
+
+<p><strong>XIV. Annotation</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Annotation cơ bản: @Override, @Deprecated, @SuppressWarnings</p>
+  </li>
+  <li>
+    <p>Annotation tùy chỉnh (Custom Annotation)</p>
+  </li>
+  <li>
+    <p>Meta-annotations: @Target, @Retention</p>
+  </li>
+</ol>
+
+<p><strong>XV. Reflection</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Lấy thông tin class: Class&lt;?&gt;</p>
+  </li>
+  <li>
+    <p>Truy cập method, field, constructor qua Reflection</p>
+  </li>
+  <li>
+    <p>Gọi method, tạo instance bằng Reflection</p>
+  </li>
+</ol>
+
+<p><strong>XVI. Date &amp; Time API</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Date, Calendar (truyền thống)</p>
+  </li>
+  <li>
+    <p>Java 8: LocalDate, LocalTime, LocalDateTime</p>
+  </li>
+  <li>
+    <p>Period, Duration</p>
+  </li>
+  <li>
+    <p>DateTimeFormatter</p>
+  </li>
+</ol>
+
+<p><strong>XVII. Lớp lồng nhau (Nested &amp; Inner Classes)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Static Nested Class</p>
+  </li>
+  <li>
+    <p>Member Inner Class</p>
+  </li>
+  <li>
+    <p>Local Class</p>
+  </li>
+  <li>
+    <p>Anonymous Inner Class</p>
+  </li>
+</ol>
+
+<p><strong>XVIII. Quản lý bộ nhớ (Memory Management)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Stack vs Heap</p>
+  </li>
+  <li>
+    <p>Garbage Collector</p>
+  </li>
+  <li>
+    <p>Strong / Weak / Soft / Phantom References</p>
+  </li>
+</ol>
+
+<p><strong>XIX. Cơ chế hoạt động của JVM (JVM Internals)</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Classloader</p>
+  </li>
+  <li>
+    <p>Memory Areas (Method Area, Heap, Stack, etc.)</p>
+  </li>
+  <li>
+    <p>Bytecode &amp; Execution Engine</p>
+  </li>
+  <li>
+    <p>Garbage Collection Algorithms</p>
+  </li>
+</ol>
+
+<p><strong>XX. Best Practices &amp; Clean Code</strong> <em>(TODO)</em></p>
+
+<ol>
+  <li>
+    <p>Quy tắc đặt tên (Naming Conventions)</p>
+  </li>
+  <li>
+    <p>Immutability</p>
+  </li>
+  <li>
+    <p>Đọc hiểu code rõ ràng</p>
+  </li>
+  <li>
+    <p>Tối ưu performance</p>
+  </li>
+  <li>
+    <p>SOLID principles (nâng cao)</p>
+  </li>
+</ol>
+
+<p><strong>———————————————————— TO BE CONTINUED ———————————————————-</strong></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
 
 <p><strong>I. Cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:</strong></p>
 
