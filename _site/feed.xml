@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-30T16:03:20+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …..</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-30T22:51:20+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
 
 <p><strong>I. Giới thiệu về Java</strong><br />
 <strong>1. Lịch sử và phiên bản Java</strong></p>
@@ -94,21 +94,29 @@ a. Viết mã Java bằng notepad và lưu file với đuôi .java (ví dụ Hel
 
 <ul>
   <li>Khai báo trong phương thức hoặc khối mã</li>
-  <li>Không có giá trị mặc định -&gt; bắt buộc gán giá trị trước khi dùng<br />
-void show(){
-int x = 10; // local<br />
-System.out.println(x);<br />
-}</li>
+  <li>
+    <p>Không có giá trị mặc định -&gt; bắt buộc gán giá trị trước khi dùng</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   void show() {
+       int x = 10; // local
+       System.out.println(x);
+    }
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <p>b. Instance variable (biến đối tượng)</p>
 
 <ul>
   <li>Khai báo trong class nhưng ngoài phương thức</li>
-  <li>Mỗi đối tượng có một bản sao riêng<br />
-public class Student {<br />
-String name; // instance<br />
-}</li>
+  <li>
+    <p>Mỗi đối tượng có một bản sao riêng</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Student {
+       String name; // instance
+    }
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <p>c. Static variable (biến tĩnh)</p>
@@ -116,10 +124,14 @@ String name; // instance<br />
 <ul>
   <li>Biến tĩnh là biến được khaai báo với từ khóa static trong một class</li>
   <li>Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào</li>
-  <li>Tất cả các đối tượng của class đó <strong>dùng chung một biến tĩnh.</strong><br />
-public class Student {<br />
-static String school = “ABC School” // static<br />
-}</li>
+  <li>
+    <p>Tất cả các đối tượng của class đó <strong>dùng chung một biến tĩnh.</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   public class Student {
+     static String school = "ABC School" // static
+   }
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <p><strong>Biến tĩnh được dùng như nào ?</strong></p>
@@ -226,30 +238,38 @@ static String school = “ABC School” // static<br />
 <p><em>1. Câu lệnh if, else if, else</em></p>
 
 <ul>
-  <li>Cú pháp:<br />
-if(điều kiện 1) {<br />
-// thực thi block code nếu điều kiện 1 đúng<br />
-} else if(điều kiện 2) {<br />
-// nếu điều kiện 1 sai, kiểm tra điều kiện 2, nếu đúng thì thực thị block code này<br />
-} else {<br />
-// thực thi block code này nếu không có điều kiện nào đúng<br />
-}</li>
+  <li>
+    <p>Cú pháp:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   if(điều kiện 1) {
+     // thực thi block code nếu điều kiện 1 đúng
+   } else if(điều kiện 2) {
+     // nếu điều kiện 1 sai, kiểm tra điều kiện 2, nếu đúng thì thực thị block code này
+   } else {
+     // thực thi block code này nếu không có điều kiện nào đúng
+   }
+</code></pre></div>    </div>
+  </li>
 </ul>
 
-<p><em>2. switch case</em></p>
+<p><em>2. Switch case</em></p>
 
 <ul>
-  <li>Cú pháp:<br />
- switch (biểu thức) {<br />
-case giá_trị_1:<br />
-// code<br />
-break;<br />
-case giá_trị_2:<br />
-// code<br />
-break;<br />
-default:<br />
-// nếu không trùng case nào<br />
-}</li>
+  <li>
+    <p>Cú pháp:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   switch (biểu thức) {
+     case giá_trị_1:
+       // code
+       break;
+     case giá_trị_2:
+       // code
+       break;
+     default:
+     // nếu không trùng case nào
+   }
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <p><strong>Lưu ý:</strong></p>
@@ -263,25 +283,28 @@ default:<br />
 
 <p>a. for - vòng lặp xác định số lần lặp</p>
 
-<p>for (int i = 0; i &lt; 5; i++) {<br />
-System.out.println(“Lần thứ “ + i);<br />
-}</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     for (int i = 0; i &lt; 5; i++) {
+       System.out.println("Lần thứ " + i);
+     }
+</code></pre></div></div>
 
 <p>b. while - lặp khi điều kiện còn đúng</p>
 
-<p>int i = 0;<br />
-while (i &lt; 5) {<br />
-System.out.println(“While lần “ + i);<br />
-i++;<br />
-}</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     int i = 0;
+     while (i &lt; 5) {
+       System.out.println("While lần " + i);
+       i++;
+     }
+</code></pre></div></div>
 
 <p>c. do-while – luôn chạy ít nhất 1 lần</p>
 
-<p>int i = 0;<br />
-do {<br />
-System.out.println(“Do-while lần “ + i);<br />
-i++;<br />
-} while (i &lt; 5);</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     int i = 0;
+     do {
+         System.out.println("Do-while lần " + i);
+         i++;
+     } while (i &lt; 5);
+</code></pre></div></div>
 
 <p><strong>- Khác biệt:</strong></p>
 
@@ -311,15 +334,17 @@ a. Mảng 1 chiều (1D array)<br />
   <li>
     <p>Cú pháp:</p>
 
-    <p>int[] numbers = new int[5]; // mảng có 5 phần tử<br />
-int[] scores = {90, 80, 70}; // khai báo và khởi tạo</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    int[] numbers = new int[5]; // mảng có 5 phần tử
+    int[] scores = {90, 80, 70}; // khai báo và khởi tạo
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Duyệt mảng:</p>
 
-    <p>for (int i = 0; i &lt; scores.length; i++) {<br />
-System.out.println(scores[i]);<br />
-}</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   for (int i = 0; i &lt; scores.length; i++) {
+      System.out.println(scores[i]);
+   }
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -329,17 +354,36 @@ System.out.println(scores[i]);<br />
   <li>Giống như bảng hoặc ma trận.</li>
   <li>
     <p>Cú pháp:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   int[][] matrix = new int[3][2]; // 3 hàng, 2 cột
+
+   int[][] matrix2 = {{1, 2}, {3, 4}, {5, 6}};
+</code></pre></div>    </div>
   </li>
-  <li>Duyệt mảng:</li>
+  <li>
+    <p>Duyệt mảng:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (int i = 0; i &amp;lt; matrix.length; i++) {
+
+ for (int j = 0; j &amp;lt; matrix[i].length; j++) {
+
+    System.out.print(matrix[i][j] + " ");
+
+ }
+  System.out.println();
+}
+</code></pre></div>    </div>
+  </li>
 </ul>
 
 <p><em>2. Duyệt mảng bằng for-each (Enhanced for loop)</em></p>
 
 <p>-Dùng để duyệt qua các phần tử trong mảng (array) hoặc collection (List, Set,…) mà không cần chỉ số (index).</p>
 
-<p>for (Kiểu_dữ_liệu biến : tập_hợp) {<br />
-// xử lý với biến<br />
-}</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     for (Kiểu_dữ_liệu biến : tập_hợp) {
+       // xử lý với biến
+     }
+</code></pre></div></div>
 
 <p><strong>- Lưu ý:</strong></p>
 
@@ -352,12 +396,26 @@ System.out.println(scores[i]);<br />
 
 <ul>
   <li>
-    <p>String trong Java là immutable (bất biến):
-String s = “Hello”;
-s.toUpperCase(); // không thay đổi s</p>
+    <p>String trong Java là immutable (bất biến):</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     String s = "Hello";
+     s.toUpperCase(); // không thay đổi s
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Các phương thức thông dụng:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------------------------------------------|
+   | Phương thức        | Mô tả                               | Ví dụ                                            |
+   |-------------------------------------------------------------------------------------------------------------|
+   | substring()        | Cắt chuỗi con                       | "hello".substring(1, 3) → "el"                   |
+   | replace()          | Thay thế ký tự                      | "java".replace('a', 'o') → "jovo"                |
+   | split()            | Tách chuỗi thành mảng               | "a,b,c".split(",") → ["a", "b", "c"]             |
+   | indexOf()          | Vị trí ký tự/chuỗi con đầu tiên     | "java".indexOf("v") → 2                          |
+   | equals()           | So sánh nội dung                    | "abc".equals("abc") → true                       |
+   | equalsIgnoreCase() | So sánh bỏ qua hoa/thường           | "Java".equalsIgnoreCase("java") → true           |
+   |-------------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -381,7 +439,27 @@ s.toUpperCase(); // không thay đổi s</p>
 
 <p><em>5. So sánh hiệu suất</em></p>
 
-<p><strong>V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)</strong></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …..]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |---------------------------------------------------------------------|
+     | Tính năng             | String    | StringBuilder | StringBuffer    |
+     |---------------------------------------------------------------------|
+     | Tính bất biến         | Có        | Không         | Không           |
+     | Thread-safe           | Không     | Không         | Có              |
+     | Hiệu suất thao tác    | Chậm nhất | Nhanh nhất    | Trung bình      |
+     | Dùng trong môi trường | VBất kỳ   | Single-thread | Multi-thread    |
+     |---------------------------------------------------------------------|
+</code></pre></div></div>
+
+<p><strong>V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)</strong></p>
+
+<p><strong>1. Lớp và Đối tượng (Class &amp; Object)</strong></p>
+
+<p><strong>2. Tính đóng gói (Encapsulation)</strong></p>
+
+<p><strong>3. Kế thừa (Inheritance)</strong></p>
+
+<p><strong>4. Đa hình (Polymorphism)</strong></p>
+
+<p><strong>5. Trừu tượng (Abstraction)</strong></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
 
 <p><strong>I. Cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:</strong></p>
 

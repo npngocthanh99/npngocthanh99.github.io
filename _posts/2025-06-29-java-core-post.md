@@ -4,7 +4,7 @@ title: "Tổng hợp kiến thức Java Core"
 date: 2025-06-29
 ---
 
-Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn .....
+Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn ...
 
 **I. Giới thiệu về Java**  
 **1. Lịch sử và phiên bản Java**
@@ -79,28 +79,43 @@ _3.3. Tính năng nổi bật của Java runtime:_
 a. Local Variable (biến cục bộ)
 
 - Khai báo trong phương thức hoặc khối mã
-- Không có giá trị mặc định -> bắt buộc gán giá trị trước khi dùng  
-  void show(){
-  int x = 10; // local  
-  System.out.println(x);  
-  }
+- Không có giá trị mặc định -> bắt buộc gán giá trị trước khi dùng
+
+{% raw %}
+
+         void show() {
+             int x = 10; // local
+             System.out.println(x);
+          }
+
+{% endraw %}
 
 b. Instance variable (biến đối tượng)
 
 - Khai báo trong class nhưng ngoài phương thức
-- Mỗi đối tượng có một bản sao riêng  
-  public class Student {  
-  String name; // instance  
-  }
+- Mỗi đối tượng có một bản sao riêng
+
+{% raw %}
+
+          public class Student {
+             String name; // instance
+          }
+
+{% endraw %}
 
 c. Static variable (biến tĩnh)
 
 - Biến tĩnh là biến được khaai báo với từ khóa static trong một class
 - Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào
-- Tất cả các đối tượng của class đó **dùng chung một biến tĩnh.**  
-  public class Student {  
-  static String school = "ABC School" // static  
-  }
+- Tất cả các đối tượng của class đó **dùng chung một biến tĩnh.**
+
+{% raw %}
+
+         public class Student {
+           static String school = "ABC School" // static
+         }
+
+{% endraw %}
 
 **Biến tĩnh được dùng như nào ?**
 
@@ -189,28 +204,38 @@ c. Static variable (biến tĩnh)
 
 _1. Câu lệnh if, else if, else_
 
-- Cú pháp:  
-  if(điều kiện 1) {  
-  // thực thi block code nếu điều kiện 1 đúng  
-  } else if(điều kiện 2) {  
-  // nếu điều kiện 1 sai, kiểm tra điều kiện 2, nếu đúng thì thực thị block code này  
-  } else {  
-  // thực thi block code này nếu không có điều kiện nào đúng  
-  }
+- Cú pháp:
 
-_2. switch case_
+{% raw %}
 
-- Cú pháp:  
-   switch (biểu thức) {  
-  case giá_trị_1:  
-  // code  
-  break;  
-  case giá_trị_2:  
-  // code  
-  break;  
-  default:  
-  // nếu không trùng case nào  
-  }
+         if(điều kiện 1) {
+           // thực thi block code nếu điều kiện 1 đúng
+         } else if(điều kiện 2) {
+           // nếu điều kiện 1 sai, kiểm tra điều kiện 2, nếu đúng thì thực thị block code này
+         } else {
+           // thực thi block code này nếu không có điều kiện nào đúng
+         }
+
+{% endraw %}
+
+_2. Switch case_
+
+- Cú pháp:
+
+{% raw %}
+
+         switch (biểu thức) {
+           case giá_trị_1:
+             // code
+             break;
+           case giá_trị_2:
+             // code
+             break;
+           default:
+           // nếu không trùng case nào
+         }
+
+{% endraw %}
 
 **Lưu ý:**
 
@@ -221,25 +246,37 @@ _3. Vòng lặp for, while, do-while_
 
 a. for - vòng lặp xác định số lần lặp
 
-for (int i = 0; i < 5; i++) {  
-System.out.println("Lần thứ " + i);  
-}
+{% raw %}
+
+         for (int i = 0; i < 5; i++) {
+           System.out.println("Lần thứ " + i);
+         }
+
+{% endraw %}
 
 b. while - lặp khi điều kiện còn đúng
 
-int i = 0;  
-while (i < 5) {  
-System.out.println("While lần " + i);  
-i++;  
-}
+{% raw %}
+
+         int i = 0;
+         while (i < 5) {
+           System.out.println("While lần " + i);
+           i++;
+         }
+
+{% endraw %}
 
 c. do-while – luôn chạy ít nhất 1 lần
 
-int i = 0;  
-do {  
-System.out.println("Do-while lần " + i);  
-i++;  
-} while (i < 5);
+{% raw %}
+
+         int i = 0;
+         do {
+             System.out.println("Do-while lần " + i);
+             i++;
+         } while (i < 5);
+
+{% endraw %}
 
 **- Khác biệt:**
 
@@ -264,29 +301,63 @@ a. Mảng 1 chiều (1D array)
 
 - Cú pháp:
 
-  int[] numbers = new int[5]; // mảng có 5 phần tử  
-  int[] scores = {90, 80, 70}; // khai báo và khởi tạo
+{% raw %}
+
+          int[] numbers = new int[5]; // mảng có 5 phần tử
+          int[] scores = {90, 80, 70}; // khai báo và khởi tạo
+
+{% endraw %}
 
 - Duyệt mảng:
 
-  for (int i = 0; i < scores.length; i++) {  
-  System.out.println(scores[i]);  
-  }
+{% raw %}
+
+         for (int i = 0; i < scores.length; i++) {
+            System.out.println(scores[i]);
+         }
+
+{% endraw %}
 
 b. Mảng 2 chiều (2D array)
 
 - Giống như bảng hoặc ma trận.
 - Cú pháp:
 
+{% raw %}
+
+         int[][] matrix = new int[3][2]; // 3 hàng, 2 cột
+
+         int[][] matrix2 = {{1, 2}, {3, 4}, {5, 6}};
+
+{% endraw %}
+
 - Duyệt mảng:
+
+{% raw %}
+
+      for (int i = 0; i &lt; matrix.length; i++) {
+
+       for (int j = 0; j &lt; matrix[i].length; j++) {
+
+          System.out.print(matrix[i][j] + " ");
+
+       }
+        System.out.println();
+      }
+
+{% endraw %}
 
 _2. Duyệt mảng bằng for-each (Enhanced for loop)_
 
 -Dùng để duyệt qua các phần tử trong mảng (array) hoặc collection (List, Set,...) mà không cần chỉ số (index).
 
-for (Kiểu_dữ_liệu biến : tập_hợp) {  
-// xử lý với biến  
-}
+{% raw %}
+
+         for (Kiểu_dữ_liệu biến : tập_hợp) {
+           // xử lý với biến
+         }
+
+{% endraw %}
 
 **- Lưu ý:**
 
@@ -296,10 +367,26 @@ for (Kiểu_dữ_liệu biến : tập_hợp) {
 _3. String và thao tác chuỗi (substring, replace, split, etc.)_
 
 - String trong Java là immutable (bất biến):
-  String s = "Hello";
-  s.toUpperCase(); // không thay đổi s
+
+{% raw %}
+
+           String s = "Hello";
+           s.toUpperCase(); // không thay đổi s
+
+{% endraw %}
 
 - Các phương thức thông dụng:
+
+         |-------------------------------------------------------------------------------------------------------------|
+         | Phương thức        | Mô tả                               | Ví dụ                                            |
+         |-------------------------------------------------------------------------------------------------------------|
+         | substring()        | Cắt chuỗi con                       | "hello".substring(1, 3) → "el"                   |
+         | replace()          | Thay thế ký tự                      | "java".replace('a', 'o') → "jovo"                |
+         | split()            | Tách chuỗi thành mảng               | "a,b,c".split(",") → ["a", "b", "c"]             |
+         | indexOf()          | Vị trí ký tự/chuỗi con đầu tiên     | "java".indexOf("v") → 2                          |
+         | equals()           | So sánh nội dung                    | "abc".equals("abc") → true                       |
+         | equalsIgnoreCase() | So sánh bỏ qua hoa/thường           | "Java".equalsIgnoreCase("java") → true           |
+         |-------------------------------------------------------------------------------------------------------------|
 
 _4. StringBuilder, StringBuffer – hiệu suất thao tác chuỗi_
 
@@ -313,4 +400,23 @@ _4. StringBuilder, StringBuffer – hiệu suất thao tác chuỗi_
 
 _5. So sánh hiệu suất_
 
+         |---------------------------------------------------------------------|
+         | Tính năng             | String    | StringBuilder | StringBuffer    |
+         |---------------------------------------------------------------------|
+         | Tính bất biến         | Có        | Không         | Không           |
+         | Thread-safe           | Không     | Không         | Có              |
+         | Hiệu suất thao tác    | Chậm nhất | Nhanh nhất    | Trung bình      |
+         | Dùng trong môi trường | VBất kỳ   | Single-thread | Multi-thread    |
+         |---------------------------------------------------------------------|
+
 **V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)**
+
+**1. Lớp và Đối tượng (Class & Object)**
+
+**2. Tính đóng gói (Encapsulation)**
+
+**3. Kế thừa (Inheritance)**
+
+**4. Đa hình (Polymorphism)**
+
+**5. Trừu tượng (Abstraction)**
