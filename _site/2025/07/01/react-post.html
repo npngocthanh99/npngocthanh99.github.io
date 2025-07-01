@@ -154,18 +154,194 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
 
 <p><strong>Lưu ý:</strong> key nên là giá trị duy nhất và ổn định, tránh dùng index nếu danh sách có thể thay đổi thứ tự.</p>
 
+<p><strong>Bảng tổng kết phần 1</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |----------------------------------------------------------------------|
+     | Mục tiêu           | Nội dung                                        |
+     |----------------------------------------------------------------------|
+     | JSX là gì          | Cú pháp mở rộng giúp viết HTML trong JavaScript |
+     | Biểu thức          | Dùng {} để nhúng biến, gọi hàm, logic           |
+     | Điều kiện          | Dùng &amp;&amp;, ? : để render có điều kiện             |
+     | Fragments          | Dùng &lt;&gt;...&lt;/&gt; để tránh thẻ cha dư               |
+     | Key trong .map()   | Dùng để React biết phần tử nào thay đổi         |
+</code></pre></div></div>
+
 <p><strong>2. Component</strong></p>
 
 <ul>
-  <li>Function component vs Class component (hiện nay dùng function là chủ yếu)</li>
-  <li>Props và State</li>
-  <li>Lifecycle (trong function dùng Hook như useEffect)</li>
-  <li>Lifting state up (nâng state lên cha)</li>
+  <li>Component là đơn vị tái sử dụng giao diện nhỏ nhất trong React.</li>
+  <li>Một ứng dụng React là tập hợp các component lồng nhau.</li>
+  <li>Mỗi component giống như một “hàm JavaScript” nhưng trả về JSX thay vì giá trị.</li>
 </ul>
 
-<ol>
-  <li>Hooks (Rất quan trọng)</li>
-</ol>
+<p>a. Function component vs Class component (hiện nay dùng function là chủ yếu)</p>
+
+<ul>
+  <li>
+    <p>Function Component (phổ biến hiện nay):<br />
+Là component viết bằng function, hỗ trợ đầy đủ tính năng thông qua Hooks (useState, useEffect,…).<br />
+Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           function Welcome(props) {
+             return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+           }
+</code></pre></div>    </div>
+
+    <p>Hoặc với arrow function:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           const Welcome = ({ name }) =&gt; &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Class Component (cũ hơn, ít dùng dần):
+Component viết bằng class, phải kế thừa từ React.Component.<br />
+ Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             class Welcome extends React.Component {
+               render() {
+                 return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+               }
+             }
+</code></pre></div>    </div>
+
+    <p>So sánh:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------------------------|
+   | Tiêu chí             | Function Component         | Class Component                       |
+   |-------------------------------------------------------------------------------------------|
+   | Viết ngắn gọn        | ✅                         | ❌ dài dòng                          |
+   | Sử dụng Hooks        | ✅ useState, useEffect,... | ❌ không hỗ trợ Hooks                |
+   | Lifecycle            | ✅ Qua useEffect()         | ❌ Qua các hàm componentDidMount...  |
+   | Khuyến nghị hiện nay | ✅ Chủ yếu dùng            | ❌ Không khuyến khích mới            |
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>b. Props và State</p>
+
+<ul>
+  <li>
+    <p>Props (Properties)</p>
+
+    <ul>
+      <li>Là dữ liệu truyền từ component cha xuống component con.</li>
+      <li>Là readonly – không được thay đổi trong component con.</li>
+      <li>
+        <p>Dùng để cấu hình/tuỳ biến component.
+Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           function Greeting(props) {
+             return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+           }
+
+           // Sử dụng
+           &lt;Greeting name="Thanh" /&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>State</p>
+
+    <ul>
+      <li>Là dữ liệu nội bộ của component, có thể thay đổi trong vòng đời component.</li>
+      <li>
+        <p>Khi state thay đổi, component sẽ re-render lại.
+Dùng trong function component:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          import { useState } from 'react';
+
+          function Counter() {
+            const [count, setCount] = useState(0);
+            return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Clicked {count}&lt;/button&gt;;
+          }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>c. Lifecycle – Vòng đời Component</p>
+
+<ul>
+  <li>Lifecycle là các giai đoạn trong “vòng đời” của component: tạo, cập nhật, huỷ.</li>
+  <li>
+    <p><strong>Trong Function Component dùng useEffect() để thay thế lifecycle methods</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |---------------------------------------------------------------------------|
+   | Lifecycle (Class)           | Tương đương trong Function                  |
+   |---------------------------------------------------------------------------|
+   | componentDidMount()         | useEffect(() =&gt; { ... }, [])                |
+   | componentDidUpdate()        | useEffect(() =&gt; { ... })                    |
+   | componentWillUnmount()      | useEffect(() =&gt; { return () =&gt; {...} }, []) |
+</code></pre></div>    </div>
+
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 useEffect(() =&gt; {
+                   console.log("Component mounted");
+
+                   return () =&gt; {
+                       console.log("Component unmounted");
+                   };
+                 }, []);
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>d. Lifting State Up – Nâng state lên cha</p>
+
+<ul>
+  <li>
+    <p>Khi hai hoặc nhiều component con cần chia sẻ chung một state, ta di chuyển state đó lên component cha và truyền qua props.
+Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                // Cha
+                function Parent() {
+                  const [value, setValue] = useState("");
+
+                  return (
+                  &lt;&gt;
+                    &lt;Input value={value} onChange={setValue} /&gt;
+                    &lt;Display value={value} /&gt;
+                  &lt;/&gt;
+                  );
+                }
+
+                // Con 1
+                function Input({ value, onChange }) {
+                  return &lt;input value={value} onChange={e =&gt; onChange(e.target.value)} /&gt;;
+                }
+
+                // Con 2
+                function Display({ value }) {
+                return &lt;p&gt;Value: {value}&lt;/p&gt;;
+                }
+</code></pre></div>    </div>
+
+    <p>Lý do:</p>
+
+    <ul>
+      <li>Tránh trùng lặp state ở nhiều nơi.</li>
+      <li>Giúp data flow một chiều, dễ debug, dễ kiểm soát.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Bảng tổng kết phần 2</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |----------------------------------------------------------------------|
+     | Kiến thức          | Nội dung chính                                  |
+     |----------------------------------------------------------------------|
+     | Component          | Đơn vị giao diện trong React                    |
+     | Function vs Class  | Nên dùng function + hooks                       |
+     | Props              | Dữ liệu truyền từ cha → con (readonly)          |
+     | State              | Dữ liệu nội bộ có thể thay đổi                  |
+     | Lifecycle          | Quản lý bằng useEffect() trong function         |
+     | Lifting State Up   | Khi cần chia sẻ state giữa các component con    |
+</code></pre></div></div>
+
+<p><strong>3. Hooks (Rất quan trọng)</strong></p>
 
 <ul>
   <li>useState, useEffect</li>
@@ -174,35 +350,27 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Custom Hooks</li>
 </ul>
 
-<ol>
-  <li>Event Handling</li>
-</ol>
+<p><strong>4. Event Handling</strong></p>
 
 <ul>
   <li>Bắt sự kiện: onClick, onChange, onSubmit, …</li>
   <li>Ngăn chặn mặc định (event.preventDefault())</li>
 </ul>
 
-<ol>
-  <li>Conditional Rendering</li>
-</ol>
+<p><strong>5. Conditional Rendering</strong></p>
 
 <ul>
   <li>if, &amp;&amp;, ternary, logical operators</li>
 </ul>
 
-<ol>
-  <li>List Rendering</li>
-</ol>
+<p><strong>6. List Rendering</strong></p>
 
 <ul>
   <li>Dùng .map() để render list</li>
   <li>Sử dụng key đúng cách để tránh lỗi</li>
 </ul>
 
-<ol>
-  <li>Forms</li>
-</ol>
+<p><strong>7. Forms</strong></p>
 
 <ul>
   <li>Controlled vs uncontrolled components</li>
@@ -210,20 +378,16 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Thư viện hỗ trợ: react-hook-form, formik, yup</li>
 </ul>
 
-<p>II. Kiến thức nâng cao</p>
+<p><strong>II. Kiến thức nâng cao</strong></p>
 
-<ol>
-  <li>Routing – Điều hướng</li>
-</ol>
+<p><strong>1. Routing – Điều hướng</strong></p>
 
 <ul>
   <li>Thư viện react-router-dom</li>
   <li>Routes, Route, useNavigate, useParams</li>
 </ul>
 
-<ol>
-  <li>State Management (Quản lý trạng thái)</li>
-</ol>
+<p><strong>2. State Management (Quản lý trạng thái)</strong></p>
 
 <ul>
   <li>Context API</li>
@@ -231,9 +395,7 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Global state vs local state</li>
 </ul>
 
-<ol>
-  <li>Call API</li>
-</ol>
+<p><strong>3. Call API</strong></p>
 
 <ul>
   <li>fetch, axios</li>
@@ -242,9 +404,7 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Error handling</li>
 </ul>
 
-<ol>
-  <li>Component Communication</li>
-</ol>
+<p><strong>4. Component Communication</strong></p>
 
 <ul>
   <li>Cha → Con: props</li>
@@ -252,9 +412,7 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Con → Con: thông qua cha hoặc Context/Redux</li>
 </ul>
 
-<ol>
-  <li>Performance Optimization</li>
-</ol>
+<p><strong>5. Performance Optimization</strong></p>
 
 <ul>
   <li>React.memo, useMemo, useCallback</li>
@@ -262,47 +420,37 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Split code, Virtualization (ví dụ: react-window)</li>
 </ul>
 
-<ol>
-  <li>Testing</li>
-</ol>
+<p><strong>6. Testing</strong></p>
 
 <ul>
   <li>Unit test: Jest, React Testing Library</li>
   <li>E2E test: Cypress, Playwright</li>
 </ul>
 
-<p>III. Các phần cần chú trọng để phát triển một dự án React</p>
+<p><strong>III. Các phần cần chú trọng để phát triển một dự án React</strong></p>
 
-<ol>
-  <li>Cấu trúc thư mục rõ ràng</li>
-</ol>
+<p><strong>1. Cấu trúc thư mục rõ ràng</strong></p>
 
 <ul>
   <li>components/, pages/, hooks/, services/, constants/, utils/, store/, …</li>
   <li>Dễ maintain, scale</li>
 </ul>
 
-<ol>
-  <li>Quản lý state</li>
-</ol>
+<p><strong>2. Quản lý state</strong></p>
 
 <ul>
   <li>Dùng Context cho state nhỏ, Redux Toolkit cho state lớn</li>
   <li>Phân biệt rõ local và global state</li>
 </ul>
 
-<ol>
-  <li>Giao tiếp với Backend</li>
-</ol>
+<p><strong>3. Giao tiếp với Backend</strong></p>
 
 <ul>
   <li>Tạo service layer dùng axios hoặc fetch</li>
   <li>Gắn token, handle lỗi, retry,…</li>
 </ul>
 
-<ol>
-  <li>Giao diện và UI/UX</li>
-</ol>
+<p><strong>4. Giao diện và UI/UX</strong></p>
 
 <ul>
   <li>Dùng thư viện: Ant Design, Material UI, TailwindCSS</li>
@@ -310,17 +458,13 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Loading state, error state</li>
 </ul>
 
-<ol>
-  <li>Testing</li>
-</ol>
+<p><strong>5. Testing</strong></p>
 
 <ul>
   <li>Test logic, component, flow chính</li>
 </ul>
 
-<ol>
-  <li>Dev Tools và Linter</li>
-</ol>
+<p><strong>6. Dev Tools và Linter</strong></p>
 
 <ul>
   <li>ESLint, Prettier</li>
@@ -328,17 +472,13 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Git hook để kiểm tra code trước khi commit</li>
 </ul>
 
-<ol>
-  <li>Internationalization (i18n) nếu đa ngôn ngữ</li>
-</ol>
+<p><strong>7. Internationalization (i18n) nếu đa ngôn ngữ</strong></p>
 
 <ul>
   <li>react-i18next hoặc tương đương</li>
 </ul>
 
-<ol>
-  <li>Bảo mật</li>
-</ol>
+<p><strong>8. Bảo mật</strong></p>
 
 <ul>
   <li>Không lộ API key</li>
@@ -346,9 +486,7 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Validate form đầu vào</li>
 </ul>
 
-<ol>
-  <li>Tối ưu hiệu năng</li>
-</ol>
+<p><strong>9. Tối ưu hiệu năng</strong></p>
 
 <ul>
   <li>Chia nhỏ component</li>
@@ -356,9 +494,7 @@ Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất
   <li>Lazy load page/component không cần thiết ngay</li>
 </ul>
 
-<ol>
-  <li>Triển khai (Deployment)</li>
-</ol>
+<p><strong>10. Triển khai (Deployment)</strong></p>
 
 <ul>
   <li>Build với vite hoặc webpack</li>

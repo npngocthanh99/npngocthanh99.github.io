@@ -106,127 +106,280 @@ Ví dụ:
 
 **Lưu ý:** key nên là giá trị duy nhất và ổn định, tránh dùng index nếu danh sách có thể thay đổi thứ tự.
 
+**Bảng tổng kết phần 1**
+
+         |----------------------------------------------------------------------|
+         | Mục tiêu           | Nội dung                                        |
+         |----------------------------------------------------------------------|
+         | JSX là gì          | Cú pháp mở rộng giúp viết HTML trong JavaScript |
+         | Biểu thức          | Dùng {} để nhúng biến, gọi hàm, logic           |
+         | Điều kiện          | Dùng &&, ? : để render có điều kiện             |
+         | Fragments          | Dùng <>...</> để tránh thẻ cha dư               |
+         | Key trong .map()   | Dùng để React biết phần tử nào thay đổi         |
+
 **2. Component**
 
-- Function component vs Class component (hiện nay dùng function là chủ yếu)
-- Props và State
-- Lifecycle (trong function dùng Hook như useEffect)
-- Lifting state up (nâng state lên cha)
+- Component là đơn vị tái sử dụng giao diện nhỏ nhất trong React.
+- Một ứng dụng React là tập hợp các component lồng nhau.
+- Mỗi component giống như một “hàm JavaScript” nhưng trả về JSX thay vì giá trị.
 
-3. Hooks (Rất quan trọng)
+a. Function component vs Class component (hiện nay dùng function là chủ yếu)
+
+- Function Component (phổ biến hiện nay):  
+  Là component viết bằng function, hỗ trợ đầy đủ tính năng thông qua Hooks (useState, useEffect,...).  
+  Ví dụ:
+
+               {% raw %}
+                 function Welcome(props) {
+                   return <h1>Hello, {props.name}</h1>;
+                 }
+               {% endraw %}
+
+  Hoặc với arrow function:
+
+               {% raw %}
+                 const Welcome = ({ name }) => <h1>Hello, {name}</h1>;
+               {% endraw %}
+
+- Class Component (cũ hơn, ít dùng dần):
+  Component viết bằng class, phải kế thừa từ React.Component.  
+   Ví dụ:
+
+                 {% raw %}
+                   class Welcome extends React.Component {
+                     render() {
+                       return <h1>Hello, {this.props.name}</h1>;
+                     }
+                   }
+                 {% endraw %}
+
+  So sánh:
+
+         |-------------------------------------------------------------------------------------------|
+         | Tiêu chí             | Function Component         | Class Component                       |
+         |-------------------------------------------------------------------------------------------|
+         | Viết ngắn gọn        | ✅                         | ❌ dài dòng                          |
+         | Sử dụng Hooks        | ✅ useState, useEffect,... | ❌ không hỗ trợ Hooks                |
+         | Lifecycle            | ✅ Qua useEffect()         | ❌ Qua các hàm componentDidMount...  |
+         | Khuyến nghị hiện nay | ✅ Chủ yếu dùng            | ❌ Không khuyến khích mới            |
+
+b. Props và State
+
+- Props (Properties)
+
+  - Là dữ liệu truyền từ component cha xuống component con.
+  - Là readonly – không được thay đổi trong component con.
+  - Dùng để cấu hình/tuỳ biến component.
+    Ví dụ:
+
+                 {% raw %}
+                   function Greeting(props) {
+                     return <h1>Hello, {props.name}</h1>;
+                   }
+
+                   // Sử dụng
+                   <Greeting name="Thanh" />
+                 {% endraw %}
+
+- State
+
+  - Là dữ liệu nội bộ của component, có thể thay đổi trong vòng đời component.
+  - Khi state thay đổi, component sẽ re-render lại.
+    Dùng trong function component:
+
+                 {% raw %}
+                  import { useState } from 'react';
+
+                  function Counter() {
+                    const [count, setCount] = useState(0);
+                    return <button onClick={() => setCount(count + 1)}>Clicked {count}</button>;
+                  }
+                 {% endraw %}
+
+c. Lifecycle – Vòng đời Component
+
+- Lifecycle là các giai đoạn trong "vòng đời" của component: tạo, cập nhật, huỷ.
+- **Trong Function Component dùng useEffect() để thay thế lifecycle methods**
+
+         |---------------------------------------------------------------------------|
+         | Lifecycle (Class)           | Tương đương trong Function                  |
+         |---------------------------------------------------------------------------|
+         | componentDidMount()         | useEffect(() => { ... }, [])                |
+         | componentDidUpdate()        | useEffect(() => { ... })                    |
+         | componentWillUnmount()      | useEffect(() => { return () => {...} }, []) |
+
+  Ví dụ:
+
+                     {% raw %}
+                       useEffect(() => {
+                         console.log("Component mounted");
+
+                         return () => {
+                             console.log("Component unmounted");
+                         };
+                       }, []);
+                     {% endraw %}
+
+d. Lifting State Up – Nâng state lên cha
+
+- Khi hai hoặc nhiều component con cần chia sẻ chung một state, ta di chuyển state đó lên component cha và truyền qua props.
+  Ví dụ:
+
+                     {% raw %}
+                      // Cha
+                      function Parent() {
+                        const [value, setValue] = useState("");
+
+                        return (
+                        <>
+                          <Input value={value} onChange={setValue} />
+                          <Display value={value} />
+                        </>
+                        );
+                      }
+
+                      // Con 1
+                      function Input({ value, onChange }) {
+                        return <input value={value} onChange={e => onChange(e.target.value)} />;
+                      }
+
+                      // Con 2
+                      function Display({ value }) {
+                      return <p>Value: {value}</p>;
+                      }
+                     {% endraw %}
+
+  Lý do:
+
+  - Tránh trùng lặp state ở nhiều nơi.
+  - Giúp data flow một chiều, dễ debug, dễ kiểm soát.
+
+**Bảng tổng kết phần 2**
+
+         |----------------------------------------------------------------------|
+         | Kiến thức          | Nội dung chính                                  |
+         |----------------------------------------------------------------------|
+         | Component          | Đơn vị giao diện trong React                    |
+         | Function vs Class  | Nên dùng function + hooks                       |
+         | Props              | Dữ liệu truyền từ cha → con (readonly)          |
+         | State              | Dữ liệu nội bộ có thể thay đổi                  |
+         | Lifecycle          | Quản lý bằng useEffect() trong function         |
+         | Lifting State Up   | Khi cần chia sẻ state giữa các component con    |
+
+**3. Hooks (Rất quan trọng)**
 
 - useState, useEffect
 - useRef, useMemo, useCallback
 - useContext, useReducer
 - Custom Hooks
 
-4. Event Handling
+**4. Event Handling**
 
 - Bắt sự kiện: onClick, onChange, onSubmit, ...
 - Ngăn chặn mặc định (event.preventDefault())
 
-5. Conditional Rendering
+**5. Conditional Rendering**
 
 - if, &&, ternary, logical operators
 
-6. List Rendering
+**6. List Rendering**
 
 - Dùng .map() để render list
 - Sử dụng key đúng cách để tránh lỗi
 
-7. Forms
+**7. Forms**
 
 - Controlled vs uncontrolled components
 - Form validation cơ bản
 - Thư viện hỗ trợ: react-hook-form, formik, yup
 
-II. Kiến thức nâng cao
+**II. Kiến thức nâng cao**
 
-1. Routing – Điều hướng
+**1. Routing – Điều hướng**
 
 - Thư viện react-router-dom
 - Routes, Route, useNavigate, useParams
 
-2. State Management (Quản lý trạng thái)
+**2. State Management (Quản lý trạng thái)**
 
 - Context API
 - Redux Toolkit hoặc Zustand, Recoil
 - Global state vs local state
 
-3. Call API
+**3. Call API**
 
 - fetch, axios
 - Dùng useEffect để gọi API
 - Async/Await
 - Error handling
 
-4. Component Communication
+**4. Component Communication**
 
 - Cha → Con: props
 - Con → Cha: callback props
 - Con → Con: thông qua cha hoặc Context/Redux
 
-5. Performance Optimization
+**5. Performance Optimization**
 
 - React.memo, useMemo, useCallback
 - Lazy loading (React.lazy, Suspense)
 - Split code, Virtualization (ví dụ: react-window)
 
-6. Testing
+**6. Testing**
 
 - Unit test: Jest, React Testing Library
 - E2E test: Cypress, Playwright
 
-III. Các phần cần chú trọng để phát triển một dự án React
+**III. Các phần cần chú trọng để phát triển một dự án React**
 
-1. Cấu trúc thư mục rõ ràng
+**1. Cấu trúc thư mục rõ ràng**
 
 - components/, pages/, hooks/, services/, constants/, utils/, store/, ...
 - Dễ maintain, scale
 
-2. Quản lý state
+**2. Quản lý state**
 
 - Dùng Context cho state nhỏ, Redux Toolkit cho state lớn
 - Phân biệt rõ local và global state
 
-3. Giao tiếp với Backend
+**3. Giao tiếp với Backend**
 
 - Tạo service layer dùng axios hoặc fetch
 - Gắn token, handle lỗi, retry,...
 
-4. Giao diện và UI/UX
+**4. Giao diện và UI/UX**
 
 - Dùng thư viện: Ant Design, Material UI, TailwindCSS
 - Responsive, mobile-friendly
 - Loading state, error state
 
-5. Testing
+**5. Testing**
 
 - Test logic, component, flow chính
 
-6. Dev Tools và Linter
+**6. Dev Tools và Linter**
 
 - ESLint, Prettier
 - Husky, lint-staged
 - Git hook để kiểm tra code trước khi commit
 
-7. Internationalization (i18n) nếu đa ngôn ngữ
+**7. Internationalization (i18n) nếu đa ngôn ngữ**
 
 - react-i18next hoặc tương đương
 
-8. Bảo mật
+**8. Bảo mật**
 
 - Không lộ API key
 - Xử lý token an toàn
 - Validate form đầu vào
 
-9. Tối ưu hiệu năng
+**9. Tối ưu hiệu năng**
 
 - Chia nhỏ component
 - Giảm re-render
 - Lazy load page/component không cần thiết ngay
 
-10. Triển khai (Deployment)
+**10. Triển khai (Deployment)**
 
 - Build với vite hoặc webpack
 - Deploy lên Netlify, Vercel, Firebase, Cloud (AWS, GCP, Azure)
