@@ -1,4 +1,327 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-01T00:32:42+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-01T22:58:04+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức về ReactJS</title><link href="http://localhost:4000/2025/07/01/react-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về ReactJS" /><published>2025-07-01T00:00:00+07:00</published><updated>2025-07-01T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/01/react-post</id><content type="html" xml:base="http://localhost:4000/2025/07/01/react-post.html"><![CDATA[<p><strong>I. Kiến thức cơ bản cần nắm vững trong ReactJS</strong></p>
+
+<p><strong>1. JSX (JavaScript XML)</strong></p>
+
+<p>JSX là một cú pháp mở rộng của JavaScript, cho phép chúng ta viết mã HTML bên trong JavaScript. JSX giúp chúng ta tạo ra React elements, từ đó render ra giao diện người dùng.</p>
+
+<p>Ví dụ đơn giản:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       const element = &lt;h1&gt;Hello, React!&lt;/h1&gt;;
+</code></pre></div></div>
+
+<p>JSX không bắt buộc trong React, nhưng nó được sử dụng rất phổ biến vì:</p>
+
+<ul>
+  <li>Gần giống HTML nên dễ đọc, dễ viết.</li>
+  <li>Có thể kết hợp logic JavaScript vào giao diện.</li>
+</ul>
+
+<p>a. Cách viết HTML trong JavaScript</p>
+
+<ul>
+  <li>JSX trông giống HTML nhưng thực chất là JavaScript.</li>
+  <li>
+    <p>Mỗi thẻ HTML được biên dịch thành React.createElement.
+Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     return &lt;div className="greeting"&gt;Welcome to React!&lt;/div&gt;;
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Lưu ý khác biệt nhỏ với HTML:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-----------------------|
+     | HTML      | JSX       |
+     |-----------------------|
+     | class     | className |
+     | for       | htmlFor   |
+     | onclick   | onClick   |
+</code></pre></div></div>
+
+<p>b. Biểu thức trong JSX ({}) Dùng để nhúng logic</p>
+
+<ul>
+  <li>
+    <p>Chúng ta có thể chèn bất kỳ biểu thức JavaScript hợp lệ nào vào JSX bằng dấu {}.
+Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         const name = "Thanh";
+         return &lt;h1&gt;Hello, {name}!&lt;/h1&gt;; // =&gt; Hello, Thanh!
+</code></pre></div>    </div>
+
+    <p>Chúng ta có thể dùng {} để:</p>
+
+    <ul>
+      <li>Hiển thị giá trị</li>
+      <li>Gọi hàm</li>
+      <li>Tính toán trong dòng</li>
+    </ul>
+  </li>
+</ul>
+
+<p>c. Điều kiện trong JSX: &amp;&amp;, ? : (ternary)</p>
+
+<ul>
+  <li>
+    <p>&amp;&amp; – Điều kiện đơn giản<br />
+Hiển thị một phần tử nếu điều kiện đúng.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         {isLoggedIn &amp;&amp; &lt;p&gt;Welcome back!&lt;/p&gt;}
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>? : – Ternary operator<br />
+Hiển thị A nếu đúng, B nếu sai.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           {isLoggedIn ? &lt;p&gt;Hi user!&lt;/p&gt; : &lt;p&gt;Please login.&lt;/p&gt;}
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Lưu ý: Không dùng if trực tiếp bên trong JSX. Thay vào đó, đặt logic if bên ngoài JSX hoặc dùng biểu thức như trên.</strong></p>
+  </li>
+</ul>
+
+<p>d. Fragments (&lt;&gt;&lt;/&gt;) – Tránh thẻ cha dư thừa<br />
+React yêu cầu mỗi component phải trả về một element duy nhất. Nếu bạn muốn trả về nhiều thẻ mà không tạo thêm &lt;div&gt;, hãy dùng Fragment.</p>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             return (
+               &lt;&gt;
+                 &lt;h1&gt;Title&lt;/h1&gt;
+                 &lt;p&gt;Description&lt;/p&gt;
+               &lt;/&gt;
+             );
+</code></pre></div></div>
+
+<p>e. key khi dùng .map() – Tránh lỗi và tối ưu render<br />
+Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất cho mỗi phần tử để React tối ưu hóa hiệu năng khi cập nhật UI.</p>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             const todos = ["Eat", "Sleep", "Code"];
+             return (
+               &lt;ul&gt;
+                 {todos.map((item, index) =&gt; (
+                   &lt;li key={index}&gt;{item}&lt;/li&gt;
+                 ))}
+               &lt;/ul&gt;
+             );
+</code></pre></div></div>
+
+<p><strong>Lưu ý:</strong> key nên là giá trị duy nhất và ổn định, tránh dùng index nếu danh sách có thể thay đổi thứ tự.</p>
+
+<p><strong>2. Component</strong></p>
+
+<ul>
+  <li>Function component vs Class component (hiện nay dùng function là chủ yếu)</li>
+  <li>Props và State</li>
+  <li>Lifecycle (trong function dùng Hook như useEffect)</li>
+  <li>Lifting state up (nâng state lên cha)</li>
+</ul>
+
+<ol>
+  <li>Hooks (Rất quan trọng)</li>
+</ol>
+
+<ul>
+  <li>useState, useEffect</li>
+  <li>useRef, useMemo, useCallback</li>
+  <li>useContext, useReducer</li>
+  <li>Custom Hooks</li>
+</ul>
+
+<ol>
+  <li>Event Handling</li>
+</ol>
+
+<ul>
+  <li>Bắt sự kiện: onClick, onChange, onSubmit, …</li>
+  <li>Ngăn chặn mặc định (event.preventDefault())</li>
+</ul>
+
+<ol>
+  <li>Conditional Rendering</li>
+</ol>
+
+<ul>
+  <li>if, &amp;&amp;, ternary, logical operators</li>
+</ul>
+
+<ol>
+  <li>List Rendering</li>
+</ol>
+
+<ul>
+  <li>Dùng .map() để render list</li>
+  <li>Sử dụng key đúng cách để tránh lỗi</li>
+</ul>
+
+<ol>
+  <li>Forms</li>
+</ol>
+
+<ul>
+  <li>Controlled vs uncontrolled components</li>
+  <li>Form validation cơ bản</li>
+  <li>Thư viện hỗ trợ: react-hook-form, formik, yup</li>
+</ul>
+
+<p>II. Kiến thức nâng cao</p>
+
+<ol>
+  <li>Routing – Điều hướng</li>
+</ol>
+
+<ul>
+  <li>Thư viện react-router-dom</li>
+  <li>Routes, Route, useNavigate, useParams</li>
+</ul>
+
+<ol>
+  <li>State Management (Quản lý trạng thái)</li>
+</ol>
+
+<ul>
+  <li>Context API</li>
+  <li>Redux Toolkit hoặc Zustand, Recoil</li>
+  <li>Global state vs local state</li>
+</ul>
+
+<ol>
+  <li>Call API</li>
+</ol>
+
+<ul>
+  <li>fetch, axios</li>
+  <li>Dùng useEffect để gọi API</li>
+  <li>Async/Await</li>
+  <li>Error handling</li>
+</ul>
+
+<ol>
+  <li>Component Communication</li>
+</ol>
+
+<ul>
+  <li>Cha → Con: props</li>
+  <li>Con → Cha: callback props</li>
+  <li>Con → Con: thông qua cha hoặc Context/Redux</li>
+</ul>
+
+<ol>
+  <li>Performance Optimization</li>
+</ol>
+
+<ul>
+  <li>React.memo, useMemo, useCallback</li>
+  <li>Lazy loading (React.lazy, Suspense)</li>
+  <li>Split code, Virtualization (ví dụ: react-window)</li>
+</ul>
+
+<ol>
+  <li>Testing</li>
+</ol>
+
+<ul>
+  <li>Unit test: Jest, React Testing Library</li>
+  <li>E2E test: Cypress, Playwright</li>
+</ul>
+
+<p>III. Các phần cần chú trọng để phát triển một dự án React</p>
+
+<ol>
+  <li>Cấu trúc thư mục rõ ràng</li>
+</ol>
+
+<ul>
+  <li>components/, pages/, hooks/, services/, constants/, utils/, store/, …</li>
+  <li>Dễ maintain, scale</li>
+</ul>
+
+<ol>
+  <li>Quản lý state</li>
+</ol>
+
+<ul>
+  <li>Dùng Context cho state nhỏ, Redux Toolkit cho state lớn</li>
+  <li>Phân biệt rõ local và global state</li>
+</ul>
+
+<ol>
+  <li>Giao tiếp với Backend</li>
+</ol>
+
+<ul>
+  <li>Tạo service layer dùng axios hoặc fetch</li>
+  <li>Gắn token, handle lỗi, retry,…</li>
+</ul>
+
+<ol>
+  <li>Giao diện và UI/UX</li>
+</ol>
+
+<ul>
+  <li>Dùng thư viện: Ant Design, Material UI, TailwindCSS</li>
+  <li>Responsive, mobile-friendly</li>
+  <li>Loading state, error state</li>
+</ul>
+
+<ol>
+  <li>Testing</li>
+</ol>
+
+<ul>
+  <li>Test logic, component, flow chính</li>
+</ul>
+
+<ol>
+  <li>Dev Tools và Linter</li>
+</ol>
+
+<ul>
+  <li>ESLint, Prettier</li>
+  <li>Husky, lint-staged</li>
+  <li>Git hook để kiểm tra code trước khi commit</li>
+</ul>
+
+<ol>
+  <li>Internationalization (i18n) nếu đa ngôn ngữ</li>
+</ol>
+
+<ul>
+  <li>react-i18next hoặc tương đương</li>
+</ul>
+
+<ol>
+  <li>Bảo mật</li>
+</ol>
+
+<ul>
+  <li>Không lộ API key</li>
+  <li>Xử lý token an toàn</li>
+  <li>Validate form đầu vào</li>
+</ul>
+
+<ol>
+  <li>Tối ưu hiệu năng</li>
+</ol>
+
+<ul>
+  <li>Chia nhỏ component</li>
+  <li>Giảm re-render</li>
+  <li>Lazy load page/component không cần thiết ngay</li>
+</ul>
+
+<ol>
+  <li>Triển khai (Deployment)</li>
+</ol>
+
+<ul>
+  <li>Build với vite hoặc webpack</li>
+  <li>Deploy lên Netlify, Vercel, Firebase, Cloud (AWS, GCP, Azure)</li>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Kiến thức cơ bản cần nắm vững trong ReactJS]]></summary></entry><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
 
 <p><strong>I. Giới thiệu về Java</strong><br />
 <strong>1. Lịch sử và phiên bản Java</strong></p>
