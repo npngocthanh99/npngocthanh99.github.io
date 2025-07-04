@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tổng hợp kiến thức về Spring Framework"
-date: 2025-07-01
+date: 2025-07-03
 ---
 
 **I. Tổng quan về Spring Framework**
@@ -147,9 +147,246 @@ Lý do sử dụng Spring:
                         {% endraw %}
 
 3.  Bean Scope: Singleton, Prototype, Request, Session...
+
+                      |-----------------------------------------------------------------------------------------|
+                      | Scope               | Mô tả                                  | Áp dụng                  |
+                      | --------------------|----------------------------------------|--------------------------|
+                      | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất    | Stateless services       |
+                      | prototype           | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope   |
+                      | request             | Mỗi HTTP request sẽ có bean riêng      | Spring Web               |
+                      | session             | Bean tồn tại trong session người dùng  | Spring Web               |
+                      | application         | Tồn tại trong ServletContext           | Web application          |
+                      | websocket           | Bean sống trong WebSocket session      | Realtime apps            |
+
+Ví dụ:
+
+                        {% raw %}
+                        @Component
+                        @Scope("prototype")
+                        public class SomeBean { }
+                        {% endraw %}
+
 4.  Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy
+
+    - Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ.
+    - Quy trình vòng đời Bean cơ bản:
+
+      1. Bean được tạo (bằng constructor)
+      2. Dependency được inject (DI)
+      3. Các hook được gọi: @PostConstruct hoặc init-method
+      4. Bean sẵn sàng được sử dụng
+      5. Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi
+
 5.  Annotation vs XML vs Java-based configuration
+
+                                  |---------------------------------------------------------------------------------------------------|
+                                  | Loại cấu hình    | Cách làm                                      | Dùng khi nào                   |
+                                  | -----------------|-----------------------------------------------|--------------------------------|
+                                  | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay         |
+                                  |                  | @Configuration, @Bean, @Autowired...          |                                |
+                                  | XML-based        | Cấu hình trong file applicationContext.xml,   | Cũ, dùng khi không thể dùng    |
+                                  |                  | khai báo <bean>...                            | annotation                     |
+                                  | Java-based       | Dùng class @Configuration và method @Bean     | Rõ ràng, mạnh mẽ, dễ kiểm soát |
+                                  |                  |                                               |                                |
+
+                a. Annotation-based Configuration
+
+                     - Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML
+                     - Ví dụ:
+
+                                    {% raw %}
+                                    @Component
+                                    public class MyService {
+                                      public void doSomething() { }
+                                    }
+
+                                    @Service
+                                    public class OrderService {
+                                      private final MyService myService;
+
+                                      @Autowired
+                                      public OrderService(MyService myService) {
+                                        this.myService = myService;
+                                      }
+                                    }
+                                    {% endraw %}
+
+                b. XML-based Configuration (Cũ)
+                     - Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code
+                     - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt
+                     - Ví dụ:
+
+                            {% raw %}
+                            <beans>
+                              <bean id="myService" class="com.example.MyService" />
+                              <bean id="orderService" class="com.example.OrderService">
+                                <constructor-arg ref="myService" />
+                              </bean>
+                            </beans>
+                            {% endraw %}
+
+                c. Java-based Configuration (@Configuration + @Bean)
+                    - Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic
+                    - Ví dụ:
+
+                            {% raw %}
+                            @Configuration
+                            public class AppConfig {
+
+                              @Bean
+                              public MyService myService() {
+                                return new MyService();
+                              }
+
+                              @Bean
+                              public OrderService orderService() {
+                                return new OrderService(myService());
+                              }
+                            }
+                            {% endraw %}
+
 6.  @Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier
+    a. @Component
+
+        - Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container.
+        - Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component.
+        - Ví dụ:
+
+                            {% raw %}
+                            @Component
+                            public class EmailSender {
+                              public void send(String message) { }
+                            }
+                            {% endraw %}
+
+    b. @Service
+
+         - Annotation dành riêng cho tầng service – logic nghiệp vụ.
+         - Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng).
+         - Về bản chất, giống @Component.
+         - Ví dụ:
+
+                            {% raw %}
+                            @Service
+                            public class OrderService {
+                              public void processOrder() { }
+                            }
+                            {% endraw %}
+
+c. @Repository
+
+         - Annotation cho DAO layer (Data Access Layer)
+         - Giống @Component, nhưng có thêm xử lý ngoại lệ tự động:
+            | Chuyển đổi JDBC exceptions thành Spring DataAccessException.
+         - Ví dụ:
+
+                            {% raw %}
+                            @Repository
+                            public class UserRepository {
+                              public void save(User u) { }
+                            }
+                            {% endraw %}
+
+d. @Controller
+
+         - Dùng cho Spring MVC Controller, xử lý request HTTP.
+         - Trả về View (HTML) nếu không kết hợp với @ResponseBody
+         - Ví dụ:
+
+                            {% raw %}
+                            @Controller
+                            public class HomeController {
+                              @GetMapping("/")
+                              public String home() {
+                                return "index"; // trả về view name
+                              }
+                            }
+                            {% endraw %}
+
+e. @Configuration
+
+         - Dùng để đánh dấu class Java config, nơi bạn khai báo các @Bean.
+         - Tương đương với file applicationContext.xml trong cấu hình XML.
+         - Ví dụ:
+
+                            {% raw %}
+                            @Configuration
+                            public class AppConfig {
+                              @Bean
+                              public EmailSender emailSender() {
+                                return new EmailSender();
+                              }
+                            }
+                            {% endraw %}
+
+f. @Bean
+
+         - Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component).
+         - Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp.
+         - Ví dụ:
+
+                            {% raw %}
+                            @Bean
+                            public DataSource dataSource() {
+                              return new HikariDataSource();
+                            }
+                            {% endraw %}
+
+g. @Autowired
+
+         - Annotation dùng để inject dependency tự động theo kiểu (by type).
+         - Có thể dùng cho:
+          - Constructor (khuyến khích)
+          - Field
+          - Setter
+         - Ví dụ:
+
+                            {% raw %}
+                            @Service
+                            public class NotificationService {
+                              private final EmailSender emailSender;
+
+                              @Autowired
+                              public NotificationService(EmailSender emailSender) {
+                                this.emailSender = emailSender;
+                              }
+                            }
+                            {% endraw %}
+
+h. @Qualifier
+
+           - Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type.
+           - Kết hợp với @Autowired.
+           - Ví dụ:
+
+                            {% raw %}
+                            @Autowired
+                            @Qualifier("smsSender")
+                            private MessageSender sender;
+                            {% endraw %}
+
+                            {% raw %}
+                            @Component("smsSender")
+                            public class SmsSender implements MessageSender { }
+
+                            @Component("emailSender")
+                            public class EmailSender implements MessageSender { }
+                            {% endraw %}
+
+**Tổng quan mối quan hệ giữa các annotation**
+
+                            {% raw %}
+                            @Component     ←  Gốc chung
+                              ├── @Service        →    Service Layer
+                              ├── @Repository     →    DAO Layer, bắt exception
+                              └── @Controller     →    Web Layer
+
+                            @Configuration → class khai báo Bean thủ công
+                            @Bean → method tạo Bean trong class @Configuration
+
+                            @Autowired → Inject dependency
+                            @Qualifier → Chọn đúng bean nếu có nhiều
+                            {% endraw %}
 
 **III. Spring AOP (Aspect-Oriented Programming)**
 
