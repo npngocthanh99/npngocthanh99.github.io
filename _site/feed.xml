@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-03T20:26:15+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức về Spring Framework</title><link href="http://localhost:4000/2025/07/01/spring-boot.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Framework" /><published>2025-07-01T00:00:00+07:00</published><updated>2025-07-01T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/01/spring-boot</id><content type="html" xml:base="http://localhost:4000/2025/07/01/spring-boot.html"><![CDATA[<p><strong>I. Tổng quan về Spring Framework</strong></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-05T17:01:38+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức về Spring Framework</title><link href="http://localhost:4000/2025/07/03/spring-boot.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Framework" /><published>2025-07-03T00:00:00+07:00</published><updated>2025-07-03T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/03/spring-boot</id><content type="html" xml:base="http://localhost:4000/2025/07/03/spring-boot.html"><![CDATA[<p><strong>I. Tổng quan về Spring Framework</strong></p>
 
 <ol>
   <li>
@@ -168,31 +168,706 @@
       </li>
     </ul>
   </li>
-  <li>Bean Scope: Singleton, Prototype, Request, Session…</li>
-  <li>Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy</li>
-  <li>Annotation vs XML vs Java-based configuration</li>
-  <li>@Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier</li>
+  <li>
+    <p>Bean Scope: Singleton, Prototype, Request, Session…</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              |-----------------------------------------------------------------------------------------|
+              | Scope               | Mô tả                                  | Áp dụng                  |
+              | --------------------|----------------------------------------|--------------------------|
+              | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất    | Stateless services       |
+              | prototype           | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope   |
+              | request             | Mỗi HTTP request sẽ có bean riêng      | Spring Web               |
+              | session             | Bean tồn tại trong session người dùng  | Spring Web               |
+              | application         | Tồn tại trong ServletContext           | Web application          |
+              | websocket           | Bean sống trong WebSocket session      | Realtime apps            |
+</code></pre></div>    </div>
+  </li>
 </ol>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    @Component
+                    @Scope("prototype")
+                    public class SomeBean { }
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy</p>
+
+    <ul>
+      <li>Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ.</li>
+      <li>
+        <p>Quy trình vòng đời Bean cơ bản:</p>
+
+        <ol>
+          <li>Bean được tạo (bằng constructor)</li>
+          <li>Dependency được inject (DI)</li>
+          <li>Các hook được gọi: @PostConstruct hoặc init-method</li>
+          <li>Bean sẵn sàng được sử dụng</li>
+          <li>Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Annotation vs XML vs Java-based configuration</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          |---------------------------------------------------------------------------------------------------|
+                          | Loại cấu hình    | Cách làm                                      | Dùng khi nào                   |
+                          | -----------------|-----------------------------------------------|--------------------------------|
+                          | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay         |
+                          |                  | @Configuration, @Bean, @Autowired...          |                                |
+                          | XML-based        | Cấu hình trong file applicationContext.xml,   | Cũ, dùng khi không thể dùng    |
+                          |                  | khai báo &lt;bean&gt;...                            | annotation                     |
+                          | Java-based       | Dùng class @Configuration và method @Bean     | Rõ ràng, mạnh mẽ, dễ kiểm soát |
+                          |                  |                                               |                                |
+</code></pre></div>    </div>
+
+    <p>a. Annotation-based Configuration</p>
+
+    <ul>
+      <li>Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                      @Component
+                      public class MyService {
+                        public void doSomething() { }
+                      }
+
+                      @Service
+                      public class OrderService {
+                        private final MyService myService;
+
+                        @Autowired
+                        public OrderService(MyService myService) {
+                          this.myService = myService;
+                        }
+                      }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>b. XML-based Configuration (Cũ)</p>
+
+    <ul>
+      <li>Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                &lt;beans&gt;
+                  &lt;bean id="myService" class="com.example.MyService" /&gt;
+                  &lt;bean id="orderService" class="com.example.OrderService"&gt;
+                    &lt;constructor-arg ref="myService" /&gt;
+                  &lt;/bean&gt;
+                &lt;/beans&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>c. Java-based Configuration (@Configuration + @Bean)</p>
+
+    <ul>
+      <li>Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                @Configuration
+                public class AppConfig {
+
+                  @Bean
+                  public MyService myService() {
+                    return new MyService();
+                  }
+
+                  @Bean
+                  public OrderService orderService() {
+                    return new OrderService(myService());
+                  }
+                }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>@Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier
+a. @Component</p>
+
+    <ul>
+      <li>Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container.</li>
+      <li>Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Component
+                  public class EmailSender {
+                    public void send(String message) { }
+                  }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>b. @Service</p>
+
+    <ul>
+      <li>Annotation dành riêng cho tầng service – logic nghiệp vụ.</li>
+      <li>Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng).</li>
+      <li>Về bản chất, giống @Component.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Service
+                  public class OrderService {
+                    public void processOrder() { }
+                  }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>c. @Repository</p>
+
+    <ul>
+      <li>Annotation cho DAO layer (Data Access Layer)</li>
+      <li>Giống @Component, nhưng có thêm xử lý ngoại lệ tự động:
+| Chuyển đổi JDBC exceptions thành Spring DataAccessException.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Repository
+                  public class UserRepository {
+                    public void save(User u) { }
+                  }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>d. @Controller</p>
+
+    <ul>
+      <li>Dùng cho Spring MVC Controller, xử lý request HTTP.</li>
+      <li>Trả về View (HTML) nếu không kết hợp với @ResponseBody</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Controller
+                  public class HomeController {
+                    @GetMapping("/")
+                    public String home() {
+                      return "index"; // trả về view name
+                    }
+                  }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>e. @Configuration</p>
+
+    <ul>
+      <li>Dùng để đánh dấu class Java config, nơi bạn khai báo các @Bean.</li>
+      <li>Tương đương với file applicationContext.xml trong cấu hình XML.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Configuration
+                  public class AppConfig {
+                    @Bean
+                    public EmailSender emailSender() {
+                      return new EmailSender();
+                    }
+                  }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>f. @Bean</p>
+
+    <ul>
+      <li>Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component).</li>
+      <li>Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Bean
+                  public DataSource dataSource() {
+                    return new HikariDataSource();
+                  }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>g. @Autowired</p>
+
+    <ul>
+      <li>Annotation dùng để inject dependency tự động theo kiểu (by type).</li>
+      <li>
+        <p>Có thể dùng cho:</p>
+
+        <ul>
+          <li>Constructor (khuyến khích)</li>
+          <li>Field</li>
+          <li>Setter</li>
+          <li>
+            <p>Ví dụ:</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                @Service
+                public class NotificationService {
+                  private final EmailSender emailSender;
+
+                  @Autowired
+                  public NotificationService(EmailSender emailSender) {
+                    this.emailSender = emailSender;
+                  }
+                }
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>h. @Qualifier</p>
+
+    <ul>
+      <li>Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type.</li>
+      <li>Kết hợp với @Autowired.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Autowired
+                  @Qualifier("smsSender")
+                  private MessageSender sender;
+                        
+
+                        
+                  @Component("smsSender")
+                  public class SmsSender implements MessageSender { }
+
+                  @Component("emailSender")
+                  public class EmailSender implements MessageSender { }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Tổng quan mối quan hệ giữa các annotation</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                        @Component     ←  Gốc chung
+                          ├── @Service        →    Service Layer
+                          ├── @Repository     →    DAO Layer, bắt exception
+                          └── @Controller     →    Web Layer
+
+                        @Configuration → class khai báo Bean thủ công
+                        @Bean → method tạo Bean trong class @Configuration
+
+                        @Autowired → Inject dependency
+                        @Qualifier → Chọn đúng bean nếu có nhiều
+</code></pre></div></div>
 
 <p><strong>III. Spring AOP (Aspect-Oriented Programming)</strong></p>
 
 <ol>
-  <li>AOP là gì?</li>
-  <li>Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving</li>
-  <li>Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing</li>
-  <li>Ứng dụng AOP để làm gì: Logging, Transaction, Authorization…</li>
+  <li>
+    <p>AOP là gì?</p>
+
+    <ul>
+      <li>AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng.</li>
+      <li>
+        <p>Mục tiêu:</p>
+
+        <ul>
+          <li>Làm code gọn hơn, dễ reuse</li>
+          <li>Tăng tính module hóa</li>
+          <li>Giảm trùng lặp code</li>
+          <li>
+            <p><strong>Ví dụ trước - sau dùng AOP</strong></p>
+
+            <ul>
+              <li>
+                <p>Chưa dùng AOP:</p>
+
+                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 public void createOrder() {
+                    log.info("Start");
+                    // business logic
+                    log.info("End");
+                 }
+</code></pre></div>                </div>
+              </li>
+              <li>
+                <p>Dùng AOP:</p>
+
+                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 public void createOrder() {
+                  // chỉ business logic
+                 }
+                           
+
+  Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn
+</code></pre></div>                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|--------------------------------------------------------------------------------------------------|
+| Khái niệm   | Mô tả                                                                              |
+|--------------------------------------------------------------------------------------------------|
+| Aspect      | Mô tả logic phụ tách ra (logging, security, transaction...)                        |
+| JoinPoint   | Điểm trong chương trình mà Aspect có thể can thiệp vào (VD: method được gọi)       |
+| Pointcut    | Điều kiện lọc để xác định JoinPoint nào được áp dụng (theo tên method, package...) |
+| Advice      | Hành động (code) thực sự được thực thi tại JoinPoint                               |
+| Weaving     | Quá trình kết hợp Aspect vào target object tại runtime/compile time                |
+| Proxy       | Spring tạo ra một đối tượng proxy bao quanh bean gốc để thực hiện AOP              |
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        |-----------------------------------------------------------------------------------|
+        | Loại Advice/Annotation | Khi nào được gọi                                         |
+        |-----------------------------------------------------------------------------------|
+        | @Before                | Trước khi method được gọi                                |
+        | @After                 | Sau khi method kết thúc (dù thành công hay exception)    |
+        | @AfterReturning        | Sau khi method trả về thành công                         |
+        | @AfterThrowing         | Khi method ném ra exception                              |
+        | @Around                | Bao quanh method (có thể chặn, sửa, thực thi trước/sau)  |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ: Logging Aspect</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   @Aspect
+   @Component
+   public class LoggingAspect {
+
+    @Before("execution(* com.example.service.*.*(..))")
+    public void logBefore(JoinPoint joinPoint) {
+      System.out.println("Start method: " + joinPoint.getSignature().getName());
+    }
+
+    @AfterReturning(pointcut = "execution(* com.example.service.*.*(..))", returning = "result")
+    public void logAfter(Object result) {
+      System.out.println("Method returned: " + result);
+    }
+
+   }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Ứng dụng AOP để làm gì: Logging, Transaction, Authorization…</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |------------------------------------------------------------------|
+    | Ứng dụng            | Mô tả                                      |
+    |------------------------------------------------------------------|
+    | Logging             | Ghi log trước/ sau method                  |
+    | Transaction         | Quản lý giao dịch tự động (@Transactional) |
+    | Authorization       | Kiểm tra quyền trước khi thực hiện         |
+    | Performance Monitor | Đo thời gian chạy của hàm                  |
+    | Exception Handling  | Bắt và xử lý ngoại lệ toàn cục             |
+    | Audit               | Theo dõi hành động người dùng              |
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Spring AOP hoạt động như thế nào?</p>
+
+    <ul>
+      <li>Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại</li>
+      <li>Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng</li>
+    </ul>
+  </li>
 </ol>
+
+<p><strong>Tóm tắt</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Spring AOP cho phép tách logic phụ như logging, transaction ra khỏi logic chính nhờ khái niệm Aspect. Chúng ta thường dùng @Before, @After, @Around để log method, kiểm soát thời gian, hoặc validate quyền.
+- Các điểm chính trong AOP gồm:
+
+     + Aspect: logic phụ
+     + JoinPoint: điểm có thể can thiệp (thường là method)
+     + Pointcut: định nghĩa nơi aspect được áp dụng
+     + Advice: hành động khi aspect được thực thi
+     + Weaving: quá trình gắn aspect vào chương trình
+</code></pre></div></div>
 
 <p><strong>IV. Spring Data JPA / Spring JDBC</strong></p>
 
 <ol>
-  <li>ORM là gì?</li>
-  <li>Spring Data JPA với JpaRepository, CrudRepository, PagingAndSortingRepository</li>
-  <li>Viết custom query bằng JPQL, native SQL, hoặc @Query</li>
-  <li>Transaction management với @Transactional</li>
-  <li>Entity Lifecycle (Persist, Merge, Remove, Detach)</li>
-  <li>Cách tạo các mối quan hệ: OneToOne, OneToMany, ManyToOne, ManyToMany</li>
-  <li>Lazy vs Eager Loading</li>
+  <li>
+    <p>ORM là gì?</p>
+
+    <ul>
+      <li>
+        <p>ORM (Object Relational Mapping) là kỹ thuật ánh xạ giữa object trong Java và bảng trong CSDL.</p>
+
+        <ul>
+          <li>Mỗi class Java ↔ một bảng trong DB</li>
+          <li>Mỗi field ↔ một cột</li>
+          <li>Mỗi instance ↔ một dòng dữ liệu</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Mục đích: giúp truy vấn DB bằng Java object, không cần viết SQL thủ công nhiều.</p>
+  </li>
+  <li>
+    <p>Spring Data JPA với JpaRepository, CrudRepository, PagingAndSortingRepository</p>
+
+    <p>a. Spring Data JPA là gì?</p>
+
+    <ul>
+      <li>Spring Data JPA là một abstraction trên JPA giúp tự động sinh code truy vấn CRUD.</li>
+      <li>Nó tích hợp với JPA Provider như Hibernate.</li>
+    </ul>
+
+    <p>b. Các interface chính trong Spring Data JPA</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |-------------------------------------------------------------------------------------------------------------|
+    | Interface                         | Chức năng                                                               |
+    |-------------------------------------------------------------------------------------------------------------|
+    | CrudRepository&lt;T, ID&gt;             | Cung cấp các hàm CRUD cơ bản (save, findById, delete...)                |
+    | PagingAndSortingRepository&lt;T, ID&gt; | Thêm hỗ trợ phân trang &amp; sắp xếp                                        |
+    | JpaRepository&lt;T, ID&gt;              | Kế thừa tất cả trên + nhiều tính năng mở rộng như batch, flush, khóa... |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+     List&lt;User&gt; findByName(String name);
+   }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Viết custom query bằng JPQL, native SQL, hoặc @Query</p>
+
+    <p>a. Query Method:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    List&lt;User&gt; findByEmailAndStatus(String email, String status);
+</code></pre></div>    </div>
+
+    <p>b. JPQL - Java Persistence Query Language(@Query):</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    @Query("SELECT u FROM User u WHERE u.email = :email")
+    User findByEmail(@Param("email") String email);
+</code></pre></div>    </div>
+
+    <p>c. JPQL (@Query):</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    @Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery = true)
+    User findByEmailNative(String email);
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Transaction management với @Transactional</p>
+
+    <ul>
+      <li>Giúp đảm bảo thao tác DB là toàn vẹn (ACID).</li>
+      <li>Nếu có lỗi xảy ra, sẽ rollback toàn bộ.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  @Transactional
+  public void transferMoney() {
+    withdraw();
+    deposit();
+  }
+</code></pre></div>        </div>
+      </li>
+      <li>Mặc định @Transactional chỉ áp dụng trên public method.</li>
+      <li>Có thể cấu hình rollback, propagation, isolation…</li>
+    </ul>
+  </li>
+  <li>
+    <p>Entity Lifecycle (Persist, Merge, Remove, Detach)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |---------------------------------------------------------------------------|
+    | Trạng thái           | Mô tả                                              |
+    |---------------------------------------------------------------------------|
+    | New (Transient)      | Entity mới tạo, chưa được persist                  |
+    | Managed (Persistent) | Entity được quản lý bởi EntityManager              |
+    | Detached             | Entity đã từng persist nhưng giờ không còn quản lý |
+    | Removed              | Entity sẽ bị xoá khỏi DB                           |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Các method liên quan:
+        <ul>
+          <li>persist(entity) – thêm mới</li>
+          <li>merge(entity) – cập nhật</li>
+          <li>remove(entity) – xoá</li>
+          <li>detach(entity) – tách khỏi context</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Cách tạo các mối quan hệ: OneToOne, OneToMany, ManyToOne, ManyToMany</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            |-------------------------------------------------------------------------------|
+            | Annotation   | Mối quan hệ | Ghi chú                                          |
+            |-------------------------------------------------------------------------------|
+            | @OneToOne    |  1 - 1      | Một đối tượng liên kết với đúng 1 đối tượng khác |
+            | @OneToMany   |  1 - N      | Một đối tượng có nhiều đối tượng con             |
+            | @ManyToOne   |  N - 1      | N đối tượng con trỏ về cùng 1 đối tượng cha      |
+            | @ManyToMany  |  N - N      | N đối tượng liên kết với N đối tượng khác        |
+</code></pre></div>    </div>
+
+    <p>a. Ví dụ @OneToOne – Một-một (Một User có một Profile):</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            @Entity
+            public class User {
+              @Id @GeneratedValue
+              private Long id;
+              private String username;
+
+              @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+              private Profile profile;
+            }
+
+            @Entity
+            public class Profile {
+              @Id @GeneratedValue
+              private Long id;
+              private String bio;
+
+              @OneToOne
+              @JoinColumn(name = "user_id")
+              private User user;
+            }
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Giải thích:
+        <ul>
+          <li>@OneToOne(mappedBy = “user”): quan hệ được điều khiển bởi Profile</li>
+          <li>@JoinColumn(name = “user_id”): khoá ngoại</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>b. Ví dụ @OneToMany - Một-Nhiều (Một Customer có nhiều Order) và @ManyToOne - Nhiều-Một (Nhiều Order có chung một Customer)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            @Entity
+            public class Customer {
+              @Id @GeneratedValue
+              private Long id;
+              private String name;
+
+              @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+              private List&lt;Order&gt; orders = new ArrayList&lt;&gt;();
+            }
+
+            @Entity
+            public class Order {
+              @Id @GeneratedValue
+              private Long id;
+              private String orderCode;
+
+              @ManyToOne
+              @JoinColumn(name = "customer_id")
+              private Customer customer;
+            }
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Giải thích:
+        <ul>
+          <li>Order là bên sở hữu quan hệ, chứa @JoinColumn</li>
+          <li>Customer là bên không sở hữu, dùng mappedBy = “customer”</li>
+        </ul>
+      </li>
+      <li>
+        <p>Thêm đơn hàng:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         Customer c = new Customer();
+         Order o1 = new Order(); o1.setCustomer(c);
+         Order o2 = new Order(); o2.setCustomer(c);
+         c.setOrders(List.of(o1, o2));
+         customerRepository.save(c); // cascade ALL nên tự lưu luôn orders
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>c. Ví dụ @ManyToMany – Nhiều-nhiều (Student học nhiều Course, Course có nhiều Student)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          @Entity
+          public class Student {
+            @Id @GeneratedValue
+            private Long id;
+            private String name;
+
+            @ManyToMany
+            @JoinTable(name = "student_course",
+              joinColumns = @JoinColumn(name = "student_id"),
+              inverseJoinColumns = @JoinColumn(name = "course_id"))
+            private Set&lt;Course&gt; courses = new HashSet&lt;&gt;();
+          }
+
+          @Entity
+          public class Course {
+            @Id @GeneratedValue
+            private Long id;
+            private String title;
+
+            @ManyToMany(mappedBy = "courses")
+            private Set&lt;Student&gt; students = new HashSet&lt;&gt;();
+          }
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Giải thích:</p>
+
+        <ul>
+          <li>@JoinTable tạo bảng trung gian student_course</li>
+          <li>mappedBy = “courses” để định nghĩa quan hệ 2 chiều</li>
+        </ul>
+      </li>
+      <li>
+        <p>Gán khóa học cho sinh viên:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        Student s = new Student();
+        Course c1 = new Course(); c1.setTitle("Java");
+        Course c2 = new Course(); c2.setTitle("Spring");
+
+        s.getCourses().addAll(List.of(c1, c2));
+        c1.getStudents().add(s);
+        c2.getStudents().add(s);
+        studentRepository.save(s); // sẽ lưu tất cả do cascade
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Lazy vs Eager Loading</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |----------------------------------------------------------------------------------------------------|
+    | Kiểu   | Mô tả                                  | Ưu/nhược                                         |
+    |----------------------------------------------------------------------------------------------------|
+    | LAZY   | Chỉ load khi cần (lazy initialization) | Tốt hơn về hiệu năng nếu không cần dữ liệu ngay  |
+    | EAGER  | Load luôn khi entity được lấy          | Gây N+1 query, giảm performance                  |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @OneToMany(fetch = FetchType.LAZY)
+ private List&lt;Order&gt; orders;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
 </ol>
 
 <p><strong>V. Spring MVC (Web Layer)</strong></p>
@@ -561,13 +1236,200 @@ Ví dụ:</p>
 </code></pre></div></div>
 
 <p><strong>3. Hooks (Rất quan trọng)</strong></p>
-
 <ul>
-  <li>useState, useEffect</li>
-  <li>useRef, useMemo, useCallback</li>
-  <li>useContext, useReducer</li>
-  <li>Custom Hooks</li>
+  <li>Hooks là các hàm đặc biệt trong React cho phép chúng ta sử  dụng state, lifecycle, context,… trong function component mà trước đây chỉ có class component mới có thể làm được.</li>
+  <li>React Hooks ra đời từ phiên bản 16.8 và trở thành tiêu chuẩn phát triển hiện đại.</li>
 </ul>
+
+<p>a. useState - Quản lý state cục bộ</p>
+<ul>
+  <li>
+    <p>Dùng để  tạo và cập nhật state bên trong function component.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               import { useState } from 'react';
+
+               function Counter() {
+                const [count, setCount] = useState(0);
+                return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Clicked {count}&lt;/button&gt;;
+               }
+</code></pre></div>    </div>
+  </li>
+  <li>useState(0) -&gt; 0 là giá trị khởi tạo</li>
+  <li>Trả về một mảng [giá_trị, hàm_cập_nhật]</li>
+</ul>
+
+<p>b.  useEffect - Lifecycle Hook</p>
+<ul>
+  <li>
+    <p>Dùng để  xử  lý side effect như: gọi API, subcribe, thao tác DOM,…sau khi component render.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              import { useEffect } from 'react';
+
+              useEffect(() =&gt; {
+                console.log('Component mounted');
+
+                return () =&gt; {
+                  console.log('Component unmounted');
+                };
+              }, []);
+</code></pre></div>    </div>
+
+    <ul>
+      <li>[] : Chạy một lần duy nhất(như componentDidMount)</li>
+      <li>[dependency] : Chạy lại khi dependency thay đổi</li>
+      <li>Không có [] : Chạy lại mỗi lần render</li>
+    </ul>
+
+    <p>Dùng để :</p>
+    <ul>
+      <li>Gọi API</li>
+      <li>Lắng nghe sự kiện</li>
+      <li>Cleanup (xoá listener, clearInverval,…)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>c. useRef – Tham chiếu tới DOM hoặc lưu giá trị không làm re-render</p>
+<ul>
+  <li>
+    <p>Dùng để giữ giá trị không thay đổi khi re-render hoặc thao tác với DOM.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const inputRef = useRef();
+
+              const handleFocus = () =&gt; {
+                inputRef.current.focus(); // Truy cập DOM node
+              };
+
+              return &lt;input ref={inputRef} /&gt;;
+</code></pre></div>    </div>
+
+    <p>Ngoài thao tác DOM, useRef còn dùng để:<br />
+    - Lưu giá trị trước đó<br />
+    - Lưu biến cục bộ không gây re-render</p>
+  </li>
+</ul>
+
+<p>d. useMemo – Ghi nhớ giá trị tính toán</p>
+<ul>
+  <li>
+    <p>Tránh tính toán lại các giá trị tốn hiệu năng, khi dependency không thay đổi.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const total = useMemo(() =&gt; {
+                return calculateTotal(items); // Hàm tính toán nặng
+              }, [items]);
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Chỉ re-calculate khi items thay đổi</li>
+      <li>Dùng để tối ưu performance (tránh re-compute không cần thiết)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>e. useCallback – Ghi nhớ hàm</p>
+<ul>
+  <li>
+    <p>Tránh tạo hàm mới mỗi lần re-render, dùng nhiều trong truyền props xuống component con.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const handleClick = useCallback(() =&gt; {
+                console.log('clicked');
+              }, []);
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Giúp tránh re-render không cần thiết ở component con được bọc React.memo</li>
+    </ul>
+  </li>
+</ul>
+
+<p>f. useContext – Truyền dữ liệu toàn cục</p>
+<ul>
+  <li>
+    <p>Dùng để truy cập giá trị từ Context API, tránh “drilling” props nhiều cấp.</p>
+
+    <p>Tạo Context:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const ThemeContext = React.createContext('light');
+</code></pre></div>    </div>
+
+    <p>Dùng:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const theme = useContext(ThemeContext);
+</code></pre></div>    </div>
+
+    <p>Phù hợp với:</p>
+
+    <ul>
+      <li>Theme, ngôn ngữ (i18n)</li>
+      <li>Thông tin user, quyền hạn</li>
+      <li>Dữ liệu cấu hình toàn app</li>
+    </ul>
+  </li>
+</ul>
+
+<p>g. useReducer – Quản lý state phức tạp</p>
+<ul>
+  <li>
+    <p>Dùng thay thế useState khi state có nhiều trạng thái hoặc logic phức tạp.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const reducer = (state, action) =&gt; {
+                switch(action.type) {
+                  case 'increment': return { count: state.count + 1 };
+                  case 'decrement': return { count: state.count - 1 };
+                  default: return state;
+                }
+              };
+
+              const [state, dispatch] = useReducer(reducer, { count: 0 });
+</code></pre></div>    </div>
+
+    <p>-Tương tự Redux: có state, dispatch, action
+-Hữu ích cho form lớn, table phức tạp, flow điều hướng</p>
+  </li>
+</ul>
+
+<p>h. Custom Hook – Tạo hook riêng</p>
+<ul>
+  <li>Khi bạn có logic dùng lại nhiều lần, hãy đóng gói nó thành Custom Hook.</li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              function useWindowWidth() {
+                const [width, setWidth] = useState(window.innerWidth);
+
+                useEffect(() =&gt; {
+                  const handleResize = () =&gt; setWidth(window.innerWidth);
+                  window.addEventListener('resize', handleResize);
+                  return () =&gt; window.removeEventListener('resize', handleResize);
+                }, []);
+
+              return width;
+              }
+
+              // Sử dụng
+              const width = useWindowWidth();
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Tên custom hook phải bắt đầu bằng use, có thể dùng các hook khác bên trong.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Bảng tổng kết Phần 3</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------|
+     | Hook         | Công dụng chính                                    |
+     |-------------------------------------------------------------------|
+     | useState     | Khai báo state trong function component            |
+     | useEffect    | Lifecycle: mount, update, unmount                  |
+     | useRef       | Tham chiếu DOM hoặc lưu biến cục bộ                |
+     | useMemo      | Ghi nhớ giá trị tính toán lại                      |
+     | useCallback  | Ghi nhớ hàm, tránh re-render con                   |
+     | useContext   | Truy cập context toàn cục                          |
+     | useReducer   | Quản lý state phức tạp (tương tự Redux)            |
+     | Custom Hook  | Tái sử dụng logic, đóng gói logic có trạng thái    |
+</code></pre></div></div>
 
 <p><strong>4. Event Handling</strong></p>
 

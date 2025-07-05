@@ -342,13 +342,200 @@ Ví dụ:</p>
 </code></pre></div></div>
 
 <p><strong>3. Hooks (Rất quan trọng)</strong></p>
-
 <ul>
-  <li>useState, useEffect</li>
-  <li>useRef, useMemo, useCallback</li>
-  <li>useContext, useReducer</li>
-  <li>Custom Hooks</li>
+  <li>Hooks là các hàm đặc biệt trong React cho phép chúng ta sử  dụng state, lifecycle, context,… trong function component mà trước đây chỉ có class component mới có thể làm được.</li>
+  <li>React Hooks ra đời từ phiên bản 16.8 và trở thành tiêu chuẩn phát triển hiện đại.</li>
 </ul>
+
+<p>a. useState - Quản lý state cục bộ</p>
+<ul>
+  <li>
+    <p>Dùng để  tạo và cập nhật state bên trong function component.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               import { useState } from 'react';
+
+               function Counter() {
+                const [count, setCount] = useState(0);
+                return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Clicked {count}&lt;/button&gt;;
+               }
+</code></pre></div>    </div>
+  </li>
+  <li>useState(0) -&gt; 0 là giá trị khởi tạo</li>
+  <li>Trả về một mảng [giá_trị, hàm_cập_nhật]</li>
+</ul>
+
+<p>b.  useEffect - Lifecycle Hook</p>
+<ul>
+  <li>
+    <p>Dùng để  xử  lý side effect như: gọi API, subcribe, thao tác DOM,…sau khi component render.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              import { useEffect } from 'react';
+
+              useEffect(() =&gt; {
+                console.log('Component mounted');
+
+                return () =&gt; {
+                  console.log('Component unmounted');
+                };
+              }, []);
+</code></pre></div>    </div>
+
+    <ul>
+      <li>[] : Chạy một lần duy nhất(như componentDidMount)</li>
+      <li>[dependency] : Chạy lại khi dependency thay đổi</li>
+      <li>Không có [] : Chạy lại mỗi lần render</li>
+    </ul>
+
+    <p>Dùng để :</p>
+    <ul>
+      <li>Gọi API</li>
+      <li>Lắng nghe sự kiện</li>
+      <li>Cleanup (xoá listener, clearInverval,…)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>c. useRef – Tham chiếu tới DOM hoặc lưu giá trị không làm re-render</p>
+<ul>
+  <li>
+    <p>Dùng để giữ giá trị không thay đổi khi re-render hoặc thao tác với DOM.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const inputRef = useRef();
+
+              const handleFocus = () =&gt; {
+                inputRef.current.focus(); // Truy cập DOM node
+              };
+
+              return &lt;input ref={inputRef} /&gt;;
+</code></pre></div>    </div>
+
+    <p>Ngoài thao tác DOM, useRef còn dùng để:<br />
+    - Lưu giá trị trước đó<br />
+    - Lưu biến cục bộ không gây re-render</p>
+  </li>
+</ul>
+
+<p>d. useMemo – Ghi nhớ giá trị tính toán</p>
+<ul>
+  <li>
+    <p>Tránh tính toán lại các giá trị tốn hiệu năng, khi dependency không thay đổi.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const total = useMemo(() =&gt; {
+                return calculateTotal(items); // Hàm tính toán nặng
+              }, [items]);
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Chỉ re-calculate khi items thay đổi</li>
+      <li>Dùng để tối ưu performance (tránh re-compute không cần thiết)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>e. useCallback – Ghi nhớ hàm</p>
+<ul>
+  <li>
+    <p>Tránh tạo hàm mới mỗi lần re-render, dùng nhiều trong truyền props xuống component con.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const handleClick = useCallback(() =&gt; {
+                console.log('clicked');
+              }, []);
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Giúp tránh re-render không cần thiết ở component con được bọc React.memo</li>
+    </ul>
+  </li>
+</ul>
+
+<p>f. useContext – Truyền dữ liệu toàn cục</p>
+<ul>
+  <li>
+    <p>Dùng để truy cập giá trị từ Context API, tránh “drilling” props nhiều cấp.</p>
+
+    <p>Tạo Context:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const ThemeContext = React.createContext('light');
+</code></pre></div>    </div>
+
+    <p>Dùng:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const theme = useContext(ThemeContext);
+</code></pre></div>    </div>
+
+    <p>Phù hợp với:</p>
+
+    <ul>
+      <li>Theme, ngôn ngữ (i18n)</li>
+      <li>Thông tin user, quyền hạn</li>
+      <li>Dữ liệu cấu hình toàn app</li>
+    </ul>
+  </li>
+</ul>
+
+<p>g. useReducer – Quản lý state phức tạp</p>
+<ul>
+  <li>
+    <p>Dùng thay thế useState khi state có nhiều trạng thái hoặc logic phức tạp.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const reducer = (state, action) =&gt; {
+                switch(action.type) {
+                  case 'increment': return { count: state.count + 1 };
+                  case 'decrement': return { count: state.count - 1 };
+                  default: return state;
+                }
+              };
+
+              const [state, dispatch] = useReducer(reducer, { count: 0 });
+</code></pre></div>    </div>
+
+    <p>-Tương tự Redux: có state, dispatch, action
+-Hữu ích cho form lớn, table phức tạp, flow điều hướng</p>
+  </li>
+</ul>
+
+<p>h. Custom Hook – Tạo hook riêng</p>
+<ul>
+  <li>Khi bạn có logic dùng lại nhiều lần, hãy đóng gói nó thành Custom Hook.</li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              function useWindowWidth() {
+                const [width, setWidth] = useState(window.innerWidth);
+
+                useEffect(() =&gt; {
+                  const handleResize = () =&gt; setWidth(window.innerWidth);
+                  window.addEventListener('resize', handleResize);
+                  return () =&gt; window.removeEventListener('resize', handleResize);
+                }, []);
+
+              return width;
+              }
+
+              // Sử dụng
+              const width = useWindowWidth();
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Tên custom hook phải bắt đầu bằng use, có thể dùng các hook khác bên trong.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Bảng tổng kết Phần 3</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------|
+     | Hook         | Công dụng chính                                    |
+     |-------------------------------------------------------------------|
+     | useState     | Khai báo state trong function component            |
+     | useEffect    | Lifecycle: mount, update, unmount                  |
+     | useRef       | Tham chiếu DOM hoặc lưu biến cục bộ                |
+     | useMemo      | Ghi nhớ giá trị tính toán lại                      |
+     | useCallback  | Ghi nhớ hàm, tránh re-render con                   |
+     | useContext   | Truy cập context toàn cục                          |
+     | useReducer   | Quản lý state phức tạp (tương tự Redux)            |
+     | Custom Hook  | Tái sử dụng logic, đóng gói logic có trạng thái    |
+</code></pre></div></div>
 
 <p><strong>4. Event Handling</strong></p>
 
