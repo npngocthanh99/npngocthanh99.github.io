@@ -6,26 +6,26 @@ date: 2025-07-03
 
 **I. Tổng quan về Spring Framework**
 
-1. Spring là gì? Tại sao lại dùng Spring?
+1.  Spring là gì? Tại sao lại dùng Spring?
 
-   - Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao.
-     Đặc điểm nổi bật:
+    - Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao.
+      Đặc điểm nổi bật:
 
-     - Inversion of Control(IoC): tách biệt việc khởi tạo & quản lý đối tượng ra khỏi logic nghiệp vụ.
-     - Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain.
-     - Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó.
-     - Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,....
+      - Inversion of Control(IoC): tách biệt việc khởi tạo & quản lý đối tượng ra khỏi logic nghiệp vụ.
+      - Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain.
+      - Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó.
+      - Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,....
 
-Lý do sử dụng Spring:
+    - Lý do sử dụng Spring:
 
-        |---------------------------------------------------------------------------------------------------------|
-        | Lý do                                   | Mô tả                                                         |
-        |---------------------------------------------------------------------------------------------------------|
-        | Tái sử dụng code & test dễ hơn          | Nhờ Dependency Injection và cấu trúc rõ ràng                  |
-        | Tách biệt concern rõ ràng               | Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ |
-        | Tích hợp dễ dàng với các công nghệ khác | JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ...                 |
-        | Hỗ trợ mạnh mẽ cho Web/MVC/API          | Spring MVC, RESTful API                                       |
-        | Tăng tốc phát triển với Spring Boot     | Giảm cấu hình, hỗ trợ tự động                                 |
+      |---------------------------------------------------------------------------------------------------------|
+      | Lý do | Mô tả |
+      |---------------------------------------------------------------------------------------------------------|
+      | Tái sử dụng code & test dễ hơn | Nhờ Dependency Injection và cấu trúc rõ ràng |
+      | Tách biệt concern rõ ràng | Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ |
+      | Tích hợp dễ dàng với các công nghệ khác | JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ... |
+      | Hỗ trợ mạnh mẽ cho Web/MVC/API | Spring MVC, RESTful API |
+      | Tăng tốc phát triển với Spring Boot | Giảm cấu hình, hỗ trợ tự động |
 
 2.  Các module chính: Spring Core, Spring Context, Spring AOP, Spring Data, Spring MVC, Spring Boot, Spring Security...
 
@@ -306,7 +306,7 @@ Ví dụ:
 
     e. @Configuration
 
-    - Dùng để đánh dấu class Java config, nơi bạn khai báo các @Bean.
+    - Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean.
     - Tương đương với file applicationContext.xml trong cấu hình XML.
     - Ví dụ:
 
@@ -723,21 +723,300 @@ Ví dụ:
 
 **V. Spring MVC (Web Layer)**
 
-1. Kiến trúc MVC
-2. @Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody
-3. Binding dữ liệu: DTO, Form object
-4. Exception handling: @ControllerAdvice, @ExceptionHandler
-5. Validations: @Valid, @Validated, Bean Validation API (JSR-303)
+1.  Kiến trúc MVC
+
+            |------------------------------------------------------------------|
+            | Thành phần | Vai trò                                             |
+            |------------------------------------------------------------------|
+            | Model      | Chứa dữ liệu (DTO, Entity)                          |
+            | View       | Giao diện người dùng (Thymeleaf, JSP...)            |
+            | Controller | Xử lý logic điều hướng, nhận request – trả response |
+
+2.  @Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody
+
+            |----------------------------------------------------------------------------------------------------------------|
+            | Annotation      | Chức năng                                    | Dùng khi                                      |
+            |----------------------------------------------------------------------------------------------------------------|
+            | @Controller     | Đánh dấu 1 class là controller               | web truyền thống (trả về HTML)                |
+            | @RestController | = @Controller + @ResponseBody, trả JSON/XML  | REST API                                      |
+            | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class                              |
+            | @GetMapping     | GET request                                  | Dùng cho api trả về dữ liệu                   |
+            | @PostMapping    | POST request                                 | Dùng cho api tạo dữ liệu                      |
+            | @PutMapping     | PUT request                                  | Dùng cho api cập nhật toàn bộ một resource    |
+            | @PatchMapping   | PATCH request                                  | Dùng cho api cập nhật một phần của resource |
+            | @DeleteMapping  | DELETE request                               | dùng cho api xóa một resource                 |
+            | @PathVariable   | Lấy dữ liệu từ URL path                      | /users/{id}                                   |
+            | @RequestParam   | Lấy query param (?key=value)                 | ?keyword=abc                                  |
+            | @RequestBody    | Map JSON body vào Java object                | Dùng với POST, PUT                            |
+            | @ResponseBody   | Trả object dưới dạng JSON                    | Nếu không dùng @RestController                |
+
+    - Ví dụ:
+
+           {% raw %}
+           @RestController
+           @RequestMapping("/users")
+           public class UserController {
+
+            @GetMapping("/{id}")
+            public UserDto getUser(@PathVariable Long id) {
+              return userService.getUser(id);
+            }
+
+            @PostMapping
+            public ResponseEntity<?> createUser(@RequestBody @Valid UserDto userDto) {
+              userService.create(userDto);
+              return ResponseEntity.ok("Created");
+            }
+           }
+           {% endraw %}
+
+3.  Binding dữ liệu: DTO, Form object
+
+        - DTO: Data Transfer Object – trung gian giữa request và service
+        - Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON)
+        - Ví dụ:
+
+               {% raw %}
+               public class UserDto {
+               @NotBlank
+               private String name;
+
+               @Email
+               private String email;
+               }
+               {% endraw %}
+
+           | Spring tự map JSON → object thông qua @RequestBody.
+
+4.  Exception handling: @ControllerAdvice, @ExceptionHandler
+
+    a. Tạo custom handler toàn cục
+
+                       {% raw %}
+                       @ControllerAdvice
+                       public class GlobalExceptionHandler {
+
+                        @ExceptionHandler(EntityNotFoundException.class)
+                        public ResponseEntity<String> handleNotFound(EntityNotFoundException ex) {
+                          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+                        }
+
+                        @ExceptionHandler(MethodArgumentNotValidException.class)
+                        public ResponseEntity<?> handleValidation(MethodArgumentNotValidException ex) {
+                          Map<String, String> errors = new HashMap<>();
+                          ex.getBindingResult().getFieldErrors()
+                            .forEach(err -> errors.put(err.getField(), err.getDefaultMessage()));
+                          return ResponseEntity.badRequest().body(errors);
+                        }
+                       }
+                       {% endraw %}
+
+    b. Custom exception:
+
+                       {% raw %}
+                       public class EntityNotFoundException extends RuntimeException {
+                        public EntityNotFoundException(String message) {
+                        super(message);
+                        }
+                       }
+                       {% endraw %}
+
+5.  Validations: @Valid, @Validated, Bean Validation API (JSR-303)
+
+            |--------------------------------------------------------------------------------------------------|
+            | Annotation                       | Ý nghĩa                                                       |
+            |--------------------------------------------------------------------------------------------------|
+            | @Valid                           | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) |
+            | @Validated                       | Giống @Valid nhưng hỗ trợ Group                               |
+            | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API                   |
+
+    - Ví dụ:
+
+                       {% raw %}
+                       @PostMapping
+                       public ResponseEntity<?> createUser(@RequestBody @Valid UserDto userDto) {
+                        // Nếu sai -> MethodArgumentNotValidException
+                        userService.save(userDto);
+                        return ResponseEntity.ok("Success");
+                       }
+                       {% endraw %}
+
+             | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid.
 
 **VI. Spring Boot**
 
-1. Spring Boot là gì? Ưu điểm?
-2. application.properties vs application.yml
-3. Cấu hình tự động (Auto Configuration)
-4. Spring Boot Starter
-5. Cấu trúc chuẩn một ứng dụng Spring Boot
-6. DevTools, Actuator, Profiles
-7. Embedded Tomcat, cấu hình port, hot reload
+1.  Spring Boot là gì? Ưu điểm?
+
+    - Spring Boot là một framework giúp đơn giản hoá việc cấu hình và chạy ứng dụng Spring, bằng cách cung cấp:
+      - cấu hình mặc định,
+      - auto configuration,
+      - embedded server (Tomcat/Jetty),
+      - starter dependencies.
+    - Mục tiêu:
+      - Giúp bạn có thể "Just Run" ứng dụng Spring mà không cần cấu hình rườm rà.
+    - Ưu điểm của Spring boot:
+
+             |--------------------------------------------------------------------------------------------------|
+             | Ưu điểm                               | Giải thích                                               |
+             |--------------------------------------------------------------------------------------------------|
+             | Tự động cấu hình (Auto Configuration) | Không cần cấu hình XML phức tạp                          |
+             | Tích hợp server nội bộ                | Không cần cài Tomcat ngoài, chỉ cần main() là chạy       |
+             | Starter dependencies                  | Gom nhóm dependency theo mục đích (web, jpa, security)   |
+             | Đơn giản hóa cấu trúc dự án           | Tự sinh project theo mẫu chuẩn                           |
+             | Hỗ trợ hot reload                     | Qua DevTools, không cần restart lại app                  |
+             | Quản lý môi trường (Profiles)         | Cấu hình theo môi trường: dev, test, prod                |
+             | Dễ triển khai (jar)                   | Gói app thành .jar có thể chạy bằng java -jar            |
+
+2.  application.properties vs application.yml
+
+             |-----------------------------------------------------------------------|
+             | Thuộc tính            | application.properties | application.yml      |
+             |-----------------------------------------------------------------------|
+             | Cú pháp               | key=value              | YAML định dạng khối  |
+             | Dễ đọc                | đơn giản               | cấu hình phức tạp    |
+             | Hỗ trợ cấu trúc lồng  | khó                    | tốt hơn              |
+
+    - Ví dụ cấu hình bằng application.properties:
+
+                       {% raw %}
+                       server.port=8081
+                       spring.datasource.url=jdbc:mysql://localhost:3306/demo
+                       {% endraw %}
+
+    - Ví dụ cấu hình bằng application.properties:
+
+                      {% raw %}
+                      server:
+                        port: 8081
+
+                      spring:
+                        datasource:
+                          url: jdbc:mysql://localhost:3306/demo
+                      {% endraw %}
+
+          👉 YAML được dùng nhiều hơn trong microservice hoặc cấu hình nhiều profile.
+
+3.  Cấu hình tự động (Auto Configuration)
+
+    - Khi bạn thêm starter (VD: spring-boot-starter-web), Spring Boot sẽ tự động cấu hình các bean cần thiết, như DispatcherServlet, Jackson, v.v.
+    - Tắt auto config cho một số class:
+
+                      {% raw %}
+                      @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+                      {% endraw %}
+
+4.  Spring Boot Starter
+
+             |------------------------------------------------------------------|
+             | Starter                          | Chức năng                     |
+             |------------------------------------------------------------------|
+             | spring-boot-starter-web          | REST API, Tomcat, Jackson     |
+             | spring-boot-starter-data-jpa     | JPA + Hibernate               |
+             | spring-boot-starter-security     | Spring Security               |
+             | spring-boot-starter-validation   | Bean Validation               |
+             | spring-boot-starter-test         | JUnit, Mockito, Spring Test   |
+
+           👉 Không cần tự tìm từng thư viện, chỉ cần 1 dòng thêm starter.
+
+5.  Cấu trúc chuẩn một ứng dụng Spring Boot
+
+          {% raw %}
+          src/
+            └── main/
+                  ├── java/
+                  │    └── com/example/demo/
+                  │        ├── DemoApplication.java            # File main, entry point -> hàm main() chạy ứng dụng
+                  |
+                  │        ├── config/                         # Cấu hình app (security, swagger, beans, CORS, Security...)
+                  │        │   ├── WebSecurityConfig.java
+                  │        │   └── SwaggerConfig.java
+                  |
+                  │        ├── controller/                     # Web/API layer - xử lý HTTP request
+                  |
+                  │        ├── service/                        # Business logic layer
+                  |        |   ├── UserService.java
+                  │        |   └── impl/                       # Implement của service (nếu có interface)
+                  |        |        └── UserServiceImpl.java
+                  |
+                  │        ├── repository/                     # DAO layer - giao tiếp DB
+                  |        |    └── UserRepository.java
+                  |
+                  │        └── model/                          # Chứa các class mô hình (Entity, DTO, Mapper)
+                  |        |    ├── entity/                    # JPA Entity - ánh xạ bảng dữ liệu
+                  |        |    |     └── User.java
+                  |        |    ├── dto/                       # Data Transfer Object - nhận & trả dữ liệu
+                  │        │    │    └── UserDto.java
+                  |        |    └── mapper/                    # Converter hoặc MapStruct mapper
+                  │        │         └── UserMapper.java
+                  |
+                  │        ├── exception/                      # Custom exceptions & global handler
+                  │        │    ├── GlobalExceptionHandler.java
+                  │        │    └── ResourceNotFoundException.java
+                  |
+                  |        ├── util/                           # Hàm tiện ích dùng chung
+                  │        │    ├── DateUtil.java
+                  │        │    ├── StringHelper.java
+                  │        │    └── EnumUtils.java
+                  |
+                  |        ├── constant/                       # Các hằng số toàn cục
+                  │        │    ├── AppConstants.java
+                  │        │    └── MessageConstants.java
+                  |
+                  |        ├── enums/                          # Enum dùng toàn hệ thống
+                  │        │    ├── UserStatus.java
+                  │        │    └── CurrencyType.java
+                  |
+                  |        └── validator/                      # Custom annotation validator
+                  │             ├── ValidPhoneNumber.java
+                  │             ├── ValidPhoneNumberValidator.java
+                  │             └── EnumValidator.java
+                  |
+                  └── resources/
+                        ├── application.yml                    # Cấu hình chính
+                        ├── application-dev.yml                # Cấu hình cho môi trường dev
+                        ├── application-prod.yml               # Cấu hình cho môi trường production
+                        └── static/                            # Assets tĩnh (nếu có)
+          {% endraw %}
+
+6.  DevTools, Actuator, Profiles
+
+             |----------------------------------------------------------------------------------------------------|
+             | Tính năng   | Mô tả                                                                                |
+             |----------------------------------------------------------------------------------------------------|
+             | DevTools    | Tự động reload khi thay đổi code                                                     |
+             | Actuator    | Theo dõi health check, metrics, bean info (/actuator/health, /actuator/beans, v.v.)  |
+             | Profiles    | Cấu hình đa môi trường: application-dev.yml, application-prod.yml                    |
+
+    - Kích hoạt profile:
+
+            {% raw %}
+            # application.yml
+            spring:
+              profiles:
+                active: dev
+            {% endraw %}
+
+7.  Embedded Tomcat, cấu hình port, hot reload
+
+    - Spring Boot dùng Tomcat nhúng (Embedded) theo mặc định.
+    - Có thể đổi sang Jetty, Undertow nếu cần.
+    - Đổi port:
+
+                {% raw %}
+                server:
+                  port: 8081
+                {% endraw %}
+
+    - Hot reload với DevTools:
+      Thêm vào pom.xml:
+
+              {% raw %}
+              <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
+              </dependency>
+              {% endraw %}
 
 **VII. Spring Security**
 
