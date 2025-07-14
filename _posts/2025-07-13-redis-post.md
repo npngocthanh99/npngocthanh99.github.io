@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Tổng hợp kiến thức về Spring Framework"
-date: 2025-07-03
+title: "Tổng hợp kiến thức về Redis"
+date: 2025-07-13
 ---
 
 **I. Tổng quan về Redis**
