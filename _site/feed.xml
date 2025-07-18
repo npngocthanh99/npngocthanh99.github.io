@@ -1,4 +1,165 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-05T18:57:24+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức về Spring Framework</title><link href="http://localhost:4000/2025/07/03/spring-boot.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Framework" /><published>2025-07-03T00:00:00+07:00</published><updated>2025-07-03T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/03/spring-boot</id><content type="html" xml:base="http://localhost:4000/2025/07/03/spring-boot.html"><![CDATA[<p><strong>I. Tổng quan về Spring Framework</strong></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-18T19:13:26+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức về Git</title><link href="http://localhost:4000/2025/07/13/git-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Git" /><published>2025-07-13T00:00:00+07:00</published><updated>2025-07-13T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/13/git-post</id><content type="html" xml:base="http://localhost:4000/2025/07/13/git-post.html"><![CDATA[<p>I. Git là gì?</p>
+
+<ul>
+  <li>Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System).</li>
+  <li>Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN).</li>
+  <li>Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần.</li>
+</ul>
+
+<p>II. Kiến trúc cơ bản</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    +----------------------+
+    |  Working Directory   |  &lt;-- Thư mục làm việc
+    +----------------------+
+              |
+              | git add
+              v
+    +----------------------+
+    |   Staging Area       |  &lt;-- File được đánh dấu để commit (lưu ở .git/index)
+    +----------------------+
+              |
+              | git commit
+              v
+    +----------------------+
+    | Local Repository     | &lt;-- Commit được lưu vào máy (trong .git/objects)
+    +----------------------+
+              |
+              | git push
+              v
+    +----------------------+
+    | Remote Repository    | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v.
+    +----------------------+
+</code></pre></div></div>
+
+<ul>
+  <li>Working Directory: thư mục làm việc.</li>
+  <li>Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit.</li>
+  <li>Local Repository: nơi lưu trữ các commit đã thực hiện.</li>
+  <li>Remote Repository: ví dụ như GitHub, GitLab, Bitbucket.</li>
+</ul>
+
+<p>III. Các câu lệnh Git</p>
+
+<ol>
+  <li>
+    <p>Lệnh git cơ bản</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|----------------------------------------------------------|
+| Lệnh                    | Chức năng                      |
+|----------------------------------------------------------|
+| git init                | Tạo repo Git mới               |
+| git clone &lt;url&gt;         | Tải repo từ remote về          |
+| git status              | Xem trạng thái thay đổi        |
+| git add &lt;file&gt;          | Thêm file vào Staging Area     |
+| git add .               | Thêm tất cả file thay đổi      |
+| git commit -m "message" | Tạo commit                     |
+| git log                 | Xem lịch sử commit             |
+| git diff                | So sánh thay đổi chưa commit   |
+| git checkout &lt;branch&gt;   | Chuyển nhánh                   |
+| git branch              | Liệt kê danh sách nhánh        |
+| git branch &lt;name&gt;       | Tạo nhánh mới                  |
+| git merge &lt;branch&gt;      | Gộp nhánh                      |
+| git pull                | Lấy code mới nhất từ remote    |
+| git push                | Đẩy code lên remote            |
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Làm việc với Branch (nhánh)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -b feature/login    # Tạo và chuyển sang nhánh mới
+git checkout main                # Quay về nhánh chính
+git merge feature/login          # Gộp nhánh vào nhánh hiện tại
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Revert, Reset, Amend</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|----------------------------------------------------------------------|
+| Lệnh                    | Ý nghĩa                                    |
+|----------------------------------------------------------------------|
+| git reset               | Quay lại commit trước đó (có thể mất code) |
+| git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi            |
+| git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi              |
+| git revert &lt;commit&gt;     | Tạo commit mới để đảo ngược commit cũ      |
+| git commit --amend      | Sửa lại commit gần nhất                    |
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Stash – Tạm thời lưu thay đổi</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash               # Lưu tạm thay đổi
+git stash list          # Xem danh sách stash
+git stash apply         # Áp dụng lại thay đổi
+git stash drop          # Xóa stash
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Remote Repository (GitHub, GitLab)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote -v                     # Kiểm tra remote
+git remote add origin &lt;url&gt;      # Thêm remote repo
+git push -u origin main          # Push lần đầu
+git pull origin main             # Lấy code mới
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Giải quyết Conflict (xung đột)</p>
+
+    <ul>
+      <li>
+        <p>Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+# Code của bạn
+Code của người khác
+&gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Sửa file thủ công, sau đó:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add .
+git commit -m "resolve conflict"
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Git Flow - Quy trình làm việc chuẩn</p>
+
+    <p>a. main – nhánh sản phẩm chạy chính thức.<br />
+b. develop – nhánh phát triển chung.<br />
+c. feature/* – nhánh tính năng.<br />
+d. release/* – nhánh chuẩn bị release.<br />
+e. hotfix/* – xử lý lỗi khẩn cấp.</p>
+  </li>
+</ol>
+
+<p>IV. Các câu hỏi phỏng vấn thường gặp</p>
+
+<ol>
+  <li>
+    <p>Git khác gì SVN?</p>
+  </li>
+  <li>
+    <p>Sự khác nhau giữa git reset, git revert, git checkout?</p>
+  </li>
+  <li>
+    <p>Khi nào dùng git merge vs git rebase?</p>
+  </li>
+  <li>
+    <p>Cách giải quyết conflict?</p>
+  </li>
+  <li>
+    <p>Quy trình deploy/CI với Git?</p>
+  </li>
+</ol>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Git là gì?]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Redis</title><link href="http://localhost:4000/2025/07/13/redis-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Redis" /><published>2025-07-13T00:00:00+07:00</published><updated>2025-07-13T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/13/redis-post</id><content type="html" xml:base="http://localhost:4000/2025/07/13/redis-post.html"><![CDATA[<p><strong>I. Tổng quan về Redis</strong></p>
+
+<ul>
+  <li>Redis là một cơ sở dữ liệu lưu trữ key-value trên RAM (in-memory), rất nhanh.</li>
+  <li>Hỗ trợ các kiểu dữ liệu như: String, List, Set, Hash, Sorted Set,…</li>
+  <li>Dùng cho: caching (bộ nhớ đệm), session, queue/pub-sub, ranking,…</li>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Tổng quan về Redis]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Spring Framework</title><link href="http://localhost:4000/2025/07/03/spring-boot.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Framework" /><published>2025-07-03T00:00:00+07:00</published><updated>2025-07-03T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/03/spring-boot</id><content type="html" xml:base="http://localhost:4000/2025/07/03/spring-boot.html"><![CDATA[<p><strong>I. Tổng quan về Spring Framework</strong></p>
 
 <ol>
   <li>
@@ -2443,12 +2604,90 @@ a. Mảng 1 chiều (1D array)<br />
 <p><strong>VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)</strong> <em>(TODO)</em></p>
 
 <ol>
+  <li>this, super</li>
+</ol>
+
+<ul>
   <li>
-    <p>this, super</p>
+    <p>this: đại diện cho một đối tượng hiện tại.</p>
+
+    <ul>
+      <li>Truy cập biến hoặc phương thức của đối tượng đó.</li>
+      <li>
+        <p>Gọi constructor khác trong cùng class</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      class Person {
+        String name;
+        Person(String name) {
+          this.name = name; // phân biệt biến instance và tham số
+        }
+      }
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>
-    <p>Constructor - Constructor overloading</p>
+    <p>super: đại diện cho lớp cha (supper class)</p>
+
+    <ul>
+      <li>
+        <p>Dùng để gọi constructor hoặc phương thức của lớp cha.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          class Animal {
+            void speak() {
+              System.out.println("Animal speaks");
+            }
+          }
+
+          class Dog extends Animal {
+            void speak() {
+              super.speak(); // gọi phương thức lớp cha
+              System.out.println("Dog barks");
+            }
+          }
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
+</ul>
+
+<ol>
+  <li>Constructor - Constructor overloading</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Constructor: phương thức đặc biệt, cùng tên class, không có kiểu dữ liệu trả về.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            class Student {
+              String name;
+              Student(String n) {
+                name = n;
+              }
+            }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Constructor overloading: nhiều constructor cùng tên nhưng khác tham số.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            class Student {
+              String name;
+              int age;
+
+              Student(String n) {
+                name = n;
+              }
+
+              Student(String n, int a) {
+                this.name = n;
+                this.age = a;
+              }
+            }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
   <li>
     <p>Method Overloading vs Overriding</p>
   </li>

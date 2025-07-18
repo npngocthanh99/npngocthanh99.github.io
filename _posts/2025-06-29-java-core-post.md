@@ -448,7 +448,69 @@ _5. So sánh hiệu suất_
 
 1. this, super
 
+- this: đại diện cho một đối tượng hiện tại.
+
+  - Truy cập biến hoặc phương thức của đối tượng đó.
+  - Gọi constructor khác trong cùng class
+
+              {% raw %}
+              class Person {
+                String name;
+                Person(String name) {
+                  this.name = name; // phân biệt biến instance và tham số
+                }
+              }
+              {% endraw %}
+
+- super: đại diện cho lớp cha (supper class)
+
+  - Dùng để gọi constructor hoặc phương thức của lớp cha.
+
+                  {% raw %}
+                  class Animal {
+                    void speak() {
+                      System.out.println("Animal speaks");
+                    }
+                  }
+
+                  class Dog extends Animal {
+                    void speak() {
+                      super.speak(); // gọi phương thức lớp cha
+                      System.out.println("Dog barks");
+                    }
+                  }
+                  {% endraw %}
+
 2. Constructor - Constructor overloading
+
+- Constructor: phương thức đặc biệt, cùng tên class, không có kiểu dữ liệu trả về.
+
+                  {% raw %}
+                  class Student {
+                    String name;
+                    Student(String n) {
+                      name = n;
+                    }
+                  }
+                  {% endraw %}
+
+- Constructor overloading: nhiều constructor cùng tên nhưng khác tham số.
+
+                  {% raw %}
+                  class Student {
+                    String name;
+                    int age;
+
+                    Student(String n) {
+                      name = n;
+                    }
+
+                    Student(String n, int a) {
+                      this.name = n;
+                      this.age = a;
+                    }
+                  }
+                  {% endraw %}
 
 3. Method Overloading vs Overriding
 

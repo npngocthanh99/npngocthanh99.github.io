@@ -556,12 +556,90 @@ a. Mảng 1 chiều (1D array)<br />
 <p><strong>VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)</strong> <em>(TODO)</em></p>
 
 <ol>
+  <li>this, super</li>
+</ol>
+
+<ul>
   <li>
-    <p>this, super</p>
+    <p>this: đại diện cho một đối tượng hiện tại.</p>
+
+    <ul>
+      <li>Truy cập biến hoặc phương thức của đối tượng đó.</li>
+      <li>
+        <p>Gọi constructor khác trong cùng class</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      class Person {
+        String name;
+        Person(String name) {
+          this.name = name; // phân biệt biến instance và tham số
+        }
+      }
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>
-    <p>Constructor - Constructor overloading</p>
+    <p>super: đại diện cho lớp cha (supper class)</p>
+
+    <ul>
+      <li>
+        <p>Dùng để gọi constructor hoặc phương thức của lớp cha.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          class Animal {
+            void speak() {
+              System.out.println("Animal speaks");
+            }
+          }
+
+          class Dog extends Animal {
+            void speak() {
+              super.speak(); // gọi phương thức lớp cha
+              System.out.println("Dog barks");
+            }
+          }
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
+</ul>
+
+<ol>
+  <li>Constructor - Constructor overloading</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Constructor: phương thức đặc biệt, cùng tên class, không có kiểu dữ liệu trả về.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            class Student {
+              String name;
+              Student(String n) {
+                name = n;
+              }
+            }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Constructor overloading: nhiều constructor cùng tên nhưng khác tham số.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            class Student {
+              String name;
+              int age;
+
+              Student(String n) {
+                name = n;
+              }
+
+              Student(String n, int a) {
+                this.name = n;
+                this.age = a;
+              }
+            }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
   <li>
     <p>Method Overloading vs Overriding</p>
   </li>
