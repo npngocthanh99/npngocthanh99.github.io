@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tổng hợp kiến thức về Redis"
+title: "Tìm hiểu về Redis"
 date: 2025-07-13
 ---
 
