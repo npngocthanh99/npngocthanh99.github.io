@@ -26,6 +26,8 @@ date: 2025-07-17
 
 1. Array (Mảng)
 
+- Mảng là danh sách các phần tử có cùng kiểu, lưu trữ liên tục trong bộ nhớ, truy cập thông qua chỉ số (index).
+
 2. Linked List
 
 3. Stack

@@ -512,9 +512,171 @@ _5. So sánh hiệu suất_
                   }
                   {% endraw %}
 
-3. Method Overloading vs Overriding
+3.  Method Overloading vs Overriding
 
-4. final, static, abstract, interface, enum
+         |----------------------------------------------------------------------------------------------------------------------------------------|
+         |       Đặc điểm              | Overloading                                        | Overriding                                          |
+         |----------------------------------------------------------------------------------------------------------------------------------------|
+         | Định nghĩa                  | Cùng tên phương thức, khác tham số trong cùng lớp  | Cùng tên, cùng tham số, khác lớp (cha - con)        |
+         | Mục đích                    | Tăng tính đa hình tĩnh (compile time polymorphism) | Tăng tính đa hình động (runtime polymorphism)       |
+         | Quan hệ lớp                 | Trong cùng một lớp                                 | Giữa lớp cha và lớp con                             |
+         | Quy tắc | VBất kỳ           | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
+         | Thời điểm quyết định        | Compile time                                       | Runtime                                             |
+         | Annotation dùng được không? | Không dùng @Override                               | Nên dùng @Override để tránh lỗi đánh máy            |
+         |----------------------------------------------------------------------------------------------------------------------------------------|
+
+Ví dụ:
+
+**Overloading:**
+
+                  {% raw %}
+                  class Calculator {
+                    int add(int a, int b) { return a + b; }
+                    double add(double a, double b) { return a + b; }
+                  }
+                  {% endraw %}
+
+**Overriding:**
+
+                  {% raw %}
+                  class Animal {
+                    void sound() { System.out.println("Some sound"); }
+                  }
+
+                  class Dog extends Animal {
+                  @Override
+                    void sound() { System.out.println("Woof"); }
+                  }
+                  {% endraw %}
+
+4.  final, static, abstract, interface, enum
+
+a. final
+
+         |-------------------------------------------------------------------------|
+         | Trường hợp sử dụng |       Ý nghĩa                                      |
+         |-------------------------------------------------------------------------|
+         | Biến (variable)    | Không thể thay đổi giá trị sau khi gán (hằng số)   |
+         | Phương thức        | Không thể override ở lớp con                       |
+         | Lớp (class)        | Không thể kế thừa                                  |
+         |-------------------------------------------------------------------------|
+
+ví dụ:
+
+                  {% raw %}
+                  final class Constants {
+                    public static final double PI = 3.14159;
+                  }
+                  {% endraw %}
+
+b. static
+
+         |---------------------------------------------------------------------------------------------------------------|
+         | Trường hợp sử dụng | Ý nghĩa                                                                                  |
+         |---------------------------------------------------------------------------------------------------------------|
+         | Biến (variable)    | Biến dùng chung cho tất cả các đối tượng của lớp                                         |
+         | Phương thức        | Gọi mà không cần tạo đối tượng                                                           |
+         | Block              | Được chạy một lần duy nhất khi class được load, được thực thi trước cả main() và trước   |
+         |                    | khi tạo đối tượng                                                                        |
+         | Lớp (class)        | Chỉ dùng với nested class (lớp bên trong), không thể truy cập biến non-static bên ngoài  |
+         |---------------------------------------------------------------------------------------------------------------|
+
+ví dụ:
+**static block**
+
+                  {% raw %}
+                  public class StaticBlockExample {
+                    static int value;
+
+                    // static block
+                    static {
+                      System.out.println("Static block executed");
+                      value = 100;
+                    }
+
+                    public StaticBlockExample() {
+                      System.out.println("Constructor called");
+                    }
+
+                    public static void main(String[] args) {
+                      System.out.println("Main method started");
+                      StaticBlockExample obj = new StaticBlockExample();
+                      System.out.println("Value = " + StaticBlockExample.value);
+                    }
+                  }
+                  {% endraw %}
+
+**static class**
+
+                  {% raw %}
+                  public class OuterClass {
+                    int outerValue = 10;
+                    static int staticOuterValue = 20;
+
+                    static class StaticNestedClass {
+                      void display() {
+                        // System.out.println(outerValue); // ❌ Error: Cannot access non-static
+                        System.out.println("Static outer value: " + staticOuterValue);
+                      }
+                    }
+
+                    public static void main(String[] args) {
+                    OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
+                    nested.display();
+                    }
+                  }
+                  {% endraw %}
+
+c. abstract
+
+         |--------------------------------------------------------------------|
+         | Trường hợp sử dụng | Ý nghĩa                                       |
+         |--------------------------------------------------------------------|
+         | Phương thức        | Không có thân hàm, bắt buộc lớp con override  |
+         | Lớp (class)        | Không thể tạo đối tượng, chỉ để kế thừa       |
+         |--------------------------------------------------------------------|
+
+Ví dụ:
+
+                  {% raw %}
+                  abstract class Animal {
+                    abstract void sound();
+                  }
+
+                  class Cat extends Animal {
+                    void sound() { System.out.println("Meow"); }
+                  }
+                  {% endraw %}
+
+d. interface
+
+- Là một tập hợp các phương thức trừu tượng (Java 8 trở đi hỗ trợ default + static method)
+- Một lớp có thể implement nhiều interface
+  Ví dụ:
+
+                  {% raw %}
+                  interface Movable {
+                    void move();
+                  }
+
+                  class Car implements Movable {
+                    public void move() {
+                      System.out.println("Car is moving");
+                    }
+                  }
+                  {% endraw %}
+
+e. enum
+
+- Đại diện cho một tập hợp hằng số có định danh
+- Có thể có constructor, phương thức, biến
+- Ví dụ:
+
+                  {% raw %}
+                  enum Day {
+                    MONDAY, TUESDAY, WEDNESDAY;
+                  }
+                  {% endraw %}
 
 **VII. Phạm vi truy cập(Access Modifiers)** _(TODO)_
 
