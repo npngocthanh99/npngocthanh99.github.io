@@ -444,7 +444,7 @@ _5. So sánh hiệu suất_
 - **Trừu tượng(Abstraction)** là quá trình **ẩn đi các chi tiết phức tạp** và chỉ **hiển thị những thông tin cần thiết** ra bên ngoài. Nó tập trung vào **'cái gì'** hơn là **'làm như thế nào'**. Trong OOP, chúng ta thường đạt được tính trừu tượng thông qua **lớp trừu tượng(Abstract Class)** và **giao diện(Interface)**.
   - Ví dụ: Khi thiết kế phần xử lý thanh toán đơn hàng. Cụ thể, ta tạo một interface là **PaymentMethod** - trong đó định nghĩa các hành vi chung như **processPayment()** và **refund()**. Sau đó, chúng ta triển khai nhiều class khác nhau như **CreditCardPayment**, **PaypalPayment**, và **BankTransferPayment**, mỗi class sẽ có cách xử lý thanh toán riêng phù hợp với từng phương thức cụ thể. Nhờ vậy, ở bussiness logic, ví dụ như khi xử lý đơn hàng, chúng ta chỉ cần gọi **paymentMethod.processPayment()** mà không cần quan tâm chi tiết nó là thanh toán qua thẻ, qua PayPal hay chuyển khoản ngân hàng. Điều này giúp code dễ mở rộng, ví dụ sau này có thêm MOMO hay ZaloPay thì chỉ cần tạo thêm một class mới implement **PaymentMethod** mà không phải sửa code xử lý đơn hàng.
 
-**VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)** _(TODO)_
+**VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)**
 
 1. this, super
 
@@ -453,64 +453,64 @@ _5. So sánh hiệu suất_
   - Truy cập biến hoặc phương thức của đối tượng đó.
   - Gọi constructor khác trong cùng class
 
-              {% raw %}
-              class Person {
-                String name;
-                Person(String name) {
-                  this.name = name; // phân biệt biến instance và tham số
-                }
-              }
-              {% endraw %}
+        {% raw %}
+        class Person {
+          String name;
+          Person(String name) {
+            this.name = name; // phân biệt biến instance và tham số
+          }
+        }
+        {% endraw %}
 
 - super: đại diện cho lớp cha (supper class)
 
   - Dùng để gọi constructor hoặc phương thức của lớp cha.
 
-                  {% raw %}
-                  class Animal {
-                    void speak() {
-                      System.out.println("Animal speaks");
-                    }
-                  }
+        {% raw %}
+        class Animal {
+          void speak() {
+            System.out.println("Animal speaks");
+          }
+        }
 
-                  class Dog extends Animal {
-                    void speak() {
-                      super.speak(); // gọi phương thức lớp cha
-                      System.out.println("Dog barks");
-                    }
-                  }
-                  {% endraw %}
+        class Dog extends Animal {
+          void speak() {
+            super.speak(); // gọi phương thức lớp cha
+            System.out.println("Dog barks");
+          }
+        }
+        {% endraw %}
 
 2. Constructor - Constructor overloading
 
 - Constructor: phương thức đặc biệt, cùng tên class, không có kiểu dữ liệu trả về.
 
-                  {% raw %}
-                  class Student {
-                    String name;
-                    Student(String n) {
-                      name = n;
-                    }
-                  }
-                  {% endraw %}
+        {% raw %}
+        class Student {
+          String name;
+          Student(String n) {
+            name = n;
+          }
+        }
+        {% endraw %}
 
 - Constructor overloading: nhiều constructor cùng tên nhưng khác tham số.
 
-                  {% raw %}
-                  class Student {
-                    String name;
-                    int age;
+        {% raw %}
+        class Student {
+          String name;
+          int age;
 
-                    Student(String n) {
-                      name = n;
-                    }
+          Student(String n) {
+            name = n;
+          }
 
-                    Student(String n, int a) {
-                      this.name = n;
-                      this.age = a;
-                    }
-                  }
-                  {% endraw %}
+          Student(String n, int a) {
+            this.name = n;
+            this.age = a;
+          }
+        }
+        {% endraw %}
 
 3.  Method Overloading vs Overriding
 
@@ -529,25 +529,25 @@ Ví dụ:
 
 **Overloading:**
 
-                  {% raw %}
-                  class Calculator {
-                    int add(int a, int b) { return a + b; }
-                    double add(double a, double b) { return a + b; }
-                  }
-                  {% endraw %}
+        {% raw %}
+        class Calculator {
+          int add(int a, int b) { return a + b; }
+          double add(double a, double b) { return a + b; }
+        }
+        {% endraw %}
 
 **Overriding:**
 
-                  {% raw %}
-                  class Animal {
-                    void sound() { System.out.println("Some sound"); }
-                  }
+        {% raw %}
+        class Animal {
+          void sound() { System.out.println("Some sound"); }
+        }
 
-                  class Dog extends Animal {
-                  @Override
-                    void sound() { System.out.println("Woof"); }
-                  }
-                  {% endraw %}
+        class Dog extends Animal {
+        @Override
+          void sound() { System.out.println("Woof"); }
+        }
+        {% endraw %}
 
 4.  final, static, abstract, interface, enum
 
@@ -563,11 +563,11 @@ a. final
 
 ví dụ:
 
-                  {% raw %}
-                  final class Constants {
-                    public static final double PI = 3.14159;
-                  }
-                  {% endraw %}
+        {% raw %}
+        final class Constants {
+          public static final double PI = 3.14159;
+        }
+        {% endraw %}
 
 b. static
 
@@ -584,48 +584,48 @@ b. static
 ví dụ:
 **static block**
 
-                  {% raw %}
-                  public class StaticBlockExample {
-                    static int value;
+        {% raw %}
+        public class StaticBlockExample {
+          static int value;
 
-                    // static block
-                    static {
-                      System.out.println("Static block executed");
-                      value = 100;
-                    }
+          // static block
+          static {
+            System.out.println("Static block executed");
+            value = 100;
+          }
 
-                    public StaticBlockExample() {
-                      System.out.println("Constructor called");
-                    }
+          public StaticBlockExample() {
+            System.out.println("Constructor called");
+          }
 
-                    public static void main(String[] args) {
-                      System.out.println("Main method started");
-                      StaticBlockExample obj = new StaticBlockExample();
-                      System.out.println("Value = " + StaticBlockExample.value);
-                    }
-                  }
-                  {% endraw %}
+          public static void main(String[] args) {
+            System.out.println("Main method started");
+            StaticBlockExample obj = new StaticBlockExample();
+            System.out.println("Value = " + StaticBlockExample.value);
+          }
+        }
+        {% endraw %}
 
 **static class**
 
-                  {% raw %}
-                  public class OuterClass {
-                    int outerValue = 10;
-                    static int staticOuterValue = 20;
+        {% raw %}
+        public class OuterClass {
+          int outerValue = 10;
+          static int staticOuterValue = 20;
 
-                    static class StaticNestedClass {
-                      void display() {
-                        // System.out.println(outerValue); // ❌ Error: Cannot access non-static
-                        System.out.println("Static outer value: " + staticOuterValue);
-                      }
-                    }
+          static class StaticNestedClass {
+            void display() {
+              // System.out.println(outerValue); // Error: Cannot access non-static
+              System.out.println("Static outer value: " + staticOuterValue);
+            }
+          }
 
-                    public static void main(String[] args) {
-                    OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
-                    nested.display();
-                    }
-                  }
-                  {% endraw %}
+          public static void main(String[] args) {
+            OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
+            nested.display();
+          }
+        }
+        {% endraw %}
 
 c. abstract
 
@@ -638,15 +638,15 @@ c. abstract
 
 Ví dụ:
 
-                  {% raw %}
-                  abstract class Animal {
-                    abstract void sound();
-                  }
+        {% raw %}
+        abstract class Animal {
+          abstract void sound();
+        }
 
-                  class Cat extends Animal {
-                    void sound() { System.out.println("Meow"); }
-                  }
-                  {% endraw %}
+        class Cat extends Animal {
+          void sound() { System.out.println("Meow"); }
+        }
+        {% endraw %}
 
 d. interface
 
@@ -654,17 +654,17 @@ d. interface
 - Một lớp có thể implement nhiều interface
   Ví dụ:
 
-                  {% raw %}
-                  interface Movable {
-                    void move();
-                  }
+        {% raw %}
+        interface Movable {
+          void move();
+        }
 
-                  class Car implements Movable {
-                    public void move() {
-                      System.out.println("Car is moving");
-                    }
-                  }
-                  {% endraw %}
+        class Car implements Movable {
+          public void move() {
+            System.out.println("Car is moving");
+          }
+        }
+        {% endraw %}
 
 e. enum
 
@@ -672,51 +672,401 @@ e. enum
 - Có thể có constructor, phương thức, biến
 - Ví dụ:
 
-                  {% raw %}
-                  enum Day {
-                    MONDAY, TUESDAY, WEDNESDAY;
-                  }
-                  {% endraw %}
+       {% raw %}
+       enum Day {
+         MONDAY, TUESDAY, WEDNESDAY;
+       }
+       {% endraw %}
 
-**VII. Phạm vi truy cập(Access Modifiers)** _(TODO)_
+**VII. Phạm vi truy cập(Access Modifiers)**
 
 1. Private
 
+- **Phạm vi:**Chỉ truy cập được trong cùng một class.
+- **Không thể** truy cập từ class khác, kể cả trong cùng package.
+- **Thường dùng cho:**
+
+  - Thuộc tính (fields) để bảo vệ dữ liệu.
+  - Hàm hỗ trợ (helper methods) nội bộ.
+
+Ví dụ:
+
+        {% raw %}
+        class MyClass {
+          private int data;
+
+          private void helperMethod() {
+          // chỉ dùng nội bộ
+          }
+        }
+        {% endraw %}
+
 2. Default(package-private)
+
+- **Phạm vi:** Truy cập được trong cùng package.
+- **Không thể** truy cập từ bên ngoài package.
+- **Thường dùng cho:**
+
+  - Class cấp package (helper class)
+  - Những method không cần public nhưng vẫn cần dùng trong các class cùng package.
+
+Ví dụ:
+
+        {% raw %}
+        class MyClass { // default class
+          int count;    // default field
+
+          void increase() { // default method
+            count++;
+          }
+        }
+        {% endraw %}
 
 3. Protected
 
+- **Phạm vi:** Truy cập được trong:
+
+  - Cùng package
+  - Lớp con (subclass), kể cả khi subclass ở package khác.
+
+- **Thường dùng cho:**
+
+  - Class cha muốn cho phép lớp con kế thừa và sử dụng.
+  - Một cách tiếp cận giữa private và public.
+
+Ví dụ:
+
+        {% raw %}
+        public class Animal {
+          protected void makeSound() {
+            System.out.println("Some sound");
+          }
+        }
+
+        class Dog extends Animal {
+          void bark() {
+            makeSound(); // hợp lệ do kế thừa
+          }
+        }
+        {% endraw %}
+
 4. Public
 
-5. Tóm tắt về khả năng truy cập
+- Phạm vi: Mọi nơi đều truy cập được.
+- Thường dùng cho:
+  - API bên ngoài
+  - Class chính, method chính (như public static void main).
 
-**VIII. Xử lý ngoại lệ(Exception Handlling)** _(TODO)_
+Ví dụ:
+
+        {% raw %}
+        public class Person {
+          public String name;
+
+          public void sayHello() {
+            System.out.println("Hello");
+          }
+        }
+        {% endraw %}
+
+5.  Tóm tắt về khả năng truy cập
+
+         |--------------------------------------------------------------------------------------|
+         | Access Modifier | Cùng class | Cùng package | Subclass(khác package) |   Bên ngoài   |
+         |--------------------------------------------------------------------------------------|
+         |    private      |    ✅     |       ❌     |           ❌           |     ❌       |
+         |--------------------------------------------------------------------------------------|
+         |    default      |    ✅     |       ✅     |           ❌           |     ❌       |
+         |--------------------------------------------------------------------------------------|
+         |    protected    |    ✅     |       ✅     |           ✅           |     ❌       |
+         |--------------------------------------------------------------------------------------|
+         |    public       |    ✅     |       ✅     |           ✅           |     ✅       |
+         |--------------------------------------------------------------------------------------|
+
+**VIII. Xử lý ngoại lệ(Exception Handlling)**
+
+Trong Java, Exception Handling giúp chương trình xử lý lỗi một cách an toàn mà không bị crash, duy trì luồng chạy mạch lạc và kiểm soát logic khi có tình huống bất thường xảy ra.
 
 1. Try - Catch - Finally
 
+- Mục đích:
+  - try: chứa đoạn code có thể xảy ra lỗi.
+  - catch: xử lý ngoại lệ nếu xảy ra.
+  - finally: luôn thực hiện, dù có hay không có lỗi – thường dùng để đóng tài nguyên.
+- Cú pháp:
+
+        {% raw %}
+        try {
+          // đoạn code có thể ném lỗi
+        } catch (ExceptionType e) {
+          // xử lý lỗi
+        } finally {
+          // luôn thực hiện (ví dụ: đóng file, kết nối DB)
+        }
+        {% endraw %}
+
+- Ví dụ:
+
+        {% raw %}
+        try {
+          int result = 10 / 0; // ArithmeticException
+        } catch (ArithmeticException e) {
+          System.out.println("Không thể chia cho 0!");
+        } finally {
+          System.out.println("Kết thúc xử lý!");
+        }
+        {% endraw %}
+
 2. Throw và Throws
 
-3. Checked vs Unchecked Exception
+- throw: dùng để ném một ngoại lệ cụ thể trong code.
 
-4. Tạo ngoại lệ tùy chỉnh(Custom Exception)
+        {% raw %}
+        throw new IllegalArgumentException("Sai tham số!");
+        {% endraw %}
 
-**IX. Collection Framework** _(TODO)_
+- throws: dùng trong chữ ký method để khai báo rằng method này có thể ném ra ngoại lệ.
 
-1. Interfaces: List, Set, Map, Queue
+        {% raw %}
+        public void readFile(String file) throws IOException {
+          // logic đọc file
+        }
+        {% endraw %}
 
-2. Implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap
+- Ví dụ đầy đủ:
 
-3. Iterator, ListIterator, for-each
+          {% raw %}
+          public void divide(int a, int b) throws ArithmeticException {
+            if (b == 0) {
+              throw new ArithmeticException("Không chia được cho 0");
+            }
+            System.out.println(a / b);
+          }
+          {% endraw %}
 
-4. So sánh HashMap vs Hashtable
+3.  Checked vs Unchecked Exception
 
-**X. Generics** _(TODO)_
+         |--------------------------------------------------------------------------------------------------------------|
+         | Loại        | Kế thừa từ                       | Compiler bắt buộc xử lý        | Ví dụ                      |
+         |--------------------------------------------------------------------------------------------------------------|
+         | Checked     | Exception (trừ RuntimeException) | Bắt buộc try-catch hoặc throws | IOException,               |
+         |             |                                  |                                | SQLException,              |
+         |             |                                  |                                | ParseException             |
+         |--------------------------------------------------------------------------------------------------------------|
+         | Unchecked   | RuntimeException                 | Không bắt buộc xử lý           | NullPointerException,      |
+         |             |                                  |                                | IllegalArgumentException,  |
+         |             |                                  |                                | ArithmeticException        |
+         |--------------------------------------------------------------------------------------------------------------|
+
+- Ví dụ Checked:
+
+          {% raw %}
+          public void readFile(String path) throws IOException {
+            FileReader fr = new FileReader(path); // IOException là checked
+          }
+          {% endraw %}
+
+- Ví dụ Unchecked:
+
+          {% raw %}
+          int[] arr = new int[3];
+          arr[5] = 10; // ArrayIndexOutOfBoundsException – Unchecked
+          {% endraw %}
+
+4.  Tạo ngoại lệ tùy chỉnh(Custom Exception)
+
+- Trường hợp sử dụng:
+  - Khi muốn đại diện cho lỗi nghiệp vụ cụ thể.
+  - Giúp code rõ ràng, dễ hiểu, dễ bảo trì.
+- Cách tạo:
+
+          {% raw %}
+          // 1. Tạo class kế thừa Exception hoặc RuntimeException
+          public class InvalidAgeException extends RuntimeException {
+            public InvalidAgeException(String message) {
+              super(message);
+            }
+          }
+
+          // 2. Dùng throw để ném lỗi
+          public void checkAge(int age) {
+            if (age < 18) {
+              throw new InvalidAgeException("Tuổi phải lớn hơn 18");
+            }
+          }
+          {% endraw %}
+
+**IX. Collection Framework**
+
+Java Collection Framework là tập hợp các interface và class dùng để lưu trữ, xử lý và thao tác dữ liệu theo dạng collection (danh sách, tập hợp, ánh xạ, hàng đợi, v.v.).
+
+1.  Interfaces: List, Set, Map, Queue
+
+         |-----------------------------------------------------------------------------------------------------------------------|
+         | Interface | Đặc điểm                                    | Dùng khi cần                                                |
+         |-----------------------------------------------------------------------------------------------------------------------|
+         | List      | Cho phép phần tử trùng, có thứ tự,          | Danh sách có thứ tự (ArrayList, LinkedList)                 |
+         |           | truy cập theo chỉ số                        |                                                             |
+         |-----------------------------------------------------------------------------------------------------------------------|
+         | Set       | Không cho phép phần tử trùng                | Lưu tập hợp không trùng lặp (HashSet, TreeSet)              |
+         |-----------------------------------------------------------------------------------------------------------------------|
+         | Map       | Lưu theo cặp key-value, không cho key trùng | Bản đồ ánh xạ (HashMap, TreeMap)                            |
+         |-----------------------------------------------------------------------------------------------------------------------|
+         | Queue     | Cấu trúc FIFO (First-In-First-Out)          | Hàng đợi, xử lý theo thứ tự vào (LinkedList, PriorityQueue) |
+         |-----------------------------------------------------------------------------------------------------------------------|
+
+2.  Implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap
+
+         |----------------------------------------------------------------------------------|
+         |   Class    | Implements  | Đặc điểm chính                                        |
+         |----------------------------------------------------------------------------------|
+         | ArrayList  | List        | Mảng động, truy cập nhanh, chèn/xóa chậm              |
+         |----------------------------------------------------------------------------------|
+         | LinkedList | List, Queue | Danh sách liên kết, chèn/xóa nhanh, truy cập chậm     |
+         |----------------------------------------------------------------------------------|
+         | HashSet    | Set         | Không cho phép phần tử trùng, không đảm bảo thứ tự    |
+         |----------------------------------------------------------------------------------|
+         | TreeSet    | Set         | Sắp xếp phần tử theo thứ tự tự nhiên hoặc comparator  |
+         |----------------------------------------------------------------------------------|
+         | HashMap    | Map         | Cho phép null key/value, không sắp xếp                |
+         |----------------------------------------------------------------------------------|
+         | TreeMap    | Map         | Sắp xếp theo thứ tự key (Comparable/Comparator)       |
+         |----------------------------------------------------------------------------------|
+
+3.  Iterator, ListIterator, for-each
+
+- Iterator:
+
+  - Duyệt qua collection.
+  - Hỗ trợ xóa phần tử khi duyệt.
+
+            {% raw %}
+            Iterator<String> it = list.iterator();
+            while(it.hasNext()) {
+              String s = it.next();
+              if(s.equals("x")) it.remove(); // xóa phần tử khi duyệt
+            }
+            {% endraw %}
+
+- ListIterator:
+
+  - Chỉ dùng với List
+  - Duyệt hai chiều (next/previous), cho phép thêm, sửa, xóa trong quá trình lặp.
+
+- for-each:
+
+  - Dễ dùng, ngắn gọn, không chỉnh sửa collection được.
+
+            {% raw %}
+            for (String s : list) {
+              System.out.println(s);
+            }
+            {% endraw %}
+
+4.  So sánh HashMap vs Hashtable
+
+         |------------------------------------------------------------------------------------------------------------------------|
+         |   Tiêu chí              | HashMap                                   | Hashtable                                        |
+         |------------------------------------------------------------------------------------------------------------------------|
+         | Đồng bộ (Synchronized)  | Không                                     | Có                                               |
+         |------------------------------------------------------------------------------------------------------------------------|
+         | Hiệu suất               | Tốt hơn (trong môi trường đơn luồng)      | Kém hơn (do đồng bộ)                             |
+         |------------------------------------------------------------------------------------------------------------------------|
+         | Cho phép null           | 1 null key, nhiều null value              | Không cho null key/value                         |
+         |------------------------------------------------------------------------------------------------------------------------|
+         | Thay thế hiện đại       | ConcurrentHashMap dùng thay cho Hashtable | Đã lỗi thời                                      |
+         |------------------------------------------------------------------------------------------------------------------------|
+         | Môi trường sử dụng      | Dùng cho đa số ứng dụng                   | Không nên dùng nữa (trừ khi cần đồng bộ cổ điển) |
+         |------------------------------------------------------------------------------------------------------------------------|
+
+**X. Generics**
+
+Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu dữ liệu mà không cần ép kiểu thủ công.
 
 1. Generic Class, Method
 
-2. Wildcards: ?, ? extends, ? super
+- Generic Class: cho phép định nghĩa class có kiểu dữ liệu tổng quát.
 
-3. Type Inference (Diamond operator)
+  - Ví dụ:
+
+            {% raw %}
+            public class Box<T> {
+              private T value;
+              public void set(T value) { this.value = value; }
+              public T get() { return value; }
+            }
+            {% endraw %}
+
+  - Sử dụng:
+
+            {% raw %}
+            Box<String> stringBox = new Box<>();
+            stringBox.set("Hello");
+            String val = stringBox.get(); // không cần ép kiểu
+            {% endraw %}
+
+- Generic Method: kiểu dữ liệu tổng quát ngay trong method.
+
+  - Ví dụ:
+
+                {% raw %}
+                public class Utils {
+                  public static <T> void printArray(T[] array) {
+                    for (T item : array) {
+                      System.out.println(item);
+                    }
+                  }
+                }
+                {% endraw %}
+
+2.  Wildcards: ?, ? extends, ? super
+
+         |-------------------------------------------------------------------|
+         |  Ký hiệu    | Ý nghĩa               | Dùng khi                    |
+         |-------------------------------------------------------------------|
+         | ?           | Bất kỳ kiểu nào       | Không cần biết kiểu cụ thể  |
+         |-------------------------------------------------------------------|
+         | ? extends T | Bất kỳ kiểu con của T | Đọc (read) dữ liệu an toàn  |
+         |-------------------------------------------------------------------|
+         | ? super T   | Bất kỳ kiểu cha của T | Ghi (write) dữ liệu an toàn |
+         |-------------------------------------------------------------------|
+
+- Ví dụ:
+
+            {% raw %}
+            List<? extends Number> numbers; // List của Integer, Double, Float đều được
+            List<? super Integer> ints;     // List của Integer, Number, Object
+            {% endraw %}
+
+- Hiểu đơn giản:
+
+         |---------------------------------------|
+         |  Hiểu đơn giản:        | 	Dùng       |
+         |---------------------------------------|
+         | Đọc là chính           | ? extends T  |
+         |---------------------------------------|
+         | Ghi là chính           | ? super T    |
+         |---------------------------------------|
+         | Không quan tâm kiểu gì |      ?       |
+         |---------------------------------------|
+
+3.  Type Inference (Diamond operator)
+
+- Từ Java 7, có thể không cần ghi lại kiểu dữ liệu ở bên phải khi khởi tạo.
+
+- Trước Java 7:
+
+            {% raw %}
+            List<String> list = new ArrayList<String>();
+            {% endraw %}
+
+- Từ Java 7 trở đi – Diamond operator:
+
+            {% raw %}
+            List<String> list = new ArrayList<>();
+            {% endraw %}
+
+  - Trình biên dịch sẽ tự suy ra kiểu dữ liệu (Type Inference) từ bên trái.
 
 **XI. Java I/O (Input/Output)** _(TODO)_
 

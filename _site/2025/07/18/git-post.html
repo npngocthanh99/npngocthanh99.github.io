@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tổng hợp kiến thức về Git | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <header class="site-header">
+  <nav class="nav-left">
+    <a href="/">Trang chủ</a>
+    <a href="/posts/">Bài viết</a>
+    <a href="/about/">Giới thiệu</a>
+  </nav>
+
+  <div class="nav-right">
+    <i class="fa-solid fa-user"></i>
+    <span>Nguyễn Phúc Ngọc Thành</span>
+    <button
+      id="toggle-theme"
+      style="background: none; border: none; cursor: pointer; color: white"
+      title="Chuyển nền"
+    >
+      🌓
+    </button>
+  </div>
+</header>
+
+      <main><article>
+  <h1>Tổng hợp kiến thức về Git</h1>
+  <p><small>18-07-2025</small></p>
+  <p><strong>I. Git là gì?</strong></p>
+
+<ul>
+  <li>Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System).</li>
+  <li>Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN).</li>
+  <li>Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần.</li>
+</ul>
+
+<p><strong>II. Kiến trúc cơ bản</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    +----------------------+
+    |  Working Directory   |  &lt;-- Thư mục làm việc
+    +----------------------+
+              |
+              | git add
+              v
+    +----------------------+
+    |   Staging Area       |  &lt;-- File được đánh dấu để commit (lưu ở .git/index)
+    +----------------------+
+              |
+              | git commit
+              v
+    +----------------------+
+    | Local Repository     | &lt;-- Commit được lưu vào máy (trong .git/objects)
+    +----------------------+
+              |
+              | git push
+              v
+    +----------------------+
+    | Remote Repository    | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v.
+    +----------------------+
+</code></pre></div></div>
+
+<ul>
+  <li>Working Directory: thư mục làm việc.</li>
+  <li>Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit.</li>
+  <li>Local Repository: nơi lưu trữ các commit đã thực hiện.</li>
+  <li>Remote Repository: ví dụ như GitHub, GitLab, Bitbucket.</li>
+</ul>
+
+<p><strong>III. Các câu lệnh Git</strong></p>
+
+<p><strong>1. Lệnh git cơ bản</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |----------------------------------------------------------|
+    | Lệnh                    | Chức năng                      |
+    |----------------------------------------------------------|
+    | git init                | Tạo repo Git mới               |
+    | git clone &lt;url&gt;         | Tải repo từ remote về          |
+    | git status              | Xem trạng thái thay đổi        |
+    | git add &lt;file&gt;          | Thêm file vào Staging Area     |
+    | git add .               | Thêm tất cả file thay đổi      |
+    | git commit -m "message" | Tạo commit                     |
+    | git log                 | Xem lịch sử commit             |
+    | git diff                | So sánh thay đổi chưa commit   |
+    | git checkout &lt;branch&gt;   | Chuyển nhánh                   |
+    | git branch              | Liệt kê danh sách nhánh        |
+    | git branch &lt;name&gt;       | Tạo nhánh mới                  |
+    | git merge &lt;branch&gt;      | Gộp nhánh                      |
+    | git pull                | Lấy code mới nhất từ remote    |
+    | git push                | Đẩy code lên remote            |
+</code></pre></div></div>
+
+<p><strong>2. Làm việc với Branch (nhánh)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    git checkout -b feature/login    # Tạo và chuyển sang nhánh mới
+    git checkout main                # Quay về nhánh chính
+    git merge feature/login          # Gộp nhánh vào nhánh hiện tại
+</code></pre></div></div>
+
+<p><strong>3. Revert, Reset, Amend</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |----------------------------------------------------------------------|
+    | Lệnh                    | Ý nghĩa                                    |
+    |----------------------------------------------------------------------|
+    | git reset               | Quay lại commit trước đó (có thể mất code) |
+    | git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi            |
+    | git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi              |
+    | git revert &lt;commit&gt;     | Tạo commit mới để đảo ngược commit cũ      |
+    | git commit --amend      | Sửa lại commit gần nhất                    |
+</code></pre></div></div>
+
+<p><strong>4. Stash – Tạm thời lưu thay đổi</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    git stash               # Lưu tạm thay đổi
+    git stash list          # Xem danh sách stash
+    git stash apply         # Áp dụng lại thay đổi
+    git stash drop          # Xóa stash
+</code></pre></div></div>
+
+<p><strong>5. Remote Repository (GitHub, GitLab)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    git remote -v                     # Kiểm tra remote
+    git remote add origin &lt;url&gt;      # Thêm remote repo
+    git push -u origin main          # Push lần đầu
+    git pull origin main             # Lấy code mới
+</code></pre></div></div>
+
+<p><strong>6. Giải quyết Conflict (xung đột)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột:
+
+      
+      &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+      # Code của bạn
+      Code của người khác
+      &gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name
+      
+
+- Sửa file thủ công, sau đó:
+
+      
+      git add .
+      git commit -m "resolve conflict"
+</code></pre></div></div>
+
+<p><strong>7. Git Flow - Quy trình làm việc chuẩn</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a. main – nhánh sản phẩm chạy chính thức.
+b. develop – nhánh phát triển chung.
+c. feature/\* – nhánh tính năng.
+d. release/\* – nhánh chuẩn bị release.
+e. hotfix/\* – xử lý lỗi khẩn cấp.
+</code></pre></div></div>
+
+<p><strong>IV. Các câu hỏi phỏng vấn thường gặp</strong></p>
+
+<p><em>1. Git khác gì SVN?</em></p>
+
+<p><em>2. Sự khác nhau giữa git reset, git revert, git checkout?</em></p>
+
+<p><em>3. Khi nào dùng git merge vs git rebase?</em></p>
+
+<p><em>4. Cách giải quyết conflict?</em></p>
+
+<p><em>5. Quy trình deploy/CI với Git?</em></p>
+
+</article>
+</main>
+      <footer>
+  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
+
+  <div style="margin-top: 0.5rem"><ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; justify-content: center; padding-left: 0"
+>
+  
+  <li style="list-style: none">
+    <a
+      href="mailto:ngocthanhxs2@gmail.com"
+      target="_blank"
+      title="Email"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-solid
+            
+            fa-envelope fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.facebook.com/NguyenPhucNgocThanh03.01.99/"
+      target="_blank"
+      title="Facebook"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-facebook fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.linkedin.com/in/thanhnpn/"
+      target="_blank"
+      title="LinkedIn"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-linkedin fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://github.com/npngocthanh99"
+      target="_blank"
+      title="GitHub"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-github fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+</ul>
+</div>
+</footer>
+
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
+
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light"
+        );
+      });
+    </script>
+  </body>
+</html>

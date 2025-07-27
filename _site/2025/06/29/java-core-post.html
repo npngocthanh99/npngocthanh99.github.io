@@ -553,7 +553,7 @@ a. Mảng 1 chiều (1D array)<br />
   </li>
 </ul>
 
-<p><strong>VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)</strong> <em>(TODO)</em></p>
+<p><strong>VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)</strong></p>
 
 <ol>
   <li>this, super</li>
@@ -568,12 +568,12 @@ a. Mảng 1 chiều (1D array)<br />
       <li>
         <p>Gọi constructor khác trong cùng class</p>
 
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      class Person {
-        String name;
-        Person(String name) {
-          this.name = name; // phân biệt biến instance và tham số
-        }
-      }
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Person {
+  String name;
+  Person(String name) {
+    this.name = name; // phân biệt biến instance và tham số
+  }
+}
 </code></pre></div>        </div>
       </li>
     </ul>
@@ -585,18 +585,18 @@ a. Mảng 1 chiều (1D array)<br />
       <li>
         <p>Dùng để gọi constructor hoặc phương thức của lớp cha.</p>
 
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          class Animal {
-            void speak() {
-              System.out.println("Animal speaks");
-            }
-          }
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Animal {
+  void speak() {
+    System.out.println("Animal speaks");
+  }
+}
 
-          class Dog extends Animal {
-            void speak() {
-              super.speak(); // gọi phương thức lớp cha
-              System.out.println("Dog barks");
-            }
-          }
+class Dog extends Animal {
+  void speak() {
+    super.speak(); // gọi phương thức lớp cha
+    System.out.println("Dog barks");
+  }
+}
 </code></pre></div>        </div>
       </li>
     </ul>
@@ -611,30 +611,30 @@ a. Mảng 1 chiều (1D array)<br />
   <li>
     <p>Constructor: phương thức đặc biệt, cùng tên class, không có kiểu dữ liệu trả về.</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            class Student {
-              String name;
-              Student(String n) {
-                name = n;
-              }
-            }
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  class Student {
+    String name;
+    Student(String n) {
+      name = n;
+    }
+  }
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Constructor overloading: nhiều constructor cùng tên nhưng khác tham số.</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            class Student {
-              String name;
-              int age;
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  class Student {
+    String name;
+    int age;
 
-              Student(String n) {
-                name = n;
-              }
+    Student(String n) {
+      name = n;
+    }
 
-              Student(String n, int a) {
-                this.name = n;
-                this.age = a;
-              }
-            }
+    Student(String n, int a) {
+      this.name = n;
+      this.age = a;
+    }
+  }
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -642,63 +642,568 @@ a. Mảng 1 chiều (1D array)<br />
 <ol>
   <li>
     <p>Method Overloading vs Overriding</p>
-  </li>
-  <li>
-    <p>final, static, abstract, interface, enum</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |----------------------------------------------------------------------------------------------------------------------------------------|
+ |       Đặc điểm              | Overloading                                        | Overriding                                          |
+ |----------------------------------------------------------------------------------------------------------------------------------------|
+ | Định nghĩa                  | Cùng tên phương thức, khác tham số trong cùng lớp  | Cùng tên, cùng tham số, khác lớp (cha - con)        |
+ | Mục đích                    | Tăng tính đa hình tĩnh (compile time polymorphism) | Tăng tính đa hình động (runtime polymorphism)       |
+ | Quan hệ lớp                 | Trong cùng một lớp                                 | Giữa lớp cha và lớp con                             |
+ | Quy tắc | VBất kỳ           | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
+ | Thời điểm quyết định        | Compile time                                       | Runtime                                             |
+ | Annotation dùng được không? | Không dùng @Override                               | Nên dùng @Override để tránh lỗi đánh máy            |
+ |----------------------------------------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
 </ol>
 
-<p><strong>VII. Phạm vi truy cập(Access Modifiers)</strong> <em>(TODO)</em></p>
+<p>Ví dụ:</p>
+
+<p><strong>Overloading:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class Calculator {
+      int add(int a, int b) { return a + b; }
+      double add(double a, double b) { return a + b; }
+    }
+</code></pre></div></div>
+
+<p><strong>Overriding:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class Animal {
+      void sound() { System.out.println("Some sound"); }
+    }
+
+    class Dog extends Animal {
+    @Override
+      void sound() { System.out.println("Woof"); }
+    }
+</code></pre></div></div>
 
 <ol>
+  <li>final, static, abstract, interface, enum</li>
+</ol>
+
+<p>a. final</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------------|
+     | Trường hợp sử dụng |       Ý nghĩa                                      |
+     |-------------------------------------------------------------------------|
+     | Biến (variable)    | Không thể thay đổi giá trị sau khi gán (hằng số)   |
+     | Phương thức        | Không thể override ở lớp con                       |
+     | Lớp (class)        | Không thể kế thừa                                  |
+     |-------------------------------------------------------------------------|
+</code></pre></div></div>
+
+<p>ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    final class Constants {
+      public static final double PI = 3.14159;
+    }
+</code></pre></div></div>
+
+<p>b. static</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |---------------------------------------------------------------------------------------------------------------|
+     | Trường hợp sử dụng | Ý nghĩa                                                                                  |
+     |---------------------------------------------------------------------------------------------------------------|
+     | Biến (variable)    | Biến dùng chung cho tất cả các đối tượng của lớp                                         |
+     | Phương thức        | Gọi mà không cần tạo đối tượng                                                           |
+     | Block              | Được chạy một lần duy nhất khi class được load, được thực thi trước cả main() và trước   |
+     |                    | khi tạo đối tượng                                                                        |
+     | Lớp (class)        | Chỉ dùng với nested class (lớp bên trong), không thể truy cập biến non-static bên ngoài  |
+     |---------------------------------------------------------------------------------------------------------------|
+</code></pre></div></div>
+
+<p>ví dụ:
+<strong>static block</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class StaticBlockExample {
+      static int value;
+
+      // static block
+      static {
+        System.out.println("Static block executed");
+        value = 100;
+      }
+
+      public StaticBlockExample() {
+        System.out.println("Constructor called");
+      }
+
+      public static void main(String[] args) {
+        System.out.println("Main method started");
+        StaticBlockExample obj = new StaticBlockExample();
+        System.out.println("Value = " + StaticBlockExample.value);
+      }
+    }
+</code></pre></div></div>
+
+<p><strong>static class</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class OuterClass {
+      int outerValue = 10;
+      static int staticOuterValue = 20;
+
+      static class StaticNestedClass {
+        void display() {
+          // System.out.println(outerValue); // Error: Cannot access non-static
+          System.out.println("Static outer value: " + staticOuterValue);
+        }
+      }
+
+      public static void main(String[] args) {
+        OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
+        nested.display();
+      }
+    }
+</code></pre></div></div>
+
+<p>c. abstract</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------------------------|
+     | Trường hợp sử dụng | Ý nghĩa                                       |
+     |--------------------------------------------------------------------|
+     | Phương thức        | Không có thân hàm, bắt buộc lớp con override  |
+     | Lớp (class)        | Không thể tạo đối tượng, chỉ để kế thừa       |
+     |--------------------------------------------------------------------|
+</code></pre></div></div>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    abstract class Animal {
+      abstract void sound();
+    }
+
+    class Cat extends Animal {
+      void sound() { System.out.println("Meow"); }
+    }
+</code></pre></div></div>
+
+<p>d. interface</p>
+
+<ul>
+  <li>Là một tập hợp các phương thức trừu tượng (Java 8 trở đi hỗ trợ default + static method)</li>
   <li>
-    <p>Private</p>
+    <p>Một lớp có thể implement nhiều interface
+Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  interface Movable {
+    void move();
+  }
+
+  class Car implements Movable {
+    public void move() {
+      System.out.println("Car is moving");
+    }
+  }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>e. enum</p>
+
+<ul>
+  <li>Đại diện cho một tập hợp hằng số có định danh</li>
+  <li>Có thể có constructor, phương thức, biến</li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> enum Day {
+   MONDAY, TUESDAY, WEDNESDAY;
+ }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>VII. Phạm vi truy cập(Access Modifiers)</strong></p>
+
+<ol>
+  <li>Private</li>
+</ol>
+
+<ul>
+  <li><strong>Phạm vi:</strong>Chỉ truy cập được trong cùng một class.</li>
+  <li><strong>Không thể</strong> truy cập từ class khác, kể cả trong cùng package.</li>
+  <li>
+    <p><strong>Thường dùng cho:</strong></p>
+
+    <ul>
+      <li>Thuộc tính (fields) để bảo vệ dữ liệu.</li>
+      <li>Hàm hỗ trợ (helper methods) nội bộ.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class MyClass {
+      private int data;
+
+      private void helperMethod() {
+      // chỉ dùng nội bộ
+      }
+    }
+</code></pre></div></div>
+
+<ol>
+  <li>Default(package-private)</li>
+</ol>
+
+<ul>
+  <li><strong>Phạm vi:</strong> Truy cập được trong cùng package.</li>
+  <li><strong>Không thể</strong> truy cập từ bên ngoài package.</li>
+  <li>
+    <p><strong>Thường dùng cho:</strong></p>
+
+    <ul>
+      <li>Class cấp package (helper class)</li>
+      <li>Những method không cần public nhưng vẫn cần dùng trong các class cùng package.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class MyClass { // default class
+      int count;    // default field
+
+      void increase() { // default method
+        count++;
+      }
+    }
+</code></pre></div></div>
+
+<ol>
+  <li>Protected</li>
+</ol>
+
+<ul>
+  <li>
+    <p><strong>Phạm vi:</strong> Truy cập được trong:</p>
+
+    <ul>
+      <li>Cùng package</li>
+      <li>Lớp con (subclass), kể cả khi subclass ở package khác.</li>
+    </ul>
   </li>
   <li>
-    <p>Default(package-private)</p>
+    <p><strong>Thường dùng cho:</strong></p>
+
+    <ul>
+      <li>Class cha muốn cho phép lớp con kế thừa và sử dụng.</li>
+      <li>Một cách tiếp cận giữa private và public.</li>
+    </ul>
   </li>
-  <li>
-    <p>Protected</p>
+</ul>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Animal {
+      protected void makeSound() {
+        System.out.println("Some sound");
+      }
+    }
+
+    class Dog extends Animal {
+      void bark() {
+        makeSound(); // hợp lệ do kế thừa
+      }
+    }
+</code></pre></div></div>
+
+<ol>
+  <li>Public</li>
+</ol>
+
+<ul>
+  <li>Phạm vi: Mọi nơi đều truy cập được.</li>
+  <li>Thường dùng cho:
+    <ul>
+      <li>API bên ngoài</li>
+      <li>Class chính, method chính (như public static void main).</li>
+    </ul>
   </li>
-  <li>
-    <p>Public</p>
-  </li>
+</ul>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Person {
+      public String name;
+
+      public void sayHello() {
+        System.out.println("Hello");
+      }
+    }
+</code></pre></div></div>
+
+<ol>
   <li>
     <p>Tóm tắt về khả năng truy cập</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |--------------------------------------------------------------------------------------|
+ | Access Modifier | Cùng class | Cùng package | Subclass(khác package) |   Bên ngoài   |
+ |--------------------------------------------------------------------------------------|
+ |    private      |    ✅     |       ❌     |           ❌           |     ❌       |
+ |--------------------------------------------------------------------------------------|
+ |    default      |    ✅     |       ✅     |           ❌           |     ❌       |
+ |--------------------------------------------------------------------------------------|
+ |    protected    |    ✅     |       ✅     |           ✅           |     ❌       |
+ |--------------------------------------------------------------------------------------|
+ |    public       |    ✅     |       ✅     |           ✅           |     ✅       |
+ |--------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
 </ol>
 
-<p><strong>VIII. Xử lý ngoại lệ(Exception Handlling)</strong> <em>(TODO)</em></p>
+<p><strong>VIII. Xử lý ngoại lệ(Exception Handlling)</strong></p>
+
+<p>Trong Java, Exception Handling giúp chương trình xử lý lỗi một cách an toàn mà không bị crash, duy trì luồng chạy mạch lạc và kiểm soát logic khi có tình huống bất thường xảy ra.</p>
+
+<ol>
+  <li>Try - Catch - Finally</li>
+</ol>
+
+<ul>
+  <li>Mục đích:
+    <ul>
+      <li>try: chứa đoạn code có thể xảy ra lỗi.</li>
+      <li>catch: xử lý ngoại lệ nếu xảy ra.</li>
+      <li>finally: luôn thực hiện, dù có hay không có lỗi – thường dùng để đóng tài nguyên.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Cú pháp:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  try {
+    // đoạn code có thể ném lỗi
+  } catch (ExceptionType e) {
+    // xử lý lỗi
+  } finally {
+    // luôn thực hiện (ví dụ: đóng file, kết nối DB)
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  try {
+    int result = 10 / 0; // ArithmeticException
+  } catch (ArithmeticException e) {
+    System.out.println("Không thể chia cho 0!");
+  } finally {
+    System.out.println("Kết thúc xử lý!");
+  }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Throw và Throws</li>
+</ol>
+
+<ul>
+  <li>
+    <p>throw: dùng để ném một ngoại lệ cụ thể trong code.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  throw new IllegalArgumentException("Sai tham số!");
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>throws: dùng trong chữ ký method để khai báo rằng method này có thể ném ra ngoại lệ.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  public void readFile(String file) throws IOException {
+    // logic đọc file
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ví dụ đầy đủ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public void divide(int a, int b) throws ArithmeticException {
+      if (b == 0) {
+        throw new ArithmeticException("Không chia được cho 0");
+      }
+      System.out.println(a / b);
+    }
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <ol>
   <li>
-    <p>Try - Catch - Finally</p>
-  </li>
-  <li>
-    <p>Throw và Throws</p>
-  </li>
-  <li>
     <p>Checked vs Unchecked Exception</p>
-  </li>
-  <li>
-    <p>Tạo ngoại lệ tùy chỉnh(Custom Exception)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |--------------------------------------------------------------------------------------------------------------|
+ | Loại        | Kế thừa từ                       | Compiler bắt buộc xử lý        | Ví dụ                      |
+ |--------------------------------------------------------------------------------------------------------------|
+ | Checked     | Exception (trừ RuntimeException) | Bắt buộc try-catch hoặc throws | IOException,               |
+ |             |                                  |                                | SQLException,              |
+ |             |                                  |                                | ParseException             |
+ |--------------------------------------------------------------------------------------------------------------|
+ | Unchecked   | RuntimeException                 | Không bắt buộc xử lý           | NullPointerException,      |
+ |             |                                  |                                | IllegalArgumentException,  |
+ |             |                                  |                                | ArithmeticException        |
+ |--------------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
 </ol>
 
-<p><strong>IX. Collection Framework</strong> <em>(TODO)</em></p>
+<ul>
+  <li>
+    <p>Ví dụ Checked:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public void readFile(String path) throws IOException {
+      FileReader fr = new FileReader(path); // IOException là checked
+    }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ví dụ Unchecked:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    int[] arr = new int[3];
+    arr[5] = 10; // ArrayIndexOutOfBoundsException – Unchecked
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Tạo ngoại lệ tùy chỉnh(Custom Exception)</li>
+</ol>
+
+<ul>
+  <li>Trường hợp sử dụng:
+    <ul>
+      <li>Khi muốn đại diện cho lỗi nghiệp vụ cụ thể.</li>
+      <li>Giúp code rõ ràng, dễ hiểu, dễ bảo trì.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Cách tạo:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    // 1. Tạo class kế thừa Exception hoặc RuntimeException
+    public class InvalidAgeException extends RuntimeException {
+      public InvalidAgeException(String message) {
+        super(message);
+      }
+    }
+
+    // 2. Dùng throw để ném lỗi
+    public void checkAge(int age) {
+      if (age &lt; 18) {
+        throw new InvalidAgeException("Tuổi phải lớn hơn 18");
+      }
+    }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>IX. Collection Framework</strong></p>
+
+<p>Java Collection Framework là tập hợp các interface và class dùng để lưu trữ, xử lý và thao tác dữ liệu theo dạng collection (danh sách, tập hợp, ánh xạ, hàng đợi, v.v.).</p>
 
 <ol>
   <li>
     <p>Interfaces: List, Set, Map, Queue</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |-----------------------------------------------------------------------------------------------------------------------|
+ | Interface | Đặc điểm                                    | Dùng khi cần                                                |
+ |-----------------------------------------------------------------------------------------------------------------------|
+ | List      | Cho phép phần tử trùng, có thứ tự,          | Danh sách có thứ tự (ArrayList, LinkedList)                 |
+ |           | truy cập theo chỉ số                        |                                                             |
+ |-----------------------------------------------------------------------------------------------------------------------|
+ | Set       | Không cho phép phần tử trùng                | Lưu tập hợp không trùng lặp (HashSet, TreeSet)              |
+ |-----------------------------------------------------------------------------------------------------------------------|
+ | Map       | Lưu theo cặp key-value, không cho key trùng | Bản đồ ánh xạ (HashMap, TreeMap)                            |
+ |-----------------------------------------------------------------------------------------------------------------------|
+ | Queue     | Cấu trúc FIFO (First-In-First-Out)          | Hàng đợi, xử lý theo thứ tự vào (LinkedList, PriorityQueue) |
+ |-----------------------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |----------------------------------------------------------------------------------|
+ |   Class    | Implements  | Đặc điểm chính                                        |
+ |----------------------------------------------------------------------------------|
+ | ArrayList  | List        | Mảng động, truy cập nhanh, chèn/xóa chậm              |
+ |----------------------------------------------------------------------------------|
+ | LinkedList | List, Queue | Danh sách liên kết, chèn/xóa nhanh, truy cập chậm     |
+ |----------------------------------------------------------------------------------|
+ | HashSet    | Set         | Không cho phép phần tử trùng, không đảm bảo thứ tự    |
+ |----------------------------------------------------------------------------------|
+ | TreeSet    | Set         | Sắp xếp phần tử theo thứ tự tự nhiên hoặc comparator  |
+ |----------------------------------------------------------------------------------|
+ | HashMap    | Map         | Cho phép null key/value, không sắp xếp                |
+ |----------------------------------------------------------------------------------|
+ | TreeMap    | Map         | Sắp xếp theo thứ tự key (Comparable/Comparator)       |
+ |----------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Iterator, ListIterator, for-each</p>
   </li>
+</ol>
+
+<ul>
+  <li>
+    <p>Iterator:</p>
+
+    <ul>
+      <li>Duyệt qua collection.</li>
+      <li>
+        <p>Hỗ trợ xóa phần tử khi duyệt.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Iterator&lt;String&gt; it = list.iterator();
+    while(it.hasNext()) {
+      String s = it.next();
+      if(s.equals("x")) it.remove(); // xóa phần tử khi duyệt
+    }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>ListIterator:</p>
+
+    <ul>
+      <li>Chỉ dùng với List</li>
+      <li>Duyệt hai chiều (next/previous), cho phép thêm, sửa, xóa trong quá trình lặp.</li>
+    </ul>
+  </li>
+  <li>
+    <p>for-each:</p>
+
+    <ul>
+      <li>
+        <p>Dễ dùng, ngắn gọn, không chỉnh sửa collection được.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    for (String s : list) {
+      System.out.println(s);
+    }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
   <li>
     <p>So sánh HashMap vs Hashtable</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |------------------------------------------------------------------------------------------------------------------------|
+ |   Tiêu chí              | HashMap                                   | Hashtable                                        |
+ |------------------------------------------------------------------------------------------------------------------------|
+ | Đồng bộ (Synchronized)  | Không                                     | Có                                               |
+ |------------------------------------------------------------------------------------------------------------------------|
+ | Hiệu suất               | Tốt hơn (trong môi trường đơn luồng)      | Kém hơn (do đồng bộ)                             |
+ |------------------------------------------------------------------------------------------------------------------------|
+ | Cho phép null           | 1 null key, nhiều null value              | Không cho null key/value                         |
+ |------------------------------------------------------------------------------------------------------------------------|
+ | Thay thế hiện đại       | ConcurrentHashMap dùng thay cho Hashtable | Đã lỗi thời                                      |
+ |------------------------------------------------------------------------------------------------------------------------|
+ | Môi trường sử dụng      | Dùng cho đa số ứng dụng                   | Không nên dùng nữa (trừ khi cần đồng bộ cổ điển) |
+ |------------------------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
 </ol>
 
