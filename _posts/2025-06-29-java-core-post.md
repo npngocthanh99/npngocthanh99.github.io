@@ -1068,25 +1068,262 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 
   - Trình biên dịch sẽ tự suy ra kiểu dữ liệu (Type Inference) từ bên trái.
 
-**XI. Java I/O (Input/Output)** _(TODO)_
+**XI. Java I/O (Input/Output)**
 
 1. File, FileReader, FileWriter
 
+- File :
+
+  - Đại diện cho đường dẫn tới file hoặc thư mục.
+  - **Chức năng:** kiểm tra file tồn tại, tạo mới file/thư mục, xóa, lấy thông tin file.
+
+            {% raw %}
+            File file = new File("data.txt");
+            if (!file.exists()) {
+              file.createNewFile();
+            }
+            System.out.println("Tên file: " + file.getName());
+            {% endraw %}
+
+- FileReader,FileWriter
+
+  - Đọc và ghi ký tự (text) vào file, dùng cho file văn bản.
+
+            {% raw %}
+            // Ghi file
+            FileWriter writer = new FileWriter("data.txt");
+            writer.write("Xin chào Java!");
+            writer.close();
+
+            // Đọc file
+            FileReader reader = new FileReader("data.txt");
+            int c;
+            while ((c = reader.read()) != -1) {
+              System.out.print((char) c);
+            }
+            reader.close();
+            {% endraw %}
+
 2. BufferedReader, BufferedWriter
+
+- Gói ngoài FileReader/FileWriter để tăng hiệu năng nhờ bộ nhớ đệm.
+- Hỗ trợ đọc, ghi dòng văn bản (line-based).
+
+            {% raw %}
+            // Ghi file bằng BufferedWriter
+            BufferedWriter bw = new BufferedWriter(new FileWriter("data.txt"));
+            bw.write("Dòng 1");
+            bw.newLine();
+            bw.write("Dòng 2");
+            bw.close();
+
+            // Đọc file bằng BufferedReader
+            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+              System.out.println(line);
+            }
+            br.close();
+            {% endraw %}
 
 3. InputStream, OutputStream
 
+- Dùng để đọc/ghi byte, phù hợp với file nhị phân (ảnh, âm thanh…).
+- Là lớp cha của các stream như: FileInputStream, BufferedInputStream.
+
+          {% raw %}
+          // Đọc file nhị phân
+          FileInputStream fis = new FileInputStream("image.jpg");
+          int b;
+
+          while ((b = fis.read()) != -1) {
+          // Xử lý byte b
+          }
+          fis.close();
+
+          // Ghi file nhị phân
+          FileOutputStream fos = new FileOutputStream("copy.jpg");
+          fos.write(123); // ghi byte
+          fos.close();
+          {% endraw %}
+
 4. Serialization / Deserialization
 
-**XII. Đa luồng & Xử lý đồng thời (Multithreading and Concurrency)** _(TODO)_
+- Serialization: biến object thành chuỗi byte để lưu vào file hoặc truyền qua mạng.
+- Deserialization: đọc chuỗi byte và tạo lại object.
+
+- Class phải implement Serializable.
+
+          {% raw %}
+          // Serializable class
+          class Student implements Serializable {
+          private String name;
+          private int age;
+          // constructor, getter, setter
+          }
+
+          // Serialization
+          ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("student.ser"));
+          oos.writeObject(new Student("Nam", 20));
+          oos.close();
+
+          // Deserialization
+          ObjectInputStream ois = new ObjectInputStream(new FileInputStream("student.ser"));
+          Student s = (Student) ois.readObject();
+          System.out.println(s.getName());
+          ois.close();
+          {% endraw %}
+
+**XII. Đa luồng & Xử lý đồng thời (Multithreading and Concurrency)**
 
 1. Tạo Thread: Thread, Runnable
 
+- Cách 1: implement Runnable (Interface):
+
+  - Cách tạo thread bằng cách triển khai interface Runnable và override run():
+  - Ưu điểm:
+
+    - Linh hoạt, có thể kế thừa lớp khác.
+    - Tách biệt logic run() ra khỏi Thread, tốt cho thiết kế hướng đối tượng (OOP).
+    - Nên dùng trong thực tế hơn cách kế thừa Thread.
+
+                {% raw %}
+                class MyRunnable implements Runnable {
+                  public void run() {
+                    System.out.println("Thread đang chạy bằng cách implement Runnable.");
+                  }
+                }
+
+                public class Main {
+                  public static void main(String[] args) {
+                    Thread t1 = new Thread(new MyRunnable());
+                    t1.start();
+                  }
+                }
+                {% endraw %}
+
+- Cách 2: extend Thread (Class):
+
+  - Có thể kế thừa lớp Thread và override run():
+  - Ưu điểm:
+    - Dễ viết, trực tiếp override phương thức run().
+  - Nhược điểm:
+
+    - Không thể kế thừa lớp khác vì Java chỉ cho kế thừa một lớp (single inheritance).
+
+                {% raw %}
+                class MyThread extends Thread {
+                  public void run() {
+                      System.out.println("Thread đang chạy bằng cách kế thừa Thread.");
+                  }
+                }
+
+                public class Main {
+                  public static void main(String[] args) {
+                    MyThread t1 = new MyThread();
+                    t1.start(); // KHÔNG dùng t1.run()
+                  }
+                }
+                {% endraw %}
+
+- So sánh Thread vs Runnable
+
+         |-------------------------------------------------------------------------------------------------------|
+         |  Tiêu chí             | Thread (extends)                     | Runnable (implements)                  |
+         |-------------------------------------------------------------------------------------------------------|
+         | Kế thừa lớp khác      | Không thể                            | Có thể                                 |
+         |-------------------------------------------------------------------------------------------------------|
+         | Tái sử dụng đối tượng | Ít linh hoạt                         | Dễ tái sử dụng                         |
+         |-------------------------------------------------------------------------------------------------------|
+         | Khuyến nghị sử dụng   | Trong hầu hết các trường hợp         | Thực tế khuyên dùng                    |
+         |-------------------------------------------------------------------------------------------------------|
+         | Gắn logic riêng       | Gắn trực tiếp trong run() của Thread | Gắn vào class riêng, truyền cho Thread |
+         |-------------------------------------------------------------------------------------------------------|
+
 2. Lifecycle của Thread
+
+- Các trạng thái chính:
+
+         |---------------------------------------------------------|
+         |  Trạng thái           | Mô tả                           |
+         |---------------------------------------------------------|
+         | NEW                   | Thread được tạo nhưng chưa chạy |
+         | RUNNABLE              | Thread đang chờ CPU để chạy     |
+         | RUNNING               | Thread đang thực thi            |
+         | BLOCKED               | Thread chờ khóa (monitor lock)  |
+         | WAITING/TIMED_WAITING | Chờ điều kiện hoặc thời gian    |
+         | TERMINATED            | Thread kết thúc                 |
+         |---------------------------------------------------------|
+
+- Dùng thread.getState() để kiểm tra trạng thái.
 
 3. synchronized, volatile, wait, notify, join
 
+- synchronized
+
+  - Dùng để đồng bộ truy cập tài nguyên.
+
+            {% raw %}
+            synchronized (this) {
+              // chỉ một thread được vào đây tại 1 thời điểm
+            }
+            {% endraw %}
+
+- volatile
+
+  - Báo cho JVM biết biến luôn được đọc trực tiếp từ bộ nhớ chính (main memory) — không cache ở thread-local.
+
+            {% raw %}
+            volatile boolean running = true;
+            {% endraw %}
+
+- wait() / notify() / notifyAll()
+
+  - Dùng cho giao tiếp giữa các thread đang chia sẻ monitor lock.
+
+            {% raw %}
+            synchronized (obj) {
+              obj.wait();      // Thread tạm dừng và nhả lock
+              obj.notify();    // Đánh thức 1 thread đang chờ obj
+            }
+            {% endraw %}
+
+  - Sự khác biệt giữa wait() và sleep():
+    - wait() nhả lock, còn sleep() không nhả lock.
+
+- join
+
+  - Cho phép một thread chờ thread khác kết thúc.
+
+            {% raw %}
+            Thread t = new Thread(() -> {...});
+            t.start();
+            t.join();  // main thread sẽ chờ t kết thúc
+            {% endraw %}
+
 4. ExecutorService, Callable, Future
+
+- ExecutorService
+
+  - Cung cấp một pool các thread quản lý hiệu quả hơn.
+
+            {% raw %}
+            ExecutorService executor = Executors.newFixedThreadPool(3);
+            executor.submit(() -> System.out.println("Task"));
+            executor.shutdown();
+            {% endraw %}
+
+- Callable<V> & Future<V>
+
+  - Khác với Runnable, Callable có thể trả về kết quả và ném exception.
+
+            {% raw %}
+            Callable<Integer> task = () -> 1 + 1;
+            Future<Integer> future = executor.submit(task);
+            Integer result = future.get(); // get() sẽ block nếu chưa có kết quả
+            {% endraw %}
+
+- Sự khác nhau giữa submit() và execute() trong Executor: submit() trả về Future, còn execute() thì không.
 
 **XIII. Java 8+ Features** _(TODO)_
 
