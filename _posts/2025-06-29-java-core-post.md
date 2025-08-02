@@ -406,7 +406,7 @@ _5. So sánh hiệu suất_
          | Tính bất biến         | Có        | Không         | Không           |
          | Thread-safe           | Không     | Không         | Có              |
          | Hiệu suất thao tác    | Chậm nhất | Nhanh nhất    | Trung bình      |
-         | Dùng trong môi trường | VBất kỳ   | Single-thread | Multi-thread    |
+         | Dùng trong môi trường | Bất kỳ    | Single-thread | Multi-thread    |
          |---------------------------------------------------------------------|
 
 **V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)**
@@ -520,7 +520,7 @@ _5. So sánh hiệu suất_
          | Định nghĩa                  | Cùng tên phương thức, khác tham số trong cùng lớp  | Cùng tên, cùng tham số, khác lớp (cha - con)        |
          | Mục đích                    | Tăng tính đa hình tĩnh (compile time polymorphism) | Tăng tính đa hình động (runtime polymorphism)       |
          | Quan hệ lớp                 | Trong cùng một lớp                                 | Giữa lớp cha và lớp con                             |
-         | Quy tắc | VBất kỳ           | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
+         | Quy tắc | Bất kỳ            | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
          | Thời điểm quyết định        | Compile time                                       | Runtime                                             |
          | Annotation dùng được không? | Không dùng @Override                               | Nên dùng @Override để tránh lỗi đánh máy            |
          |----------------------------------------------------------------------------------------------------------------------------------------|
@@ -1325,17 +1325,127 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 
 - Sự khác nhau giữa submit() và execute() trong Executor: submit() trả về Future, còn execute() thì không.
 
-**XIII. Java 8+ Features** _(TODO)_
+**XIII. Java 8+ Features**
 
 1. Lambda Expression
 
+- Là cách viết ngắn gọn của anonymous class implement một functional interface (interface chỉ có 1 method abstract duy nhất).
+- Cú pháp:
+
+            {% raw %}
+            (parameters) -> expression
+            hoặc:
+            (parameters) -> { statements }
+            {% endraw %}
+
+- Ví dụ:
+
+            {% raw %}
+            // Thay vì:
+            Runnable r = new Runnable() {
+              public void run() {
+                System.out.println("Hello");
+              }
+            };
+
+            // Dùng Lambda:
+            Runnable r = () -> System.out.println("Hello");
+            {% endraw %}
+
+- Ứng dụng:
+  - Thường dùng với các API hỗ trợ functional (ví dụ List.forEach(), Stream.map()...)
+
 2. Functional Interface (Function, Predicate, Consumer, Supplier)
+
+- Là Interface chỉ có một phương thức trừu tượng. Có thể có default/static methods.
+- Annotation hỗ trợ: @FunctionalInterface giúp compiler cảnh báo nếu bạn vi phạm định nghĩa functional interface.
+- Các interface phổ biến:
+
+         |------------------------------------------------------------|
+         |  Interface     | Input | Output  | 	Mô tả                 |
+         |------------------------------------------------------------|
+         | Function<T, R> |   T   |   R     | Nhận T, trả về R        |
+         | Predicate<T>   |   T   | boolean | Đánh giá đúng/sai với T |
+         | Consumer<T>    |   T   |  void   | Nhận T, không trả về gì |
+         | Supplier<T>    |  none |   T     | Không đầu vào, trả về T |
+         |------------------------------------------------------------|
+
+- Ví dụ:
+
+            {% raw %}
+            Predicate<String> isEmpty = s -> s.isEmpty();
+            Function<String, Integer> lengthFunc = s -> s.length();
+            Consumer<String> print = s -> System.out.println(s);
+            Supplier<Double> random = () -> Math.random();
+            {% endraw %}
 
 3. Stream API
 
+- Là API hỗ trợ xử lý dữ liệu theo hướng functional với collection, cung cấp pipeline các thao tác như map, filter, reduce.
+- Các thao tác chính:
+  - Intermediate: map, filter, sorted, distinct, limit, skip
+  - Terminal: collect, forEach, reduce, count, anyMatch, allMatch, noneMatch
+- Ví dụ:
+
+            {% raw %}
+            List<String> names = Arrays.asList("John", "Alice", "Bob");
+            List<String> filtered = names.stream()
+                             .filter(name -> name.startsWith("A"))
+                             .map(String::toUpperCase)
+                             .collect(Collectors.toList());
+            {% endraw %}
+
+- Ưu điểm:
+  - Dễ đọc
+  - Dễ xử lý song song: .parallelStream()
+  - Code ngắn gọn, expressive
+
 4. Optional
 
+- Là Wrapper class giúp xử lý null an toàn, tránh NullPointerException.
+- Cách tạo:
+
+            {% raw %}
+            Optional<String> name = Optional.of("Thanh");
+            Optional<String> empty = Optional.empty();
+            Optional<String> maybeNull = Optional.ofNullable(getName());
+            {% endraw %}
+
+- Một số method quan trọng:
+  - isPresent(), ifPresent(Consumer)
+  - orElse(T), orElseGet(Supplier)
+  - map(Function), flatMap(Function)
+  - filter(Predicate)
+- Ví dụ:
+
+            {% raw %}
+            Optional<String> name = Optional.ofNullable(getName());
+            String result = name.map(String::toUpperCase)
+                                .orElse("Unknown");
+            {% endraw %}
+
 5. Method Reference, Constructor Reference
+
+- Là viết gọn lại lambda expression khi đã có method hoặc constructor tương ứng.
+- Cú pháp:
+
+         |-----------------------------------------------------------------------------------------|
+         |   Kiểu                          | Lambda                       | Method Reference       |
+         |-----------------------------------------------------------------------------------------|
+         | Static method                   | s -> MyClass.staticMethod(s) | MyClass::staticMethod  |
+         | Instance method (có sẵn object) | x -> obj.method(x)           | obj::method            |
+         | Instance method (trên class)    | (a, b) -> a.compareTo(b)     | String::compareTo      |
+         | Constructor                     | () -> new MyClass()          | MyClass::new           |
+         |-----------------------------------------------------------------------------------------|
+
+- Ví dụ:
+
+            {% raw %}
+            List<String> names = Arrays.asList("a", "b", "c");
+            names.forEach(System.out::println); // method reference
+
+            Supplier<List<String>> listSupplier = ArrayList::new; // constructor reference
+            {% endraw %}
 
 **XIV. Annotation** _(TODO)_
 
