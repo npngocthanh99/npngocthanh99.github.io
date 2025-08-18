@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tìm hiểu về Redis"
-date: 2025-07-13
+date: 2025-07-16
 ---
 
 **I. Tổng quan về Redis**
