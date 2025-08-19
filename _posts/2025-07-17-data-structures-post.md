@@ -24,18 +24,62 @@ date: 2025-07-17
 
 **III. Phân tích từng cấu trúc**
 
-1. Array (Mảng)
+1.  Array (Mảng)
+    a. Khái niệm
 
-- Mảng là danh sách các phần tử có cùng kiểu, lưu trữ liên tục trong bộ nhớ, truy cập thông qua chỉ số (index).
+    - Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ.
+    - Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0.
+    - Ví dụ:
 
-2. Linked List
+      {% raw %}
+      int[] arr = {10, 20, 30, 40, 50};
+      System.out.println(arr[2]); // Kết quả: 30
+      {% endraw %}
 
-3. Stack
+    b. Đặc điểm
 
-4. Queue
+    - Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1).
+    - Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++).
+    - Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu.
 
-5. Hash Table / HashMap
+    c. Ưu điểm
 
-6. Tree (Cây)
+    - Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1).
+    - Đơn giản: Dễ khai báo, dễ sử dụng.
+    - Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt.
 
-7. Graph (Đồ thị)
+    d. Nhược điểm
+
+    - Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java).
+    - Chi phí chèn/xoá cao:
+      - Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n).
+      - Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động).
+    - Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa.
+
+    e. Các thao tác cơ bản và độ phức tạp
+
+        |--------------------------------------------|
+        | Thao tác                    | Độ phức tạp  |
+        |--------------------------------------------|
+        | Truy cập arr[i]             | O(1)         |
+        | Cập nhật arr[i] = x         | O(1)         |
+        | Tìm kiếm tuyến tính         | O(n)         |
+        | Thêm/Xoá cuối (nếu còn chỗ) | O(1)         |
+        | Thêm/Xoá giữa mảng          | O(n)         |
+
+2.  Linked List
+
+3.  Stack
+
+4.  Queue
+
+5.  Hash Table / HashMap
+
+6.  Tree (Cây)
+
+7.  Graph (Đồ thị)
+
+**III. Các câu hỏi thường gặp trong phỏng vấn**
+
+1. So sánh Array vs Linked List
+2. So sánh Array vs ArrayList (Java)

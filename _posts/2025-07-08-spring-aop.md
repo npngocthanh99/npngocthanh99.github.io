@@ -6,33 +6,33 @@ date: 2025-07-08
 
 1.  AOP là gì?
 
-    - AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng.
-    - Mục tiêu:
+- AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng.
+- Mục tiêu:
 
-      - Làm code gọn hơn, dễ reuse
-      - Tăng tính module hóa
-      - Giảm trùng lặp code
-      - **Ví dụ trước - sau dùng AOP**
+  - Làm code gọn hơn, dễ reuse
+  - Tăng tính module hóa
+  - Giảm trùng lặp code
+  - **Ví dụ trước - sau dùng AOP**
 
-        - Chưa dùng AOP:
+    - Chưa dùng AOP:
 
-                               {% raw %}
-                               public void createOrder() {
-                                  log.info("Start");
-                                  // business logic
-                                  log.info("End");
-                               }
-                               {% endraw %}
+      {% raw %}
+      public void createOrder() {
+      log.info("Start");
+      // business logic
+      log.info("End");
+      }
+      {% endraw %}
 
-        - Dùng AOP:
+    - Dùng AOP:
 
-                               {% raw %}
-                               public void createOrder() {
-                                // chỉ business logic
-                               }
-                               {% endraw %}
+      {% raw %}
+      public void createOrder() {
+      // chỉ business logic
+      }
+      {% endraw %}
 
-                Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn
+      Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn
 
 2.  Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving
 
@@ -48,34 +48,34 @@ date: 2025-07-08
 
 3.  Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing
 
-                |-----------------------------------------------------------------------------------|
-                | Loại Advice/Annotation | Khi nào được gọi                                         |
-                |-----------------------------------------------------------------------------------|
-                | @Before                | Trước khi method được gọi                                |
-                | @After                 | Sau khi method kết thúc (dù thành công hay exception)    |
-                | @AfterReturning        | Sau khi method trả về thành công                         |
-                | @AfterThrowing         | Khi method ném ra exception                              |
-                | @Around                | Bao quanh method (có thể chặn, sửa, thực thi trước/sau)  |
+        |-----------------------------------------------------------------------------------|
+        | Loại Advice/Annotation | Khi nào được gọi                                         |
+        |-----------------------------------------------------------------------------------|
+        | @Before                | Trước khi method được gọi                                |
+        | @After                 | Sau khi method kết thúc (dù thành công hay exception)    |
+        | @AfterReturning        | Sau khi method trả về thành công                         |
+        | @AfterThrowing         | Khi method ném ra exception                              |
+        | @Around                | Bao quanh method (có thể chặn, sửa, thực thi trước/sau)  |
 
-    - Ví dụ: Logging Aspect
+- Ví dụ: Logging Aspect
 
-             {% raw %}
-             @Aspect
-             @Component
-             public class LoggingAspect {
+      {% raw %}
+      @Aspect
+      @Component
+      public class LoggingAspect {
 
-              @Before("execution(* com.example.service.*.*(..))")
-              public void logBefore(JoinPoint joinPoint) {
-                System.out.println("Start method: " + joinPoint.getSignature().getName());
-              }
+       @Before("execution(* com.example.service.*.*(..))")
+       public void logBefore(JoinPoint joinPoint) {
+         System.out.println("Start method: " + joinPoint.getSignature().getName());
+       }
 
-              @AfterReturning(pointcut = "execution(* com.example.service.*.*(..))", returning = "result")
-              public void logAfter(Object result) {
-                System.out.println("Method returned: " + result);
-              }
+       @AfterReturning(pointcut = "execution(* com.example.service.*.*(..))", returning = "result")
+       public void logAfter(Object result) {
+         System.out.println("Method returned: " + result);
+       }
 
-             }
-             {% endraw %}
+      }
+      {% endraw %}
 
 4.  Ứng dụng AOP để làm gì: Logging, Transaction, Authorization...
 
