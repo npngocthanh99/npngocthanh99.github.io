@@ -6,26 +6,22 @@ date: 2025-08-17
 
 **I. Khái niệm nền tảng**
 
-Thuật toán (Algorithm): tập hợp hữu hạn các bước để giải quyết một vấn đề.
-
-Độ phức tạp:
-
-Time Complexity: thời gian chạy (O(1), O(log n), O(n), O(n log n), O(n²) …).
-
-Space Complexity: bộ nhớ sử dụng.
-
-Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán theo input size n.
+- Thuật toán (Algorithm): tập hợp hữu hạn các bước để giải quyết một vấn đề.
+- Độ phức tạp:
+  - Time Complexity: thời gian chạy (O(1), O(log n), O(n), O(n log n), O(n²) …).
+  - Space Complexity: bộ nhớ sử dụng.
+  - Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán theo input size n.
 
 **II. Thuật toán tìm kiếm (Searching)**
 
-1. Linear Search (tuần tự)
+**1. Linear Search (tuần tự)**
 
 - Khi dùng: mảng/list nhỏ hoặc chưa sắp xếp.
 - Độ phức tạp: O(n); bộ nhớ O(1)
 - Ý tưởng: duyệt từ trái qua phải, gặp là trả về
   Ví dụ: [4, 2, 9, 7] tìm 9 → duyệt 4→2→9 (trả về index 2).
 
-2. Binary Search (nhị phân)
+**2. Binary Search (nhị phân)**
 
 - Khi dùng: mảng đã sắp xếp (rất quan trọng).
 - Độ phức tạp: O(log n); bộ nhớ O(1).
@@ -34,7 +30,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
   Ví dụ: [1,3,5,7,9] tìm 7 → mid=5 < 7 ⇒ xét nửa phải → mid=7 (tìm thấy).
 
         {% raw %}
-
         public static int binarySearch(int[] a, int target) {
           int l = 0; // biên trái
           int r = a.length - 1; // biên phải
@@ -52,12 +47,11 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
             }
             return -1; // không tìm thấy
         }
-
        {% endraw %}
 
 **II. Thuật toán tìm kiếm (Searching)**
 
-1. Bubble Sort
+**1. Bubble Sort**
 
 - Ý tưởng:
 
@@ -79,7 +73,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
     → Mảng đã sort.
 
         {% raw %}
-
         public static void bubbleSort(int[] a) {
           boolean swapped;
           int n = a.length;
@@ -96,10 +89,9 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
               n--; // phần tử cuối đã đúng vị trí
           } while (swapped);
         }
-
         {% endraw %}
 
-2. Selection Sort
+**2. Selection Sort**
 
 - Ý tưởng:
 
@@ -118,7 +110,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
   - Lượt 2: min=14 → swap với 29 → [10,14,29,37] → Done.
 
         {% raw %}
-
         public static void selectionSort(int[] a) {
             int n = a.length;
             for (int i = 0; i < n - 1; i++) {
@@ -131,10 +122,9 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
                 a[min] = tmp;
             }
         }
-
         {% endraw %}
 
-3. Insertion Sort
+**3. Insertion Sort**
 
 - Ý tưởng:
 
@@ -155,7 +145,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
   - 4: chèn giữa 3 và 5 → [3,4,5].
 
         {% raw %}
-
         public static void insertionSort(int[] a) {
             for (int i = 1; i < a.length; i++) {
                 int key = a[i];
@@ -167,10 +156,9 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
                 a[j + 1] = key;
             }
         }
-
         {% endraw %}
 
-4. Merge Sort
+**4. Merge Sort**
 
 - Ý tưởng:
 
@@ -193,7 +181,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
   - Merge → [3,27,38,43].
 
         {% raw %}
-
         public static void mergeSort(int[] a) {
             if (a.length <= 1) return;
             int[] tmp = new int[a.length];
@@ -218,10 +205,9 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
             while (j <= r) tmp[k++] = a[j++];
             for (int t = l; t <= r; t++) a[t] = tmp[t];
         }
-
         {% endraw %}
 
-5. Quick Sort (chia để trị)
+**5. Quick Sort (chia để trị)**
 
 - Ý tưởng:
 
@@ -245,7 +231,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
   - Merge lại: [1,3,7,9].
 
         {% raw %}
-
         public static void quickSort(int[] a) {
             quickSort(a, 0, a.length - 1);
         }
@@ -265,10 +250,9 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
             if (l < j) quickSort(a, l, j);
             if (i < r) quickSort(a, i, r);
         }
-
         {% endraw %}
 
-6. Heap Sort
+**6. Heap Sort**
 
 - Ý tưởng:
 
@@ -290,7 +274,6 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
     → v.v.
 
         {% raw %}
-
         public static void heapSort(int[] a) {
             int n = a.length;
             for (int i = n / 2 - 1; i >= 0; i--) heapify(a, n, i);
@@ -309,30 +292,23 @@ Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán 
                 heapify(a, n, largest);
             }
         }
-
         {% endraw %}
 
-7. Counting Sort
+**7. Counting Sort**
 
 - Ý tưởng:
-
   - Đếm tần suất xuất hiện của từng số trong [min..max].
   - Tính prefix sum để biết vị trí.
   - Sắp xếp ổn định bằng cách chèn ngược.
-
 - Độ phức tạp:
-
   - O(n + k), k = phạm vi giá trị.
   - Bộ nhớ O(n+k), ổn định.
 
-8. Radix Sort (áp dụng cho dữ liệu số nguyên lớn)
+**8. Radix Sort (áp dụng cho dữ liệu số nguyên lớn)**
 
 - Ý tưởng:
-
   - Sort theo từng chữ số (hàng đơn vị → chục → trăm).
   - Dùng Counting Sort ổn định ở mỗi bước.
-
 - Độ phức tạp:
-
   - O(d·(n + b)), với d = số chữ số, b = cơ số (10).
   - Ổn định, tốt cho số nguyên lớn, không âm.
