@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Bài viết
+title: Posts
 permalink: /posts/
 ---
 

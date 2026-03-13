@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Tổng hợp kiến thức Java Core | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link
@@ -19,25 +20,20 @@
     <div class="site-wrapper">
       <header class="site-header">
   <nav class="nav-left">
-    <a href="/">Trang chủ</a>
-    <a href="/posts/">Bài viết</a>
-    <a href="/about/">Giới thiệu</a>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
   </nav>
 
   <div class="nav-right">
     <i class="fa-solid fa-user"></i>
     <span>Nguyễn Phúc Ngọc Thành</span>
-    <button
-      id="toggle-theme"
-      style="background: none; border: none; cursor: pointer; color: white"
-      title="Chuyển nền"
-    >
-      🌓
-    </button>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
   </div>
 </header>
 
-      <main><article>
+      <main class="content"><article>
   <h1>Tổng hợp kiến thức Java Core</h1>
   <p><small>29-06-2025</small></p>
   <p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
@@ -487,7 +483,7 @@ a. Mảng 1 chiều (1D array)<br />
      | Tính bất biến         | Có        | Không         | Không           |
      | Thread-safe           | Không     | Không         | Có              |
      | Hiệu suất thao tác    | Chậm nhất | Nhanh nhất    | Trung bình      |
-     | Dùng trong môi trường | VBất kỳ   | Single-thread | Multi-thread    |
+     | Dùng trong môi trường | Bất kỳ    | Single-thread | Multi-thread    |
      |---------------------------------------------------------------------|
 </code></pre></div></div>
 
@@ -649,7 +645,7 @@ class Dog extends Animal {
  | Định nghĩa                  | Cùng tên phương thức, khác tham số trong cùng lớp  | Cùng tên, cùng tham số, khác lớp (cha - con)        |
  | Mục đích                    | Tăng tính đa hình tĩnh (compile time polymorphism) | Tăng tính đa hình động (runtime polymorphism)       |
  | Quan hệ lớp                 | Trong cùng một lớp                                 | Giữa lớp cha và lớp con                             |
- | Quy tắc | VBất kỳ           | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
+ | Quy tắc | Bất kỳ            | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
  | Thời điểm quyết định        | Compile time                                       | Runtime                                             |
  | Annotation dùng được không? | Không dùng @Override                               | Nên dùng @Override để tránh lỗi đánh máy            |
  |----------------------------------------------------------------------------------------------------------------------------------------|
@@ -1207,73 +1203,644 @@ Ví dụ:</p>
   </li>
 </ol>
 
-<p><strong>X. Generics</strong> <em>(TODO)</em></p>
+<p><strong>X. Generics</strong></p>
+
+<p>Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu dữ liệu mà không cần ép kiểu thủ công.</p>
 
 <ol>
+  <li>Generic Class, Method</li>
+</ol>
+
+<ul>
   <li>
-    <p>Generic Class, Method</p>
+    <p>Generic Class: cho phép định nghĩa class có kiểu dữ liệu tổng quát.</p>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Box&lt;T&gt; {
+      private T value;
+      public void set(T value) { this.value = value; }
+      public T get() { return value; }
+    }
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Sử dụng:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Box&lt;String&gt; stringBox = new Box&lt;&gt;();
+    stringBox.set("Hello");
+    String val = stringBox.get(); // không cần ép kiểu
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
+  <li>
+    <p>Generic Method: kiểu dữ liệu tổng quát ngay trong method.</p>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        public class Utils {
+          public static &lt;T&gt; void printArray(T[] array) {
+            for (T item : array) {
+              System.out.println(item);
+            }
+          }
+        }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
   <li>
     <p>Wildcards: ?, ? extends, ? super</p>
-  </li>
-  <li>
-    <p>Type Inference (Diamond operator)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |-------------------------------------------------------------------|
+ |  Ký hiệu    | Ý nghĩa               | Dùng khi                    |
+ |-------------------------------------------------------------------|
+ | ?           | Bất kỳ kiểu nào       | Không cần biết kiểu cụ thể  |
+ |-------------------------------------------------------------------|
+ | ? extends T | Bất kỳ kiểu con của T | Đọc (read) dữ liệu an toàn  |
+ |-------------------------------------------------------------------|
+ | ? super T   | Bất kỳ kiểu cha của T | Ghi (write) dữ liệu an toàn |
+ |-------------------------------------------------------------------|
+</code></pre></div>    </div>
   </li>
 </ol>
 
-<p><strong>XI. Java I/O (Input/Output)</strong> <em>(TODO)</em></p>
+<ul>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      List&lt;? extends Number&gt; numbers; // List của Integer, Double, Float đều được
+      List&lt;? super Integer&gt; ints;     // List của Integer, Number, Object
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Hiểu đơn giản:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |---------------------------------------|
+   |  Hiểu đơn giản:        | 	Dùng       |
+   |---------------------------------------|
+   | Đọc là chính           | ? extends T  |
+   |---------------------------------------|
+   | Ghi là chính           | ? super T    |
+   |---------------------------------------|
+   | Không quan tâm kiểu gì |      ?       |
+   |---------------------------------------|
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <ol>
-  <li>
-    <p>File, FileReader, FileWriter</p>
-  </li>
-  <li>
-    <p>BufferedReader, BufferedWriter</p>
-  </li>
-  <li>
-    <p>InputStream, OutputStream</p>
-  </li>
-  <li>
-    <p>Serialization / Deserialization</p>
-  </li>
+  <li>Type Inference (Diamond operator)</li>
 </ol>
 
-<p><strong>XII. Đa luồng &amp; Xử lý đồng thời (Multithreading and Concurrency)</strong> <em>(TODO)</em></p>
+<ul>
+  <li>
+    <p>Từ Java 7, có thể không cần ghi lại kiểu dữ liệu ở bên phải khi khởi tạo.</p>
+  </li>
+  <li>
+    <p>Trước Java 7:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Từ Java 7 trở đi – Diamond operator:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      List&lt;String&gt; list = new ArrayList&lt;&gt;();
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Trình biên dịch sẽ tự suy ra kiểu dữ liệu (Type Inference) từ bên trái.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>XI. Java I/O (Input/Output)</strong></p>
 
 <ol>
-  <li>
-    <p>Tạo Thread: Thread, Runnable</p>
-  </li>
-  <li>
-    <p>Lifecycle của Thread</p>
-  </li>
-  <li>
-    <p>synchronized, volatile, wait, notify, join</p>
-  </li>
-  <li>
-    <p>ExecutorService, Callable, Future</p>
-  </li>
+  <li>File, FileReader, FileWriter</li>
 </ol>
 
-<p><strong>XIII. Java 8+ Features</strong> <em>(TODO)</em></p>
+<ul>
+  <li>
+    <p>File :</p>
+
+    <ul>
+      <li>Đại diện cho đường dẫn tới file hoặc thư mục.</li>
+      <li>
+        <p><strong>Chức năng:</strong> kiểm tra file tồn tại, tạo mới file/thư mục, xóa, lấy thông tin file.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    File file = new File("data.txt");
+    if (!file.exists()) {
+      file.createNewFile();
+    }
+    System.out.println("Tên file: " + file.getName());
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>FileReader,FileWriter</p>
+
+    <ul>
+      <li>
+        <p>Đọc và ghi ký tự (text) vào file, dùng cho file văn bản.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    // Ghi file
+    FileWriter writer = new FileWriter("data.txt");
+    writer.write("Xin chào Java!");
+    writer.close();
+
+    // Đọc file
+    FileReader reader = new FileReader("data.txt");
+    int c;
+    while ((c = reader.read()) != -1) {
+      System.out.print((char) c);
+    }
+    reader.close();
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <ol>
-  <li>
-    <p>Lambda Expression</p>
-  </li>
-  <li>
-    <p>Functional Interface (Function, Predicate, Consumer, Supplier)</p>
-  </li>
-  <li>
-    <p>Stream API</p>
-  </li>
-  <li>
-    <p>Optional</p>
-  </li>
-  <li>
-    <p>Method Reference, Constructor Reference</p>
-  </li>
+  <li>BufferedReader, BufferedWriter</li>
 </ol>
+
+<ul>
+  <li>Gói ngoài FileReader/FileWriter để tăng hiệu năng nhờ bộ nhớ đệm.</li>
+  <li>
+    <p>Hỗ trợ đọc, ghi dòng văn bản (line-based).</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      // Ghi file bằng BufferedWriter
+      BufferedWriter bw = new BufferedWriter(new FileWriter("data.txt"));
+      bw.write("Dòng 1");
+      bw.newLine();
+      bw.write("Dòng 2");
+      bw.close();
+
+      // Đọc file bằng BufferedReader
+      BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+      String line;
+      while ((line = br.readLine()) != null) {
+        System.out.println(line);
+      }
+      br.close();
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>InputStream, OutputStream</li>
+</ol>
+
+<ul>
+  <li>Dùng để đọc/ghi byte, phù hợp với file nhị phân (ảnh, âm thanh…).</li>
+  <li>
+    <p>Là lớp cha của các stream như: FileInputStream, BufferedInputStream.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    // Đọc file nhị phân
+    FileInputStream fis = new FileInputStream("image.jpg");
+    int b;
+
+    while ((b = fis.read()) != -1) {
+    // Xử lý byte b
+    }
+    fis.close();
+
+    // Ghi file nhị phân
+    FileOutputStream fos = new FileOutputStream("copy.jpg");
+    fos.write(123); // ghi byte
+    fos.close();
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Serialization / Deserialization</li>
+</ol>
+
+<ul>
+  <li>Serialization: biến object thành chuỗi byte để lưu vào file hoặc truyền qua mạng.</li>
+  <li>
+    <p>Deserialization: đọc chuỗi byte và tạo lại object.</p>
+  </li>
+  <li>
+    <p>Class phải implement Serializable.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    // Serializable class
+    class Student implements Serializable {
+    private String name;
+    private int age;
+    // constructor, getter, setter
+    }
+
+    // Serialization
+    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("student.ser"));
+    oos.writeObject(new Student("Nam", 20));
+    oos.close();
+
+    // Deserialization
+    ObjectInputStream ois = new ObjectInputStream(new FileInputStream("student.ser"));
+    Student s = (Student) ois.readObject();
+    System.out.println(s.getName());
+    ois.close();
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>XII. Đa luồng &amp; Xử lý đồng thời (Multithreading and Concurrency)</strong></p>
+
+<ol>
+  <li>Tạo Thread: Thread, Runnable</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Cách 1: implement Runnable (Interface):</p>
+
+    <ul>
+      <li>Cách tạo thread bằng cách triển khai interface Runnable và override run():</li>
+      <li>
+        <p>Ưu điểm:</p>
+
+        <ul>
+          <li>Linh hoạt, có thể kế thừa lớp khác.</li>
+          <li>Tách biệt logic run() ra khỏi Thread, tốt cho thiết kế hướng đối tượng (OOP).</li>
+          <li>
+            <p>Nên dùng trong thực tế hơn cách kế thừa Thread.</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      class MyRunnable implements Runnable {
+        public void run() {
+          System.out.println("Thread đang chạy bằng cách implement Runnable.");
+        }
+      }
+
+      public class Main {
+        public static void main(String[] args) {
+          Thread t1 = new Thread(new MyRunnable());
+          t1.start();
+        }
+      }
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Cách 2: extend Thread (Class):</p>
+
+    <ul>
+      <li>Có thể kế thừa lớp Thread và override run():</li>
+      <li>Ưu điểm:
+        <ul>
+          <li>Dễ viết, trực tiếp override phương thức run().</li>
+        </ul>
+      </li>
+      <li>
+        <p>Nhược điểm:</p>
+
+        <ul>
+          <li>
+            <p>Không thể kế thừa lớp khác vì Java chỉ cho kế thừa một lớp (single inheritance).</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      class MyThread extends Thread {
+        public void run() {
+            System.out.println("Thread đang chạy bằng cách kế thừa Thread.");
+        }
+      }
+
+      public class Main {
+        public static void main(String[] args) {
+          MyThread t1 = new MyThread();
+          t1.start(); // KHÔNG dùng t1.run()
+        }
+      }
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>So sánh Thread vs Runnable</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------------------------------------|
+   |  Tiêu chí             | Thread (extends)                     | Runnable (implements)                  |
+   |-------------------------------------------------------------------------------------------------------|
+   | Kế thừa lớp khác      | Không thể                            | Có thể                                 |
+   |-------------------------------------------------------------------------------------------------------|
+   | Tái sử dụng đối tượng | Ít linh hoạt                         | Dễ tái sử dụng                         |
+   |-------------------------------------------------------------------------------------------------------|
+   | Khuyến nghị sử dụng   | Trong hầu hết các trường hợp         | Thực tế khuyên dùng                    |
+   |-------------------------------------------------------------------------------------------------------|
+   | Gắn logic riêng       | Gắn trực tiếp trong run() của Thread | Gắn vào class riêng, truyền cho Thread |
+   |-------------------------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Lifecycle của Thread</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Các trạng thái chính:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |---------------------------------------------------------|
+   |  Trạng thái           | Mô tả                           |
+   |---------------------------------------------------------|
+   | NEW                   | Thread được tạo nhưng chưa chạy |
+   | RUNNABLE              | Thread đang chờ CPU để chạy     |
+   | RUNNING               | Thread đang thực thi            |
+   | BLOCKED               | Thread chờ khóa (monitor lock)  |
+   | WAITING/TIMED_WAITING | Chờ điều kiện hoặc thời gian    |
+   | TERMINATED            | Thread kết thúc                 |
+   |---------------------------------------------------------|
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Dùng thread.getState() để kiểm tra trạng thái.</p>
+  </li>
+</ul>
+
+<ol>
+  <li>synchronized, volatile, wait, notify, join</li>
+</ol>
+
+<ul>
+  <li>
+    <p>synchronized</p>
+
+    <ul>
+      <li>
+        <p>Dùng để đồng bộ truy cập tài nguyên.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    synchronized (this) {
+      // chỉ một thread được vào đây tại 1 thời điểm
+    }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>volatile</p>
+
+    <ul>
+      <li>
+        <p>Báo cho JVM biết biến luôn được đọc trực tiếp từ bộ nhớ chính (main memory) — không cache ở thread-local.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    volatile boolean running = true;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>wait() / notify() / notifyAll()</p>
+
+    <ul>
+      <li>
+        <p>Dùng cho giao tiếp giữa các thread đang chia sẻ monitor lock.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    synchronized (obj) {
+      obj.wait();      // Thread tạm dừng và nhả lock
+      obj.notify();    // Đánh thức 1 thread đang chờ obj
+    }
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Sự khác biệt giữa wait() và sleep():</p>
+        <ul>
+          <li>wait() nhả lock, còn sleep() không nhả lock.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>join</p>
+
+    <ul>
+      <li>
+        <p>Cho phép một thread chờ thread khác kết thúc.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Thread t = new Thread(() -&gt; {...});
+    t.start();
+    t.join();  // main thread sẽ chờ t kết thúc
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>ExecutorService, Callable, Future</li>
+</ol>
+
+<ul>
+  <li>
+    <p>ExecutorService</p>
+
+    <ul>
+      <li>
+        <p>Cung cấp một pool các thread quản lý hiệu quả hơn.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ExecutorService executor = Executors.newFixedThreadPool(3);
+    executor.submit(() -&gt; System.out.println("Task"));
+    executor.shutdown();
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Callable<V> &amp; Future<V></V></V></p>
+
+    <ul>
+      <li>
+        <p>Khác với Runnable, Callable có thể trả về kết quả và ném exception.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Callable&lt;Integer&gt; task = () -&gt; 1 + 1;
+    Future&lt;Integer&gt; future = executor.submit(task);
+    Integer result = future.get(); // get() sẽ block nếu chưa có kết quả
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Sự khác nhau giữa submit() và execute() trong Executor: submit() trả về Future, còn execute() thì không.</p>
+  </li>
+</ul>
+
+<p><strong>XIII. Java 8+ Features</strong></p>
+
+<ol>
+  <li>Lambda Expression</li>
+</ol>
+
+<ul>
+  <li>Là cách viết ngắn gọn của anonymous class implement một functional interface (interface chỉ có 1 method abstract duy nhất).</li>
+  <li>
+    <p>Cú pháp:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      (parameters) -&gt; expression
+      hoặc:
+      (parameters) -&gt; { statements }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      // Thay vì:
+      Runnable r = new Runnable() {
+        public void run() {
+          System.out.println("Hello");
+        }
+      };
+
+      // Dùng Lambda:
+      Runnable r = () -&gt; System.out.println("Hello");
+</code></pre></div>    </div>
+  </li>
+  <li>Ứng dụng:
+    <ul>
+      <li>Thường dùng với các API hỗ trợ functional (ví dụ List.forEach(), Stream.map()…)</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Functional Interface (Function, Predicate, Consumer, Supplier)</li>
+</ol>
+
+<ul>
+  <li>Là Interface chỉ có một phương thức trừu tượng. Có thể có default/static methods.</li>
+  <li>Annotation hỗ trợ: @FunctionalInterface giúp compiler cảnh báo nếu bạn vi phạm định nghĩa functional interface.</li>
+  <li>
+    <p>Các interface phổ biến:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |------------------------------------------------------------|
+   |  Interface     | Input | Output  | 	Mô tả                 |
+   |------------------------------------------------------------|
+   | Function&lt;T, R&gt; |   T   |   R     | Nhận T, trả về R        |
+   | Predicate&lt;T&gt;   |   T   | boolean | Đánh giá đúng/sai với T |
+   | Consumer&lt;T&gt;    |   T   |  void   | Nhận T, không trả về gì |
+   | Supplier&lt;T&gt;    |  none |   T     | Không đầu vào, trả về T |
+   |------------------------------------------------------------|
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Predicate&lt;String&gt; isEmpty = s -&gt; s.isEmpty();
+      Function&lt;String, Integer&gt; lengthFunc = s -&gt; s.length();
+      Consumer&lt;String&gt; print = s -&gt; System.out.println(s);
+      Supplier&lt;Double&gt; random = () -&gt; Math.random();
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Stream API</li>
+</ol>
+
+<ul>
+  <li>Là API hỗ trợ xử lý dữ liệu theo hướng functional với collection, cung cấp pipeline các thao tác như map, filter, reduce.</li>
+  <li>Các thao tác chính:
+    <ul>
+      <li>Intermediate: map, filter, sorted, distinct, limit, skip</li>
+      <li>Terminal: collect, forEach, reduce, count, anyMatch, allMatch, noneMatch</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      List&lt;String&gt; names = Arrays.asList("John", "Alice", "Bob");
+      List&lt;String&gt; filtered = names.stream()
+                       .filter(name -&gt; name.startsWith("A"))
+                       .map(String::toUpperCase)
+                       .collect(Collectors.toList());
+</code></pre></div>    </div>
+  </li>
+  <li>Ưu điểm:
+    <ul>
+      <li>Dễ đọc</li>
+      <li>Dễ xử lý song song: .parallelStream()</li>
+      <li>Code ngắn gọn, expressive</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Optional</li>
+</ol>
+
+<ul>
+  <li>Là Wrapper class giúp xử lý null an toàn, tránh NullPointerException.</li>
+  <li>
+    <p>Cách tạo:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Optional&lt;String&gt; name = Optional.of("Thanh");
+      Optional&lt;String&gt; empty = Optional.empty();
+      Optional&lt;String&gt; maybeNull = Optional.ofNullable(getName());
+</code></pre></div>    </div>
+  </li>
+  <li>Một số method quan trọng:
+    <ul>
+      <li>isPresent(), ifPresent(Consumer)</li>
+      <li>orElse(T), orElseGet(Supplier)</li>
+      <li>map(Function), flatMap(Function)</li>
+      <li>filter(Predicate)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Optional&lt;String&gt; name = Optional.ofNullable(getName());
+      String result = name.map(String::toUpperCase)
+                          .orElse("Unknown");
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>Method Reference, Constructor Reference</li>
+</ol>
+
+<ul>
+  <li>Là viết gọn lại lambda expression khi đã có method hoặc constructor tương ứng.</li>
+  <li>
+    <p>Cú pháp:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-----------------------------------------------------------------------------------------|
+   |   Kiểu                          | Lambda                       | Method Reference       |
+   |-----------------------------------------------------------------------------------------|
+   | Static method                   | s -&gt; MyClass.staticMethod(s) | MyClass::staticMethod  |
+   | Instance method (có sẵn object) | x -&gt; obj.method(x)           | obj::method            |
+   | Instance method (trên class)    | (a, b) -&gt; a.compareTo(b)     | String::compareTo      |
+   | Constructor                     | () -&gt; new MyClass()          | MyClass::new           |
+   |-----------------------------------------------------------------------------------------|
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      List&lt;String&gt; names = Arrays.asList("a", "b", "c");
+      names.forEach(System.out::println); // method reference
+
+      Supplier&lt;List&lt;String&gt;&gt; listSupplier = ArrayList::new; // constructor reference
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <p><strong>XIV. Annotation</strong> <em>(TODO)</em></p>
 
@@ -1393,7 +1960,7 @@ Ví dụ:</p>
 </article>
 </main>
       <footer>
-  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
 
   <div style="margin-top: 0.5rem"><ul
   class="social-media-list"
@@ -1486,7 +2053,7 @@ Ví dụ:</p>
         body.classList.toggle("dark");
         localStorage.setItem(
           "theme",
-          body.classList.contains("dark") ? "dark" : "light"
+          body.classList.contains("dark") ? "dark" : "light",
         );
       });
     </script>

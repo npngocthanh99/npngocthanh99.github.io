@@ -1,0 +1,27 @@
+---
+layout: page
+title: Bài viết
+---
+
+<h2>All Posts</h2>
+
+<ul class="post-list">
+  {% for post in paginator.posts %}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <small>{{ post.date | date: "%d-%m-%Y" }}</small>
+  </li>
+  {% endfor %}
+</ul>
+
+<div class="pagination">
+  {% if paginator.previous_page %}
+  <a href="{{ paginator.previous_page_path }}">← Newer</a>
+  {% endif %}
+
+  <span>Page {{ paginator.page }} / {{ paginator.total_pages }}</span>
+
+  {% if paginator.next_page %}
+  <a href="{{ paginator.next_page_path }}">Older →</a>
+  {% endif %}
+</div>

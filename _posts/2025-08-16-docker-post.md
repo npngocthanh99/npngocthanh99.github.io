@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Kiến thức về Docker"
+tags: [docker, devops]
 date: 2025-08-16
 ---
 
@@ -11,7 +12,6 @@ date: 2025-08-16
 - Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container.
 - Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường.
 - So với VM (Virtual Machine):
-
   - VM có OS riêng → nặng hơn.
   - Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn.
 
@@ -84,12 +84,10 @@ date: 2025-08-16
 1. Triển khai ứng dụng
 
 - Backend Spring Boot, Node.js, Python:
-
   - Tạo Dockerfile.
   - Build image → push lên registry → deploy container.
 
 - Frontend:
-
   - Docker dùng Nginx serve SPA.
   - Mount code vào container để dev nhanh.
 

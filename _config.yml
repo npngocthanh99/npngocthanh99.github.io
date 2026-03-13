@@ -2,7 +2,10 @@ title: Nguyen Phuc Ngoc Thanh
 description: This is my blog hosted on GitHub Pages.
 theme: minima
 author: Nguyen Phuc Ngoc Thanh
-
+paginate: 10
+paginate_path: "/posts/page:num/"
+plugins:
+  - jekyll-paginate
 minima:
   social_links:
     - title: Email

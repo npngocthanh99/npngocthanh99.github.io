@@ -8,15 +8,14 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: "Segoe UI", sans-serif;
   font-size: 16px;
-  background-color: #fdfdfd;
-  color: #222;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
+  margin: 0;
 }
 
 /* ==== Header ==== */
@@ -37,7 +36,7 @@ header a:hover {
 
 /* ==== Footer ==== */
 footer {
-  margin-top: auto;
+  margin-top: 3rem;
   padding: 1.2rem 1rem;
   background-color: var(--footer-bg);
   text-align: center;
@@ -62,7 +61,9 @@ footer .social-links {
 footer .social-links a {
   color: #444;
   font-size: 1.4rem;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
   text-decoration: none;
 }
 
@@ -101,10 +102,10 @@ article p {
 /* ==== Code block ==== */
 pre,
 code {
-  background: #f4f4f4;
-  color: #1a1a1a; /* thêm dòng này */
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
+  background: #1e1e1e;
+  color: #eaeaea;
+  padding: 1rem;
+  border-radius: 6px;
   font-family: monospace;
   display: block;
   overflow-x: auto;
@@ -153,7 +154,7 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background: linear-gradient(90deg, #da291c, #8b0000);
   color: white;
   padding: 1rem 2rem;
 }
@@ -208,9 +209,9 @@ ul li i {
 :root {
   --bg-color: #fdfdfd;
   --text-color: #222;
-  --header-bg: #333;
+  --header-bg: #da291c; /* MU red */
   --footer-bg: #eee;
-  --link-color: #007acc;
+  --link-color: #da291c;
 }
 
 body {
@@ -228,11 +229,11 @@ a {
 
 /* ===== DARK MODE ===== */
 body.dark {
-  --bg-color: #1e1e1e;
-  --text-color: #f1f1f1;
-  --header-bg: #111;
-  --footer-bg: #222;
-  --link-color: #4ea1ff;
+  --bg-color: #111;
+  --text-color: #eee;
+  --header-bg: #8b0000;
+  --footer-bg: #1c1c1c;
+  --link-color: #ff4747;
 }
 
 ul {
@@ -255,4 +256,43 @@ body.dark footer p {
 
 body.dark footer .social-links a {
   color: var(--text-color);
+}
+
+.football-tag {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.content {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+.post-list li {
+  margin: 1.5rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.post-list a {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--link-color);
+}
+
+.pagination span {
+  font-size: 14px;
 }

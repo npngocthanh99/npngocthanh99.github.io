@@ -1,19 +1,21 @@
 ---
 layout: page
-title: Trang chủ
+title: Home
 permalink: /
 ---
 
-# 👋 Xin chào, mình là Nguyễn Phúc Ngọc Thành
+# 👋 Hi, I'm Nguyen Phuc Ngoc Thanh
 
-Đây là nơi mình chia sẻ kiến thức về lập trình (Java, Spring Boot, React ...), kinh nghiệm thực tế và những gì mình học được trong hành trình phát triển phần mềm.
+Welcome to my blog. This is where I share my journey in software development — including what I learn, the technologies I work with, and practical experiences from building real-world applications.
+
+My main areas of interest include Java, Spring Boot, React, and backend system design.
 
 ---
 
-## 📝 Bài viết mới nhất
+## 📝 Latest Posts
 
 <ul class="post-list">
-  {% for post in site.posts limit:5 %}
+  {% for post in site.posts limit:10 %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       <small>{{ post.date | date: "%d-%m-%Y" }}</small>
@@ -21,4 +23,6 @@ permalink: /
   {% endfor %}
 </ul>
 
-<p><a href="/posts/">📚 Xem tất cả bài viết →</a></p>
+<p>
+  <a href="/posts/">View all posts →</a>
+</p>

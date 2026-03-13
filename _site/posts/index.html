@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Bài viết | Nguyen Phuc Ngoc Thanh</title>
+    <title>Posts | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link
@@ -19,27 +20,37 @@
     <div class="site-wrapper">
       <header class="site-header">
   <nav class="nav-left">
-    <a href="/">Trang chủ</a>
-    <a href="/posts/">Bài viết</a>
-    <a href="/about/">Giới thiệu</a>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
   </nav>
 
   <div class="nav-right">
     <i class="fa-solid fa-user"></i>
     <span>Nguyễn Phúc Ngọc Thành</span>
-    <button
-      id="toggle-theme"
-      style="background: none; border: none; cursor: pointer; color: white"
-      title="Chuyển nền"
-    >
-      🌓
-    </button>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
   </div>
 </header>
 
-      <main><article>
-  <h1>Bài viết</h1>
+      <main class="content"><article>
+  <h1>Posts</h1>
   <ul class="post-list">
+  
+    <li>
+      <a href="/2025/08/23/solid-post.html">Kiến thức về nguyên tắc SOLID</a>
+      <small>23-08-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/08/17/basic_algorithms-post.html">Ôn tập kiến thức về thuật toán cơ bản</a>
+      <small>17-08-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/08/16/docker-post.html">Kiến thức về Docker</a>
+      <small>16-08-2025</small>
+    </li>
   
     <li>
       <a href="/2025/07/18/git-post.html">Tổng hợp kiến thức về Git</a>
@@ -52,12 +63,67 @@
     </li>
   
     <li>
-      <a href="/2025/07/13/redis-post.html">Tìm hiểu về Redis</a>
+      <a href="/2025/07/16/redis-post.html">Tìm hiểu về Redis</a>
+      <small>16-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/14/spring-testing.html">Tổng hợp kiến thức về Spring Testing</a>
+      <small>14-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/13/spring-cloud.html">Tổng hợp kiến thức về Spring Cloud (Microservices - optional)</a>
       <small>13-07-2025</small>
     </li>
   
     <li>
-      <a href="/2025/07/03/spring-boot.html">Tổng hợp kiến thức về Spring Framework</a>
+      <a href="/2025/07/12/spring-webflux.html">Tổng hợp kiến thức về Spring WebFlux (Reactive Programming - optional)</a>
+      <small>12-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/11/spring-scheduler-and-async.html">Tổng hợp kiến thức về Spring Scheduler &amp; Async</a>
+      <small>11-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/10/spring-caching.html">Tổng hợp kiến thức về Spring Caching</a>
+      <small>10-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/09/spring-validation.html">Tổng hợp kiến thức về Spring Validation</a>
+      <small>09-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/08/spring-aop.html">Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming)</a>
+      <small>08-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/07/spring-security.html">Tổng hợp kiến thức về Spring Security</a>
+      <small>07-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/06/spring-data.html">Tổng hợp kiến thức về Spring Data JPA / Spring JDBC</a>
+      <small>06-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/05/spring-mvc.html">Tổng hợp kiến thức về Spring MVC (Web Layer)</a>
+      <small>05-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/04/spring-boot.html">Tổng hợp kiến thức về Spring Framework</a>
+      <small>04-07-2025</small>
+    </li>
+  
+    <li>
+      <a href="/2025/07/03/spring-core.html">Tổng hợp kiến thức về Spring Framework/ Spring Core</a>
       <small>03-07-2025</small>
     </li>
   
@@ -81,7 +147,7 @@
 </article>
 </main>
       <footer>
-  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
 
   <div style="margin-top: 0.5rem"><ul
   class="social-media-list"
@@ -174,7 +240,7 @@
         body.classList.toggle("dark");
         localStorage.setItem(
           "theme",
-          body.classList.contains("dark") ? "dark" : "light"
+          body.classList.contains("dark") ? "dark" : "light",
         );
       });
     </script>

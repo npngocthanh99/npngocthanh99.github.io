@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tổng hợp kiến thức về Spring MVC (Web Layer) | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <header class="site-header">
+  <nav class="nav-left">
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
+  </nav>
+
+  <div class="nav-right">
+    <i class="fa-solid fa-user"></i>
+    <span>Nguyễn Phúc Ngọc Thành</span>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
+  </div>
+</header>
+
+      <main class="content"><article>
+  <h1>Tổng hợp kiến thức về Spring MVC (Web Layer)</h1>
+  <p><small>05-07-2025</small></p>
+  <ol>
+  <li>
+    <p>Kiến trúc MVC</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |------------------------------------------------------------------|
+    | Thành phần | Vai trò                                             |
+    |------------------------------------------------------------------|
+    | Model      | Chứa dữ liệu (DTO, Entity)                          |
+    | View       | Giao diện người dùng (Thymeleaf, JSP...)            |
+    | Controller | Xử lý logic điều hướng, nhận request – trả response |
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>@Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |----------------------------------------------------------------------------------------------------------------|
+    | Annotation      | Chức năng                                    | Dùng khi                                      |
+    |----------------------------------------------------------------------------------------------------------------|
+    | @Controller     | Đánh dấu 1 class là controller               | web truyền thống (trả về HTML)                |
+    | @RestController | = @Controller + @ResponseBody, trả JSON/XML  | REST API                                      |
+    | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class                              |
+    | @GetMapping     | GET request                                  | Dùng cho api trả về dữ liệu                   |
+    | @PostMapping    | POST request                                 | Dùng cho api tạo dữ liệu                      |
+    | @PutMapping     | PUT request                                  | Dùng cho api cập nhật toàn bộ một resource    |
+    | @PatchMapping   | PATCH request                                  | Dùng cho api cập nhật một phần của resource |
+    | @DeleteMapping  | DELETE request                               | dùng cho api xóa một resource                 |
+    | @PathVariable   | Lấy dữ liệu từ URL path                      | /users/{id}                                   |
+    | @RequestParam   | Lấy query param (?key=value)                 | ?keyword=abc                                  |
+    | @RequestBody    | Map JSON body vào Java object                | Dùng với POST, PUT                            |
+    | @ResponseBody   | Trả object dưới dạng JSON                    | Nếu không dùng @RestController                |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @RestController
+ @RequestMapping("/users")
+ public class UserController {
+
+  @GetMapping("/{id}")
+  public UserDto getUser(@PathVariable Long id) {
+    return userService.getUser(id);
+  }
+
+  @PostMapping
+  public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) {
+    userService.create(userDto);
+    return ResponseEntity.ok("Created");
+  }
+ }
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Binding dữ liệu: DTO, Form object</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- DTO: Data Transfer Object – trung gian giữa request và service
+- Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON)
+- Ví dụ:
+
+           
+       public class UserDto {
+       @NotBlank
+       private String name;
+
+       @Email
+       private String email;
+       }
+           
+
+   | Spring tự map JSON → object thông qua @RequestBody.
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Exception handling: @ControllerAdvice, @ExceptionHandler</p>
+
+    <p>a. Tạo custom handler toàn cục</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               @ControllerAdvice
+               public class GlobalExceptionHandler {
+
+                @ExceptionHandler(EntityNotFoundException.class)
+                public ResponseEntity&lt;String&gt; handleNotFound(EntityNotFoundException ex) {
+                  return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+                }
+
+                @ExceptionHandler(MethodArgumentNotValidException.class)
+                public ResponseEntity&lt;?&gt; handleValidation(MethodArgumentNotValidException ex) {
+                  Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+                  ex.getBindingResult().getFieldErrors()
+                    .forEach(err -&gt; errors.put(err.getField(), err.getDefaultMessage()));
+                  return ResponseEntity.badRequest().body(errors);
+                }
+               }
+</code></pre></div>    </div>
+
+    <p>b. Custom exception:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               public class EntityNotFoundException extends RuntimeException {
+                public EntityNotFoundException(String message) {
+                super(message);
+                }
+               }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Validations: @Valid, @Validated, Bean Validation API (JSR-303)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |--------------------------------------------------------------------------------------------------|
+    | Annotation                       | Ý nghĩa                                                       |
+    |--------------------------------------------------------------------------------------------------|
+    | @Valid                           | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) |
+    | @Validated                       | Giống @Valid nhưng hỗ trợ Group                               |
+    | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API                   |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             @PostMapping
+             public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) {
+              // Nếu sai -&gt; MethodArgumentNotValidException
+              userService.save(userDto);
+              return ResponseEntity.ok("Success");
+             }
+                   
+
+   | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid.
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+</article>
+</main>
+      <footer>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
+
+  <div style="margin-top: 0.5rem"><ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; justify-content: center; padding-left: 0"
+>
+  
+  <li style="list-style: none">
+    <a
+      href="mailto:ngocthanhxs2@gmail.com"
+      target="_blank"
+      title="Email"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-solid
+            
+            fa-envelope fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.facebook.com/NguyenPhucNgocThanh03.01.99/"
+      target="_blank"
+      title="Facebook"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-facebook fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.linkedin.com/in/thanhnpn/"
+      target="_blank"
+      title="LinkedIn"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-linkedin fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://github.com/npngocthanh99"
+      target="_blank"
+      title="GitHub"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-github fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+</ul>
+</div>
+</footer>
+
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
+
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light",
+        );
+      });
+    </script>
+  </body>
+</html>

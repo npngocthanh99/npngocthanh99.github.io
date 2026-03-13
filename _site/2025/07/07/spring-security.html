@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tổng hợp kiến thức về Spring Security | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <header class="site-header">
+  <nav class="nav-left">
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
+  </nav>
+
+  <div class="nav-right">
+    <i class="fa-solid fa-user"></i>
+    <span>Nguyễn Phúc Ngọc Thành</span>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
+  </div>
+</header>
+
+      <main class="content"><article>
+  <h1>Tổng hợp kiến thức về Spring Security</h1>
+  <p><small>07-07-2025</small></p>
+  <p><strong>II. Tổng quan về Spring security</strong></p>
+
+<p><strong>1. Giới thiệu Spring Security</strong></p>
+
+<ul>
+  <li>
+    <p>Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication (xác thực) và Authorization (phân quyền) cho các ứng dụng Java, đặc biệt là Spring Boot.</p>
+  </li>
+  <li>
+    <p>Ngoài ra, nó còn hỗ trợ:</p>
+
+    <ul>
+      <li>Bảo mật API với JWT, OAuth2.</li>
+      <li>Cấu hình linh hoạt qua Java Config hoặc Annotation.</li>
+      <li>Tích hợp dễ dàng với cơ sở dữ liệu, LDAP, SSO, v.v.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>2. Các khái niệm chính</strong></p>
+
+<ul>
+  <li>
+    <p>Authentication (Xác thực):
+Kiểm tra danh tính của người dùng (username/password, token, SSO…).
+→ Xác định bạn là ai.</p>
+  </li>
+  <li>
+    <p>Authorization (Phân quyền):
+Xác định người dùng đã xác thực có quyền truy cập vào tài nguyên nào.
+→ Xác định bạn được làm gì.</p>
+  </li>
+  <li>
+    <p>Security Context &amp; Authentication Object:
+Thông tin người dùng đã đăng nhập được lưu trong SecurityContextHolder.</p>
+  </li>
+  <li>
+    <p>Filter Chain:
+Spring Security sử dụng chuỗi filter (DelegatingFilterProxy → FilterChainProxy) để xử lý request trước khi đến Controller.</p>
+  </li>
+</ul>
+
+<p><strong>3. Luồng hoạt động cơ bản</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.  Người dùng gửi request (ví dụ login với username/password).
+2.Request đi qua Spring Security Filter Chain.
+3. Authentication Manager gọi đến Authentication Provider (VD: DaoAuthenticationProvider) để xác thực.
+4. Nếu thành công → tạo đối tượng Authentication lưu vào SecurityContext.
+5. Dựa trên role/authority, Spring Security quyết định cho phép hoặc từ chối request.
+</code></pre></div></div>
+
+<p><strong>4. Cách cấu hình trong Spring Boot</strong></p>
+
+<ul>
+  <li>Spring Security Starter (spring-boot-starter-security) tự động thêm cơ chế bảo mật mặc định.</li>
+  <li>
+    <p>Có thể cấu hình:</p>
+
+    <ul>
+      <li>InMemoryUserDetailsManager (tài khoản hardcode).</li>
+      <li>JDBC/Custom UserDetailsService (lấy user từ DB).</li>
+      <li>JWT/OAuth2 cho REST API.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Sử dụng annotation:</p>
+
+    <ul>
+      <li>@EnableWebSecurity bật cấu hình bảo mật.</li>
+      <li>@PreAuthorize, @Secured kiểm soát truy cập ở mức method.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>5. Ưu điểm &amp; điểm mạnh</strong></p>
+
+<ul>
+  <li>Tích hợp chặt chẽ với Spring ecosystem.</li>
+  <li>Linh hoạt, có thể thay thế hoặc mở rộng các cơ chế mặc định.</li>
+  <li>Hỗ trợ JWT, OAuth2, SSO hiện đại.</li>
+  <li>Có sẵn nhiều filter bảo mật (CSRF, CORS, Session Fixation, …).</li>
+</ul>
+
+<p><strong>6. Một số tình huống thực tế</strong></p>
+
+<ul>
+  <li>
+    <p>Trong dự án xây dựng API, mình thường kết hợp Spring Security + JWT:</p>
+
+    <ul>
+      <li>Khi login thành công, trả về token JWT.</li>
+      <li>Các request sau đó client gửi kèm token trong Header.</li>
+      <li>Spring Security viết custom filter để validate token, parse user info → set vào SecurityContext.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Với hệ thống nội bộ, có thể dùng Role-based access control hoặc Permission-based access control thông qua annotation.</p>
+  </li>
+</ul>
+
+<p><strong>II. Chi tiết về Spring Security</strong></p>
+
+<ol>
+  <li>Authentication vs Authorization</li>
+  <li>Filter Chain</li>
+  <li>Basic Auth, JWT, OAuth2</li>
+  <li>Cấu hình WebSecurityConfigurerAdapter (trước Spring Security 6)</li>
+  <li>@EnableWebSecurity, @PreAuthorize, @Secured</li>
+  <li>CSRF, CORS, Session Management</li>
+</ol>
+
+</article>
+</main>
+      <footer>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
+
+  <div style="margin-top: 0.5rem"><ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; justify-content: center; padding-left: 0"
+>
+  
+  <li style="list-style: none">
+    <a
+      href="mailto:ngocthanhxs2@gmail.com"
+      target="_blank"
+      title="Email"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-solid
+            
+            fa-envelope fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.facebook.com/NguyenPhucNgocThanh03.01.99/"
+      target="_blank"
+      title="Facebook"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-facebook fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.linkedin.com/in/thanhnpn/"
+      target="_blank"
+      title="LinkedIn"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-linkedin fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://github.com/npngocthanh99"
+      target="_blank"
+      title="GitHub"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-github fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+</ul>
+</div>
+</footer>
+
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
+
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light",
+        );
+      });
+    </script>
+  </body>
+</html>

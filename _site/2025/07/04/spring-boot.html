@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tổng hợp kiến thức về Spring Framework | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <header class="site-header">
+  <nav class="nav-left">
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
+  </nav>
+
+  <div class="nav-right">
+    <i class="fa-solid fa-user"></i>
+    <span>Nguyễn Phúc Ngọc Thành</span>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
+  </div>
+</header>
+
+      <main class="content"><article>
+  <h1>Tổng hợp kiến thức về Spring Framework</h1>
+  <p><small>04-07-2025</small></p>
+  <ol>
+  <li>
+    <p>Spring Boot là gì? Ưu điểm?</p>
+
+    <ul>
+      <li>Spring Boot là một framework giúp đơn giản hoá việc cấu hình và chạy ứng dụng Spring, bằng cách cung cấp:
+        <ul>
+          <li>cấu hình mặc định,</li>
+          <li>auto configuration,</li>
+          <li>embedded server (Tomcat/Jetty),</li>
+          <li>starter dependencies.</li>
+        </ul>
+      </li>
+      <li>Mục tiêu:
+        <ul>
+          <li>Giúp bạn có thể “Just Run” ứng dụng Spring mà không cần cấu hình rườm rà.</li>
+        </ul>
+      </li>
+      <li>
+        <p>Ưu điểm của Spring boot:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |--------------------------------------------------------------------------------------------------|
+   | Ưu điểm                               | Giải thích                                               |
+   |--------------------------------------------------------------------------------------------------|
+   | Tự động cấu hình (Auto Configuration) | Không cần cấu hình XML phức tạp                          |
+   | Tích hợp server nội bộ                | Không cần cài Tomcat ngoài, chỉ cần main() là chạy       |
+   | Starter dependencies                  | Gom nhóm dependency theo mục đích (web, jpa, security)   |
+   | Đơn giản hóa cấu trúc dự án           | Tự sinh project theo mẫu chuẩn                           |
+   | Hỗ trợ hot reload                     | Qua DevTools, không cần restart lại app                  |
+   | Quản lý môi trường (Profiles)         | Cấu hình theo môi trường: dev, test, prod                |
+   | Dễ triển khai (jar)                   | Gói app thành .jar có thể chạy bằng java -jar            |
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>application.properties vs application.yml</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-----------------------------------------------------------------------|
+     | Thuộc tính            | application.properties | application.yml      |
+     |-----------------------------------------------------------------------|
+     | Cú pháp               | key=value              | YAML định dạng khối  |
+     | Dễ đọc                | đơn giản               | cấu hình phức tạp    |
+     | Hỗ trợ cấu trúc lồng  | khó                    | tốt hơn              |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ cấu hình bằng application.properties:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             server.port=8081
+             spring.datasource.url=jdbc:mysql://localhost:3306/demo
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Ví dụ cấu hình bằng application.properties:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            server:
+              port: 8081
+
+            spring:
+              datasource:
+                url: jdbc:mysql://localhost:3306/demo
+                  
+
+👉 YAML được dùng nhiều hơn trong microservice hoặc cấu hình nhiều profile.
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Cấu hình tự động (Auto Configuration)</p>
+
+    <ul>
+      <li>Khi bạn thêm starter (VD: spring-boot-starter-web), Spring Boot sẽ tự động cấu hình các bean cần thiết, như DispatcherServlet, Jackson, v.v.</li>
+      <li>
+        <p>Tắt auto config cho một số class:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Spring Boot Starter</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |------------------------------------------------------------------|
+     | Starter                          | Chức năng                     |
+     |------------------------------------------------------------------|
+     | spring-boot-starter-web          | REST API, Tomcat, Jackson     |
+     | spring-boot-starter-data-jpa     | JPA + Hibernate               |
+     | spring-boot-starter-security     | Spring Security               |
+     | spring-boot-starter-validation   | Bean Validation               |
+     | spring-boot-starter-test         | JUnit, Mockito, Spring Test   |
+
+   👉 Không cần tự tìm từng thư viện, chỉ cần 1 dòng thêm starter.
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Cấu trúc chuẩn một ứng dụng Spring Boot</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  src/
+    └── main/
+          ├── java/
+          │    └── com/example/demo/
+          │        ├── DemoApplication.java            # File main, entry point -&gt; hàm main() chạy ứng dụng
+          |
+          │        ├── config/                         # Cấu hình app (security, swagger, beans, CORS, Security...)
+          │        │   ├── WebSecurityConfig.java
+          │        │   └── SwaggerConfig.java
+          |
+          │        ├── controller/                     # Web/API layer - xử lý HTTP request
+          |
+          │        ├── service/                        # Business logic layer
+          |        |   ├── UserService.java
+          │        |   └── impl/                       # Implement của service (nếu có interface)
+          |        |        └── UserServiceImpl.java
+          |
+          │        ├── repository/                     # DAO layer - giao tiếp DB
+          |        |    └── UserRepository.java
+          |
+          │        └── model/                          # Chứa các class mô hình (Entity, DTO, Mapper)
+          |        |    ├── entity/                    # JPA Entity - ánh xạ bảng dữ liệu
+          |        |    |     └── User.java
+          |        |    ├── dto/                       # Data Transfer Object - nhận &amp; trả dữ liệu
+          │        │    │    └── UserDto.java
+          |        |    └── mapper/                    # Converter hoặc MapStruct mapper
+          │        │         └── UserMapper.java
+          |
+          │        ├── exception/                      # Custom exceptions &amp; global handler
+          │        │    ├── GlobalExceptionHandler.java
+          │        │    └── ResourceNotFoundException.java
+          |
+          |        ├── util/                           # Hàm tiện ích dùng chung
+          │        │    ├── DateUtil.java
+          │        │    ├── StringHelper.java
+          │        │    └── EnumUtils.java
+          |
+          |        ├── constant/                       # Các hằng số toàn cục
+          │        │    ├── AppConstants.java
+          │        │    └── MessageConstants.java
+          |
+          |        ├── enums/                          # Enum dùng toàn hệ thống
+          │        │    ├── UserStatus.java
+          │        │    └── CurrencyType.java
+          |
+          |        └── validator/                      # Custom annotation validator
+          │             ├── ValidPhoneNumber.java
+          │             ├── ValidPhoneNumberValidator.java
+          │             └── EnumValidator.java
+          |
+          └── resources/
+                ├── application.yml                    # Cấu hình chính
+                ├── application-dev.yml                # Cấu hình cho môi trường dev
+                ├── application-prod.yml               # Cấu hình cho môi trường production
+                └── static/                            # Assets tĩnh (nếu có)
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>DevTools, Actuator, Profiles</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |----------------------------------------------------------------------------------------------------|
+     | Tính năng   | Mô tả                                                                                |
+     |----------------------------------------------------------------------------------------------------|
+     | DevTools    | Tự động reload khi thay đổi code                                                     |
+     | Actuator    | Theo dõi health check, metrics, bean info (/actuator/health, /actuator/beans, v.v.)  |
+     | Profiles    | Cấu hình đa môi trường: application-dev.yml, application-prod.yml                    |
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Kích hoạt profile:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # application.yml
+  spring:
+    profiles:
+      active: dev
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Embedded Tomcat, cấu hình port, hot reload</p>
+
+    <ul>
+      <li>Spring Boot dùng Tomcat nhúng (Embedded) theo mặc định.</li>
+      <li>Có thể đổi sang Jetty, Undertow nếu cần.</li>
+      <li>
+        <p>Đổi port:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      server:
+        port: 8081
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Hot reload với DevTools:
+Thêm vào pom.xml:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+      &lt;optional&gt;true&lt;/optional&gt;
+    &lt;/dependency&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>IX. Các chủ đề nâng cao (phỏng vấn trung - cao cấp)</strong></p>
+
+<ol>
+  <li>Event trong Spring (ApplicationEventPublisher, @EventListener)</li>
+  <li>Spring Retry, Spring Batch, Spring WebFlux (Reactive Programming)</li>
+  <li>Tích hợp Spring với:</li>
+  <li>Redis, RabbitMQ, Kafka</li>
+  <li>Elasticsearch, MongoDB</li>
+  <li>Caching: @Cacheable, @CachePut, @CacheEvict</li>
+  <li>Custom annotation</li>
+  <li>Multi-module Spring Boot project</li>
+</ol>
+
+<p><strong>X. Các kiến thức liên quan khác (rất quan trọng)</strong></p>
+
+<ol>
+  <li>Kiến trúc RESTful API</li>
+  <li>Exception Handling toàn cục</li>
+  <li>DTO vs Entity</li>
+  <li>Swagger/OpenAPI</li>
+  <li>Build tool: Maven, Gradle</li>
+  <li>Docker hóa ứng dụng Spring Boot</li>
+  <li>Triển khai Spring Boot lên server/cloud</li>
+</ol>
+
+</article>
+</main>
+      <footer>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
+
+  <div style="margin-top: 0.5rem"><ul
+  class="social-media-list"
+  style="display: flex; gap: 12px; justify-content: center; padding-left: 0"
+>
+  
+  <li style="list-style: none">
+    <a
+      href="mailto:ngocthanhxs2@gmail.com"
+      target="_blank"
+      title="Email"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-solid
+            
+            fa-envelope fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.facebook.com/NguyenPhucNgocThanh03.01.99/"
+      target="_blank"
+      title="Facebook"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-facebook fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://www.linkedin.com/in/thanhnpn/"
+      target="_blank"
+      title="LinkedIn"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-linkedin fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+  <li style="list-style: none">
+    <a
+      href="https://github.com/npngocthanh99"
+      target="_blank"
+      title="GitHub"
+      style="text-decoration: none; color: inherit"
+    >
+      <i
+        class="
+            
+              fa-brands
+            
+            fa-github fa-xl"
+      ></i>
+    </a>
+  </li>
+  
+</ul>
+</div>
+</footer>
+
+    </div>
+    <script>
+      const toggle = document.getElementById("toggle-theme");
+      const body = document.body;
+
+      // Load theme from localStorage
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark") ? "dark" : "light",
+        );
+      });
+    </script>
+  </body>
+</html>

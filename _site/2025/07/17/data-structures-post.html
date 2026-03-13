@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Ôn tập kiến thức về Cấu trúc dữ liệu | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link
@@ -19,25 +20,20 @@
     <div class="site-wrapper">
       <header class="site-header">
   <nav class="nav-left">
-    <a href="/">Trang chủ</a>
-    <a href="/posts/">Bài viết</a>
-    <a href="/about/">Giới thiệu</a>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
   </nav>
 
   <div class="nav-right">
     <i class="fa-solid fa-user"></i>
     <span>Nguyễn Phúc Ngọc Thành</span>
-    <button
-      id="toggle-theme"
-      style="background: none; border: none; cursor: pointer; color: white"
-      title="Chuyển nền"
-    >
-      🌓
-    </button>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
   </div>
 </header>
 
-      <main><article>
+      <main class="content"><article>
   <h1>Ôn tập kiến thức về Cấu trúc dữ liệu</h1>
   <p><small>17-07-2025</small></p>
   <p><strong>I. Cấu trúc Dữ liệu là gì?</strong></p>
@@ -64,14 +60,62 @@
 <p><strong>III. Phân tích từng cấu trúc</strong></p>
 
 <ol>
-  <li>Array (Mảng)</li>
-</ol>
+  <li>
+    <p>Array (Mảng)
+a. Khái niệm</p>
 
-<ul>
-  <li>Mảng là danh sách các phần tử có cùng kiểu, lưu trữ liên tục trong bộ nhớ, truy cập thông qua chỉ số (index).</li>
-</ul>
+    <ul>
+      <li>Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ.</li>
+      <li>Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0.</li>
+      <li>
+        <p>Ví dụ:</p>
 
-<ol>
+        <p>int[] arr = {10, 20, 30, 40, 50};
+System.out.println(arr[2]); // Kết quả: 30</p>
+      </li>
+    </ul>
+
+    <p>b. Đặc điểm</p>
+
+    <ul>
+      <li>Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1).</li>
+      <li>Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++).</li>
+      <li>Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu.</li>
+    </ul>
+
+    <p>c. Ưu điểm</p>
+
+    <ul>
+      <li>Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1).</li>
+      <li>Đơn giản: Dễ khai báo, dễ sử dụng.</li>
+      <li>Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt.</li>
+    </ul>
+
+    <p>d. Nhược điểm</p>
+
+    <ul>
+      <li>Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java).</li>
+      <li>Chi phí chèn/xoá cao:
+        <ul>
+          <li>Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n).</li>
+          <li>Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động).</li>
+        </ul>
+      </li>
+      <li>Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa.</li>
+    </ul>
+
+    <p>e. Các thao tác cơ bản và độ phức tạp</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|--------------------------------------------|
+| Thao tác                    | Độ phức tạp  |
+|--------------------------------------------|
+| Truy cập arr[i]             | O(1)         |
+| Cập nhật arr[i] = x         | O(1)         |
+| Tìm kiếm tuyến tính         | O(n)         |
+| Thêm/Xoá cuối (nếu còn chỗ) | O(1)         |
+| Thêm/Xoá giữa mảng          | O(n)         |
+</code></pre></div>    </div>
+  </li>
   <li>
     <p>Linked List</p>
   </li>
@@ -92,10 +136,17 @@
   </li>
 </ol>
 
+<p><strong>III. Các câu hỏi thường gặp trong phỏng vấn</strong></p>
+
+<ol>
+  <li>So sánh Array vs Linked List</li>
+  <li>So sánh Array vs ArrayList (Java)</li>
+</ol>
+
 </article>
 </main>
       <footer>
-  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
 
   <div style="margin-top: 0.5rem"><ul
   class="social-media-list"
@@ -188,7 +239,7 @@
         body.classList.toggle("dark");
         localStorage.setItem(
           "theme",
-          body.classList.contains("dark") ? "dark" : "light"
+          body.classList.contains("dark") ? "dark" : "light",
         );
       });
     </script>

@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Bài viết đầu tiên...Hướng dẫn tạo Blog trên GitHub | Nguyen Phuc Ngoc Thanh</title>
+    <meta name="description" content="This is my blog hosted on GitHub Pages." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link
@@ -19,25 +20,20 @@
     <div class="site-wrapper">
       <header class="site-header">
   <nav class="nav-left">
-    <a href="/">Trang chủ</a>
-    <a href="/posts/">Bài viết</a>
-    <a href="/about/">Giới thiệu</a>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
   </nav>
 
   <div class="nav-right">
     <i class="fa-solid fa-user"></i>
     <span>Nguyễn Phúc Ngọc Thành</span>
-    <button
-      id="toggle-theme"
-      style="background: none; border: none; cursor: pointer; color: white"
-      title="Chuyển nền"
-    >
-      🌓
-    </button>
+    <span class="football-tag"> ⚽ MU • Germany • Reus </span>
+    <button id="toggle-theme">🌓</button>
   </div>
 </header>
 
-      <main><article>
+      <main class="content"><article>
   <h1>Bài viết đầu tiên...Hướng dẫn tạo Blog trên GitHub</h1>
   <p><small>28-06-2025</small></p>
   <p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
@@ -164,7 +160,7 @@ Bạn có thể fork template có sẵn như:</p>
 </article>
 </main>
       <footer>
-  <p>&copy; 2025 Nguyen Phuc Ngoc Thanh</p>
+  <p>&copy; 2026 Nguyen Phuc Ngoc Thanh</p>
 
   <div style="margin-top: 0.5rem"><ul
   class="social-media-list"
@@ -257,7 +253,7 @@ Bạn có thể fork template có sẵn như:</p>
         body.classList.toggle("dark");
         localStorage.setItem(
           "theme",
-          body.classList.contains("dark") ? "dark" : "light"
+          body.classList.contains("dark") ? "dark" : "light",
         );
       });
     </script>

@@ -1,4 +1,598 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-27T22:26:04+07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Tổng hợp kiến thức về Git</title><link href="http://localhost:4000/2025/07/18/git-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Git" /><published>2025-07-18T00:00:00+07:00</published><updated>2025-07-18T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/18/git-post</id><content type="html" xml:base="http://localhost:4000/2025/07/18/git-post.html"><![CDATA[<p><strong>I. Git là gì?</strong></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-03-13T12:53:29-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Nguyen Phuc Ngoc Thanh</title><subtitle>This is my blog hosted on GitHub Pages.</subtitle><author><name>Nguyen Phuc Ngoc Thanh</name></author><entry><title type="html">Kiến thức về nguyên tắc SOLID</title><link href="http://0.0.0.0:4000/2025/08/23/solid-post.html" rel="alternate" type="text/html" title="Kiến thức về nguyên tắc SOLID" /><published>2025-08-23T00:00:00-05:00</published><updated>2025-08-23T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/08/23/solid-post</id><content type="html" xml:base="http://0.0.0.0:4000/2025/08/23/solid-post.html"><![CDATA[<p>SOLID là viết tắt của 5 nguyên tắc thiết kế giúp code dễ đọc, dễ mở rộng, dễ bảo trì và hạn chế code smell(code xấu).</p>
+
+<ol>
+  <li>S – Single Responsibility Principle (SRP)</li>
+</ol>
+
+<ul>
+  <li>Mỗi class chỉ nên chịu trách nhiệm về một việc duy nhất.</li>
+  <li>Nếu một class có nhiều hơn một lý do để thay đổi → vi phạm SRP.</li>
+</ul>
+
+<ol>
+  <li>O – Open/Closed Principle (OCP)</li>
+  <li>L – Liskov Substitution Principle (LSP)</li>
+  <li>I – Interface Segregation Principle (ISP)</li>
+  <li>D – Dependency Inversion Principle (DIP)</li>
+</ol>
+
+<p><strong>Tóm lại:</strong></p>
+
+<ul>
+  <li>S: Mỗi class chỉ nên làm 1 việc.</li>
+  <li>O: Mở rộng dễ dàng, không sửa code cũ.</li>
+  <li>L: Lớp con phải thay thế được lớp cha.</li>
+  <li>I: Interface nhỏ gọn, đúng mục đích.</li>
+  <li>D: Phụ thuộc vào abstraction, không phụ thuộc implementation.</li>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[SOLID là viết tắt của 5 nguyên tắc thiết kế giúp code dễ đọc, dễ mở rộng, dễ bảo trì và hạn chế code smell(code xấu). S – Single Responsibility Principle (SRP) Mỗi class chỉ nên chịu trách nhiệm về một việc duy nhất. Nếu một class có nhiều hơn một lý do để thay đổi → vi phạm SRP. O – Open/Closed Principle (OCP) L – Liskov Substitution Principle (LSP) I – Interface Segregation Principle (ISP) D – Dependency Inversion Principle (DIP) Tóm lại: S: Mỗi class chỉ nên làm 1 việc. O: Mở rộng dễ dàng, không sửa code cũ. L: Lớp con phải thay thế được lớp cha. I: Interface nhỏ gọn, đúng mục đích. D: Phụ thuộc vào abstraction, không phụ thuộc implementation.]]></summary></entry><entry><title type="html">Ôn tập kiến thức về thuật toán cơ bản</title><link href="http://0.0.0.0:4000/2025/08/17/basic_algorithms-post.html" rel="alternate" type="text/html" title="Ôn tập kiến thức về thuật toán cơ bản" /><published>2025-08-17T00:00:00-05:00</published><updated>2025-08-17T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/08/17/basic_algorithms-post</id><content type="html" xml:base="http://0.0.0.0:4000/2025/08/17/basic_algorithms-post.html"><![CDATA[<p><strong>I. Khái niệm nền tảng</strong></p>
+
+<ul>
+  <li>Thuật toán (Algorithm): tập hợp hữu hạn các bước để giải quyết một vấn đề.</li>
+  <li>Độ phức tạp:
+    <ul>
+      <li>Time Complexity: thời gian chạy (O(1), O(log n), O(n), O(n log n), O(n²) …).</li>
+      <li>Space Complexity: bộ nhớ sử dụng.</li>
+      <li>Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán theo input size n.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>II. Thuật toán tìm kiếm (Searching)</strong></p>
+
+<p><strong>1. Linear Search (tuần tự)</strong></p>
+
+<ul>
+  <li>Khi dùng: mảng/list nhỏ hoặc chưa sắp xếp.</li>
+  <li>Độ phức tạp: O(n); bộ nhớ O(1)</li>
+  <li>Ý tưởng: duyệt từ trái qua phải, gặp là trả về
+Ví dụ: [4, 2, 9, 7] tìm 9 → duyệt 4→2→9 (trả về index 2).</li>
+</ul>
+
+<p><strong>2. Binary Search (nhị phân)</strong></p>
+
+<ul>
+  <li>Khi dùng: mảng đã sắp xếp (rất quan trọng).</li>
+  <li>Độ phức tạp: O(log n); bộ nhớ O(1).</li>
+  <li>Ý tưởng: so sánh ở giữa, loại nửa không cần, lặp lại.</li>
+  <li>
+    <p>Lưu ý biên: vòng lặp while (l &lt;= r), mid = l + (r - l) / 2 để tránh tràn.
+Ví dụ: [1,3,5,7,9] tìm 7 → mid=5 &lt; 7 ⇒ xét nửa phải → mid=7 (tìm thấy).</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  public static int binarySearch(int[] a, int target) {
+    int l = 0; // biên trái
+    int r = a.length - 1; // biên phải
+
+      while (l &lt;= r) {
+          int mid = l + (r - l) / 2; // tránh tràn số
+          if (a[mid] == target) {
+              return mid; // tìm thấy, trả về index
+          }
+          if (a[mid] &lt; target) {
+              l = mid + 1; // bỏ qua nửa trái
+          } else {
+              r = mid - 1; // bỏ qua nửa phải
+          }
+      }
+      return -1; // không tìm thấy
+  }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>II. Thuật toán tìm kiếm (Searching)</strong></p>
+
+<p><strong>1. Bubble Sort</strong></p>
+
+<ul>
+  <li>
+    <p>Ý tưởng:</p>
+
+    <ul>
+      <li>Duyệt nhiều lần qua mảng.</li>
+      <li>Mỗi lần duyệt, so sánh cặp phần tử liền kề, nếu sai thứ tự thì hoán đổi.</li>
+      <li>Sau mỗi lượt, phần tử lớn nhất “nổi” lên cuối.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Độ phức tạp:</p>
+
+    <ul>
+      <li>Trung bình / Tệ nhất: O(n²)</li>
+      <li>Tốt nhất (mảng đã sort): O(n)</li>
+      <li>Bộ nhớ: O(1), ổn định.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <ul>
+      <li>Mảng: [5, 1, 4, 2]</li>
+      <li>Lượt 1: (5,1) → swap → [1,5,4,2]; (5,4) → [1,4,5,2]; (5,2) → [1,4,2,5]</li>
+      <li>
+        <p>Lượt 2: (1,4), ok; (4,2) → [1,2,4,5]; (4,5) ok
+→ Mảng đã sort.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void bubbleSort(int[] a) {
+  boolean swapped;
+  int n = a.length;
+  do {
+      swapped = false;
+      for (int i = 1; i &lt; n; i++) {
+          if (a[i - 1] &gt; a[i]) {
+              int tmp = a[i];
+              a[i] = a[i - 1];
+              a[i - 1] = tmp;
+              swapped = true;
+          }
+      }
+      n--; // phần tử cuối đã đúng vị trí
+  } while (swapped);
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>2. Selection Sort</strong></p>
+
+<ul>
+  <li>
+    <p>Ý tưởng:</p>
+
+    <ul>
+      <li>Ở mỗi vòng lặp, tìm phần tử nhỏ nhất trong đoạn chưa sort, đưa nó về đầu.</li>
+      <li>Sau vòng thứ i, các phần tử [0..i] đã đúng chỗ.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Độ phức tạp:</p>
+
+    <ul>
+      <li>Trung bình / Tệ nhất: O(n²)</li>
+      <li>Không ổn định, bộ nhớ O(1).</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <ul>
+      <li>Mảng [29, 10, 14, 37]</li>
+      <li>Lượt 1: min=10 → swap với 29 → [10,29,14,37]</li>
+      <li>
+        <p>Lượt 2: min=14 → swap với 29 → [10,14,29,37] → Done.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void selectionSort(int[] a) {
+    int n = a.length;
+    for (int i = 0; i &lt; n - 1; i++) {
+        int min = i;
+        for (int j = i + 1; j &lt; n; j++) {
+            if (a[j] &lt; a[min]) min = j;
+        }
+        int tmp = a[i];
+        a[i] = a[min];
+        a[min] = tmp;
+    }
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>3. Insertion Sort</strong></p>
+
+<ul>
+  <li>
+    <p>Ý tưởng:</p>
+
+    <ul>
+      <li>Duyệt từ trái sang phải.</li>
+      <li>Với mỗi phần tử, chèn nó vào đúng vị trí trong đoạn đã sort trước đó.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Độ phức tạp:</p>
+
+    <ul>
+      <li>Trung bình / Tệ nhất: O(n²)</li>
+      <li>Tốt nhất (mảng gần như sort): O(n)</li>
+      <li>Ổn định, bộ nhớ O(1).</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <ul>
+      <li>Mảng [5, 3, 4]</li>
+      <li>5: đoạn đã sort [5].</li>
+      <li>3: chèn vào trước 5 → [3,5].</li>
+      <li>
+        <p>4: chèn giữa 3 và 5 → [3,4,5].</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void insertionSort(int[] a) {
+    for (int i = 1; i &lt; a.length; i++) {
+        int key = a[i];
+        int j = i - 1;
+        while (j &gt;= 0 &amp;&amp; a[j] &gt; key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
+    }
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>4. Merge Sort</strong></p>
+
+<ul>
+  <li>
+    <p>Ý tưởng:</p>
+
+    <ul>
+      <li>
+        <p>Chia để trị:</p>
+
+        <ul>
+          <li>Chia mảng thành 2 nửa.</li>
+          <li>Sắp xếp từng nửa đệ quy.</li>
+          <li>Gộp (merge) 2 nửa đã sort.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Độ phức tạp:</p>
+
+    <ul>
+      <li>Luôn O(n log n)</li>
+      <li>Bộ nhớ: O(n), ổn định.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <ul>
+      <li>Mảng [38, 27, 43, 3]</li>
+      <li>Chia: [38,27] và [43,3].</li>
+      <li>Sort trái → [27,38]; sort phải → [3,43].</li>
+      <li>
+        <p>Merge → [3,27,38,43].</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void mergeSort(int[] a) {
+    if (a.length &lt;= 1) return;
+    int[] tmp = new int[a.length];
+    mergeSort(a, 0, a.length - 1, tmp);
+}
+
+private static void mergeSort(int[] a, int l, int r, int[] tmp) {
+    if (l &gt;= r) return;
+    int m = l + (r - l) / 2;
+    mergeSort(a, l, m, tmp);
+    mergeSort(a, m + 1, r, tmp);
+    merge(a, l, m, r, tmp);
+}
+
+private static void merge(int[] a, int l, int m, int r, int[] tmp) {
+    int i = l, j = m + 1, k = l;
+    while (i &lt;= m &amp;&amp; j &lt;= r) {
+        if (a[i] &lt;= a[j]) tmp[k++] = a[i++];
+        else tmp[k++] = a[j++];
+    }
+    while (i &lt;= m) tmp[k++] = a[i++];
+    while (j &lt;= r) tmp[k++] = a[j++];
+    for (int t = l; t &lt;= r; t++) a[t] = tmp[t];
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>5. Quick Sort (chia để trị)</strong></p>
+
+<ul>
+  <li>
+    <p>Ý tưởng:</p>
+
+    <ul>
+      <li>
+        <p>Chia để trị:</p>
+
+        <ol>
+          <li>Chọn pivot (thường là giữa, trái, phải hoặc ngẫu nhiên).</li>
+          <li>Phân chia mảng thành 2 phần: ≤ pivot và ≥ pivot.</li>
+          <li>Đệ quy sort 2 nửa.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Độ phức tạp:</p>
+
+    <ul>
+      <li>Trung bình: O(n log n)</li>
+      <li>Tệ nhất: O(n²) (pivot xấu).</li>
+      <li>Bộ nhớ: O(log n), không ổn định.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <ul>
+      <li>Mảng [9,3,7,1], pivot=7</li>
+      <li>Nhỏ hơn pivot: [3,1], lớn hơn: [9].</li>
+      <li>Sort [3,1] → [1,3].</li>
+      <li>
+        <p>Merge lại: [1,3,7,9].</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void quickSort(int[] a) {
+    quickSort(a, 0, a.length - 1);
+}
+
+private static void quickSort(int[] a, int l, int r) {
+    if (l &gt;= r) return;
+    int pivot = a[l + (r - l) / 2];
+    int i = l, j = r;
+    while (i &lt;= j) {
+        while (a[i] &lt; pivot) i++;
+        while (a[j] &gt; pivot) j--;
+        if (i &lt;= j) {
+            int tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+            i++; j--;
+        }
+    }
+    if (l &lt; j) quickSort(a, l, j);
+    if (i &lt; r) quickSort(a, i, r);
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>6. Heap Sort</strong></p>
+
+<ul>
+  <li>
+    <p>Ý tưởng:</p>
+
+    <ul>
+      <li>Xây max-heap từ mảng.</li>
+      <li>Lặp: swap root (max) với phần tử cuối, giảm heap-size, heapify lại.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Độ phức tạp:</p>
+
+    <ul>
+      <li>Luôn O(n log n)</li>
+      <li>In-place, không ổn định.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Ví dụ:</p>
+
+    <ul>
+      <li>Mảng [4,10,3,5,1]</li>
+      <li>Heapify → [10,5,3,4,1]</li>
+      <li>Swap 10 ↔ 1 → [1,5,3,4,10]</li>
+      <li>Heapify → [5,4,3,1,10]</li>
+      <li>
+        <p>Swap 5 ↔ 1 → [1,4,3,5,10]
+→ v.v.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void heapSort(int[] a) {
+    int n = a.length;
+    for (int i = n / 2 - 1; i &gt;= 0; i--) heapify(a, n, i);
+    for (int end = n - 1; end &gt; 0; end--) {
+        int tmp = a[0]; a[0] = a[end]; a[end] = tmp;
+        heapify(a, end, 0);
+    }
+}
+
+private static void heapify(int[] a, int n, int i) {
+    int largest = i, left = 2*i + 1, right = 2*i + 2;
+    if (left &lt; n &amp;&amp; a[left] &gt; a[largest]) largest = left;
+    if (right &lt; n &amp;&amp; a[right] &gt; a[largest]) largest = right;
+    if (largest != i) {
+        int tmp = a[i]; a[i] = a[largest]; a[largest] = tmp;
+        heapify(a, n, largest);
+    }
+}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>7. Counting Sort</strong></p>
+
+<ul>
+  <li>Ý tưởng:
+    <ul>
+      <li>Đếm tần suất xuất hiện của từng số trong [min..max].</li>
+      <li>Tính prefix sum để biết vị trí.</li>
+      <li>Sắp xếp ổn định bằng cách chèn ngược.</li>
+    </ul>
+  </li>
+  <li>Độ phức tạp:
+    <ul>
+      <li>O(n + k), k = phạm vi giá trị.</li>
+      <li>Bộ nhớ O(n+k), ổn định.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>8. Radix Sort (áp dụng cho dữ liệu số nguyên lớn)</strong></p>
+
+<ul>
+  <li>Ý tưởng:
+    <ul>
+      <li>Sort theo từng chữ số (hàng đơn vị → chục → trăm).</li>
+      <li>Dùng Counting Sort ổn định ở mỗi bước.</li>
+    </ul>
+  </li>
+  <li>Độ phức tạp:
+    <ul>
+      <li>O(d·(n + b)), với d = số chữ số, b = cơ số (10).</li>
+      <li>Ổn định, tốt cho số nguyên lớn, không âm.</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Khái niệm nền tảng Thuật toán (Algorithm): tập hợp hữu hạn các bước để giải quyết một vấn đề. Độ phức tạp: Time Complexity: thời gian chạy (O(1), O(log n), O(n), O(n log n), O(n²) …). Space Complexity: bộ nhớ sử dụng. Big-O notation: ký hiệu để biểu diễn độ phức tạp thuật toán theo input size n. II. Thuật toán tìm kiếm (Searching) 1. Linear Search (tuần tự) Khi dùng: mảng/list nhỏ hoặc chưa sắp xếp. Độ phức tạp: O(n); bộ nhớ O(1) Ý tưởng: duyệt từ trái qua phải, gặp là trả về Ví dụ: [4, 2, 9, 7] tìm 9 → duyệt 4→2→9 (trả về index 2). 2. Binary Search (nhị phân) Khi dùng: mảng đã sắp xếp (rất quan trọng). Độ phức tạp: O(log n); bộ nhớ O(1). Ý tưởng: so sánh ở giữa, loại nửa không cần, lặp lại. Lưu ý biên: vòng lặp while (l &lt;= r), mid = l + (r - l) / 2 để tránh tràn. Ví dụ: [1,3,5,7,9] tìm 7 → mid=5 &lt; 7 ⇒ xét nửa phải → mid=7 (tìm thấy). public static int binarySearch(int[] a, int target) { int l = 0; // biên trái int r = a.length - 1; // biên phải while (l &lt;= r) { int mid = l + (r - l) / 2; // tránh tràn số if (a[mid] == target) { return mid; // tìm thấy, trả về index } if (a[mid] &lt; target) { l = mid + 1; // bỏ qua nửa trái } else { r = mid - 1; // bỏ qua nửa phải } } return -1; // không tìm thấy } II. Thuật toán tìm kiếm (Searching) 1. Bubble Sort Ý tưởng: Duyệt nhiều lần qua mảng. Mỗi lần duyệt, so sánh cặp phần tử liền kề, nếu sai thứ tự thì hoán đổi. Sau mỗi lượt, phần tử lớn nhất “nổi” lên cuối. Độ phức tạp: Trung bình / Tệ nhất: O(n²) Tốt nhất (mảng đã sort): O(n) Bộ nhớ: O(1), ổn định. Ví dụ: Mảng: [5, 1, 4, 2] Lượt 1: (5,1) → swap → [1,5,4,2]; (5,4) → [1,4,5,2]; (5,2) → [1,4,2,5] Lượt 2: (1,4), ok; (4,2) → [1,2,4,5]; (4,5) ok → Mảng đã sort. public static void bubbleSort(int[] a) { boolean swapped; int n = a.length; do { swapped = false; for (int i = 1; i &lt; n; i++) { if (a[i - 1] &gt; a[i]) { int tmp = a[i]; a[i] = a[i - 1]; a[i - 1] = tmp; swapped = true; } } n--; // phần tử cuối đã đúng vị trí } while (swapped); } 2. Selection Sort Ý tưởng: Ở mỗi vòng lặp, tìm phần tử nhỏ nhất trong đoạn chưa sort, đưa nó về đầu. Sau vòng thứ i, các phần tử [0..i] đã đúng chỗ. Độ phức tạp: Trung bình / Tệ nhất: O(n²) Không ổn định, bộ nhớ O(1). Ví dụ: Mảng [29, 10, 14, 37] Lượt 1: min=10 → swap với 29 → [10,29,14,37] Lượt 2: min=14 → swap với 29 → [10,14,29,37] → Done. public static void selectionSort(int[] a) { int n = a.length; for (int i = 0; i &lt; n - 1; i++) { int min = i; for (int j = i + 1; j &lt; n; j++) { if (a[j] &lt; a[min]) min = j; } int tmp = a[i]; a[i] = a[min]; a[min] = tmp; } } 3. Insertion Sort Ý tưởng: Duyệt từ trái sang phải. Với mỗi phần tử, chèn nó vào đúng vị trí trong đoạn đã sort trước đó. Độ phức tạp: Trung bình / Tệ nhất: O(n²) Tốt nhất (mảng gần như sort): O(n) Ổn định, bộ nhớ O(1). Ví dụ: Mảng [5, 3, 4] 5: đoạn đã sort [5]. 3: chèn vào trước 5 → [3,5]. 4: chèn giữa 3 và 5 → [3,4,5]. public static void insertionSort(int[] a) { for (int i = 1; i &lt; a.length; i++) { int key = a[i]; int j = i - 1; while (j &gt;= 0 &amp;&amp; a[j] &gt; key) { a[j + 1] = a[j]; j--; } a[j + 1] = key; } } 4. Merge Sort Ý tưởng: Chia để trị: Chia mảng thành 2 nửa. Sắp xếp từng nửa đệ quy. Gộp (merge) 2 nửa đã sort. Độ phức tạp: Luôn O(n log n) Bộ nhớ: O(n), ổn định. Ví dụ: Mảng [38, 27, 43, 3] Chia: [38,27] và [43,3]. Sort trái → [27,38]; sort phải → [3,43]. Merge → [3,27,38,43]. public static void mergeSort(int[] a) { if (a.length &lt;= 1) return; int[] tmp = new int[a.length]; mergeSort(a, 0, a.length - 1, tmp); } private static void mergeSort(int[] a, int l, int r, int[] tmp) { if (l &gt;= r) return; int m = l + (r - l) / 2; mergeSort(a, l, m, tmp); mergeSort(a, m + 1, r, tmp); merge(a, l, m, r, tmp); } private static void merge(int[] a, int l, int m, int r, int[] tmp) { int i = l, j = m + 1, k = l; while (i &lt;= m &amp;&amp; j &lt;= r) { if (a[i] &lt;= a[j]) tmp[k++] = a[i++]; else tmp[k++] = a[j++]; } while (i &lt;= m) tmp[k++] = a[i++]; while (j &lt;= r) tmp[k++] = a[j++]; for (int t = l; t &lt;= r; t++) a[t] = tmp[t]; } 5. Quick Sort (chia để trị) Ý tưởng: Chia để trị: Chọn pivot (thường là giữa, trái, phải hoặc ngẫu nhiên). Phân chia mảng thành 2 phần: ≤ pivot và ≥ pivot. Đệ quy sort 2 nửa. Độ phức tạp: Trung bình: O(n log n) Tệ nhất: O(n²) (pivot xấu). Bộ nhớ: O(log n), không ổn định. Ví dụ: Mảng [9,3,7,1], pivot=7 Nhỏ hơn pivot: [3,1], lớn hơn: [9]. Sort [3,1] → [1,3]. Merge lại: [1,3,7,9]. public static void quickSort(int[] a) { quickSort(a, 0, a.length - 1); } private static void quickSort(int[] a, int l, int r) { if (l &gt;= r) return; int pivot = a[l + (r - l) / 2]; int i = l, j = r; while (i &lt;= j) { while (a[i] &lt; pivot) i++; while (a[j] &gt; pivot) j--; if (i &lt;= j) { int tmp = a[i]; a[i] = a[j]; a[j] = tmp; i++; j--; } } if (l &lt; j) quickSort(a, l, j); if (i &lt; r) quickSort(a, i, r); } 6. Heap Sort Ý tưởng: Xây max-heap từ mảng. Lặp: swap root (max) với phần tử cuối, giảm heap-size, heapify lại. Độ phức tạp: Luôn O(n log n) In-place, không ổn định. Ví dụ: Mảng [4,10,3,5,1] Heapify → [10,5,3,4,1] Swap 10 ↔ 1 → [1,5,3,4,10] Heapify → [5,4,3,1,10] Swap 5 ↔ 1 → [1,4,3,5,10] → v.v. public static void heapSort(int[] a) { int n = a.length; for (int i = n / 2 - 1; i &gt;= 0; i--) heapify(a, n, i); for (int end = n - 1; end &gt; 0; end--) { int tmp = a[0]; a[0] = a[end]; a[end] = tmp; heapify(a, end, 0); } } private static void heapify(int[] a, int n, int i) { int largest = i, left = 2*i + 1, right = 2*i + 2; if (left &lt; n &amp;&amp; a[left] &gt; a[largest]) largest = left; if (right &lt; n &amp;&amp; a[right] &gt; a[largest]) largest = right; if (largest != i) { int tmp = a[i]; a[i] = a[largest]; a[largest] = tmp; heapify(a, n, largest); } } 7. Counting Sort Ý tưởng: Đếm tần suất xuất hiện của từng số trong [min..max]. Tính prefix sum để biết vị trí. Sắp xếp ổn định bằng cách chèn ngược. Độ phức tạp: O(n + k), k = phạm vi giá trị. Bộ nhớ O(n+k), ổn định. 8. Radix Sort (áp dụng cho dữ liệu số nguyên lớn) Ý tưởng: Sort theo từng chữ số (hàng đơn vị → chục → trăm). Dùng Counting Sort ổn định ở mỗi bước. Độ phức tạp: O(d·(n + b)), với d = số chữ số, b = cơ số (10). Ổn định, tốt cho số nguyên lớn, không âm.]]></summary></entry><entry><title type="html">Kiến thức về Docker</title><link href="http://0.0.0.0:4000/2025/08/16/docker-post.html" rel="alternate" type="text/html" title="Kiến thức về Docker" /><published>2025-08-16T00:00:00-05:00</published><updated>2025-08-16T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/08/16/docker-post</id><content type="html" xml:base="http://0.0.0.0:4000/2025/08/16/docker-post.html"><![CDATA[<p><strong>I. Kiến thức cơ bản về Docker?</strong></p>
+
+<p><strong>1. Docker là gì</strong></p>
+
+<ul>
+  <li>Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container.</li>
+  <li>Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường.</li>
+  <li>So với VM (Virtual Machine):
+    <ul>
+      <li>VM có OS riêng → nặng hơn.</li>
+      <li>Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>2. Thành phần chính của Docker</strong></p>
+
+<ul>
+  <li>Docker Engine: Nền tảng chạy container.</li>
+  <li>Docker Image: File template dùng để tạo container. (VD: nginx:latest)</li>
+  <li>Docker Container: Thực thể chạy từ image.</li>
+  <li>Dockerfile: File mô tả cách build image.</li>
+  <li>Docker Hub / Registry: Nơi lưu trữ image.</li>
+  <li>Docker Compose: Tool để chạy nhiều container cùng lúc (multi-container).</li>
+</ul>
+
+<p><strong>3. Nguyên tắc container</strong></p>
+
+<ul>
+  <li>Immutable: Container không nên chỉnh sửa trực tiếp; nếu cần thay đổi → tạo image mới.</li>
+  <li>Ephemeral: Container có thể bị xóa và tạo lại.</li>
+  <li>Isolation: Container chạy độc lập về process, network, file system.</li>
+</ul>
+
+<p><strong>II. Các lệnh Docker cơ bản</strong></p>
+
+<ol>
+  <li>
+    <p>Quản lý image</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull nginx:latest       # Tải image từ Docker Hub
+docker images                  # Liệt kê image đã có
+docker rmi &lt;image_id&gt;          # Xóa image
+docker build -t myapp:v1 .     # Build image từ Dockerfile
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Quản lý container</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d --name mynginx -p 8080:80 nginx:latest   # Chạy container
+docker ps                    # Xem container đang chạy
+docker ps -a                 # Xem tất cả container
+docker stop mynginx          # Dừng container
+docker start mynginx         # Khởi động container đã dừng
+docker rm mynginx            # Xóa container
+docker logs mynginx          # Xem log container
+docker exec -it mynginx bash # Vào bash container
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Docker Compose</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>docker-compose.yml định nghĩa nhiều container, network, volume.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  version: "3"
+  services:
+    web:
+      image: nginx:latest
+      ports:
+        - "8080:80"
+    db:
+      image: mysql:8
+      environment:
+        MYSQL_ROOT_PASSWORD: example
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Lệnh thường dùng:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker-compose up -d    # Chạy tất cả service
+  docker-compose down     # Dừng và xóa
+  docker-compose logs -f  # Xem log
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>III. Docker trong thực tế</strong></p>
+
+<ol>
+  <li>Triển khai ứng dụng</li>
+</ol>
+
+<ul>
+  <li>Backend Spring Boot, Node.js, Python:
+    <ul>
+      <li>Tạo Dockerfile.</li>
+      <li>Build image → push lên registry → deploy container.</li>
+    </ul>
+  </li>
+  <li>Frontend:
+    <ul>
+      <li>Docker dùng Nginx serve SPA.</li>
+      <li>Mount code vào container để dev nhanh.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>b. Docker và môi trường</p>
+
+<ul>
+  <li>Dev / Test / Prod:
+    <ul>
+      <li>Sử dụng cùng image → tránh lỗi “ở máy chạy được mà prod không chạy”.</li>
+      <li>Docker Compose quản lý nhiều service.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>c. Persistent Data</p>
+
+<ul>
+  <li>
+    <p>Volume: dùng lưu dữ liệu, không bị mất khi container xóa.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker run -v /host/path:/container/path nginx
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>d. Networking</p>
+
+<ul>
+  <li>Docker tạo network riêng cho container.</li>
+  <li>Container có thể ping nhau bằng tên service.</li>
+</ul>
+
+<p><strong>IV. Best practices(Ưu điểm)</strong></p>
+
+<ul>
+  <li>Image nhẹ → dùng alpine thay vì ubuntu nếu không cần.</li>
+  <li>Dockerfile: build multi-stage để giảm size.</li>
+  <li>Không lưu dữ liệu trong container → dùng volume.</li>
+  <li>Quản lý environment: .env file hoặc docker-compose.override.yml.</li>
+  <li>Chỉ expose port cần thiết.</li>
+  <li>Container không nên chạy root user.</li>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><category term="docker" /><category term="devops" /><summary type="html"><![CDATA[I. Kiến thức cơ bản về Docker? 1. Docker là gì Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container. Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường. So với VM (Virtual Machine): VM có OS riêng → nặng hơn. Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn. 2. Thành phần chính của Docker Docker Engine: Nền tảng chạy container. Docker Image: File template dùng để tạo container. (VD: nginx:latest) Docker Container: Thực thể chạy từ image. Dockerfile: File mô tả cách build image. Docker Hub / Registry: Nơi lưu trữ image. Docker Compose: Tool để chạy nhiều container cùng lúc (multi-container). 3. Nguyên tắc container Immutable: Container không nên chỉnh sửa trực tiếp; nếu cần thay đổi → tạo image mới. Ephemeral: Container có thể bị xóa và tạo lại. Isolation: Container chạy độc lập về process, network, file system. II. Các lệnh Docker cơ bản Quản lý image docker pull nginx:latest # Tải image từ Docker Hub docker images # Liệt kê image đã có docker rmi &lt;image_id&gt; # Xóa image docker build -t myapp:v1 . # Build image từ Dockerfile Quản lý container docker run -d --name mynginx -p 8080:80 nginx:latest # Chạy container docker ps # Xem container đang chạy docker ps -a # Xem tất cả container docker stop mynginx # Dừng container docker start mynginx # Khởi động container đã dừng docker rm mynginx # Xóa container docker logs mynginx # Xem log container docker exec -it mynginx bash # Vào bash container Docker Compose docker-compose.yml định nghĩa nhiều container, network, volume. version: "3" services: web: image: nginx:latest ports: - "8080:80" db: image: mysql:8 environment: MYSQL_ROOT_PASSWORD: example Lệnh thường dùng: docker-compose up -d # Chạy tất cả service docker-compose down # Dừng và xóa docker-compose logs -f # Xem log III. Docker trong thực tế Triển khai ứng dụng Backend Spring Boot, Node.js, Python: Tạo Dockerfile. Build image → push lên registry → deploy container. Frontend: Docker dùng Nginx serve SPA. Mount code vào container để dev nhanh. b. Docker và môi trường Dev / Test / Prod: Sử dụng cùng image → tránh lỗi “ở máy chạy được mà prod không chạy”. Docker Compose quản lý nhiều service. c. Persistent Data Volume: dùng lưu dữ liệu, không bị mất khi container xóa. docker run -v /host/path:/container/path nginx d. Networking Docker tạo network riêng cho container. Container có thể ping nhau bằng tên service. IV. Best practices(Ưu điểm) Image nhẹ → dùng alpine thay vì ubuntu nếu không cần. Dockerfile: build multi-stage để giảm size. Không lưu dữ liệu trong container → dùng volume. Quản lý environment: .env file hoặc docker-compose.override.yml. Chỉ expose port cần thiết. Container không nên chạy root user.]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Git</title><link href="http://0.0.0.0:4000/2025/07/18/git-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Git" /><published>2025-07-18T00:00:00-05:00</published><updated>2025-07-18T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/18/git-post</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/18/git-post.html"><![CDATA[<p><strong>I. Git là gì?</strong></p>
 
 <ul>
   <li>Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System).</li>
@@ -133,7 +727,7 @@ e. hotfix/\* – xử lý lỗi khẩn cấp.
 
 <p><em>4. Cách giải quyết conflict?</em></p>
 
-<p><em>5. Quy trình deploy/CI với Git?</em></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Git là gì?]]></summary></entry><entry><title type="html">Ôn tập kiến thức về Cấu trúc dữ liệu</title><link href="http://localhost:4000/2025/07/17/data-structures-post.html" rel="alternate" type="text/html" title="Ôn tập kiến thức về Cấu trúc dữ liệu" /><published>2025-07-17T00:00:00+07:00</published><updated>2025-07-17T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/17/data-structures-post</id><content type="html" xml:base="http://localhost:4000/2025/07/17/data-structures-post.html"><![CDATA[<p><strong>I. Cấu trúc Dữ liệu là gì?</strong></p>
+<p><em>5. Quy trình deploy/CI với Git?</em></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Git là gì? Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System). Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN). Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần. II. Kiến trúc cơ bản +----------------------+ | Working Directory | &lt;-- Thư mục làm việc +----------------------+ | | git add v +----------------------+ | Staging Area | &lt;-- File được đánh dấu để commit (lưu ở .git/index) +----------------------+ | | git commit v +----------------------+ | Local Repository | &lt;-- Commit được lưu vào máy (trong .git/objects) +----------------------+ | | git push v +----------------------+ | Remote Repository | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v. +----------------------+ Working Directory: thư mục làm việc. Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit. Local Repository: nơi lưu trữ các commit đã thực hiện. Remote Repository: ví dụ như GitHub, GitLab, Bitbucket. III. Các câu lệnh Git 1. Lệnh git cơ bản |----------------------------------------------------------| | Lệnh | Chức năng | |----------------------------------------------------------| | git init | Tạo repo Git mới | | git clone &lt;url&gt; | Tải repo từ remote về | | git status | Xem trạng thái thay đổi | | git add &lt;file&gt; | Thêm file vào Staging Area | | git add . | Thêm tất cả file thay đổi | | git commit -m "message" | Tạo commit | | git log | Xem lịch sử commit | | git diff | So sánh thay đổi chưa commit | | git checkout &lt;branch&gt; | Chuyển nhánh | | git branch | Liệt kê danh sách nhánh | | git branch &lt;name&gt; | Tạo nhánh mới | | git merge &lt;branch&gt; | Gộp nhánh | | git pull | Lấy code mới nhất từ remote | | git push | Đẩy code lên remote | 2. Làm việc với Branch (nhánh) git checkout -b feature/login # Tạo và chuyển sang nhánh mới git checkout main # Quay về nhánh chính git merge feature/login # Gộp nhánh vào nhánh hiện tại 3. Revert, Reset, Amend |----------------------------------------------------------------------| | Lệnh | Ý nghĩa | |----------------------------------------------------------------------| | git reset | Quay lại commit trước đó (có thể mất code) | | git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi | | git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi | | git revert &lt;commit&gt; | Tạo commit mới để đảo ngược commit cũ | | git commit --amend | Sửa lại commit gần nhất | 4. Stash – Tạm thời lưu thay đổi git stash # Lưu tạm thay đổi git stash list # Xem danh sách stash git stash apply # Áp dụng lại thay đổi git stash drop # Xóa stash 5. Remote Repository (GitHub, GitLab) git remote -v # Kiểm tra remote git remote add origin &lt;url&gt; # Thêm remote repo git push -u origin main # Push lần đầu git pull origin main # Lấy code mới 6. Giải quyết Conflict (xung đột) - Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột: &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD # Code của bạn Code của người khác &gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name - Sửa file thủ công, sau đó: git add . git commit -m "resolve conflict" 7. Git Flow - Quy trình làm việc chuẩn a. main – nhánh sản phẩm chạy chính thức. b. develop – nhánh phát triển chung. c. feature/\* – nhánh tính năng. d. release/\* – nhánh chuẩn bị release. e. hotfix/\* – xử lý lỗi khẩn cấp. IV. Các câu hỏi phỏng vấn thường gặp 1. Git khác gì SVN? 2. Sự khác nhau giữa git reset, git revert, git checkout? 3. Khi nào dùng git merge vs git rebase? 4. Cách giải quyết conflict? 5. Quy trình deploy/CI với Git?]]></summary></entry><entry><title type="html">Ôn tập kiến thức về Cấu trúc dữ liệu</title><link href="http://0.0.0.0:4000/2025/07/17/data-structures-post.html" rel="alternate" type="text/html" title="Ôn tập kiến thức về Cấu trúc dữ liệu" /><published>2025-07-17T00:00:00-05:00</published><updated>2025-07-17T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/17/data-structures-post</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/17/data-structures-post.html"><![CDATA[<p><strong>I. Cấu trúc Dữ liệu là gì?</strong></p>
 
 <ul>
   <li>Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả.</li>
@@ -157,14 +751,62 @@ e. hotfix/\* – xử lý lỗi khẩn cấp.
 <p><strong>III. Phân tích từng cấu trúc</strong></p>
 
 <ol>
-  <li>Array (Mảng)</li>
-</ol>
+  <li>
+    <p>Array (Mảng)
+a. Khái niệm</p>
 
-<ul>
-  <li>Mảng là danh sách các phần tử có cùng kiểu, lưu trữ liên tục trong bộ nhớ, truy cập thông qua chỉ số (index).</li>
-</ul>
+    <ul>
+      <li>Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ.</li>
+      <li>Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0.</li>
+      <li>
+        <p>Ví dụ:</p>
 
-<ol>
+        <p>int[] arr = {10, 20, 30, 40, 50};
+System.out.println(arr[2]); // Kết quả: 30</p>
+      </li>
+    </ul>
+
+    <p>b. Đặc điểm</p>
+
+    <ul>
+      <li>Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1).</li>
+      <li>Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++).</li>
+      <li>Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu.</li>
+    </ul>
+
+    <p>c. Ưu điểm</p>
+
+    <ul>
+      <li>Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1).</li>
+      <li>Đơn giản: Dễ khai báo, dễ sử dụng.</li>
+      <li>Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt.</li>
+    </ul>
+
+    <p>d. Nhược điểm</p>
+
+    <ul>
+      <li>Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java).</li>
+      <li>Chi phí chèn/xoá cao:
+        <ul>
+          <li>Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n).</li>
+          <li>Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động).</li>
+        </ul>
+      </li>
+      <li>Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa.</li>
+    </ul>
+
+    <p>e. Các thao tác cơ bản và độ phức tạp</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|--------------------------------------------|
+| Thao tác                    | Độ phức tạp  |
+|--------------------------------------------|
+| Truy cập arr[i]             | O(1)         |
+| Cập nhật arr[i] = x         | O(1)         |
+| Tìm kiếm tuyến tính         | O(n)         |
+| Thêm/Xoá cuối (nếu còn chỗ) | O(1)         |
+| Thêm/Xoá giữa mảng          | O(n)         |
+</code></pre></div>    </div>
+  </li>
   <li>
     <p>Linked List</p>
   </li>
@@ -183,3406 +825,17 @@ e. hotfix/\* – xử lý lỗi khẩn cấp.
   <li>
     <p>Graph (Đồ thị)</p>
   </li>
-</ol>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Cấu trúc Dữ liệu là gì?]]></summary></entry><entry><title type="html">Tìm hiểu về Redis</title><link href="http://localhost:4000/2025/07/13/redis-post.html" rel="alternate" type="text/html" title="Tìm hiểu về Redis" /><published>2025-07-13T00:00:00+07:00</published><updated>2025-07-13T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/13/redis-post</id><content type="html" xml:base="http://localhost:4000/2025/07/13/redis-post.html"><![CDATA[<p><strong>I. Tổng quan về Redis</strong></p>
+</ol>
+
+<p><strong>III. Các câu hỏi thường gặp trong phỏng vấn</strong></p>
+
+<ol>
+  <li>So sánh Array vs Linked List</li>
+  <li>So sánh Array vs ArrayList (Java)</li>
+</ol>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Cấu trúc Dữ liệu là gì? Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả. Là nền tảng cho thuật toán hoạt động hiệu quả về thời gian (time) và bộ nhớ (space). II. Phân loại chính |-------------------------------------------|------------------------------------------| | Nhóm | Loại | Đặc điểm | |-------------------------------------------|------------------------------------------| | Tuyến tính (Linear) | Array (mảng) | Truy cập chỉ số, lưu trữ cố định | | | Linked List | Danh sách liên kết các node | | | Stack | LIFO – Last In First Out | | | Queue | FIFO – First In First Out | | Phi tuyến (Non-linear) | Tree | Cấu trúc phân cấp gồm node cha – con | | | Graph | Mô hình đỉnh và cạnh | | Cấu trúc khác | Hash Table | Bảng băm, ánh xạ key → value | III. Phân tích từng cấu trúc Array (Mảng) a. Khái niệm Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ. Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0. Ví dụ: int[] arr = {10, 20, 30, 40, 50}; System.out.println(arr[2]); // Kết quả: 30 b. Đặc điểm Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1). Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++). Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu. c. Ưu điểm Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1). Đơn giản: Dễ khai báo, dễ sử dụng. Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt. d. Nhược điểm Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java). Chi phí chèn/xoá cao: Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n). Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động). Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa. e. Các thao tác cơ bản và độ phức tạp |--------------------------------------------| | Thao tác | Độ phức tạp | |--------------------------------------------| | Truy cập arr[i] | O(1) | | Cập nhật arr[i] = x | O(1) | | Tìm kiếm tuyến tính | O(n) | | Thêm/Xoá cuối (nếu còn chỗ) | O(1) | | Thêm/Xoá giữa mảng | O(n) | Linked List Stack Queue Hash Table / HashMap Tree (Cây) Graph (Đồ thị) III. Các câu hỏi thường gặp trong phỏng vấn So sánh Array vs Linked List So sánh Array vs ArrayList (Java)]]></summary></entry><entry><title type="html">Tìm hiểu về Redis</title><link href="http://0.0.0.0:4000/2025/07/16/redis-post.html" rel="alternate" type="text/html" title="Tìm hiểu về Redis" /><published>2025-07-16T00:00:00-05:00</published><updated>2025-07-16T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/16/redis-post</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/16/redis-post.html"><![CDATA[<p><strong>I. Tổng quan về Redis</strong></p>
 
 <ul>
   <li>Redis là một cơ sở dữ liệu lưu trữ key-value trên RAM (in-memory), rất nhanh.</li>
   <li>Hỗ trợ các kiểu dữ liệu như: String, List, Set, Hash, Sorted Set,…</li>
   <li>Dùng cho: caching (bộ nhớ đệm), session, queue/pub-sub, ranking,…</li>
-</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Tổng quan về Redis]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Spring Framework</title><link href="http://localhost:4000/2025/07/03/spring-boot.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Framework" /><published>2025-07-03T00:00:00+07:00</published><updated>2025-07-03T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/03/spring-boot</id><content type="html" xml:base="http://localhost:4000/2025/07/03/spring-boot.html"><![CDATA[<p><strong>I. Tổng quan về Spring Framework</strong></p>
-
-<ol>
-  <li>
-    <p>Spring là gì? Tại sao lại dùng Spring?</p>
-
-    <ul>
-      <li>
-        <p>Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao.
-Đặc điểm nổi bật:</p>
-
-        <ul>
-          <li>Inversion of Control(IoC): tách biệt việc khởi tạo &amp; quản lý đối tượng ra khỏi logic nghiệp vụ.</li>
-          <li>Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain.</li>
-          <li>Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó.</li>
-          <li>Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,….</li>
-        </ul>
-      </li>
-      <li>
-        <p>Lý do sử dụng Spring:</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Lý do</th>
-              <th>Mô tả</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Tái sử dụng code &amp; test dễ hơn</td>
-              <td>Nhờ Dependency Injection và cấu trúc rõ ràng</td>
-            </tr>
-            <tr>
-              <td>Tách biệt concern rõ ràng</td>
-              <td>Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ</td>
-            </tr>
-            <tr>
-              <td>Tích hợp dễ dàng với các công nghệ khác</td>
-              <td>JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ…</td>
-            </tr>
-            <tr>
-              <td>Hỗ trợ mạnh mẽ cho Web/MVC/API</td>
-              <td>Spring MVC, RESTful API</td>
-            </tr>
-            <tr>
-              <td>Tăng tốc phát triển với Spring Boot</td>
-              <td>Giảm cấu hình, hỗ trợ tự động</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Các module chính: Spring Core, Spring Context, Spring AOP, Spring Data, Spring MVC, Spring Boot, Spring Security…</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|---------------------------------------------------------------------------------------|
-| Module               | Mô tả                                                          |
-|---------------------------------------------------------------------------------------|
-| Spring Core          | Cung cấp nền tảng IoC, DI – là phần lõi bắt buộc               |
-| Spring Context       | Mở rộng Spring Core, hỗ trợ ApplicationContext                 |
-| Spring AOP           | Hỗ trợ lập trình hướng khía cạnh, giúp tách biệt logic phụ trợ |
-| Spring Data          | Tầng dữ liệu: hỗ trợ JPA, JDBC, MongoDB, Redis…                |
-| Spring MVC           | Hỗ trợ Web app, RESTful API theo kiến trúc MVC                 |
-| Spring Boot          | Tự động cấu hình, nhanh chóng tạo project Spring               |
-| Spring Security      | Bảo mật (xác thực, phân quyền), JWT, OAuth2                    |
-| Spring Test          | Hỗ trợ viết unit test, integration test                        |
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Sự khác biệt giữa Spring Framework và Spring Boot</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|-------------------------------------------------------------------------------------------------------------------|
-| Tiêu chí      | Spring Framework                              | Spring Boot                                       |
-|-------------------------------------------------------------------------------------------------------------------|
-| Cấu hình      | Cần cấu hình thủ công (XML, Java Config)      | Tự động cấu hình dựa trên classpath và cấu trúc   |
-| Tạo project   | Mất thời gian tạo &amp; cấu hình                  | Dễ dàng tạo bằng Spring Initializr                |
-| Testing       | Cần setup nhiều                               | Hỗ trợ test tốt qua starter                       |
-| Phụ thuộc     | Phải tự khai báo từng dependency              | Cung cấp bộ starter chuẩn                         |
-| Web server    | Cần cấu hình servlet container                | Embedded Tomcat/Jetty sẵn                         |
-| Mục tiêu      | Dùng cho ứng dụng truyền thống, cấu hình tay  | Tăng tốc ứng dụng hiện đại, minimal config        |
-| Triển khai    | WAR, EAR                                      | WAR hoặc standalone JAR                           |
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p><strong>Kết luận:</strong> Spring Boot là phần mở rộng của Spring Framework giúp đơn giản hóa và tăng tốc phát triển ứng dụng Spring. Chúng ta vẫn đang dùng Spring (Core, MVC, Data…) nhưng được hỗ trợ thêm auto-configuration, starter, embedded server, devtools, v.v…</p>
-
-<p><strong>II. Spring Core</strong></p>
-
-<ol>
-  <li>
-    <p>IOC Container (Inversion of Control): Bean, BeanFactory, ApplicationContext</p>
-
-    <ul>
-      <li>Inversion of Control (IoC) là nguyên lý mà control tạo &amp; quản lý đối tượng được chuyển từ lập trình viên sang container (Spring quản lý).</li>
-    </ul>
-
-    <p><strong>Các thành phần chính:</strong></p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|----------------------------------------------------------------------------------------------------------------------------|
-| Thành phần         | Mô tả                                                                                                 |
-|----------------------------------------------------------------------------------------------------------------------------|
-| Bean               | Đối tượng được Spring quản lý trong container                                                         |
-| BeanFactory        | Interface cung cấp cơ chế IoC, quản lý các bean (ít dùng trực tiếp)                                   |
-| ApplicationContext | Mở rộng BeanFactory, hỗ trợ nhiều tính năng hơn (i18n, event, AOP, lifecycle hooks...) =&gt; thường dùng |
-</code></pre></div>    </div>
-
-    <p>Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-    MyService service = context.getBean(MyService.class);
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Dependency Injection (DI): Constructor injection, Setter injection, Field injection</p>
-
-    <ul>
-      <li>Spring inject dependencies (các bean khác) vào object khi khởi tạo – thay vì ta phải tự tạo thủ công bằng new.</li>
-      <li>
-        <p>Các cách inject:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            |-------------------------------------------------------------------------------------------------------------------|
-            | Cách                  | Mô tả                       | Ưu/nhược điểm                                               |
-            | ----------------------|-----------------------------| ------------------------------------------------------------|
-            | Constructor Injection | Inject qua constructor      | Immutable, test dễ, dùng khi cần dependency bắt buộc        |
-            | Setter Injection      | Inject qua setter method    | Linh hoạt, dễ thay đổi, dễ tạo object không đủ dependency   |
-            | Field Injection       | Inject trực tiếp vào field  | Không nên dùng nhiều, khó test, nhưng tiện                  |
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Ví dụ Constructor injection:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              @Component
-              public class OrderService {
-                private final CustomerRepo repo;
-
-                @Autowired
-                public OrderService(CustomerRepo repo) {
-                  this.repo = repo;
-                }
-              }
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Ví dụ Setter Injection:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              @Component
-              public class OrderService {
-
-                private CustomerRepository customerRepository;
-
-                @Autowired
-                public void setCustomerRepository(CustomerRepository customerRepository) {
-                  this.customerRepository = customerRepository;
-                }
-
-                public void processOrder() {
-                  customerRepository.save(); // sử dụng dependency
-                }
-              }
-
-              @Repository
-              public class CustomerRepository {
-
-                public void save() {
-                  System.out.println("Customer saved.");
-                }
-              }
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Ví dụ Field Injection:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              @Component
-              public class OrderService {
-
-                @Autowired
-                private CustomerRepository customerRepository;
-
-                public void processOrder() {
-                  customerRepository.save();
-                }
-              }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Bean Scope: Singleton, Prototype, Request, Session…</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              |-----------------------------------------------------------------------------------------|
-              | Scope               | Mô tả                                  | Áp dụng                  |
-              | --------------------|----------------------------------------|--------------------------|
-              | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất    | Stateless services       |
-              | prototype           | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope   |
-              | request             | Mỗi HTTP request sẽ có bean riêng      | Spring Web               |
-              | session             | Bean tồn tại trong session người dùng  | Spring Web               |
-              | application         | Tồn tại trong ServletContext           | Web application          |
-              | websocket           | Bean sống trong WebSocket session      | Realtime apps            |
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    @Component
-                    @Scope("prototype")
-                    public class SomeBean { }
-</code></pre></div></div>
-
-<ol>
-  <li>
-    <p>Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy</p>
-
-    <ul>
-      <li>Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ.</li>
-      <li>
-        <p>Quy trình vòng đời Bean cơ bản:</p>
-
-        <ol>
-          <li>Bean được tạo (bằng constructor)</li>
-          <li>Dependency được inject (DI)</li>
-          <li>Các hook được gọi: @PostConstruct hoặc init-method</li>
-          <li>Bean sẵn sàng được sử dụng</li>
-          <li>Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi</li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Annotation vs XML vs Java-based configuration</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                          |---------------------------------------------------------------------------------------------------|
-                          | Loại cấu hình    | Cách làm                                      | Dùng khi nào                   |
-                          | -----------------|-----------------------------------------------|--------------------------------|
-                          | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay         |
-                          |                  | @Configuration, @Bean, @Autowired...          |                                |
-                          | XML-based        | Cấu hình trong file applicationContext.xml,   | Cũ, dùng khi không thể dùng    |
-                          |                  | khai báo &lt;bean&gt;...                            | annotation                     |
-                          | Java-based       | Dùng class @Configuration và method @Bean     | Rõ ràng, mạnh mẽ, dễ kiểm soát |
-                          |                  |                                               |                                |
-</code></pre></div>    </div>
-
-    <p>a. Annotation-based Configuration</p>
-
-    <ul>
-      <li>Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                      @Component
-                      public class MyService {
-                        public void doSomething() { }
-                      }
-
-                      @Service
-                      public class OrderService {
-                        private final MyService myService;
-
-                        @Autowired
-                        public OrderService(MyService myService) {
-                          this.myService = myService;
-                        }
-                      }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>b. XML-based Configuration (Cũ)</p>
-
-    <ul>
-      <li>Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                &lt;beans&gt;
-                  &lt;bean id="myService" class="com.example.MyService" /&gt;
-                  &lt;bean id="orderService" class="com.example.OrderService"&gt;
-                    &lt;constructor-arg ref="myService" /&gt;
-                  &lt;/bean&gt;
-                &lt;/beans&gt;
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>c. Java-based Configuration (@Configuration + @Bean)</p>
-
-    <ul>
-      <li>Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                @Configuration
-                public class AppConfig {
-
-                  @Bean
-                  public MyService myService() {
-                    return new MyService();
-                  }
-
-                  @Bean
-                  public OrderService orderService() {
-                    return new OrderService(myService());
-                  }
-                }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>@Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier
-a. @Component</p>
-
-    <ul>
-      <li>Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container.</li>
-      <li>Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Component
-                  public class EmailSender {
-                    public void send(String message) { }
-                  }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>b. @Service</p>
-
-    <ul>
-      <li>Annotation dành riêng cho tầng service – logic nghiệp vụ.</li>
-      <li>Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng).</li>
-      <li>Về bản chất, giống @Component.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Service
-                  public class OrderService {
-                    public void processOrder() { }
-                  }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>c. @Repository</p>
-
-    <ul>
-      <li>Annotation cho DAO layer (Data Access Layer)</li>
-      <li>Giống @Component, nhưng có thêm xử lý ngoại lệ tự động:
-| Chuyển đổi JDBC exceptions thành Spring DataAccessException.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Repository
-                  public class UserRepository {
-                    public void save(User u) { }
-                  }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>d. @Controller</p>
-
-    <ul>
-      <li>Dùng cho Spring MVC Controller, xử lý request HTTP.</li>
-      <li>Trả về View (HTML) nếu không kết hợp với @ResponseBody</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Controller
-                  public class HomeController {
-                    @GetMapping("/")
-                    public String home() {
-                      return "index"; // trả về view name
-                    }
-                  }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>e. @Configuration</p>
-
-    <ul>
-      <li>Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean.</li>
-      <li>Tương đương với file applicationContext.xml trong cấu hình XML.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Configuration
-                  public class AppConfig {
-                    @Bean
-                    public EmailSender emailSender() {
-                      return new EmailSender();
-                    }
-                  }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>f. @Bean</p>
-
-    <ul>
-      <li>Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component).</li>
-      <li>Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Bean
-                  public DataSource dataSource() {
-                    return new HikariDataSource();
-                  }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>g. @Autowired</p>
-
-    <ul>
-      <li>Annotation dùng để inject dependency tự động theo kiểu (by type).</li>
-      <li>
-        <p>Có thể dùng cho:</p>
-
-        <ul>
-          <li>Constructor (khuyến khích)</li>
-          <li>Field</li>
-          <li>Setter</li>
-          <li>
-            <p>Ví dụ:</p>
-
-            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                @Service
-                public class NotificationService {
-                  private final EmailSender emailSender;
-
-                  @Autowired
-                  public NotificationService(EmailSender emailSender) {
-                    this.emailSender = emailSender;
-                  }
-                }
-</code></pre></div>            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-    <p>h. @Qualifier</p>
-
-    <ul>
-      <li>Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type.</li>
-      <li>Kết hợp với @Autowired.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                  @Autowired
-                  @Qualifier("smsSender")
-                  private MessageSender sender;
-                        
-
-                        
-                  @Component("smsSender")
-                  public class SmsSender implements MessageSender { }
-
-                  @Component("emailSender")
-                  public class EmailSender implements MessageSender { }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>Tổng quan mối quan hệ giữa các annotation</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                        @Component     ←  Gốc chung
-                          ├── @Service        →    Service Layer
-                          ├── @Repository     →    DAO Layer, bắt exception
-                          └── @Controller     →    Web Layer
-
-                        @Configuration → class khai báo Bean thủ công
-                        @Bean → method tạo Bean trong class @Configuration
-
-                        @Autowired → Inject dependency
-                        @Qualifier → Chọn đúng bean nếu có nhiều
-</code></pre></div></div>
-
-<p><strong>III. Spring AOP (Aspect-Oriented Programming)</strong></p>
-
-<ol>
-  <li>
-    <p>AOP là gì?</p>
-
-    <ul>
-      <li>AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng.</li>
-      <li>
-        <p>Mục tiêu:</p>
-
-        <ul>
-          <li>Làm code gọn hơn, dễ reuse</li>
-          <li>Tăng tính module hóa</li>
-          <li>Giảm trùng lặp code</li>
-          <li>
-            <p><strong>Ví dụ trước - sau dùng AOP</strong></p>
-
-            <ul>
-              <li>
-                <p>Chưa dùng AOP:</p>
-
-                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 public void createOrder() {
-                    log.info("Start");
-                    // business logic
-                    log.info("End");
-                 }
-</code></pre></div>                </div>
-              </li>
-              <li>
-                <p>Dùng AOP:</p>
-
-                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 public void createOrder() {
-                  // chỉ business logic
-                 }
-                           
-
-  Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn
-</code></pre></div>                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|--------------------------------------------------------------------------------------------------|
-| Khái niệm   | Mô tả                                                                              |
-|--------------------------------------------------------------------------------------------------|
-| Aspect      | Mô tả logic phụ tách ra (logging, security, transaction...)                        |
-| JoinPoint   | Điểm trong chương trình mà Aspect có thể can thiệp vào (VD: method được gọi)       |
-| Pointcut    | Điều kiện lọc để xác định JoinPoint nào được áp dụng (theo tên method, package...) |
-| Advice      | Hành động (code) thực sự được thực thi tại JoinPoint                               |
-| Weaving     | Quá trình kết hợp Aspect vào target object tại runtime/compile time                |
-| Proxy       | Spring tạo ra một đối tượng proxy bao quanh bean gốc để thực hiện AOP              |
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        |-----------------------------------------------------------------------------------|
-        | Loại Advice/Annotation | Khi nào được gọi                                         |
-        |-----------------------------------------------------------------------------------|
-        | @Before                | Trước khi method được gọi                                |
-        | @After                 | Sau khi method kết thúc (dù thành công hay exception)    |
-        | @AfterReturning        | Sau khi method trả về thành công                         |
-        | @AfterThrowing         | Khi method ném ra exception                              |
-        | @Around                | Bao quanh method (có thể chặn, sửa, thực thi trước/sau)  |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Ví dụ: Logging Aspect</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   @Aspect
-   @Component
-   public class LoggingAspect {
-
-    @Before("execution(* com.example.service.*.*(..))")
-    public void logBefore(JoinPoint joinPoint) {
-      System.out.println("Start method: " + joinPoint.getSignature().getName());
-    }
-
-    @AfterReturning(pointcut = "execution(* com.example.service.*.*(..))", returning = "result")
-    public void logAfter(Object result) {
-      System.out.println("Method returned: " + result);
-    }
-
-   }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Ứng dụng AOP để làm gì: Logging, Transaction, Authorization…</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |------------------------------------------------------------------|
-    | Ứng dụng            | Mô tả                                      |
-    |------------------------------------------------------------------|
-    | Logging             | Ghi log trước/ sau method                  |
-    | Transaction         | Quản lý giao dịch tự động (@Transactional) |
-    | Authorization       | Kiểm tra quyền trước khi thực hiện         |
-    | Performance Monitor | Đo thời gian chạy của hàm                  |
-    | Exception Handling  | Bắt và xử lý ngoại lệ toàn cục             |
-    | Audit               | Theo dõi hành động người dùng              |
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Spring AOP hoạt động như thế nào?</p>
-
-    <ul>
-      <li>Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại</li>
-      <li>Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng</li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>Tóm tắt</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Spring AOP cho phép tách logic phụ như logging, transaction ra khỏi logic chính nhờ khái niệm Aspect. Chúng ta thường dùng @Before, @After, @Around để log method, kiểm soát thời gian, hoặc validate quyền.
-- Các điểm chính trong AOP gồm:
-
-     + Aspect: logic phụ
-     + JoinPoint: điểm có thể can thiệp (thường là method)
-     + Pointcut: định nghĩa nơi aspect được áp dụng
-     + Advice: hành động khi aspect được thực thi
-     + Weaving: quá trình gắn aspect vào chương trình
-</code></pre></div></div>
-
-<p><strong>IV. Spring Data JPA / Spring JDBC</strong></p>
-
-<ol>
-  <li>
-    <p>ORM là gì?</p>
-
-    <ul>
-      <li>
-        <p>ORM (Object Relational Mapping) là kỹ thuật ánh xạ giữa object trong Java và bảng trong CSDL.</p>
-
-        <ul>
-          <li>Mỗi class Java ↔ một bảng trong DB</li>
-          <li>Mỗi field ↔ một cột</li>
-          <li>Mỗi instance ↔ một dòng dữ liệu</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p>Mục đích: giúp truy vấn DB bằng Java object, không cần viết SQL thủ công nhiều.</p>
-  </li>
-  <li>
-    <p>Spring Data JPA với JpaRepository, CrudRepository, PagingAndSortingRepository</p>
-
-    <p>a. Spring Data JPA là gì?</p>
-
-    <ul>
-      <li>Spring Data JPA là một abstraction trên JPA giúp tự động sinh code truy vấn CRUD.</li>
-      <li>Nó tích hợp với JPA Provider như Hibernate.</li>
-    </ul>
-
-    <p>b. Các interface chính trong Spring Data JPA</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |-------------------------------------------------------------------------------------------------------------|
-    | Interface                         | Chức năng                                                               |
-    |-------------------------------------------------------------------------------------------------------------|
-    | CrudRepository&lt;T, ID&gt;             | Cung cấp các hàm CRUD cơ bản (save, findById, delete...)                |
-    | PagingAndSortingRepository&lt;T, ID&gt; | Thêm hỗ trợ phân trang &amp; sắp xếp                                        |
-    | JpaRepository&lt;T, ID&gt;              | Kế thừa tất cả trên + nhiều tính năng mở rộng như batch, flush, khóa... |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
-     List&lt;User&gt; findByName(String name);
-   }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Viết custom query bằng JPQL, native SQL, hoặc @Query</p>
-
-    <p>a. Query Method:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    List&lt;User&gt; findByEmailAndStatus(String email, String status);
-</code></pre></div>    </div>
-
-    <p>b. JPQL - Java Persistence Query Language(@Query):</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    @Query("SELECT u FROM User u WHERE u.email = :email")
-    User findByEmail(@Param("email") String email);
-</code></pre></div>    </div>
-
-    <p>c. JPQL (@Query):</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    @Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery = true)
-    User findByEmailNative(String email);
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Transaction management với @Transactional</p>
-
-    <ul>
-      <li>Giúp đảm bảo thao tác DB là toàn vẹn (ACID).</li>
-      <li>Nếu có lỗi xảy ra, sẽ rollback toàn bộ.</li>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  @Transactional
-  public void transferMoney() {
-    withdraw();
-    deposit();
-  }
-</code></pre></div>        </div>
-      </li>
-      <li>Mặc định @Transactional chỉ áp dụng trên public method.</li>
-      <li>Có thể cấu hình rollback, propagation, isolation…</li>
-    </ul>
-  </li>
-  <li>
-    <p>Entity Lifecycle (Persist, Merge, Remove, Detach)</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |---------------------------------------------------------------------------|
-    | Trạng thái           | Mô tả                                              |
-    |---------------------------------------------------------------------------|
-    | New (Transient)      | Entity mới tạo, chưa được persist                  |
-    | Managed (Persistent) | Entity được quản lý bởi EntityManager              |
-    | Detached             | Entity đã từng persist nhưng giờ không còn quản lý |
-    | Removed              | Entity sẽ bị xoá khỏi DB                           |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Các method liên quan:
-        <ul>
-          <li>persist(entity) – thêm mới</li>
-          <li>merge(entity) – cập nhật</li>
-          <li>remove(entity) – xoá</li>
-          <li>detach(entity) – tách khỏi context</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Cách tạo các mối quan hệ: OneToOne, OneToMany, ManyToOne, ManyToMany</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            |-------------------------------------------------------------------------------|
-            | Annotation   | Mối quan hệ | Ghi chú                                          |
-            |-------------------------------------------------------------------------------|
-            | @OneToOne    |  1 - 1      | Một đối tượng liên kết với đúng 1 đối tượng khác |
-            | @OneToMany   |  1 - N      | Một đối tượng có nhiều đối tượng con             |
-            | @ManyToOne   |  N - 1      | N đối tượng con trỏ về cùng 1 đối tượng cha      |
-            | @ManyToMany  |  N - N      | N đối tượng liên kết với N đối tượng khác        |
-</code></pre></div>    </div>
-
-    <p>a. Ví dụ @OneToOne – Một-một (Một User có một Profile):</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            @Entity
-            public class User {
-              @Id @GeneratedValue
-              private Long id;
-              private String username;
-
-              @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-              private Profile profile;
-            }
-
-            @Entity
-            public class Profile {
-              @Id @GeneratedValue
-              private Long id;
-              private String bio;
-
-              @OneToOne
-              @JoinColumn(name = "user_id")
-              private User user;
-            }
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Giải thích:
-        <ul>
-          <li>@OneToOne(mappedBy = “user”): quan hệ được điều khiển bởi Profile</li>
-          <li>@JoinColumn(name = “user_id”): khoá ngoại</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p>b. Ví dụ @OneToMany - Một-Nhiều (Một Customer có nhiều Order) và @ManyToOne - Nhiều-Một (Nhiều Order có chung một Customer)</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            @Entity
-            public class Customer {
-              @Id @GeneratedValue
-              private Long id;
-              private String name;
-
-              @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-              private List&lt;Order&gt; orders = new ArrayList&lt;&gt;();
-            }
-
-            @Entity
-            public class Order {
-              @Id @GeneratedValue
-              private Long id;
-              private String orderCode;
-
-              @ManyToOne
-              @JoinColumn(name = "customer_id")
-              private Customer customer;
-            }
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Giải thích:
-        <ul>
-          <li>Order là bên sở hữu quan hệ, chứa @JoinColumn</li>
-          <li>Customer là bên không sở hữu, dùng mappedBy = “customer”</li>
-        </ul>
-      </li>
-      <li>
-        <p>Thêm đơn hàng:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         Customer c = new Customer();
-         Order o1 = new Order(); o1.setCustomer(c);
-         Order o2 = new Order(); o2.setCustomer(c);
-         c.setOrders(List.of(o1, o2));
-         customerRepository.save(c); // cascade ALL nên tự lưu luôn orders
-</code></pre></div>        </div>
-      </li>
-    </ul>
-
-    <p>c. Ví dụ @ManyToMany – Nhiều-nhiều (Student học nhiều Course, Course có nhiều Student)</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          @Entity
-          public class Student {
-            @Id @GeneratedValue
-            private Long id;
-            private String name;
-
-            @ManyToMany
-            @JoinTable(name = "student_course",
-              joinColumns = @JoinColumn(name = "student_id"),
-              inverseJoinColumns = @JoinColumn(name = "course_id"))
-            private Set&lt;Course&gt; courses = new HashSet&lt;&gt;();
-          }
-
-          @Entity
-          public class Course {
-            @Id @GeneratedValue
-            private Long id;
-            private String title;
-
-            @ManyToMany(mappedBy = "courses")
-            private Set&lt;Student&gt; students = new HashSet&lt;&gt;();
-          }
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Giải thích:</p>
-
-        <ul>
-          <li>@JoinTable tạo bảng trung gian student_course</li>
-          <li>mappedBy = “courses” để định nghĩa quan hệ 2 chiều</li>
-        </ul>
-      </li>
-      <li>
-        <p>Gán khóa học cho sinh viên:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        Student s = new Student();
-        Course c1 = new Course(); c1.setTitle("Java");
-        Course c2 = new Course(); c2.setTitle("Spring");
-
-        s.getCourses().addAll(List.of(c1, c2));
-        c1.getStudents().add(s);
-        c2.getStudents().add(s);
-        studentRepository.save(s); // sẽ lưu tất cả do cascade
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Lazy vs Eager Loading</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |----------------------------------------------------------------------------------------------------|
-    | Kiểu   | Mô tả                                  | Ưu/nhược                                         |
-    |----------------------------------------------------------------------------------------------------|
-    | LAZY   | Chỉ load khi cần (lazy initialization) | Tốt hơn về hiệu năng nếu không cần dữ liệu ngay  |
-    | EAGER  | Load luôn khi entity được lấy          | Gây N+1 query, giảm performance                  |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @OneToMany(fetch = FetchType.LAZY)
- private List&lt;Order&gt; orders;
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>V. Spring MVC (Web Layer)</strong></p>
-
-<ol>
-  <li>
-    <p>Kiến trúc MVC</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |------------------------------------------------------------------|
-    | Thành phần | Vai trò                                             |
-    |------------------------------------------------------------------|
-    | Model      | Chứa dữ liệu (DTO, Entity)                          |
-    | View       | Giao diện người dùng (Thymeleaf, JSP...)            |
-    | Controller | Xử lý logic điều hướng, nhận request – trả response |
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>@Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |----------------------------------------------------------------------------------------------------------------|
-    | Annotation      | Chức năng                                    | Dùng khi                                      |
-    |----------------------------------------------------------------------------------------------------------------|
-    | @Controller     | Đánh dấu 1 class là controller               | web truyền thống (trả về HTML)                |
-    | @RestController | = @Controller + @ResponseBody, trả JSON/XML  | REST API                                      |
-    | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class                              |
-    | @GetMapping     | GET request                                  | Dùng cho api trả về dữ liệu                   |
-    | @PostMapping    | POST request                                 | Dùng cho api tạo dữ liệu                      |
-    | @PutMapping     | PUT request                                  | Dùng cho api cập nhật toàn bộ một resource    |
-    | @PatchMapping   | PATCH request                                  | Dùng cho api cập nhật một phần của resource |
-    | @DeleteMapping  | DELETE request                               | dùng cho api xóa một resource                 |
-    | @PathVariable   | Lấy dữ liệu từ URL path                      | /users/{id}                                   |
-    | @RequestParam   | Lấy query param (?key=value)                 | ?keyword=abc                                  |
-    | @RequestBody    | Map JSON body vào Java object                | Dùng với POST, PUT                            |
-    | @ResponseBody   | Trả object dưới dạng JSON                    | Nếu không dùng @RestController                |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @RestController
- @RequestMapping("/users")
- public class UserController {
-
-  @GetMapping("/{id}")
-  public UserDto getUser(@PathVariable Long id) {
-    return userService.getUser(id);
-  }
-
-  @PostMapping
-  public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) {
-    userService.create(userDto);
-    return ResponseEntity.ok("Created");
-  }
- }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Binding dữ liệu: DTO, Form object</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- DTO: Data Transfer Object – trung gian giữa request và service
-- Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON)
-- Ví dụ:
-
-           
-       public class UserDto {
-       @NotBlank
-       private String name;
-
-       @Email
-       private String email;
-       }
-           
-
-   | Spring tự map JSON → object thông qua @RequestBody.
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Exception handling: @ControllerAdvice, @ExceptionHandler</p>
-
-    <p>a. Tạo custom handler toàn cục</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               @ControllerAdvice
-               public class GlobalExceptionHandler {
-
-                @ExceptionHandler(EntityNotFoundException.class)
-                public ResponseEntity&lt;String&gt; handleNotFound(EntityNotFoundException ex) {
-                  return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-                }
-
-                @ExceptionHandler(MethodArgumentNotValidException.class)
-                public ResponseEntity&lt;?&gt; handleValidation(MethodArgumentNotValidException ex) {
-                  Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
-                  ex.getBindingResult().getFieldErrors()
-                    .forEach(err -&gt; errors.put(err.getField(), err.getDefaultMessage()));
-                  return ResponseEntity.badRequest().body(errors);
-                }
-               }
-</code></pre></div>    </div>
-
-    <p>b. Custom exception:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               public class EntityNotFoundException extends RuntimeException {
-                public EntityNotFoundException(String message) {
-                super(message);
-                }
-               }
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Validations: @Valid, @Validated, Bean Validation API (JSR-303)</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    |--------------------------------------------------------------------------------------------------|
-    | Annotation                       | Ý nghĩa                                                       |
-    |--------------------------------------------------------------------------------------------------|
-    | @Valid                           | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) |
-    | @Validated                       | Giống @Valid nhưng hỗ trợ Group                               |
-    | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API                   |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             @PostMapping
-             public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) {
-              // Nếu sai -&gt; MethodArgumentNotValidException
-              userService.save(userDto);
-              return ResponseEntity.ok("Success");
-             }
-                   
-
-   | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid.
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>VI. Spring Boot</strong></p>
-
-<ol>
-  <li>
-    <p>Spring Boot là gì? Ưu điểm?</p>
-
-    <ul>
-      <li>Spring Boot là một framework giúp đơn giản hoá việc cấu hình và chạy ứng dụng Spring, bằng cách cung cấp:
-        <ul>
-          <li>cấu hình mặc định,</li>
-          <li>auto configuration,</li>
-          <li>embedded server (Tomcat/Jetty),</li>
-          <li>starter dependencies.</li>
-        </ul>
-      </li>
-      <li>Mục tiêu:
-        <ul>
-          <li>Giúp bạn có thể “Just Run” ứng dụng Spring mà không cần cấu hình rườm rà.</li>
-        </ul>
-      </li>
-      <li>
-        <p>Ưu điểm của Spring boot:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |--------------------------------------------------------------------------------------------------|
-   | Ưu điểm                               | Giải thích                                               |
-   |--------------------------------------------------------------------------------------------------|
-   | Tự động cấu hình (Auto Configuration) | Không cần cấu hình XML phức tạp                          |
-   | Tích hợp server nội bộ                | Không cần cài Tomcat ngoài, chỉ cần main() là chạy       |
-   | Starter dependencies                  | Gom nhóm dependency theo mục đích (web, jpa, security)   |
-   | Đơn giản hóa cấu trúc dự án           | Tự sinh project theo mẫu chuẩn                           |
-   | Hỗ trợ hot reload                     | Qua DevTools, không cần restart lại app                  |
-   | Quản lý môi trường (Profiles)         | Cấu hình theo môi trường: dev, test, prod                |
-   | Dễ triển khai (jar)                   | Gói app thành .jar có thể chạy bằng java -jar            |
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>application.properties vs application.yml</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-----------------------------------------------------------------------|
-     | Thuộc tính            | application.properties | application.yml      |
-     |-----------------------------------------------------------------------|
-     | Cú pháp               | key=value              | YAML định dạng khối  |
-     | Dễ đọc                | đơn giản               | cấu hình phức tạp    |
-     | Hỗ trợ cấu trúc lồng  | khó                    | tốt hơn              |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Ví dụ cấu hình bằng application.properties:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             server.port=8081
-             spring.datasource.url=jdbc:mysql://localhost:3306/demo
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Ví dụ cấu hình bằng application.properties:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            server:
-              port: 8081
-
-            spring:
-              datasource:
-                url: jdbc:mysql://localhost:3306/demo
-                  
-
-👉 YAML được dùng nhiều hơn trong microservice hoặc cấu hình nhiều profile.
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Cấu hình tự động (Auto Configuration)</p>
-
-    <ul>
-      <li>Khi bạn thêm starter (VD: spring-boot-starter-web), Spring Boot sẽ tự động cấu hình các bean cần thiết, như DispatcherServlet, Jackson, v.v.</li>
-      <li>
-        <p>Tắt auto config cho một số class:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Spring Boot Starter</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |------------------------------------------------------------------|
-     | Starter                          | Chức năng                     |
-     |------------------------------------------------------------------|
-     | spring-boot-starter-web          | REST API, Tomcat, Jackson     |
-     | spring-boot-starter-data-jpa     | JPA + Hibernate               |
-     | spring-boot-starter-security     | Spring Security               |
-     | spring-boot-starter-validation   | Bean Validation               |
-     | spring-boot-starter-test         | JUnit, Mockito, Spring Test   |
-
-   👉 Không cần tự tìm từng thư viện, chỉ cần 1 dòng thêm starter.
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Cấu trúc chuẩn một ứng dụng Spring Boot</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  src/
-    └── main/
-          ├── java/
-          │    └── com/example/demo/
-          │        ├── DemoApplication.java            # File main, entry point -&gt; hàm main() chạy ứng dụng
-          |
-          │        ├── config/                         # Cấu hình app (security, swagger, beans, CORS, Security...)
-          │        │   ├── WebSecurityConfig.java
-          │        │   └── SwaggerConfig.java
-          |
-          │        ├── controller/                     # Web/API layer - xử lý HTTP request
-          |
-          │        ├── service/                        # Business logic layer
-          |        |   ├── UserService.java
-          │        |   └── impl/                       # Implement của service (nếu có interface)
-          |        |        └── UserServiceImpl.java
-          |
-          │        ├── repository/                     # DAO layer - giao tiếp DB
-          |        |    └── UserRepository.java
-          |
-          │        └── model/                          # Chứa các class mô hình (Entity, DTO, Mapper)
-          |        |    ├── entity/                    # JPA Entity - ánh xạ bảng dữ liệu
-          |        |    |     └── User.java
-          |        |    ├── dto/                       # Data Transfer Object - nhận &amp; trả dữ liệu
-          │        │    │    └── UserDto.java
-          |        |    └── mapper/                    # Converter hoặc MapStruct mapper
-          │        │         └── UserMapper.java
-          |
-          │        ├── exception/                      # Custom exceptions &amp; global handler
-          │        │    ├── GlobalExceptionHandler.java
-          │        │    └── ResourceNotFoundException.java
-          |
-          |        ├── util/                           # Hàm tiện ích dùng chung
-          │        │    ├── DateUtil.java
-          │        │    ├── StringHelper.java
-          │        │    └── EnumUtils.java
-          |
-          |        ├── constant/                       # Các hằng số toàn cục
-          │        │    ├── AppConstants.java
-          │        │    └── MessageConstants.java
-          |
-          |        ├── enums/                          # Enum dùng toàn hệ thống
-          │        │    ├── UserStatus.java
-          │        │    └── CurrencyType.java
-          |
-          |        └── validator/                      # Custom annotation validator
-          │             ├── ValidPhoneNumber.java
-          │             ├── ValidPhoneNumberValidator.java
-          │             └── EnumValidator.java
-          |
-          └── resources/
-                ├── application.yml                    # Cấu hình chính
-                ├── application-dev.yml                # Cấu hình cho môi trường dev
-                ├── application-prod.yml               # Cấu hình cho môi trường production
-                └── static/                            # Assets tĩnh (nếu có)
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>DevTools, Actuator, Profiles</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |----------------------------------------------------------------------------------------------------|
-     | Tính năng   | Mô tả                                                                                |
-     |----------------------------------------------------------------------------------------------------|
-     | DevTools    | Tự động reload khi thay đổi code                                                     |
-     | Actuator    | Theo dõi health check, metrics, bean info (/actuator/health, /actuator/beans, v.v.)  |
-     | Profiles    | Cấu hình đa môi trường: application-dev.yml, application-prod.yml                    |
-</code></pre></div>    </div>
-
-    <ul>
-      <li>
-        <p>Kích hoạt profile:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # application.yml
-  spring:
-    profiles:
-      active: dev
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Embedded Tomcat, cấu hình port, hot reload</p>
-
-    <ul>
-      <li>Spring Boot dùng Tomcat nhúng (Embedded) theo mặc định.</li>
-      <li>Có thể đổi sang Jetty, Undertow nếu cần.</li>
-      <li>
-        <p>Đổi port:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      server:
-        port: 8081
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Hot reload với DevTools:
-Thêm vào pom.xml:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;dependency&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
-      &lt;optional&gt;true&lt;/optional&gt;
-    &lt;/dependency&gt;
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>VII. Spring Security</strong></p>
-
-<ol>
-  <li>Authentication vs Authorization</li>
-  <li>Filter Chain</li>
-  <li>Basic Auth, JWT, OAuth2</li>
-  <li>Cấu hình WebSecurityConfigurerAdapter (trước Spring Security 6)</li>
-  <li>@EnableWebSecurity, @PreAuthorize, @Secured</li>
-  <li>CSRF, CORS, Session Management</li>
-</ol>
-
-<p><strong>VIII. Spring Test</strong></p>
-
-<ol>
-  <li>Viết unit test với @SpringBootTest, @WebMvcTest, @DataJpaTest</li>
-  <li>MockBean, TestRestTemplate, MockMvc</li>
-  <li>Test controller, service, repository</li>
-</ol>
-
-<p><strong>IX. Các chủ đề nâng cao (phỏng vấn trung - cao cấp)</strong></p>
-
-<ol>
-  <li>Event trong Spring (ApplicationEventPublisher, @EventListener)</li>
-  <li>Spring Retry, Spring Batch, Spring WebFlux (Reactive Programming)</li>
-  <li>Tích hợp Spring với:</li>
-  <li>Redis, RabbitMQ, Kafka</li>
-  <li>Elasticsearch, MongoDB</li>
-  <li>Caching: @Cacheable, @CachePut, @CacheEvict</li>
-  <li>Custom annotation</li>
-  <li>Multi-module Spring Boot project</li>
-</ol>
-
-<p><strong>X. Các kiến thức liên quan khác (rất quan trọng)</strong></p>
-
-<ol>
-  <li>Kiến trúc RESTful API</li>
-  <li>Exception Handling toàn cục</li>
-  <li>DTO vs Entity</li>
-  <li>Swagger/OpenAPI</li>
-  <li>Build tool: Maven, Gradle</li>
-  <li>Docker hóa ứng dụng Spring Boot</li>
-  <li>Triển khai Spring Boot lên server/cloud</li>
-</ol>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Tổng quan về Spring Framework]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về ReactJS</title><link href="http://localhost:4000/2025/07/01/react-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về ReactJS" /><published>2025-07-01T00:00:00+07:00</published><updated>2025-07-01T00:00:00+07:00</updated><id>http://localhost:4000/2025/07/01/react-post</id><content type="html" xml:base="http://localhost:4000/2025/07/01/react-post.html"><![CDATA[<p><strong>I. Kiến thức cơ bản cần nắm vững trong ReactJS</strong></p>
-
-<p><strong>1. JSX (JavaScript XML)</strong></p>
-
-<p>JSX là một cú pháp mở rộng của JavaScript, cho phép chúng ta viết mã HTML bên trong JavaScript. JSX giúp chúng ta tạo ra React elements, từ đó render ra giao diện người dùng.</p>
-
-<p>Ví dụ đơn giản:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       const element = &lt;h1&gt;Hello, React!&lt;/h1&gt;;
-</code></pre></div></div>
-
-<p>JSX không bắt buộc trong React, nhưng nó được sử dụng rất phổ biến vì:</p>
-
-<ul>
-  <li>Gần giống HTML nên dễ đọc, dễ viết.</li>
-  <li>Có thể kết hợp logic JavaScript vào giao diện.</li>
-</ul>
-
-<p>a. Cách viết HTML trong JavaScript</p>
-
-<ul>
-  <li>JSX trông giống HTML nhưng thực chất là JavaScript.</li>
-  <li>
-    <p>Mỗi thẻ HTML được biên dịch thành React.createElement.
-Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     return &lt;div className="greeting"&gt;Welcome to React!&lt;/div&gt;;
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>Lưu ý khác biệt nhỏ với HTML:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-----------------------|
-     | HTML      | JSX       |
-     |-----------------------|
-     | class     | className |
-     | for       | htmlFor   |
-     | onclick   | onClick   |
-</code></pre></div></div>
-
-<p>b. Biểu thức trong JSX ({}) Dùng để nhúng logic</p>
-
-<ul>
-  <li>
-    <p>Chúng ta có thể chèn bất kỳ biểu thức JavaScript hợp lệ nào vào JSX bằng dấu {}.
-Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         const name = "Thanh";
-         return &lt;h1&gt;Hello, {name}!&lt;/h1&gt;; // =&gt; Hello, Thanh!
-</code></pre></div>    </div>
-
-    <p>Chúng ta có thể dùng {} để:</p>
-
-    <ul>
-      <li>Hiển thị giá trị</li>
-      <li>Gọi hàm</li>
-      <li>Tính toán trong dòng</li>
-    </ul>
-  </li>
-</ul>
-
-<p>c. Điều kiện trong JSX: &amp;&amp;, ? : (ternary)</p>
-
-<ul>
-  <li>
-    <p>&amp;&amp; – Điều kiện đơn giản<br />
-Hiển thị một phần tử nếu điều kiện đúng.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         {isLoggedIn &amp;&amp; &lt;p&gt;Welcome back!&lt;/p&gt;}
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>? : – Ternary operator<br />
-Hiển thị A nếu đúng, B nếu sai.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           {isLoggedIn ? &lt;p&gt;Hi user!&lt;/p&gt; : &lt;p&gt;Please login.&lt;/p&gt;}
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><strong>Lưu ý: Không dùng if trực tiếp bên trong JSX. Thay vào đó, đặt logic if bên ngoài JSX hoặc dùng biểu thức như trên.</strong></p>
-  </li>
-</ul>
-
-<p>d. Fragments (&lt;&gt;&lt;/&gt;) – Tránh thẻ cha dư thừa<br />
-React yêu cầu mỗi component phải trả về một element duy nhất. Nếu bạn muốn trả về nhiều thẻ mà không tạo thêm &lt;div&gt;, hãy dùng Fragment.</p>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             return (
-               &lt;&gt;
-                 &lt;h1&gt;Title&lt;/h1&gt;
-                 &lt;p&gt;Description&lt;/p&gt;
-               &lt;/&gt;
-             );
-</code></pre></div></div>
-
-<p>e. key khi dùng .map() – Tránh lỗi và tối ưu render<br />
-Khi render danh sách component bằng .map(), bạn phải thêm key duy nhất cho mỗi phần tử để React tối ưu hóa hiệu năng khi cập nhật UI.</p>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             const todos = ["Eat", "Sleep", "Code"];
-             return (
-               &lt;ul&gt;
-                 {todos.map((item, index) =&gt; (
-                   &lt;li key={index}&gt;{item}&lt;/li&gt;
-                 ))}
-               &lt;/ul&gt;
-             );
-</code></pre></div></div>
-
-<p><strong>Lưu ý:</strong> key nên là giá trị duy nhất và ổn định, tránh dùng index nếu danh sách có thể thay đổi thứ tự.</p>
-
-<p><strong>Bảng tổng kết phần 1</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |----------------------------------------------------------------------|
-     | Mục tiêu           | Nội dung                                        |
-     |----------------------------------------------------------------------|
-     | JSX là gì          | Cú pháp mở rộng giúp viết HTML trong JavaScript |
-     | Biểu thức          | Dùng {} để nhúng biến, gọi hàm, logic           |
-     | Điều kiện          | Dùng &amp;&amp;, ? : để render có điều kiện             |
-     | Fragments          | Dùng &lt;&gt;...&lt;/&gt; để tránh thẻ cha dư               |
-     | Key trong .map()   | Dùng để React biết phần tử nào thay đổi         |
-</code></pre></div></div>
-
-<p><strong>2. Component</strong></p>
-
-<ul>
-  <li>Component là đơn vị tái sử dụng giao diện nhỏ nhất trong React.</li>
-  <li>Một ứng dụng React là tập hợp các component lồng nhau.</li>
-  <li>Mỗi component giống như một “hàm JavaScript” nhưng trả về JSX thay vì giá trị.</li>
-</ul>
-
-<p>a. Function component vs Class component (hiện nay dùng function là chủ yếu)</p>
-
-<ul>
-  <li>
-    <p>Function Component (phổ biến hiện nay):<br />
-Là component viết bằng function, hỗ trợ đầy đủ tính năng thông qua Hooks (useState, useEffect,…).<br />
-Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           function Welcome(props) {
-             return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
-           }
-</code></pre></div>    </div>
-
-    <p>Hoặc với arrow function:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           const Welcome = ({ name }) =&gt; &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Class Component (cũ hơn, ít dùng dần):
-Component viết bằng class, phải kế thừa từ React.Component.<br />
- Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             class Welcome extends React.Component {
-               render() {
-                 return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
-               }
-             }
-</code></pre></div>    </div>
-
-    <p>So sánh:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------------------------|
-   | Tiêu chí             | Function Component         | Class Component                       |
-   |-------------------------------------------------------------------------------------------|
-   | Viết ngắn gọn        | ✅                         | ❌ dài dòng                          |
-   | Sử dụng Hooks        | ✅ useState, useEffect,... | ❌ không hỗ trợ Hooks                |
-   | Lifecycle            | ✅ Qua useEffect()         | ❌ Qua các hàm componentDidMount...  |
-   | Khuyến nghị hiện nay | ✅ Chủ yếu dùng            | ❌ Không khuyến khích mới            |
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p>b. Props và State</p>
-
-<ul>
-  <li>
-    <p>Props (Properties)</p>
-
-    <ul>
-      <li>Là dữ liệu truyền từ component cha xuống component con.</li>
-      <li>Là readonly – không được thay đổi trong component con.</li>
-      <li>
-        <p>Dùng để cấu hình/tuỳ biến component.
-Ví dụ:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           function Greeting(props) {
-             return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
-           }
-
-           // Sử dụng
-           &lt;Greeting name="Thanh" /&gt;
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>State</p>
-
-    <ul>
-      <li>Là dữ liệu nội bộ của component, có thể thay đổi trong vòng đời component.</li>
-      <li>
-        <p>Khi state thay đổi, component sẽ re-render lại.
-Dùng trong function component:</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          import { useState } from 'react';
-
-          function Counter() {
-            const [count, setCount] = useState(0);
-            return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Clicked {count}&lt;/button&gt;;
-          }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p>c. Lifecycle – Vòng đời Component</p>
-
-<ul>
-  <li>Lifecycle là các giai đoạn trong “vòng đời” của component: tạo, cập nhật, huỷ.</li>
-  <li>
-    <p><strong>Trong Function Component dùng useEffect() để thay thế lifecycle methods</strong></p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |---------------------------------------------------------------------------|
-   | Lifecycle (Class)           | Tương đương trong Function                  |
-   |---------------------------------------------------------------------------|
-   | componentDidMount()         | useEffect(() =&gt; { ... }, [])                |
-   | componentDidUpdate()        | useEffect(() =&gt; { ... })                    |
-   | componentWillUnmount()      | useEffect(() =&gt; { return () =&gt; {...} }, []) |
-</code></pre></div>    </div>
-
-    <p>Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                 useEffect(() =&gt; {
-                   console.log("Component mounted");
-
-                   return () =&gt; {
-                       console.log("Component unmounted");
-                   };
-                 }, []);
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p>d. Lifting State Up – Nâng state lên cha</p>
-
-<ul>
-  <li>
-    <p>Khi hai hoặc nhiều component con cần chia sẻ chung một state, ta di chuyển state đó lên component cha và truyền qua props.
-Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                // Cha
-                function Parent() {
-                  const [value, setValue] = useState("");
-
-                  return (
-                  &lt;&gt;
-                    &lt;Input value={value} onChange={setValue} /&gt;
-                    &lt;Display value={value} /&gt;
-                  &lt;/&gt;
-                  );
-                }
-
-                // Con 1
-                function Input({ value, onChange }) {
-                  return &lt;input value={value} onChange={e =&gt; onChange(e.target.value)} /&gt;;
-                }
-
-                // Con 2
-                function Display({ value }) {
-                return &lt;p&gt;Value: {value}&lt;/p&gt;;
-                }
-</code></pre></div>    </div>
-
-    <p>Lý do:</p>
-
-    <ul>
-      <li>Tránh trùng lặp state ở nhiều nơi.</li>
-      <li>Giúp data flow một chiều, dễ debug, dễ kiểm soát.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>Bảng tổng kết phần 2</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |----------------------------------------------------------------------|
-     | Kiến thức          | Nội dung chính                                  |
-     |----------------------------------------------------------------------|
-     | Component          | Đơn vị giao diện trong React                    |
-     | Function vs Class  | Nên dùng function + hooks                       |
-     | Props              | Dữ liệu truyền từ cha → con (readonly)          |
-     | State              | Dữ liệu nội bộ có thể thay đổi                  |
-     | Lifecycle          | Quản lý bằng useEffect() trong function         |
-     | Lifting State Up   | Khi cần chia sẻ state giữa các component con    |
-</code></pre></div></div>
-
-<p><strong>3. Hooks (Rất quan trọng)</strong></p>
-<ul>
-  <li>Hooks là các hàm đặc biệt trong React cho phép chúng ta sử  dụng state, lifecycle, context,… trong function component mà trước đây chỉ có class component mới có thể làm được.</li>
-  <li>React Hooks ra đời từ phiên bản 16.8 và trở thành tiêu chuẩn phát triển hiện đại.</li>
-</ul>
-
-<p>a. useState - Quản lý state cục bộ</p>
-<ul>
-  <li>
-    <p>Dùng để  tạo và cập nhật state bên trong function component.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               import { useState } from 'react';
-
-               function Counter() {
-                const [count, setCount] = useState(0);
-                return &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Clicked {count}&lt;/button&gt;;
-               }
-</code></pre></div>    </div>
-  </li>
-  <li>useState(0) -&gt; 0 là giá trị khởi tạo</li>
-  <li>Trả về một mảng [giá_trị, hàm_cập_nhật]</li>
-</ul>
-
-<p>b.  useEffect - Lifecycle Hook</p>
-<ul>
-  <li>
-    <p>Dùng để  xử  lý side effect như: gọi API, subcribe, thao tác DOM,…sau khi component render.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              import { useEffect } from 'react';
-
-              useEffect(() =&gt; {
-                console.log('Component mounted');
-
-                return () =&gt; {
-                  console.log('Component unmounted');
-                };
-              }, []);
-</code></pre></div>    </div>
-
-    <ul>
-      <li>[] : Chạy một lần duy nhất(như componentDidMount)</li>
-      <li>[dependency] : Chạy lại khi dependency thay đổi</li>
-      <li>Không có [] : Chạy lại mỗi lần render</li>
-    </ul>
-
-    <p>Dùng để :</p>
-    <ul>
-      <li>Gọi API</li>
-      <li>Lắng nghe sự kiện</li>
-      <li>Cleanup (xoá listener, clearInverval,…)</li>
-    </ul>
-  </li>
-</ul>
-
-<p>c. useRef – Tham chiếu tới DOM hoặc lưu giá trị không làm re-render</p>
-<ul>
-  <li>
-    <p>Dùng để giữ giá trị không thay đổi khi re-render hoặc thao tác với DOM.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const inputRef = useRef();
-
-              const handleFocus = () =&gt; {
-                inputRef.current.focus(); // Truy cập DOM node
-              };
-
-              return &lt;input ref={inputRef} /&gt;;
-</code></pre></div>    </div>
-
-    <p>Ngoài thao tác DOM, useRef còn dùng để:<br />
-    - Lưu giá trị trước đó<br />
-    - Lưu biến cục bộ không gây re-render</p>
-  </li>
-</ul>
-
-<p>d. useMemo – Ghi nhớ giá trị tính toán</p>
-<ul>
-  <li>
-    <p>Tránh tính toán lại các giá trị tốn hiệu năng, khi dependency không thay đổi.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const total = useMemo(() =&gt; {
-                return calculateTotal(items); // Hàm tính toán nặng
-              }, [items]);
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Chỉ re-calculate khi items thay đổi</li>
-      <li>Dùng để tối ưu performance (tránh re-compute không cần thiết)</li>
-    </ul>
-  </li>
-</ul>
-
-<p>e. useCallback – Ghi nhớ hàm</p>
-<ul>
-  <li>
-    <p>Tránh tạo hàm mới mỗi lần re-render, dùng nhiều trong truyền props xuống component con.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const handleClick = useCallback(() =&gt; {
-                console.log('clicked');
-              }, []);
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Giúp tránh re-render không cần thiết ở component con được bọc React.memo</li>
-    </ul>
-  </li>
-</ul>
-
-<p>f. useContext – Truyền dữ liệu toàn cục</p>
-<ul>
-  <li>
-    <p>Dùng để truy cập giá trị từ Context API, tránh “drilling” props nhiều cấp.</p>
-
-    <p>Tạo Context:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const ThemeContext = React.createContext('light');
-</code></pre></div>    </div>
-
-    <p>Dùng:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const theme = useContext(ThemeContext);
-</code></pre></div>    </div>
-
-    <p>Phù hợp với:</p>
-
-    <ul>
-      <li>Theme, ngôn ngữ (i18n)</li>
-      <li>Thông tin user, quyền hạn</li>
-      <li>Dữ liệu cấu hình toàn app</li>
-    </ul>
-  </li>
-</ul>
-
-<p>g. useReducer – Quản lý state phức tạp</p>
-<ul>
-  <li>
-    <p>Dùng thay thế useState khi state có nhiều trạng thái hoặc logic phức tạp.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              const reducer = (state, action) =&gt; {
-                switch(action.type) {
-                  case 'increment': return { count: state.count + 1 };
-                  case 'decrement': return { count: state.count - 1 };
-                  default: return state;
-                }
-              };
-
-              const [state, dispatch] = useReducer(reducer, { count: 0 });
-</code></pre></div>    </div>
-
-    <p>-Tương tự Redux: có state, dispatch, action
--Hữu ích cho form lớn, table phức tạp, flow điều hướng</p>
-  </li>
-</ul>
-
-<p>h. Custom Hook – Tạo hook riêng</p>
-<ul>
-  <li>Khi bạn có logic dùng lại nhiều lần, hãy đóng gói nó thành Custom Hook.</li>
-  <li>
-    <p>Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              function useWindowWidth() {
-                const [width, setWidth] = useState(window.innerWidth);
-
-                useEffect(() =&gt; {
-                  const handleResize = () =&gt; setWidth(window.innerWidth);
-                  window.addEventListener('resize', handleResize);
-                  return () =&gt; window.removeEventListener('resize', handleResize);
-                }, []);
-
-              return width;
-              }
-
-              // Sử dụng
-              const width = useWindowWidth();
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Tên custom hook phải bắt đầu bằng use, có thể dùng các hook khác bên trong.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>Bảng tổng kết Phần 3</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------|
-     | Hook         | Công dụng chính                                    |
-     |-------------------------------------------------------------------|
-     | useState     | Khai báo state trong function component            |
-     | useEffect    | Lifecycle: mount, update, unmount                  |
-     | useRef       | Tham chiếu DOM hoặc lưu biến cục bộ                |
-     | useMemo      | Ghi nhớ giá trị tính toán lại                      |
-     | useCallback  | Ghi nhớ hàm, tránh re-render con                   |
-     | useContext   | Truy cập context toàn cục                          |
-     | useReducer   | Quản lý state phức tạp (tương tự Redux)            |
-     | Custom Hook  | Tái sử dụng logic, đóng gói logic có trạng thái    |
-</code></pre></div></div>
-
-<p><strong>4. Event Handling</strong></p>
-
-<ul>
-  <li>Bắt sự kiện: onClick, onChange, onSubmit, …</li>
-  <li>Ngăn chặn mặc định (event.preventDefault())</li>
-</ul>
-
-<p><strong>5. Conditional Rendering</strong></p>
-
-<ul>
-  <li>if, &amp;&amp;, ternary, logical operators</li>
-</ul>
-
-<p><strong>6. List Rendering</strong></p>
-
-<ul>
-  <li>Dùng .map() để render list</li>
-  <li>Sử dụng key đúng cách để tránh lỗi</li>
-</ul>
-
-<p><strong>7. Forms</strong></p>
-
-<ul>
-  <li>Controlled vs uncontrolled components</li>
-  <li>Form validation cơ bản</li>
-  <li>Thư viện hỗ trợ: react-hook-form, formik, yup</li>
-</ul>
-
-<p><strong>II. Kiến thức nâng cao</strong></p>
-
-<p><strong>1. Routing – Điều hướng</strong></p>
-
-<ul>
-  <li>Thư viện react-router-dom</li>
-  <li>Routes, Route, useNavigate, useParams</li>
-</ul>
-
-<p><strong>2. State Management (Quản lý trạng thái)</strong></p>
-
-<ul>
-  <li>Context API</li>
-  <li>Redux Toolkit hoặc Zustand, Recoil</li>
-  <li>Global state vs local state</li>
-</ul>
-
-<p><strong>3. Call API</strong></p>
-
-<ul>
-  <li>fetch, axios</li>
-  <li>Dùng useEffect để gọi API</li>
-  <li>Async/Await</li>
-  <li>Error handling</li>
-</ul>
-
-<p><strong>4. Component Communication</strong></p>
-
-<ul>
-  <li>Cha → Con: props</li>
-  <li>Con → Cha: callback props</li>
-  <li>Con → Con: thông qua cha hoặc Context/Redux</li>
-</ul>
-
-<p><strong>5. Performance Optimization</strong></p>
-
-<ul>
-  <li>React.memo, useMemo, useCallback</li>
-  <li>Lazy loading (React.lazy, Suspense)</li>
-  <li>Split code, Virtualization (ví dụ: react-window)</li>
-</ul>
-
-<p><strong>6. Testing</strong></p>
-
-<ul>
-  <li>Unit test: Jest, React Testing Library</li>
-  <li>E2E test: Cypress, Playwright</li>
-</ul>
-
-<p><strong>III. Các phần cần chú trọng để phát triển một dự án React</strong></p>
-
-<p><strong>1. Cấu trúc thư mục rõ ràng</strong></p>
-
-<ul>
-  <li>components/, pages/, hooks/, services/, constants/, utils/, store/, …</li>
-  <li>Dễ maintain, scale</li>
-</ul>
-
-<p><strong>2. Quản lý state</strong></p>
-
-<ul>
-  <li>Dùng Context cho state nhỏ, Redux Toolkit cho state lớn</li>
-  <li>Phân biệt rõ local và global state</li>
-</ul>
-
-<p><strong>3. Giao tiếp với Backend</strong></p>
-
-<ul>
-  <li>Tạo service layer dùng axios hoặc fetch</li>
-  <li>Gắn token, handle lỗi, retry,…</li>
-</ul>
-
-<p><strong>4. Giao diện và UI/UX</strong></p>
-
-<ul>
-  <li>Dùng thư viện: Ant Design, Material UI, TailwindCSS</li>
-  <li>Responsive, mobile-friendly</li>
-  <li>Loading state, error state</li>
-</ul>
-
-<p><strong>5. Testing</strong></p>
-
-<ul>
-  <li>Test logic, component, flow chính</li>
-</ul>
-
-<p><strong>6. Dev Tools và Linter</strong></p>
-
-<ul>
-  <li>ESLint, Prettier</li>
-  <li>Husky, lint-staged</li>
-  <li>Git hook để kiểm tra code trước khi commit</li>
-</ul>
-
-<p><strong>7. Internationalization (i18n) nếu đa ngôn ngữ</strong></p>
-
-<ul>
-  <li>react-i18next hoặc tương đương</li>
-</ul>
-
-<p><strong>8. Bảo mật</strong></p>
-
-<ul>
-  <li>Không lộ API key</li>
-  <li>Xử lý token an toàn</li>
-  <li>Validate form đầu vào</li>
-</ul>
-
-<p><strong>9. Tối ưu hiệu năng</strong></p>
-
-<ul>
-  <li>Chia nhỏ component</li>
-  <li>Giảm re-render</li>
-  <li>Lazy load page/component không cần thiết ngay</li>
-</ul>
-
-<p><strong>10. Triển khai (Deployment)</strong></p>
-
-<ul>
-  <li>Build với vite hoặc webpack</li>
-  <li>Deploy lên Netlify, Vercel, Firebase, Cloud (AWS, GCP, Azure)</li>
-</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Kiến thức cơ bản cần nắm vững trong ReactJS]]></summary></entry><entry><title type="html">Tổng hợp kiến thức Java Core</title><link href="http://localhost:4000/2025/06/29/java-core-post.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức Java Core" /><published>2025-06-29T00:00:00+07:00</published><updated>2025-06-29T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/29/java-core-post</id><content type="html" xml:base="http://localhost:4000/2025/06/29/java-core-post.html"><![CDATA[<p>Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …</p>
-
-<p><strong>I. Giới thiệu về Java</strong><br />
-<strong>1. Lịch sử và phiên bản Java</strong></p>
-
-<ul>
-  <li>Lịch sử ra đời: Java được phát triển năm 1991 bởi James Gosling và nhóm Green Team tại Sun Microsystems. Phát hành chính thức lần đầu vào năm 1995, và năm 1996 thì phiên bản Java 1.0 (Phiên bản đầu tiên) chính thức phát hành. Năm 2010, Oracle Corporation chính thức mua lại Sun Microsystems, bao gồm toàn bộ công nghệ và tài sản trí tuệ liên quan đến Java. Từ đó, Oracle trở thành đơn vị quản lý và phát triển Java Standard Edition (SE), Java Enterprise Edition (EE) và công cụ phát triền Java như JDK, JRE.</li>
-  <li>Mục tiêu ban đầu: Viết một lần, chạy mọi nơi (Write Once, Run Anywhere -WORA). Java nổi bật với sự an toàn, đơn giản, hướng đối tượng, hỗ trợ đa nền tảng (cross-flatform)</li>
-</ul>
-
-<p><strong>2. JVM (Java Virtual Machine), JDK (Java Development Kit), JRE (Java Runtime Environment) là gì ?</strong></p>
-
-<ul>
-  <li>JVM - Java Virtual Machine: Là một máy ảo, chịu trách nhiệm chạy mã byteCode (.class). JVM dịch mã bytecode thành mã máy phù hợp với hệ điều hành cụ thể (Windows/Linux…) chạy cùng với Garbage Collector và quản lý bộ nhớ.</li>
-  <li>JRE - Java Runtime Environment: Là môi trường chạy Java. Nó bao gồm JVM + các thư viện chuẩn(Java Class Libraries). Đề chạy ứng dụng Java, chỉ cần cài JRE.</li>
-  <li>JDK - Java Development Kit: Là bộ công cụ phát triển Java. Nó bao gồm JRE + các công cụ để viết và biên dịch code Java(javac,java,javadoc,jarsigner,…). Đề lập trình Java cần cài JDK.</li>
-  <li>
-    <p>Mình sẽ tóm tắt gọn bằng bảng dưới đây:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------|
-   | Tìm hiểu     | Thành phần         | Dùng để                             |
-   |------------- |--------------------|-------------------------------------|
-   | JVM          | Máy ảo Java        | Thực thi bytecode                   |
-   | JRE          | JVM + thư viện     | Chạy chương trình Java              |
-   | JDK          | JRE + công cụ dev  | Viết, biên dịch, chạy chương trình  |
-   |-------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>3. Cách Java hoạt động (Compile -&gt; Run)</strong><br />
- <em>3.1. Quy trình chạy một chương trình Java</em><br />
-a. Viết mã Java bằng notepad và lưu file với đuôi .java (ví dụ Hello.java)<br />
- b. Biên dịch(compile): Dùng terminal sử dụng lệnh: javac Hello.java -&gt; để dịch file java thành file bytecode Hello.class<br />
- c. Chạy chương trình: sử dụng lệnh java Hello (JVM sẽ chạy file Hello.class)<br />
-<em>3.2. Tóm tắt luồng chính:</em> Code Java(.java) —–[javac -compiler]–&gt; Bytecode(.class) —–[java - JVM]-&gt; Chạy chương trình trên OS cụ thể<br />
-<em>3.3. Tính năng nổi bật của Java runtime:</em></p>
-
-<ul>
-  <li>Portable: bytecode chạy trên mọi hệ điều hành.</li>
-  <li>Secure: sandbox, kiểm soát bộ nhớ chặt chẽ</li>
-  <li>Automatic Memory Management: thông qua Garbage Collector</li>
-</ul>
-
-<p><strong>II. Biến, Kiểu dữ liệu, Toán tử (Variables, Data Types, Operators)</strong><br />
-<strong>1. Kiểu dữ liệu nguyên thủy (Primitive Data Types)</strong></p>
-
-<ul>
-  <li>
-    <p>Java có <strong>8 kiểu dữ liệu nguyên thủy</strong>, dùng để lưu trữ các giá trị đơn giản và hiệu quả về bộ nhớ (lưu ở Stack memory)</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |----------------------------------------------------------------------------------------------------------------------|
-   |           Kiểu         | Kích Thước |        Miêu tả                |                Giá trị mặc định                |
-   |------------------------|------------|-------------------------------|------------------------------------------------|
-   |            | byte      | 1 byte     | Số nguyên nhỏ (-128 đến 127)  |                  0                             |
-   |Số Nguyên   | short     | 2 byte     | Số nguyên ngắn                |                  0                             |
-   |            | int       | 4 byte     | Số nguyên thường dùng nhất    |                  0                             |
-   |            | long      | 8 byte     | Số nguyên lớn                 |                  0L                            |
-   |----------------------------------------------------------------------------------------------------------------------|
-   |Số Thực/    | float     | 4 byte     | Số thực chính xác đơn         |                  0.0f                          |
-   |Số thập phân| double    | 8 byte     | Số thực chính xác kép         |                  0.0d                          |
-   |----------------------------------------------------------------------------------------------------------------------|
-   |Kí tự       | char      | 2 byte     | Ký tự unicode                 | '\u0000' đại diện cho ký tự có mã Unicode là 0,|
-   |            |           |            |                               | hay còn gọi là null character(ký tự null)      |
-   |----------------------------------------------------------------------------------------------------------------------|
-   | boolean                | 1 bit      | Chỉ nhận 2 giá trị True/False |                  false                         |
-   |----------------------------------------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>2. Kiểu dữ liệu tham chiểu (Referecen Date Types)</strong></p>
-
-<ul>
-  <li>Là kiểu dữ liệu không lưu trữ giá trị trực tiếp, mà trỏ tới vùng nhớ nơi chứa đối tượng (lưu ở Heap memory)</li>
-  <li>Ví dụ kiểu dữ liệu tham chiếu bao gồm: String, Array, Class, Interface, Enum, Object, List…</li>
-</ul>
-
-<p><strong>So sánh 2 kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu.</strong></p>
-
-<ul>
-  <li>Kiểu dữ liệu nguyên thủy ít tốn bộ nhớ hơn, tốc độ xử lý dữ liệu nhanh hơn. Vì kiểu giữ liệu nguyên thủy lưu trữ giá trị trực tiếp. Còn dữ liệu tham chiếu lưu trử trong Heap Memory, mỗi lấy lấy giá trị nó phải lấy địa chỉ lưu trong Stack Memory rồi từ địa chỉ đó trỏ tới giá trị nằm trong Heap Memory.</li>
-  <li>Kiểu dữ liệu nguyên thủy không chấp giá trị null. Kiểu dữ liệu tham chiếu chấp giá trị null.</li>
-  <li>Để so sánh giá trị nguyên thủy dùng toán tử == . Trong khi kiểu dữ liệu tham chiếu không thể dùng toán tử == vì lúc đó nó sẽ so sánh địa chỉ của chúng, kiểu dữ liệu tham chiếu được hỗ trợ bởi các phương thức có sẵn vì vậy để so sánh giá trị chúng ta dùng phương thức .equals() để so sánh giá trị.</li>
-</ul>
-
-<p><strong>3. Biến (Variables) - Local, Instance, Static</strong></p>
-
-<ul>
-  <li>Java có 3 loại biến chính:</li>
-</ul>
-
-<p>a. Local Variable (biến cục bộ)</p>
-
-<ul>
-  <li>Khai báo trong phương thức hoặc khối mã</li>
-  <li>
-    <p>Không có giá trị mặc định -&gt; bắt buộc gán giá trị trước khi dùng</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   void show() {
-       int x = 10; // local
-       System.out.println(x);
-    }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p>b. Instance variable (biến đối tượng)</p>
-
-<ul>
-  <li>Khai báo trong class nhưng ngoài phương thức</li>
-  <li>
-    <p>Mỗi đối tượng có một bản sao riêng</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Student {
-       String name; // instance
-    }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p>c. Static variable (biến tĩnh)</p>
-
-<ul>
-  <li>Biến tĩnh là biến được khaai báo với từ khóa static trong một class</li>
-  <li>Nó thuộc về lớp(class) chứ không thuộc về bất kỳ đối tượng nào</li>
-  <li>
-    <p>Tất cả các đối tượng của class đó <strong>dùng chung một biến tĩnh.</strong></p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   public class Student {
-     static String school = "ABC School" // static
-   }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>Biến tĩnh được dùng như nào ?</strong></p>
-
-<ul>
-  <li>Dùng để đếm số lượng đối tượng được tạo, ví dụ: Dùng static int counter để đếm</li>
-  <li>Chia sẻ cấu hình chung, ví dụ: tên công ty, tỷ lệ thuế…</li>
-  <li>
-    <p>Hằng số toàn cục(kết hợp với final), ví dụ public static final double PI = 3.14.</p>
-  </li>
-  <li>Ngoài ra còn có loại biến như: Final variable (Biến hằng số), Transient variable(Biến tạm thời), Volatile variable.</li>
-</ul>
-
-<p><strong>4. Toán tử (Operators)</strong></p>
-
-<ul>
-  <li>Java hỗ trợ nhiều loại toán tử cho các phép tính toán và logic:</li>
-</ul>
-
-<p><strong>a. Toán tử số học(Arithmetic Operators)</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------------------|
-     | Toán tử |      Chức năng                | Ví dụ              |
-     |--------------------------------------------------------------|
-     |    +    |     Cộng                      | a + b              |
-     |    -    |     Trừ                       | a - b              |
-     |    *    |     Nhân                      | a * b              |
-     |    /    |     Chia                      | a / b              |
-     |    %    |     Chia lấy phần dư          | a % b              |
-     |    ++   |     Tăng 1 (prefix/postfix)   | ++a hoặc a++       |
-     |    --   |     Giảm 1 (prefix/postfix)   | --a hoặc a--       |
-     |--------------------------------------------------------------|
-</code></pre></div></div>
-
-<p><strong>b. Toán tử So sánh (Relational Operators)</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------|
-     |  Toán tử  |           Ý nghĩa                    |
-     |--------------------------------------------------|
-     |   ==      | Bằng                                 |
-     |   !=      | Không bằng                           |
-     |   &gt;       | Lớn hơn                              |
-     |   &lt;       | Nhỏ hơn                              |
-     |   &gt;=      | Lớn hơn hoặc bằng                    |
-     |   &lt;=      | Nhỏ hơn hoặc bằng                    |
-     |--------------------------------------------------|
-     - Trả về giá trị **boolean (true/false)
-</code></pre></div></div>
-
-<p><strong>c. Toán tử Gán (Assignment Operators)</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------|
-     | Toán tử  | Ví dụ     | Ý nghĩa                   |
-     |--------------------------------------------------|
-     | =        | a = b    | Gán giá trị của b cho a    |
-     | +=       | a += 1   | a = a + 1                  |
-     | -=       | a -= 2   | a = a - 2                  |
-     | *=       | a *= 3   | a = a * 3                  |
-     | /=       | a /= 4   | a = a / 4                  |
-     | %=       | a %= 5    | a = a % 5                 |
-     |--------------------------------------------------|
-</code></pre></div></div>
-
-<p><strong>d. Toán tử Logic (Logical Operators)</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |---------------------------------------------------------------------------------------------------------------|
-     | Toán tử | Tên gọi       | Ý nghĩa                                            | Ví dụ         | Kết quả ví dụ  |
-     |---------------------------------------------------------------------------------------------------------------|
-     |    &amp;&amp;   | Logical AND   | Đúng nếu cả hai biểu thức trước đều đúng           | true &amp;&amp; false | false          |
-     |    ||   | Logical OR    | Đúng nếu ít nhất một biểu thức đúng                | true || false | true           |
-     |    !    | Logical NOT   | Phủ định giá trị boolean(trả về giá trị ngược lại) | !true         | false          |
-     |---------------------------------------------------------------------------------------------------------------|
-</code></pre></div></div>
-
-<p><strong>e. Toán tử Bit (Bitwise Operators)</strong></p>
-
-<ul>
-  <li>
-    <p>Bitwise Operators - Thao tác trên bit:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |--------------------------|
-   | Toán tử | Tác dụng       |
-   | -------------------------|
-   | &amp;       | AND            |
-   | |       | OR             |
-   | ^       | XOR            |
-   | ~       | NOT            |
-   | &lt;&lt;      | Dịch trái      |
-   | &gt;&gt;      | Dịch phải      |
-   |--------------------------|
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>f. Ternary Operator (Toán tử điều kiện 3 ngôi):</strong></p>
-
-<ul>
-  <li>Cú pháp:
-&lt;điều kiện&gt; ? &lt;giá trị nếu true&gt; : &lt;giá trị nếu false&gt;</li>
-</ul>
-
-<p><strong>III. Câu lệnh điều kiện và Vòng lặp (Control Flow Statements)</strong></p>
-
-<p><em>1. Câu lệnh if, else if, else</em></p>
-
-<ul>
-  <li>
-    <p>Cú pháp:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   if(điều kiện 1) {
-     // thực thi block code nếu điều kiện 1 đúng
-   } else if(điều kiện 2) {
-     // nếu điều kiện 1 sai, kiểm tra điều kiện 2, nếu đúng thì thực thị block code này
-   } else {
-     // thực thi block code này nếu không có điều kiện nào đúng
-   }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><em>2. Switch case</em></p>
-
-<ul>
-  <li>
-    <p>Cú pháp:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   switch (biểu thức) {
-     case giá_trị_1:
-       // code
-       break;
-     case giá_trị_2:
-       // code
-       break;
-     default:
-     // nếu không trùng case nào
-   }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>Lưu ý:</strong></p>
-
-<ul>
-  <li>Nếu không có <strong>Break</strong>, chương trình sẽ chạy liên tiếp các case sau(gọi là fall through).</li>
-  <li>Từ Java 14+ cú pháp switch mới với -&gt;.</li>
-</ul>
-
-<p><em>3. Vòng lặp for, while, do-while</em></p>
-
-<p>a. for - vòng lặp xác định số lần lặp</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     for (int i = 0; i &lt; 5; i++) {
-       System.out.println("Lần thứ " + i);
-     }
-</code></pre></div></div>
-
-<p>b. while - lặp khi điều kiện còn đúng</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     int i = 0;
-     while (i &lt; 5) {
-       System.out.println("While lần " + i);
-       i++;
-     }
-</code></pre></div></div>
-
-<p>c. do-while – luôn chạy ít nhất 1 lần</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     int i = 0;
-     do {
-         System.out.println("Do-while lần " + i);
-         i++;
-     } while (i &lt; 5);
-</code></pre></div></div>
-
-<p><strong>- Khác biệt:</strong></p>
-
-<ul>
-  <li>while: kiểm tra trước – nếu sai, không chạy.</li>
-  <li>do-while: chạy trước – kiểm tra sau, luôn chạy ít nhất 1 lần.</li>
-</ul>
-
-<p><em>4. Câu lệnh điều hướng vòng lặp break, continue, return</em></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------|
-     | Lệnh      | Ý nghĩa                                               |
-     |-------------------------------------------------------------------|
-     | break     | Thoát hoàn toàn khỏi vòng lặp hoặc switch             |
-     | continue  | Bỏ qua vòng lặp hiện tại, chuyển sang lần lặp kế tiếp |
-     | return    | Trả về giá trị và thoát khỏi phương thức ngay lập tức |
-     |-------------------------------------------------------------------|
-</code></pre></div></div>
-
-<p><strong>IV. Mảng và Chuỗi (Arrays and Strings)</strong></p>
-
-<p><em>1. Mảng 1 chiều, 2 chiều (1D/2D Arrays)</em><br />
-a. Mảng 1 chiều (1D array)<br />
--Lưu trữ danh sách các phần tử cùng kiểu, với chỉ số bắt đầu từ 0.</p>
-
-<ul>
-  <li>
-    <p>Cú pháp:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    int[] numbers = new int[5]; // mảng có 5 phần tử
-    int[] scores = {90, 80, 70}; // khai báo và khởi tạo
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Duyệt mảng:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   for (int i = 0; i &lt; scores.length; i++) {
-      System.out.println(scores[i]);
-   }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p>b. Mảng 2 chiều (2D array)</p>
-
-<ul>
-  <li>Giống như bảng hoặc ma trận.</li>
-  <li>
-    <p>Cú pháp:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   int[][] matrix = new int[3][2]; // 3 hàng, 2 cột
-
-   int[][] matrix2 = {{1, 2}, {3, 4}, {5, 6}};
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Duyệt mảng:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (int i = 0; i &amp;lt; matrix.length; i++) {
-
- for (int j = 0; j &amp;lt; matrix[i].length; j++) {
-
-    System.out.print(matrix[i][j] + " ");
-
- }
-  System.out.println();
-}
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><em>2. Duyệt mảng bằng for-each (Enhanced for loop)</em></p>
-
-<p>-Dùng để duyệt qua các phần tử trong mảng (array) hoặc collection (List, Set,…) mà không cần chỉ số (index).</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     for (Kiểu_dữ_liệu biến : tập_hợp) {
-       // xử lý với biến
-     }
-</code></pre></div></div>
-
-<p><strong>- Lưu ý:</strong></p>
-
-<ul>
-  <li>for-each không dùng được khi bạn cần biết chỉ số phần tử (index) hoặc muốn sửa giá trị trong mảng.</li>
-  <li>Nếu cần thêm/xóa phần tử trong vòng lặp, nên dùng Iterator thay vì for-each.</li>
-</ul>
-
-<p><em>3. String và thao tác chuỗi (substring, replace, split, etc.)</em></p>
-
-<ul>
-  <li>
-    <p>String trong Java là immutable (bất biến):</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     String s = "Hello";
-     s.toUpperCase(); // không thay đổi s
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Các phương thức thông dụng:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   |-------------------------------------------------------------------------------------------------------------|
-   | Phương thức        | Mô tả                               | Ví dụ                                            |
-   |-------------------------------------------------------------------------------------------------------------|
-   | substring()        | Cắt chuỗi con                       | "hello".substring(1, 3) → "el"                   |
-   | replace()          | Thay thế ký tự                      | "java".replace('a', 'o') → "jovo"                |
-   | split()            | Tách chuỗi thành mảng               | "a,b,c".split(",") → ["a", "b", "c"]             |
-   | indexOf()          | Vị trí ký tự/chuỗi con đầu tiên     | "java".indexOf("v") → 2                          |
-   | equals()           | So sánh nội dung                    | "abc".equals("abc") → true                       |
-   | equalsIgnoreCase() | So sánh bỏ qua hoa/thường           | "Java".equalsIgnoreCase("java") → true           |
-   |-------------------------------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><em>4. StringBuilder, StringBuffer – hiệu suất thao tác chuỗi</em></p>
-
-<ul>
-  <li>StringBuilder :
-    <ul>
-      <li>Mutable (có thể thay đổi nội dung).</li>
-      <li>Không đồng bộ (non-synchronized) → Nhanh hơn StringBuffer</li>
-      <li>Dùng trong các ứng dụng single-thread.</li>
-    </ul>
-  </li>
-  <li>StringBuffer:
-    <ul>
-      <li>Mutable và synchronized → Thread-safe, dùng trong multi-threaded environments</li>
-      <li>Nhưng do việc đồng bộ nên sẽ chậm hơn StringBuilder.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><em>5. So sánh hiệu suất</em></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |---------------------------------------------------------------------|
-     | Tính năng             | String    | StringBuilder | StringBuffer    |
-     |---------------------------------------------------------------------|
-     | Tính bất biến         | Có        | Không         | Không           |
-     | Thread-safe           | Không     | Không         | Có              |
-     | Hiệu suất thao tác    | Chậm nhất | Nhanh nhất    | Trung bình      |
-     | Dùng trong môi trường | VBất kỳ   | Single-thread | Multi-thread    |
-     |---------------------------------------------------------------------|
-</code></pre></div></div>
-
-<p><strong>V. Lập trình hướng đối tượng - OOP (Object-Oriented Programming)</strong></p>
-
-<p><strong>Lập trình hướng đối tượng(OOP)</strong> là một phương pháp lập trình mà ở đó, chúng ta tổ chức và thiết kế chương trình dựa trên các đối tượng thay vì các hàm hay logic. Mục tiêu chính của OOP là <strong>tái sử dụng mã nguồn</strong>, giúp chương trình <strong>dễ quản lý, mở rộng và bảo trì hơn.</strong></p>
-
-<p><strong>1. Lớp và Đối tượng(Class &amp; Object)</strong></p>
-
-<ul>
-  <li>
-    <p><strong>Lớp(Class)</strong> có thể hình dung như một <strong>bản thiết kế</strong> hoặc một <strong>khuôn mẫu</strong> để tạo ra các đối tượng. Nó định nghĩa các <strong>thuộc tính(attribute)</strong> và <strong>hành vi(methods)</strong> mà các đối tượng thuộc lớp đó sẽ có. Ví dụ: chúng ta có một lớp <strong>ConNguoi</strong> có các thuộc tính như <strong>tên, tuổi</strong> và cách hành vi như <strong>ăn, ngủ</strong>.</p>
-  </li>
-  <li>
-    <p><strong>Đối tượng(Object)</strong> chính là một thể hiện cụ thể của một lớp. Hay nói cách khác, nó là một ‘sản phẩm’ được tạo ra từ bản thiết kế đó. Ví dụ: ‘Anh Hoàn’ với 25 tuổi là một đối tượng cụ thể của lớp <strong>ConNguoi</strong>, hoặc ‘Chị Thư’ với 30 tuổi cũng là một đối tượng khác của lớp <strong>ConNguoi</strong>.</p>
-  </li>
-</ul>
-
-<p><strong>2. Tính đóng gói(Encapsulation)</strong></p>
-
-<ul>
-  <li>
-    <p><strong>Tính đóng gói(Encapsulation)</strong> là một trong những nguyên lý cơ bản của OOP, hiểu đơn giản là việc <strong>gom các thuộc tính và hành vi có liên quan lại thành một thể thống nhất</strong> (là một lớp) và <strong>ẩn đi các chi tiết triển khai bên trong</strong>, chỉ cho phép truy cập thông qua các giao diện công khai (public methods)</p>
-  </li>
-  <li>
-    <p>Trong lập trình, tính đóng gói giúp <strong>bảo vệ dữ liệu khỏi bị truy cập hoặc thay đổi trực tiếp một cách không mong muốn</strong>, từ đó giúp mã nguồn <strong>an toàn và dễ bảo trì hơn</strong>.</p>
-  </li>
-  <li>
-    <p><strong>Kinh nghiệm dự án:</strong> Với những dự án lớn có nhiều thành viên trong team, thì tính đóng gói giúp ngăn chặn các truy cập thay đổi, nhầm lẫn từ các thành viên khác. Khi khai báo các thuộc tính, và phương thức với access modifiers có thể hạn chế điều đó.</p>
-  </li>
-</ul>
-
-<p><strong>3. Kế thừa(Inheritance)</strong></p>
-
-<ul>
-  <li><strong>Kế thừa(Inheritance)</strong> là một cơ chế trong OOP cho phép một <strong>lớp con(subclass)</strong> có thể <strong>thừa hưởng các thuộc tính và hành vi từ một lớp cha(superclass)</strong>. Điều này giúp chúng ta <strong>tái sử dụng mã nguồn</strong>, tránh việc phải viết lại những phần giống nhau.
-    <ul>
-      <li>Ví dụ: chúng ta có lớp cha là <strong>DongVat</strong>. Các lớp con như <strong>Cho</strong>, <strong>Meo</strong>, <strong>Chim</strong> đều có thể kế thừa các thuộc tính chung như <strong>soChan</strong>, <strong>mauLong</strong> và các hành vi như <strong>diChuyen</strong>, <strong>an</strong>. Sau đó, mỗi lớp con có thể thêm vào những đặc điểm hoặc hành vi riêng của mình, ví dụ <strong>Cho</strong> có thêm hành vi <strong>sua</strong>, <strong>Meo</strong> có thêm hành vi <strong>keuMeoMeo</strong>.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>4. Đa hình (Polymorphism)</strong></p>
-
-<ul>
-  <li>
-    <p><strong>Đa hình(Polymorphism)</strong> nghĩa là một đối tượng có thể mang nhiều hình thái khác nhau, hoặc một hành động có thể được thực hiện theo nhiều cách khác nhau tùy thuộc vào ngữ cảnh. Có hai loại đã hình chính là:</p>
-
-    <ul>
-      <li><strong>Đa hình lúc biên dịch(Compile-time Polymorphism)</strong>, thường được biết đến qua <strong>nạp chồng phương thức(Method Overloading)</strong>. tức là trong một lớp, chúng ta có thể có nhiều phương thức cùng tên nhưng khác nhau về số lượng hoặc kiểu dữ liệu của tham số, hoặc dữ liệu trả về. Ví dụ phương thức <strong>tinhTong(int a, int b)</strong> và <strong>tinhTong(double a, double b, double c)</strong>.</li>
-      <li><strong>Đa hình lúc chạy(Runtime Polymorphism)</strong>, thường được biết đến qua <strong>ghi đè phương thức(Method Overriding)</strong>. Tức là lớp con định nghĩa lại một phương thức đã có ở lớp cha. Ví dụ, lớp <strong>DongVat</strong> có phương thức <strong>tiengKeu()</strong>, nhưng lớp <strong>Cho</strong> và <strong>Meo</strong> đều ghi đè phương thức này để phát ra tiếng kêu riêng của chúng (‘gâu gâu’ và ‘meo meo’). Điều này giúp chương trình linh hoạt hơn khi xử lý các đối tượng thuộc các lớp khác nhau nhưng có cùng một hành vi chung.”</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>5. Trừu tượng (Abstraction)</strong></p>
-
-<ul>
-  <li><strong>Trừu tượng(Abstraction)</strong> là quá trình <strong>ẩn đi các chi tiết phức tạp</strong> và chỉ <strong>hiển thị những thông tin cần thiết</strong> ra bên ngoài. Nó tập trung vào <strong>‘cái gì’</strong> hơn là <strong>‘làm như thế nào’</strong>. Trong OOP, chúng ta thường đạt được tính trừu tượng thông qua <strong>lớp trừu tượng(Abstract Class)</strong> và <strong>giao diện(Interface)</strong>.
-    <ul>
-      <li>Ví dụ: Khi thiết kế phần xử lý thanh toán đơn hàng. Cụ thể, ta tạo một interface là <strong>PaymentMethod</strong> - trong đó định nghĩa các hành vi chung như <strong>processPayment()</strong> và <strong>refund()</strong>. Sau đó, chúng ta triển khai nhiều class khác nhau như <strong>CreditCardPayment</strong>, <strong>PaypalPayment</strong>, và <strong>BankTransferPayment</strong>, mỗi class sẽ có cách xử lý thanh toán riêng phù hợp với từng phương thức cụ thể. Nhờ vậy, ở bussiness logic, ví dụ như khi xử lý đơn hàng, chúng ta chỉ cần gọi <strong>paymentMethod.processPayment()</strong> mà không cần quan tâm chi tiết nó là thanh toán qua thẻ, qua PayPal hay chuyển khoản ngân hàng. Điều này giúp code dễ mở rộng, ví dụ sau này có thêm MOMO hay ZaloPay thì chỉ cần tạo thêm một class mới implement <strong>PaymentMethod</strong> mà không phải sửa code xử lý đơn hàng.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>VI. Các thành phần OOP nâng cao(Advanced OOP Concepts)</strong></p>
-
-<ol>
-  <li>this, super</li>
-</ol>
-
-<ul>
-  <li>
-    <p>this: đại diện cho một đối tượng hiện tại.</p>
-
-    <ul>
-      <li>Truy cập biến hoặc phương thức của đối tượng đó.</li>
-      <li>
-        <p>Gọi constructor khác trong cùng class</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Person {
-  String name;
-  Person(String name) {
-    this.name = name; // phân biệt biến instance và tham số
-  }
-}
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>super: đại diện cho lớp cha (supper class)</p>
-
-    <ul>
-      <li>
-        <p>Dùng để gọi constructor hoặc phương thức của lớp cha.</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Animal {
-  void speak() {
-    System.out.println("Animal speaks");
-  }
-}
-
-class Dog extends Animal {
-  void speak() {
-    super.speak(); // gọi phương thức lớp cha
-    System.out.println("Dog barks");
-  }
-}
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<ol>
-  <li>Constructor - Constructor overloading</li>
-</ol>
-
-<ul>
-  <li>
-    <p>Constructor: phương thức đặc biệt, cùng tên class, không có kiểu dữ liệu trả về.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  class Student {
-    String name;
-    Student(String n) {
-      name = n;
-    }
-  }
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Constructor overloading: nhiều constructor cùng tên nhưng khác tham số.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  class Student {
-    String name;
-    int age;
-
-    Student(String n) {
-      name = n;
-    }
-
-    Student(String n, int a) {
-      this.name = n;
-      this.age = a;
-    }
-  }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<ol>
-  <li>
-    <p>Method Overloading vs Overriding</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |----------------------------------------------------------------------------------------------------------------------------------------|
- |       Đặc điểm              | Overloading                                        | Overriding                                          |
- |----------------------------------------------------------------------------------------------------------------------------------------|
- | Định nghĩa                  | Cùng tên phương thức, khác tham số trong cùng lớp  | Cùng tên, cùng tham số, khác lớp (cha - con)        |
- | Mục đích                    | Tăng tính đa hình tĩnh (compile time polymorphism) | Tăng tính đa hình động (runtime polymorphism)       |
- | Quan hệ lớp                 | Trong cùng một lớp                                 | Giữa lớp cha và lớp con                             |
- | Quy tắc | VBất kỳ           | Tham số khác nhau (kiểu, số lượng, thứ tự)         | Phải giống hoàn toàn về tên, kiểu, thứ tự tham số   |
- | Thời điểm quyết định        | Compile time                                       | Runtime                                             |
- | Annotation dùng được không? | Không dùng @Override                               | Nên dùng @Override để tránh lỗi đánh máy            |
- |----------------------------------------------------------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p>Ví dụ:</p>
-
-<p><strong>Overloading:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class Calculator {
-      int add(int a, int b) { return a + b; }
-      double add(double a, double b) { return a + b; }
-    }
-</code></pre></div></div>
-
-<p><strong>Overriding:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class Animal {
-      void sound() { System.out.println("Some sound"); }
-    }
-
-    class Dog extends Animal {
-    @Override
-      void sound() { System.out.println("Woof"); }
-    }
-</code></pre></div></div>
-
-<ol>
-  <li>final, static, abstract, interface, enum</li>
-</ol>
-
-<p>a. final</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |-------------------------------------------------------------------------|
-     | Trường hợp sử dụng |       Ý nghĩa                                      |
-     |-------------------------------------------------------------------------|
-     | Biến (variable)    | Không thể thay đổi giá trị sau khi gán (hằng số)   |
-     | Phương thức        | Không thể override ở lớp con                       |
-     | Lớp (class)        | Không thể kế thừa                                  |
-     |-------------------------------------------------------------------------|
-</code></pre></div></div>
-
-<p>ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    final class Constants {
-      public static final double PI = 3.14159;
-    }
-</code></pre></div></div>
-
-<p>b. static</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |---------------------------------------------------------------------------------------------------------------|
-     | Trường hợp sử dụng | Ý nghĩa                                                                                  |
-     |---------------------------------------------------------------------------------------------------------------|
-     | Biến (variable)    | Biến dùng chung cho tất cả các đối tượng của lớp                                         |
-     | Phương thức        | Gọi mà không cần tạo đối tượng                                                           |
-     | Block              | Được chạy một lần duy nhất khi class được load, được thực thi trước cả main() và trước   |
-     |                    | khi tạo đối tượng                                                                        |
-     | Lớp (class)        | Chỉ dùng với nested class (lớp bên trong), không thể truy cập biến non-static bên ngoài  |
-     |---------------------------------------------------------------------------------------------------------------|
-</code></pre></div></div>
-
-<p>ví dụ:
-<strong>static block</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class StaticBlockExample {
-      static int value;
-
-      // static block
-      static {
-        System.out.println("Static block executed");
-        value = 100;
-      }
-
-      public StaticBlockExample() {
-        System.out.println("Constructor called");
-      }
-
-      public static void main(String[] args) {
-        System.out.println("Main method started");
-        StaticBlockExample obj = new StaticBlockExample();
-        System.out.println("Value = " + StaticBlockExample.value);
-      }
-    }
-</code></pre></div></div>
-
-<p><strong>static class</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class OuterClass {
-      int outerValue = 10;
-      static int staticOuterValue = 20;
-
-      static class StaticNestedClass {
-        void display() {
-          // System.out.println(outerValue); // Error: Cannot access non-static
-          System.out.println("Static outer value: " + staticOuterValue);
-        }
-      }
-
-      public static void main(String[] args) {
-        OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
-        nested.display();
-      }
-    }
-</code></pre></div></div>
-
-<p>c. abstract</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     |--------------------------------------------------------------------|
-     | Trường hợp sử dụng | Ý nghĩa                                       |
-     |--------------------------------------------------------------------|
-     | Phương thức        | Không có thân hàm, bắt buộc lớp con override  |
-     | Lớp (class)        | Không thể tạo đối tượng, chỉ để kế thừa       |
-     |--------------------------------------------------------------------|
-</code></pre></div></div>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    abstract class Animal {
-      abstract void sound();
-    }
-
-    class Cat extends Animal {
-      void sound() { System.out.println("Meow"); }
-    }
-</code></pre></div></div>
-
-<p>d. interface</p>
-
-<ul>
-  <li>Là một tập hợp các phương thức trừu tượng (Java 8 trở đi hỗ trợ default + static method)</li>
-  <li>
-    <p>Một lớp có thể implement nhiều interface
-Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  interface Movable {
-    void move();
-  }
-
-  class Car implements Movable {
-    public void move() {
-      System.out.println("Car is moving");
-    }
-  }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p>e. enum</p>
-
-<ul>
-  <li>Đại diện cho một tập hợp hằng số có định danh</li>
-  <li>Có thể có constructor, phương thức, biến</li>
-  <li>
-    <p>Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> enum Day {
-   MONDAY, TUESDAY, WEDNESDAY;
- }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>VII. Phạm vi truy cập(Access Modifiers)</strong></p>
-
-<ol>
-  <li>Private</li>
-</ol>
-
-<ul>
-  <li><strong>Phạm vi:</strong>Chỉ truy cập được trong cùng một class.</li>
-  <li><strong>Không thể</strong> truy cập từ class khác, kể cả trong cùng package.</li>
-  <li>
-    <p><strong>Thường dùng cho:</strong></p>
-
-    <ul>
-      <li>Thuộc tính (fields) để bảo vệ dữ liệu.</li>
-      <li>Hàm hỗ trợ (helper methods) nội bộ.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class MyClass {
-      private int data;
-
-      private void helperMethod() {
-      // chỉ dùng nội bộ
-      }
-    }
-</code></pre></div></div>
-
-<ol>
-  <li>Default(package-private)</li>
-</ol>
-
-<ul>
-  <li><strong>Phạm vi:</strong> Truy cập được trong cùng package.</li>
-  <li><strong>Không thể</strong> truy cập từ bên ngoài package.</li>
-  <li>
-    <p><strong>Thường dùng cho:</strong></p>
-
-    <ul>
-      <li>Class cấp package (helper class)</li>
-      <li>Những method không cần public nhưng vẫn cần dùng trong các class cùng package.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    class MyClass { // default class
-      int count;    // default field
-
-      void increase() { // default method
-        count++;
-      }
-    }
-</code></pre></div></div>
-
-<ol>
-  <li>Protected</li>
-</ol>
-
-<ul>
-  <li>
-    <p><strong>Phạm vi:</strong> Truy cập được trong:</p>
-
-    <ul>
-      <li>Cùng package</li>
-      <li>Lớp con (subclass), kể cả khi subclass ở package khác.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Thường dùng cho:</strong></p>
-
-    <ul>
-      <li>Class cha muốn cho phép lớp con kế thừa và sử dụng.</li>
-      <li>Một cách tiếp cận giữa private và public.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Animal {
-      protected void makeSound() {
-        System.out.println("Some sound");
-      }
-    }
-
-    class Dog extends Animal {
-      void bark() {
-        makeSound(); // hợp lệ do kế thừa
-      }
-    }
-</code></pre></div></div>
-
-<ol>
-  <li>Public</li>
-</ol>
-
-<ul>
-  <li>Phạm vi: Mọi nơi đều truy cập được.</li>
-  <li>Thường dùng cho:
-    <ul>
-      <li>API bên ngoài</li>
-      <li>Class chính, method chính (như public static void main).</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Ví dụ:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public class Person {
-      public String name;
-
-      public void sayHello() {
-        System.out.println("Hello");
-      }
-    }
-</code></pre></div></div>
-
-<ol>
-  <li>
-    <p>Tóm tắt về khả năng truy cập</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |--------------------------------------------------------------------------------------|
- | Access Modifier | Cùng class | Cùng package | Subclass(khác package) |   Bên ngoài   |
- |--------------------------------------------------------------------------------------|
- |    private      |    ✅     |       ❌     |           ❌           |     ❌       |
- |--------------------------------------------------------------------------------------|
- |    default      |    ✅     |       ✅     |           ❌           |     ❌       |
- |--------------------------------------------------------------------------------------|
- |    protected    |    ✅     |       ✅     |           ✅           |     ❌       |
- |--------------------------------------------------------------------------------------|
- |    public       |    ✅     |       ✅     |           ✅           |     ✅       |
- |--------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p><strong>VIII. Xử lý ngoại lệ(Exception Handlling)</strong></p>
-
-<p>Trong Java, Exception Handling giúp chương trình xử lý lỗi một cách an toàn mà không bị crash, duy trì luồng chạy mạch lạc và kiểm soát logic khi có tình huống bất thường xảy ra.</p>
-
-<ol>
-  <li>Try - Catch - Finally</li>
-</ol>
-
-<ul>
-  <li>Mục đích:
-    <ul>
-      <li>try: chứa đoạn code có thể xảy ra lỗi.</li>
-      <li>catch: xử lý ngoại lệ nếu xảy ra.</li>
-      <li>finally: luôn thực hiện, dù có hay không có lỗi – thường dùng để đóng tài nguyên.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Cú pháp:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  try {
-    // đoạn code có thể ném lỗi
-  } catch (ExceptionType e) {
-    // xử lý lỗi
-  } finally {
-    // luôn thực hiện (ví dụ: đóng file, kết nối DB)
-  }
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Ví dụ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  try {
-    int result = 10 / 0; // ArithmeticException
-  } catch (ArithmeticException e) {
-    System.out.println("Không thể chia cho 0!");
-  } finally {
-    System.out.println("Kết thúc xử lý!");
-  }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<ol>
-  <li>Throw và Throws</li>
-</ol>
-
-<ul>
-  <li>
-    <p>throw: dùng để ném một ngoại lệ cụ thể trong code.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  throw new IllegalArgumentException("Sai tham số!");
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>throws: dùng trong chữ ký method để khai báo rằng method này có thể ném ra ngoại lệ.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  public void readFile(String file) throws IOException {
-    // logic đọc file
-  }
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Ví dụ đầy đủ:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public void divide(int a, int b) throws ArithmeticException {
-      if (b == 0) {
-        throw new ArithmeticException("Không chia được cho 0");
-      }
-      System.out.println(a / b);
-    }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<ol>
-  <li>
-    <p>Checked vs Unchecked Exception</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |--------------------------------------------------------------------------------------------------------------|
- | Loại        | Kế thừa từ                       | Compiler bắt buộc xử lý        | Ví dụ                      |
- |--------------------------------------------------------------------------------------------------------------|
- | Checked     | Exception (trừ RuntimeException) | Bắt buộc try-catch hoặc throws | IOException,               |
- |             |                                  |                                | SQLException,              |
- |             |                                  |                                | ParseException             |
- |--------------------------------------------------------------------------------------------------------------|
- | Unchecked   | RuntimeException                 | Không bắt buộc xử lý           | NullPointerException,      |
- |             |                                  |                                | IllegalArgumentException,  |
- |             |                                  |                                | ArithmeticException        |
- |--------------------------------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<ul>
-  <li>
-    <p>Ví dụ Checked:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    public void readFile(String path) throws IOException {
-      FileReader fr = new FileReader(path); // IOException là checked
-    }
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Ví dụ Unchecked:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    int[] arr = new int[3];
-    arr[5] = 10; // ArrayIndexOutOfBoundsException – Unchecked
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<ol>
-  <li>Tạo ngoại lệ tùy chỉnh(Custom Exception)</li>
-</ol>
-
-<ul>
-  <li>Trường hợp sử dụng:
-    <ul>
-      <li>Khi muốn đại diện cho lỗi nghiệp vụ cụ thể.</li>
-      <li>Giúp code rõ ràng, dễ hiểu, dễ bảo trì.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Cách tạo:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    // 1. Tạo class kế thừa Exception hoặc RuntimeException
-    public class InvalidAgeException extends RuntimeException {
-      public InvalidAgeException(String message) {
-        super(message);
-      }
-    }
-
-    // 2. Dùng throw để ném lỗi
-    public void checkAge(int age) {
-      if (age &lt; 18) {
-        throw new InvalidAgeException("Tuổi phải lớn hơn 18");
-      }
-    }
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<p><strong>IX. Collection Framework</strong></p>
-
-<p>Java Collection Framework là tập hợp các interface và class dùng để lưu trữ, xử lý và thao tác dữ liệu theo dạng collection (danh sách, tập hợp, ánh xạ, hàng đợi, v.v.).</p>
-
-<ol>
-  <li>
-    <p>Interfaces: List, Set, Map, Queue</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |-----------------------------------------------------------------------------------------------------------------------|
- | Interface | Đặc điểm                                    | Dùng khi cần                                                |
- |-----------------------------------------------------------------------------------------------------------------------|
- | List      | Cho phép phần tử trùng, có thứ tự,          | Danh sách có thứ tự (ArrayList, LinkedList)                 |
- |           | truy cập theo chỉ số                        |                                                             |
- |-----------------------------------------------------------------------------------------------------------------------|
- | Set       | Không cho phép phần tử trùng                | Lưu tập hợp không trùng lặp (HashSet, TreeSet)              |
- |-----------------------------------------------------------------------------------------------------------------------|
- | Map       | Lưu theo cặp key-value, không cho key trùng | Bản đồ ánh xạ (HashMap, TreeMap)                            |
- |-----------------------------------------------------------------------------------------------------------------------|
- | Queue     | Cấu trúc FIFO (First-In-First-Out)          | Hàng đợi, xử lý theo thứ tự vào (LinkedList, PriorityQueue) |
- |-----------------------------------------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Implementations: ArrayList, LinkedList, HashSet, TreeSet, HashMap, TreeMap</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |----------------------------------------------------------------------------------|
- |   Class    | Implements  | Đặc điểm chính                                        |
- |----------------------------------------------------------------------------------|
- | ArrayList  | List        | Mảng động, truy cập nhanh, chèn/xóa chậm              |
- |----------------------------------------------------------------------------------|
- | LinkedList | List, Queue | Danh sách liên kết, chèn/xóa nhanh, truy cập chậm     |
- |----------------------------------------------------------------------------------|
- | HashSet    | Set         | Không cho phép phần tử trùng, không đảm bảo thứ tự    |
- |----------------------------------------------------------------------------------|
- | TreeSet    | Set         | Sắp xếp phần tử theo thứ tự tự nhiên hoặc comparator  |
- |----------------------------------------------------------------------------------|
- | HashMap    | Map         | Cho phép null key/value, không sắp xếp                |
- |----------------------------------------------------------------------------------|
- | TreeMap    | Map         | Sắp xếp theo thứ tự key (Comparable/Comparator)       |
- |----------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Iterator, ListIterator, for-each</p>
-  </li>
-</ol>
-
-<ul>
-  <li>
-    <p>Iterator:</p>
-
-    <ul>
-      <li>Duyệt qua collection.</li>
-      <li>
-        <p>Hỗ trợ xóa phần tử khi duyệt.</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Iterator&lt;String&gt; it = list.iterator();
-    while(it.hasNext()) {
-      String s = it.next();
-      if(s.equals("x")) it.remove(); // xóa phần tử khi duyệt
-    }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>ListIterator:</p>
-
-    <ul>
-      <li>Chỉ dùng với List</li>
-      <li>Duyệt hai chiều (next/previous), cho phép thêm, sửa, xóa trong quá trình lặp.</li>
-    </ul>
-  </li>
-  <li>
-    <p>for-each:</p>
-
-    <ul>
-      <li>
-        <p>Dễ dùng, ngắn gọn, không chỉnh sửa collection được.</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    for (String s : list) {
-      System.out.println(s);
-    }
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<ol>
-  <li>
-    <p>So sánh HashMap vs Hashtable</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> |------------------------------------------------------------------------------------------------------------------------|
- |   Tiêu chí              | HashMap                                   | Hashtable                                        |
- |------------------------------------------------------------------------------------------------------------------------|
- | Đồng bộ (Synchronized)  | Không                                     | Có                                               |
- |------------------------------------------------------------------------------------------------------------------------|
- | Hiệu suất               | Tốt hơn (trong môi trường đơn luồng)      | Kém hơn (do đồng bộ)                             |
- |------------------------------------------------------------------------------------------------------------------------|
- | Cho phép null           | 1 null key, nhiều null value              | Không cho null key/value                         |
- |------------------------------------------------------------------------------------------------------------------------|
- | Thay thế hiện đại       | ConcurrentHashMap dùng thay cho Hashtable | Đã lỗi thời                                      |
- |------------------------------------------------------------------------------------------------------------------------|
- | Môi trường sử dụng      | Dùng cho đa số ứng dụng                   | Không nên dùng nữa (trừ khi cần đồng bộ cổ điển) |
- |------------------------------------------------------------------------------------------------------------------------|
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p><strong>X. Generics</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Generic Class, Method</p>
-  </li>
-  <li>
-    <p>Wildcards: ?, ? extends, ? super</p>
-  </li>
-  <li>
-    <p>Type Inference (Diamond operator)</p>
-  </li>
-</ol>
-
-<p><strong>XI. Java I/O (Input/Output)</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>File, FileReader, FileWriter</p>
-  </li>
-  <li>
-    <p>BufferedReader, BufferedWriter</p>
-  </li>
-  <li>
-    <p>InputStream, OutputStream</p>
-  </li>
-  <li>
-    <p>Serialization / Deserialization</p>
-  </li>
-</ol>
-
-<p><strong>XII. Đa luồng &amp; Xử lý đồng thời (Multithreading and Concurrency)</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Tạo Thread: Thread, Runnable</p>
-  </li>
-  <li>
-    <p>Lifecycle của Thread</p>
-  </li>
-  <li>
-    <p>synchronized, volatile, wait, notify, join</p>
-  </li>
-  <li>
-    <p>ExecutorService, Callable, Future</p>
-  </li>
-</ol>
-
-<p><strong>XIII. Java 8+ Features</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Lambda Expression</p>
-  </li>
-  <li>
-    <p>Functional Interface (Function, Predicate, Consumer, Supplier)</p>
-  </li>
-  <li>
-    <p>Stream API</p>
-  </li>
-  <li>
-    <p>Optional</p>
-  </li>
-  <li>
-    <p>Method Reference, Constructor Reference</p>
-  </li>
-</ol>
-
-<p><strong>XIV. Annotation</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Annotation cơ bản: @Override, @Deprecated, @SuppressWarnings</p>
-  </li>
-  <li>
-    <p>Annotation tùy chỉnh (Custom Annotation)</p>
-  </li>
-  <li>
-    <p>Meta-annotations: @Target, @Retention</p>
-  </li>
-</ol>
-
-<p><strong>XV. Reflection</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Lấy thông tin class: Class&lt;?&gt;</p>
-  </li>
-  <li>
-    <p>Truy cập method, field, constructor qua Reflection</p>
-  </li>
-  <li>
-    <p>Gọi method, tạo instance bằng Reflection</p>
-  </li>
-</ol>
-
-<p><strong>XVI. Date &amp; Time API</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Date, Calendar (truyền thống)</p>
-  </li>
-  <li>
-    <p>Java 8: LocalDate, LocalTime, LocalDateTime</p>
-  </li>
-  <li>
-    <p>Period, Duration</p>
-  </li>
-  <li>
-    <p>DateTimeFormatter</p>
-  </li>
-</ol>
-
-<p><strong>XVII. Lớp lồng nhau (Nested &amp; Inner Classes)</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Static Nested Class</p>
-  </li>
-  <li>
-    <p>Member Inner Class</p>
-  </li>
-  <li>
-    <p>Local Class</p>
-  </li>
-  <li>
-    <p>Anonymous Inner Class</p>
-  </li>
-</ol>
-
-<p><strong>XVIII. Quản lý bộ nhớ (Memory Management)</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Stack vs Heap</p>
-  </li>
-  <li>
-    <p>Garbage Collector</p>
-  </li>
-  <li>
-    <p>Strong / Weak / Soft / Phantom References</p>
-  </li>
-</ol>
-
-<p><strong>XIX. Cơ chế hoạt động của JVM (JVM Internals)</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Classloader</p>
-  </li>
-  <li>
-    <p>Memory Areas (Method Area, Heap, Stack, etc.)</p>
-  </li>
-  <li>
-    <p>Bytecode &amp; Execution Engine</p>
-  </li>
-  <li>
-    <p>Garbage Collection Algorithms</p>
-  </li>
-</ol>
-
-<p><strong>XX. Best Practices &amp; Clean Code</strong> <em>(TODO)</em></p>
-
-<ol>
-  <li>
-    <p>Quy tắc đặt tên (Naming Conventions)</p>
-  </li>
-  <li>
-    <p>Immutability</p>
-  </li>
-  <li>
-    <p>Đọc hiểu code rõ ràng</p>
-  </li>
-  <li>
-    <p>Tối ưu performance</p>
-  </li>
-  <li>
-    <p>SOLID principles (nâng cao)</p>
-  </li>
-</ol>
-
-<p><strong>———————————————————— TO BE CONTINUED ———————————————————-</strong></p>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn …]]></summary></entry><entry><title type="html">Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub</title><link href="http://localhost:4000/2025/06/28/first-post.html" rel="alternate" type="text/html" title="Bài viết đầu tiên…Hướng dẫn tạo Blog trên GitHub" /><published>2025-06-28T00:00:00+07:00</published><updated>2025-06-28T00:00:00+07:00</updated><id>http://localhost:4000/2025/06/28/first-post</id><content type="html" xml:base="http://localhost:4000/2025/06/28/first-post.html"><![CDATA[<p>Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!</p>
-
-<p><strong>I. Cách viết blog trên GitHub (sử dụng GitHub Pages + Jekyll) như sau:</strong></p>
-
-<p>✅ Bước 1: Tạo repository trên GitHub</p>
-
-<ol>
-  <li>Truy cập: https://github.com/new -&gt; Tạo repository với format tên như sau : ten_tai_khoan.github.io</li>
-  <li>Ví dụ: Nếu tài khoản là npngocthanh99, tên repo là npngocthanh99.github.io</li>
-  <li>Đặt là Public</li>
-  <li>Check chọn “Initialize this repository with a README” -&gt; Bấm “Create repository”</li>
-</ol>
-
-<p>✅ Bước 2: Kích hoạt GitHub Pages</p>
-
-<ol>
-  <li>Vào repo bạn vừa tạo -&gt; Click Settings &gt; Tab Pages</li>
-  <li>Ở mục Source, chọn:
-    <ul>
-      <li>Branch: main</li>
-      <li>Folder: / (root)</li>
-    </ul>
-  </li>
-  <li>Bấm Save</li>
-  <li>GitHub sẽ build trang blog tại: https://ten_tai_khoan.github.io ( trang blog của mình tại npngocthanh99.github.io)</li>
-</ol>
-
-<p>✅ Bước 3: Cài giao diện blog với Jekyll (ví dụ: Minima)</p>
-
-<ol>
-  <li>
-    <p>Tạo file index.md với nội dung sau:</p>
-
-    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">```yaml
----
-</span>layout: home
-<span class="gh">title: My Blog
----
-</span><span class="p">```</span><span class="nl">
-</span></code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Tạo file _config.yml với nội dung cấu hình:</p>
-
-    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">yaml
-</span><span class="na">title</span><span class="pi">:</span> <span class="s">My Blog</span>
-<span class="na">description</span><span class="pi">:</span> <span class="s">Welcome to my GitHub blog!</span>
-<span class="na">theme</span><span class="pi">:</span> <span class="s">minima</span>
-<span class="p">```</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Commit và push các file lên GitHub (push trên nhánh chính cho dễ và nhanh nhá hihi ^_^ )</p>
-  </li>
-</ol>
-
-<p>✅ Bước 4: Tạo bài viết mới</p>
-
-<ol>
-  <li>Tạo thư mục mới: _posts</li>
-  <li>Tạo file bài viết với cú pháp: YYYY-MM-DD-ten-bai-viet.md
-Ví dụ: _posts/2025-06-28-hello-github-blog.md</li>
-  <li>
-    <p>Nội dung bài viết mẫu:</p>
-
-    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">```yaml
----
-</span>layout: post
-title: "Hello GitHub Blog"
-<span class="gh">date: 2025-06-28
----
-</span>Đây là bài viết đầu tiên của mình trên GitHub Pages!
-<span class="p">```</span><span class="nl">
-</span></code></pre></div>    </div>
-  </li>
-</ol>
-
-<p>✅ Bước 5: Push và xem blog</p>
-
-<ol>
-  <li>Commit &amp; push tất cả file lên GitHub</li>
-  <li>Truy cập: https://ten_tai_khoan.github.io</li>
-</ol>
-
-<p>🎨 Tuỳ chỉnh giao diện
-Bạn có thể:</p>
-
-<ul>
-  <li>Sử dụng các theme Jekyll có sẵn: https://jekyllthemes.io/free</li>
-  <li>Clone một theme về và chỉnh trong _config.yml</li>
-  <li>Tuỳ chỉnh layout, css trong thư mục _layouts, _includes, assets</li>
-</ul>
-
-<p>📦 Option: Tạo blog bằng template có sẵn
-Bạn có thể fork template có sẵn như:</p>
-
-<ul>
-  <li>chirpy</li>
-  <li>minimal-mistakes<br />
- Sau đó vào Settings &gt; Pages để kích hoạt GitHub Pages.<br />
-<strong>II. Hướng dẫn sử dụng Markdown</strong></li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      |Cấu trúc        |Mục đích                                   |               Cú pháp               |
-      |----------------|-------------------------------------------|-------------------------------------|
-      | # Tiêu đề      | Tạo các cấp tiêu đề (H1–H6)               | # đến ######                        |
-      | **in đậm**     | In đậm chữ                                | **chữ** hoặc __chữ__                |
-      | *in nghiêng*   | In nghiêng chữ                            | *chữ* hoặc _chữ_                    |
-      | - danh sách    | Tạo danh sách gạch đầu dòng               | -, *, +                             |
-      | 1. danh sách   | Tạo danh sách có thứ tự                   | 1., 2....                           |
-      | [liên kết](url)| Tạo hyperlink                             | [Google](https://google.com)        |
-      | ![ảnh](link)   | Hiển thị hình ảnh                         | ![alt](url)                         |
-      | `code`         | Inline code                               | Dùng dấu backtick                   |
-      | ```code```     | Block code nhiều dòng                     | Dùng 3 dấu backtick                 |
-      | sử dụng &amp;lt;   | Hiển thị &lt;                                | Less than – dấu "nhỏ hơn"           |
-      | sử dụng &amp;gt;   | Hiển thị &gt;                                | Greater than – dấu "lớn hơn"        |
-      | sử dụng &amp;amp;  | Hiển thị &amp;                                | Ampersand – dấu &amp;, dùng trong URL   |
-      | sử dụng &amp;quot; | Hiển thị "                                | Double quote – dấu ngoặc kép        |
-      | sử dụng &amp;apos; | Hiển thị '                                | Single quote – dấu nháy đơn         |
-</code></pre></div></div>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!]]></summary></entry></feed>
+</ul>]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[I. Tổng quan về Redis Redis là một cơ sở dữ liệu lưu trữ key-value trên RAM (in-memory), rất nhanh. Hỗ trợ các kiểu dữ liệu như: String, List, Set, Hash, Sorted Set,… Dùng cho: caching (bộ nhớ đệm), session, queue/pub-sub, ranking,…]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Spring Testing</title><link href="http://0.0.0.0:4000/2025/07/14/spring-testing.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Testing" /><published>2025-07-14T00:00:00-05:00</published><updated>2025-07-14T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/14/spring-testing</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/14/spring-testing.html"><![CDATA[]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Spring Cloud (Microservices - optional)</title><link href="http://0.0.0.0:4000/2025/07/13/spring-cloud.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Cloud (Microservices - optional)" /><published>2025-07-13T00:00:00-05:00</published><updated>2025-07-13T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/13/spring-cloud</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/13/spring-cloud.html"><![CDATA[]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Spring WebFlux (Reactive Programming - optional)</title><link href="http://0.0.0.0:4000/2025/07/12/spring-webflux.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring WebFlux (Reactive Programming - optional)" /><published>2025-07-12T00:00:00-05:00</published><updated>2025-07-12T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/12/spring-webflux</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/12/spring-webflux.html"><![CDATA[]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Tổng hợp kiến thức về Spring Scheduler &amp;amp; Async</title><link href="http://0.0.0.0:4000/2025/07/11/spring-scheduler-and-async.html" rel="alternate" type="text/html" title="Tổng hợp kiến thức về Spring Scheduler &amp;amp; Async" /><published>2025-07-11T00:00:00-05:00</published><updated>2025-07-11T00:00:00-05:00</updated><id>http://0.0.0.0:4000/2025/07/11/spring-scheduler-and-async</id><content type="html" xml:base="http://0.0.0.0:4000/2025/07/11/spring-scheduler-and-async.html"><![CDATA[]]></content><author><name>Nguyen Phuc Ngoc Thanh</name></author><summary type="html"><![CDATA[]]></summary></entry></feed>

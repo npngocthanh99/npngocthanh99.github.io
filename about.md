@@ -1,39 +1,49 @@
 ---
 layout: page
-title: "Giới thiệu"
+title: "A Developer’s Learning Journal"
 permalink: /about/
 ---
 
-# 👋 Xin chào!
+# 👋 Hello!
 
-Mình là **Nguyễn Phúc Ngọc Thành** — một người đam mê công nghệ và lập trình. Blog này là nơi mình chia sẻ lại những kiến thức học được trong quá trình làm việc và khám phá công nghệ.
+My name is Nguyen Phuc Ngoc Thanh — a developer who is passionate about technology and curious about how systems work behind the scenes.
 
----
+This blog is where I document the knowledge I gain while learning, working, and exploring different areas of software development. It serves as a personal space to record insights, lessons, and experiences along my journey as a developer.
 
-## 🧠 Mình viết gì ở đây?
-
-Tại blog này, bạn sẽ tìm thấy các nội dung:
-
-<ul>
-  <li>📘 Tổng hợp kiến thức lập trình Java, Spring Boot...</li>
-  <li>🛠️ Kỹ thuật sử dụng các IDE, Tool lập trình</li>
-  <li>🚀 Kinh nghiệm triển khai dự án cá nhân</li>
-  <li>💡 Những mẹo nhỏ khi làm việc với công nghệ web</li>
-</ul>
+The goal of this blog is not to write highly academic articles, but rather to share practical knowledge and document my learning journey in programming.
 
 ---
 
-## 💼 Kỹ năng và Công cụ
+## ⚽ Football Mindset
 
-<ul>
-  <li>Java, PHP, JavaScript</li>
-  <li>Spring Boot, JPA</li>
-  <li>Git, Linux, Terminal</li>
-</ul>
+Besides programming, I am also a football enthusiast.
+Football has taught me many lessons that can be applied to software development.
+
+- Discipline → writing clean and responsible code
+- Training → practicing and learning continuously
+- Tactics → thinking about system architecture
+- Teamwork → building software collaboratively
+
+A well-designed system is like a strong football team:
+every component has its own role, and everything works best when the pieces collaborate effectively.
 
 ---
 
-## 📬 Kết nối với mình
+## 💻 Topics I Usually Write About
+
+- Backend Development
+
+- API Integration
+
+- Basic System Design
+
+- DevOps / Docker
+
+- Notes and lessons from my programming journey
+
+---
+
+## 📬 Connect with Me
 
 <ul style="list-style: none; padding-left: 0;">
   <li style="margin-bottom: 8px;">
@@ -56,5 +66,5 @@ Tại blog này, bạn sẽ tìm thấy các nội dung:
 
 ---
 
-Cảm ơn bạn đã ghé thăm blog!  
-Chúc bạn học tập và làm việc hiệu quả 💪
+Thank you for visiting my blog.
+I hope the content here is helpful for your learning journey. 💪
