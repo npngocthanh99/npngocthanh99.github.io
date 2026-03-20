@@ -2,6 +2,7 @@
 layout: post
 title: "Ôn tập kiến thức về Cấu trúc dữ liệu"
 date: 2025-07-17
+tag: cs
 ---
 
 **I. Cấu trúc Dữ liệu là gì?**
@@ -26,7 +27,6 @@ date: 2025-07-17
 
 1.  Array (Mảng)
     a. Khái niệm
-
     - Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ.
     - Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0.
     - Ví dụ:
@@ -37,19 +37,16 @@ date: 2025-07-17
       {% endraw %}
 
     b. Đặc điểm
-
     - Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1).
     - Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++).
     - Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu.
 
     c. Ưu điểm
-
     - Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1).
     - Đơn giản: Dễ khai báo, dễ sử dụng.
     - Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt.
 
     d. Nhược điểm
-
     - Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java).
     - Chi phí chèn/xoá cao:
       - Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n).

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ôn tập kiến thức về Cấu trúc dữ liệu — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="I. Cấu trúc Dữ liệu là gì?  Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả.  Là nền tảng cho thuật toán h..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Ôn tập kiến thức về Cấu trúc dữ liệu | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Ôn tập kiến thức về Cấu trúc dữ liệu" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I. Cấu trúc Dữ liệu là gì? Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả. Là nền tảng cho thuật toán hoạt động hiệu quả về thời gian (time) và bộ nhớ (space). II. Phân loại chính 1 2 3 4 5 6 7 8 9 10 |-------------------------------------------|------------------------------------------| | Nhóm | Loại | Đặc điểm | |-------------------------------------------|------------------------------------------| | Tuyến tính (Linear) | Array (mảng) | Truy cập chỉ số, lưu trữ cố định | | | Linked List | Danh sách liên kết các node | | | Stack | LIFO – Last In First Out | | | Queue | FIFO – First In First Out | | Phi tuyến (Non-linear) | Tree | Cấu trúc phân cấp gồm node cha – con | | | Graph | Mô hình đỉnh và cạnh | | Cấu trúc khác | Hash Table | Bảng băm, ánh xạ key → value | III. Phân tích từng cấu trúc Array (Mảng) a. Khái niệm Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ. Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0. Ví dụ: int[] arr = {10, 20, 30, 40, 50}; System.out.println(arr[2]); // Kết quả: 30 b. Đặc điểm Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1). Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++). Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu. c. Ưu điểm Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1). Đơn giản: Dễ khai báo, dễ sử dụng. Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt. d. Nhược điểm Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java). Chi phí chèn/xoá cao: Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n). Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động). Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa. e. Các thao tác cơ bản và độ phức tạp 1 2 3 4 5 6 7 8 |--------------------------------------------| | Thao tác | Độ phức tạp | |--------------------------------------------| | Truy cập arr[i] | O(1) | | Cập nhật arr[i] = x | O(1) | | Tìm kiếm tuyến tính | O(n) | | Thêm/Xoá cuối (nếu còn chỗ) | O(1) | | Thêm/Xoá giữa mảng | O(n) | Linked List Stack Queue Hash Table / HashMap Tree (Cây) Graph (Đồ thị) III. Các câu hỏi thường gặp trong phỏng vấn So sánh Array vs Linked List So sánh Array vs ArrayList (Java)" />
+<meta property="og:description" content="I. Cấu trúc Dữ liệu là gì? Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả. Là nền tảng cho thuật toán hoạt động hiệu quả về thời gian (time) và bộ nhớ (space). II. Phân loại chính 1 2 3 4 5 6 7 8 9 10 |-------------------------------------------|------------------------------------------| | Nhóm | Loại | Đặc điểm | |-------------------------------------------|------------------------------------------| | Tuyến tính (Linear) | Array (mảng) | Truy cập chỉ số, lưu trữ cố định | | | Linked List | Danh sách liên kết các node | | | Stack | LIFO – Last In First Out | | | Queue | FIFO – First In First Out | | Phi tuyến (Non-linear) | Tree | Cấu trúc phân cấp gồm node cha – con | | | Graph | Mô hình đỉnh và cạnh | | Cấu trúc khác | Hash Table | Bảng băm, ánh xạ key → value | III. Phân tích từng cấu trúc Array (Mảng) a. Khái niệm Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ. Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0. Ví dụ: int[] arr = {10, 20, 30, 40, 50}; System.out.println(arr[2]); // Kết quả: 30 b. Đặc điểm Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1). Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++). Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu. c. Ưu điểm Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1). Đơn giản: Dễ khai báo, dễ sử dụng. Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt. d. Nhược điểm Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java). Chi phí chèn/xoá cao: Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n). Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động). Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa. e. Các thao tác cơ bản và độ phức tạp 1 2 3 4 5 6 7 8 |--------------------------------------------| | Thao tác | Độ phức tạp | |--------------------------------------------| | Truy cập arr[i] | O(1) | | Cập nhật arr[i] = x | O(1) | | Tìm kiếm tuyến tính | O(n) | | Thêm/Xoá cuối (nếu còn chỗ) | O(1) | | Thêm/Xoá giữa mảng | O(n) | Linked List Stack Queue Hash Table / HashMap Tree (Cây) Graph (Đồ thị) III. Các câu hỏi thường gặp trong phỏng vấn So sánh Array vs Linked List So sánh Array vs ArrayList (Java)" />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/07/17/data-structures-post/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/07/17/data-structures-post/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-17T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ôn tập kiến thức về Cấu trúc dữ liệu" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-07-17T00:00:00-05:00","datePublished":"2025-07-17T00:00:00-05:00","description":"I. Cấu trúc Dữ liệu là gì? Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả. Là nền tảng cho thuật toán hoạt động hiệu quả về thời gian (time) và bộ nhớ (space). II. Phân loại chính 1 2 3 4 5 6 7 8 9 10 |-------------------------------------------|------------------------------------------| | Nhóm | Loại | Đặc điểm | |-------------------------------------------|------------------------------------------| | Tuyến tính (Linear) | Array (mảng) | Truy cập chỉ số, lưu trữ cố định | | | Linked List | Danh sách liên kết các node | | | Stack | LIFO – Last In First Out | | | Queue | FIFO – First In First Out | | Phi tuyến (Non-linear) | Tree | Cấu trúc phân cấp gồm node cha – con | | | Graph | Mô hình đỉnh và cạnh | | Cấu trúc khác | Hash Table | Bảng băm, ánh xạ key → value | III. Phân tích từng cấu trúc Array (Mảng) a. Khái niệm Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ. Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0. Ví dụ: int[] arr = {10, 20, 30, 40, 50}; System.out.println(arr[2]); // Kết quả: 30 b. Đặc điểm Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1). Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++). Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu. c. Ưu điểm Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1). Đơn giản: Dễ khai báo, dễ sử dụng. Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt. d. Nhược điểm Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java). Chi phí chèn/xoá cao: Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n). Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động). Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa. e. Các thao tác cơ bản và độ phức tạp 1 2 3 4 5 6 7 8 |--------------------------------------------| | Thao tác | Độ phức tạp | |--------------------------------------------| | Truy cập arr[i] | O(1) | | Cập nhật arr[i] = x | O(1) | | Tìm kiếm tuyến tính | O(n) | | Thêm/Xoá cuối (nếu còn chỗ) | O(1) | | Thêm/Xoá giữa mảng | O(n) | Linked List Stack Queue Hash Table / HashMap Tree (Cây) Graph (Đồ thị) III. Các câu hỏi thường gặp trong phỏng vấn So sánh Array vs Linked List So sánh Array vs ArrayList (Java)","headline":"Ôn tập kiến thức về Cấu trúc dữ liệu","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/07/17/data-structures-post/"},"url":"http://0.0.0.0:4000/2025/07/17/data-structures-post/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--cs">
+                         CS    
+      </span>
+      <h1 class="post-hero__title">Ôn tập kiến thức về Cấu trúc dữ liệu</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 17/07/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><p><strong>I. Cấu trúc Dữ liệu là gì?</strong></p>
+
+<ul>
+  <li>Cấu trúc dữ liệu là cách tổ chức, lưu trữ và quản lý dữ liệu để có thể truy xuất và xử lý hiệu quả.</li>
+  <li>Là nền tảng cho thuật toán hoạt động hiệu quả về thời gian (time) và bộ nhớ (space).</li>
+</ul>
+
+<p><strong>II. Phân loại chính</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>    |-------------------------------------------|------------------------------------------|
+    | Nhóm                    | Loại            | Đặc điểm                                 |
+    |-------------------------------------------|------------------------------------------|
+    | Tuyến tính (Linear)     | Array (mảng)    | Truy cập chỉ số, lưu trữ cố định         |
+    |                         | Linked List     | Danh sách liên kết các node              |
+    |                         | Stack           | LIFO – Last In First Out                 |
+    |                         | Queue           | FIFO – First In First Out                |
+    | Phi tuyến (Non-linear)  | Tree            | Cấu trúc phân cấp gồm node cha – con     |
+    |                         | Graph           | Mô hình đỉnh và cạnh                     |
+    | Cấu trúc khác           | Hash Table      | Bảng băm, ánh xạ key → value             |
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>III. Phân tích từng cấu trúc</strong></p>
+
+<ol>
+  <li>Array (Mảng)
+a. Khái niệm
+    <ul>
+      <li>Array (mảng) là một cấu trúc dữ liệu tuyến tính, lưu trữ tập hợp các phần tử cùng kiểu dữ liệu, đặt cạnh nhau trong bộ nhớ.</li>
+      <li>Các phần tử trong mảng được truy cập thông qua chỉ số (index), thường bắt đầu từ 0.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <p>int[] arr = {10, 20, 30, 40, 50};
+System.out.println(arr[2]); // Kết quả: 30</p>
+      </li>
+    </ul>
+
+    <p>b. Đặc điểm</p>
+    <ul>
+      <li>Truy cập ngẫu nhiên (Random Access): Do các phần tử được lưu liền kề, nên việc truy cập phần tử theo index có độ phức tạp O(1).</li>
+      <li>Kích thước cố định: Một mảng tĩnh có kích thước không thể thay đổi sau khi khai báo (trừ khi dùng cấu trúc động như ArrayList trong Java hoặc vector trong C++).</li>
+      <li>Đồng nhất: Các phần tử trong mảng có cùng kiểu dữ liệu.</li>
+    </ul>
+
+    <p>c. Ưu điểm</p>
+    <ul>
+      <li>Truy cập nhanh: Tìm phần tử theo chỉ số cực nhanh → O(1).</li>
+      <li>Đơn giản: Dễ khai báo, dễ sử dụng.</li>
+      <li>Tối ưu bộ nhớ cache: Do các phần tử lưu liền kề nên tận dụng CPU cache tốt.</li>
+    </ul>
+
+    <p>d. Nhược điểm</p>
+    <ul>
+      <li>Kích thước cố định: Không thể thay đổi sau khi khai báo (trong ngôn ngữ như C, Java).</li>
+      <li>Chi phí chèn/xoá cao:
+        <ul>
+          <li>Xoá hoặc thêm 1 phần tử giữa mảng phải dịch chuyển các phần tử còn lại → O(n).</li>
+          <li>Thêm cuối mảng có thể nhanh (O(1)) nếu còn chỗ, nhưng nếu đầy thì phải cấp phát lại (trong mảng động).</li>
+        </ul>
+      </li>
+      <li>Lãng phí bộ nhớ: Nếu khai báo kích thước lớn mà dùng ít → dư thừa.</li>
+    </ul>
+
+    <p>e. Các thao tác cơ bản và độ phức tạp</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>|--------------------------------------------|
+| Thao tác                    | Độ phức tạp  |
+|--------------------------------------------|
+| Truy cập arr[i]             | O(1)         |
+| Cập nhật arr[i] = x         | O(1)         |
+| Tìm kiếm tuyến tính         | O(n)         |
+| Thêm/Xoá cuối (nếu còn chỗ) | O(1)         |
+| Thêm/Xoá giữa mảng          | O(n)         |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Linked List</p>
+  </li>
+  <li>
+    <p>Stack</p>
+  </li>
+  <li>
+    <p>Queue</p>
+  </li>
+  <li>
+    <p>Hash Table / HashMap</p>
+  </li>
+  <li>
+    <p>Tree (Cây)</p>
+  </li>
+  <li>Graph (Đồ thị)</li>
+</ol>
+
+<p><strong>III. Các câu hỏi thường gặp trong phỏng vấn</strong></p>
+
+<ol>
+  <li>So sánh Array vs Linked List</li>
+  <li>So sánh Array vs ArrayList (Java)</li>
+</ol>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/16/redis-post/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Tìm hiểu về Redis
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/07/18/git-post/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Tổng hợp kiến thức về Git →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

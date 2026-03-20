@@ -1,22 +1,35 @@
-title: Nguyen Phuc Ngoc Thanh
-description: This is my blog hosted on GitHub Pages.
-theme: minima
-author: Nguyen Phuc Ngoc Thanh
-paginate: 10
-paginate_path: "/posts/page:num/"
+title: "NPNgocThanh99 — Dev Blog"
+description: "Ghi chép hành trình học tập của một Software Engineer. Java · Spring · React · Docker."
+url: "https://NPNgocThanh99.github.io"
+baseurl: ""
+author:
+  name: "Nguyễn Phúc Ngọc Thành"
+  github: "NPNgocThanh99"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
 plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
   - jekyll-paginate
-minima:
-  social_links:
-    - title: Email
-      icon: envelope
-      url: mailto:ngocthanhxs2@gmail.com
-    - title: Facebook
-      icon: facebook
-      url: https://www.facebook.com/NguyenPhucNgocThanh03.01.99/
-    - title: LinkedIn
-      icon: linkedin
-      url: https://www.linkedin.com/in/thanhnpn/
-    - title: GitHub
-      icon: github
-      url: https://github.com/npngocthanh99
+
+paginate: 10
+paginate_path: "/page/:num/"
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - README.md

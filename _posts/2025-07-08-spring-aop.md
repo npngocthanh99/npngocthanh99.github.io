@@ -2,18 +2,17 @@
 layout: post
 title: "Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming)"
 date: 2025-07-08
+tag: spring
 ---
 
 1.  AOP là gì?
 
 - AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng.
 - Mục tiêu:
-
   - Làm code gọn hơn, dễ reuse
   - Tăng tính module hóa
   - Giảm trùng lặp code
   - **Ví dụ trước - sau dùng AOP**
-
     - Chưa dùng AOP:
 
       {% raw %}
@@ -90,7 +89,6 @@ date: 2025-07-08
             | Audit               | Theo dõi hành động người dùng              |
 
 5.  Spring AOP hoạt động như thế nào?
-
     - Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại
     - Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng
 

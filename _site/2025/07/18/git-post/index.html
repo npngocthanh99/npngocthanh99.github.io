@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tổng hợp kiến thức về Git — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="I. Git là gì?  Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System).  Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (k..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tổng hợp kiến thức về Git | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tổng hợp kiến thức về Git" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I. Git là gì? Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System). Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN). Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần. II. Kiến trúc cơ bản 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 +----------------------+ | Working Directory | &lt;-- Thư mục làm việc +----------------------+ | | git add v +----------------------+ | Staging Area | &lt;-- File được đánh dấu để commit (lưu ở .git/index) +----------------------+ | | git commit v +----------------------+ | Local Repository | &lt;-- Commit được lưu vào máy (trong .git/objects) +----------------------+ | | git push v +----------------------+ | Remote Repository | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v. +----------------------+ Working Directory: thư mục làm việc. Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit. Local Repository: nơi lưu trữ các commit đã thực hiện. Remote Repository: ví dụ như GitHub, GitLab, Bitbucket. III. Các câu lệnh Git 1. Lệnh git cơ bản 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 |----------------------------------------------------------| | Lệnh | Chức năng | |----------------------------------------------------------| | git init | Tạo repo Git mới | | git clone &lt;url&gt; | Tải repo từ remote về | | git status | Xem trạng thái thay đổi | | git add &lt;file&gt; | Thêm file vào Staging Area | | git add . | Thêm tất cả file thay đổi | | git commit -m &quot;message&quot; | Tạo commit | | git log | Xem lịch sử commit | | git diff | So sánh thay đổi chưa commit | | git checkout &lt;branch&gt; | Chuyển nhánh | | git branch | Liệt kê danh sách nhánh | | git branch &lt;name&gt; | Tạo nhánh mới | | git merge &lt;branch&gt; | Gộp nhánh | | git pull | Lấy code mới nhất từ remote | | git push | Đẩy code lên remote | 2. Làm việc với Branch (nhánh) 1 2 3 git checkout -b feature/login # Tạo và chuyển sang nhánh mới git checkout main # Quay về nhánh chính git merge feature/login # Gộp nhánh vào nhánh hiện tại 3. Revert, Reset, Amend 1 2 3 4 5 6 7 8 |----------------------------------------------------------------------| | Lệnh | Ý nghĩa | |----------------------------------------------------------------------| | git reset | Quay lại commit trước đó (có thể mất code) | | git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi | | git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi | | git revert &lt;commit&gt; | Tạo commit mới để đảo ngược commit cũ | | git commit --amend | Sửa lại commit gần nhất | 4. Stash – Tạm thời lưu thay đổi 1 2 3 4 git stash # Lưu tạm thay đổi git stash list # Xem danh sách stash git stash apply # Áp dụng lại thay đổi git stash drop # Xóa stash 5. Remote Repository (GitHub, GitLab) 1 2 3 4 git remote -v # Kiểm tra remote git remote add origin &lt;url&gt; # Thêm remote repo git push -u origin main # Push lần đầu git pull origin main # Lấy code mới 6. Giải quyết Conflict (xung đột) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 - Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột: &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD # Code của bạn Code của người khác &gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name - Sửa file thủ công, sau đó: git add . git commit -m &quot;resolve conflict&quot; 7. Git Flow - Quy trình làm việc chuẩn 1 2 3 4 5 a. main – nhánh sản phẩm chạy chính thức. b. develop – nhánh phát triển chung. c. feature/\* – nhánh tính năng. d. release/\* – nhánh chuẩn bị release. e. hotfix/\* – xử lý lỗi khẩn cấp. IV. Các câu hỏi phỏng vấn thường gặp 1. Git khác gì SVN? 2. Sự khác nhau giữa git reset, git revert, git checkout? 3. Khi nào dùng git merge vs git rebase? 4. Cách giải quyết conflict? 5. Quy trình deploy/CI với Git?" />
+<meta property="og:description" content="I. Git là gì? Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System). Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN). Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần. II. Kiến trúc cơ bản 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 +----------------------+ | Working Directory | &lt;-- Thư mục làm việc +----------------------+ | | git add v +----------------------+ | Staging Area | &lt;-- File được đánh dấu để commit (lưu ở .git/index) +----------------------+ | | git commit v +----------------------+ | Local Repository | &lt;-- Commit được lưu vào máy (trong .git/objects) +----------------------+ | | git push v +----------------------+ | Remote Repository | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v. +----------------------+ Working Directory: thư mục làm việc. Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit. Local Repository: nơi lưu trữ các commit đã thực hiện. Remote Repository: ví dụ như GitHub, GitLab, Bitbucket. III. Các câu lệnh Git 1. Lệnh git cơ bản 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 |----------------------------------------------------------| | Lệnh | Chức năng | |----------------------------------------------------------| | git init | Tạo repo Git mới | | git clone &lt;url&gt; | Tải repo từ remote về | | git status | Xem trạng thái thay đổi | | git add &lt;file&gt; | Thêm file vào Staging Area | | git add . | Thêm tất cả file thay đổi | | git commit -m &quot;message&quot; | Tạo commit | | git log | Xem lịch sử commit | | git diff | So sánh thay đổi chưa commit | | git checkout &lt;branch&gt; | Chuyển nhánh | | git branch | Liệt kê danh sách nhánh | | git branch &lt;name&gt; | Tạo nhánh mới | | git merge &lt;branch&gt; | Gộp nhánh | | git pull | Lấy code mới nhất từ remote | | git push | Đẩy code lên remote | 2. Làm việc với Branch (nhánh) 1 2 3 git checkout -b feature/login # Tạo và chuyển sang nhánh mới git checkout main # Quay về nhánh chính git merge feature/login # Gộp nhánh vào nhánh hiện tại 3. Revert, Reset, Amend 1 2 3 4 5 6 7 8 |----------------------------------------------------------------------| | Lệnh | Ý nghĩa | |----------------------------------------------------------------------| | git reset | Quay lại commit trước đó (có thể mất code) | | git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi | | git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi | | git revert &lt;commit&gt; | Tạo commit mới để đảo ngược commit cũ | | git commit --amend | Sửa lại commit gần nhất | 4. Stash – Tạm thời lưu thay đổi 1 2 3 4 git stash # Lưu tạm thay đổi git stash list # Xem danh sách stash git stash apply # Áp dụng lại thay đổi git stash drop # Xóa stash 5. Remote Repository (GitHub, GitLab) 1 2 3 4 git remote -v # Kiểm tra remote git remote add origin &lt;url&gt; # Thêm remote repo git push -u origin main # Push lần đầu git pull origin main # Lấy code mới 6. Giải quyết Conflict (xung đột) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 - Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột: &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD # Code của bạn Code của người khác &gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name - Sửa file thủ công, sau đó: git add . git commit -m &quot;resolve conflict&quot; 7. Git Flow - Quy trình làm việc chuẩn 1 2 3 4 5 a. main – nhánh sản phẩm chạy chính thức. b. develop – nhánh phát triển chung. c. feature/\* – nhánh tính năng. d. release/\* – nhánh chuẩn bị release. e. hotfix/\* – xử lý lỗi khẩn cấp. IV. Các câu hỏi phỏng vấn thường gặp 1. Git khác gì SVN? 2. Sự khác nhau giữa git reset, git revert, git checkout? 3. Khi nào dùng git merge vs git rebase? 4. Cách giải quyết conflict? 5. Quy trình deploy/CI với Git?" />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/07/18/git-post/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/07/18/git-post/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-18T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tổng hợp kiến thức về Git" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-07-18T00:00:00-05:00","datePublished":"2025-07-18T00:00:00-05:00","description":"I. Git là gì? Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System). Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN). Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần. II. Kiến trúc cơ bản 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 +----------------------+ | Working Directory | &lt;-- Thư mục làm việc +----------------------+ | | git add v +----------------------+ | Staging Area | &lt;-- File được đánh dấu để commit (lưu ở .git/index) +----------------------+ | | git commit v +----------------------+ | Local Repository | &lt;-- Commit được lưu vào máy (trong .git/objects) +----------------------+ | | git push v +----------------------+ | Remote Repository | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v. +----------------------+ Working Directory: thư mục làm việc. Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit. Local Repository: nơi lưu trữ các commit đã thực hiện. Remote Repository: ví dụ như GitHub, GitLab, Bitbucket. III. Các câu lệnh Git 1. Lệnh git cơ bản 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 |----------------------------------------------------------| | Lệnh | Chức năng | |----------------------------------------------------------| | git init | Tạo repo Git mới | | git clone &lt;url&gt; | Tải repo từ remote về | | git status | Xem trạng thái thay đổi | | git add &lt;file&gt; | Thêm file vào Staging Area | | git add . | Thêm tất cả file thay đổi | | git commit -m &quot;message&quot; | Tạo commit | | git log | Xem lịch sử commit | | git diff | So sánh thay đổi chưa commit | | git checkout &lt;branch&gt; | Chuyển nhánh | | git branch | Liệt kê danh sách nhánh | | git branch &lt;name&gt; | Tạo nhánh mới | | git merge &lt;branch&gt; | Gộp nhánh | | git pull | Lấy code mới nhất từ remote | | git push | Đẩy code lên remote | 2. Làm việc với Branch (nhánh) 1 2 3 git checkout -b feature/login # Tạo và chuyển sang nhánh mới git checkout main # Quay về nhánh chính git merge feature/login # Gộp nhánh vào nhánh hiện tại 3. Revert, Reset, Amend 1 2 3 4 5 6 7 8 |----------------------------------------------------------------------| | Lệnh | Ý nghĩa | |----------------------------------------------------------------------| | git reset | Quay lại commit trước đó (có thể mất code) | | git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi | | git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi | | git revert &lt;commit&gt; | Tạo commit mới để đảo ngược commit cũ | | git commit --amend | Sửa lại commit gần nhất | 4. Stash – Tạm thời lưu thay đổi 1 2 3 4 git stash # Lưu tạm thay đổi git stash list # Xem danh sách stash git stash apply # Áp dụng lại thay đổi git stash drop # Xóa stash 5. Remote Repository (GitHub, GitLab) 1 2 3 4 git remote -v # Kiểm tra remote git remote add origin &lt;url&gt; # Thêm remote repo git push -u origin main # Push lần đầu git pull origin main # Lấy code mới 6. Giải quyết Conflict (xung đột) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 - Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột: &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD # Code của bạn Code của người khác &gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name - Sửa file thủ công, sau đó: git add . git commit -m &quot;resolve conflict&quot; 7. Git Flow - Quy trình làm việc chuẩn 1 2 3 4 5 a. main – nhánh sản phẩm chạy chính thức. b. develop – nhánh phát triển chung. c. feature/\\* – nhánh tính năng. d. release/\\* – nhánh chuẩn bị release. e. hotfix/\\* – xử lý lỗi khẩn cấp. IV. Các câu hỏi phỏng vấn thường gặp 1. Git khác gì SVN? 2. Sự khác nhau giữa git reset, git revert, git checkout? 3. Khi nào dùng git merge vs git rebase? 4. Cách giải quyết conflict? 5. Quy trình deploy/CI với Git?","headline":"Tổng hợp kiến thức về Git","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/07/18/git-post/"},"url":"http://0.0.0.0:4000/2025/07/18/git-post/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--devops">
+                      DevOps       
+      </span>
+      <h1 class="post-hero__title">Tổng hợp kiến thức về Git</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 18/07/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><p><strong>I. Git là gì?</strong></p>
+
+<ul>
+  <li>Git là hệ thống quản lý phiên bản phân tán (Distributed Version Control System).</li>
+  <li>Mỗi người clone repository sẽ có toàn bộ lịch sử thay đổi (không phụ thuộc vào kết nối với server như SVN).</li>
+  <li>Git giúp theo dõi thay đổi mã nguồn, làm việc nhóm hiệu quả, rollback khi cần.</li>
+</ul>
+
+<p><strong>II. Kiến trúc cơ bản</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre>    +----------------------+
+    |  Working Directory   |  &lt;-- Thư mục làm việc
+    +----------------------+
+              |
+              | git add
+              v
+    +----------------------+
+    |   Staging Area       |  &lt;-- File được đánh dấu để commit (lưu ở .git/index)
+    +----------------------+
+              |
+              | git commit
+              v
+    +----------------------+
+    | Local Repository     | &lt;-- Commit được lưu vào máy (trong .git/objects)
+    +----------------------+
+              |
+              | git push
+              v
+    +----------------------+
+    | Remote Repository    | &lt;-- Lưu trữ trên GitHub, GitLab, Bitbucket, v.v.
+    +----------------------+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Working Directory: thư mục làm việc.</li>
+  <li>Staging Area (Index): nơi lưu trữ tạm thời các thay đổi chuẩn bị commit.</li>
+  <li>Local Repository: nơi lưu trữ các commit đã thực hiện.</li>
+  <li>Remote Repository: ví dụ như GitHub, GitLab, Bitbucket.</li>
+</ul>
+
+<p><strong>III. Các câu lệnh Git</strong></p>
+
+<p><strong>1. Lệnh git cơ bản</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>    |----------------------------------------------------------|
+    | Lệnh                    | Chức năng                      |
+    |----------------------------------------------------------|
+    | git init                | Tạo repo Git mới               |
+    | git clone &lt;url&gt;         | Tải repo từ remote về          |
+    | git status              | Xem trạng thái thay đổi        |
+    | git add &lt;file&gt;          | Thêm file vào Staging Area     |
+    | git add .               | Thêm tất cả file thay đổi      |
+    | git commit -m "message" | Tạo commit                     |
+    | git log                 | Xem lịch sử commit             |
+    | git diff                | So sánh thay đổi chưa commit   |
+    | git checkout &lt;branch&gt;   | Chuyển nhánh                   |
+    | git branch              | Liệt kê danh sách nhánh        |
+    | git branch &lt;name&gt;       | Tạo nhánh mới                  |
+    | git merge &lt;branch&gt;      | Gộp nhánh                      |
+    | git pull                | Lấy code mới nhất từ remote    |
+    | git push                | Đẩy code lên remote            |
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>2. Làm việc với Branch (nhánh)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>    git checkout -b feature/login    # Tạo và chuyển sang nhánh mới
+    git checkout main                # Quay về nhánh chính
+    git merge feature/login          # Gộp nhánh vào nhánh hiện tại
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>3. Revert, Reset, Amend</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>    |----------------------------------------------------------------------|
+    | Lệnh                    | Ý nghĩa                                    |
+    |----------------------------------------------------------------------|
+    | git reset               | Quay lại commit trước đó (có thể mất code) |
+    | git reset --soft HEAD~1 | Quay lại nhưng vẫn giữ thay đổi            |
+    | git reset --hard HEAD~1 | Quay lại và xóa luôn thay đổi              |
+    | git revert &lt;commit&gt;     | Tạo commit mới để đảo ngược commit cũ      |
+    | git commit --amend      | Sửa lại commit gần nhất                    |
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>4. Stash – Tạm thời lưu thay đổi</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>    git stash               # Lưu tạm thay đổi
+    git stash list          # Xem danh sách stash
+    git stash apply         # Áp dụng lại thay đổi
+    git stash drop          # Xóa stash
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>5. Remote Repository (GitHub, GitLab)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>    git remote -v                     # Kiểm tra remote
+    git remote add origin &lt;url&gt;      # Thêm remote repo
+    git push -u origin main          # Push lần đầu
+    git pull origin main             # Lấy code mới
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>6. Giải quyết Conflict (xung đột)</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre>- Khi merge hoặc pull gây xung đột, Git sẽ đánh dấu các phần xung đột:
+
+      
+      &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+      # Code của bạn
+      Code của người khác
+      &gt; &gt; &gt; &gt; &gt; &gt; &gt; branch-name
+      
+
+- Sửa file thủ công, sau đó:
+
+      
+      git add .
+      git commit -m "resolve conflict"
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>7. Git Flow - Quy trình làm việc chuẩn</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>a. main – nhánh sản phẩm chạy chính thức.
+b. develop – nhánh phát triển chung.
+c. feature/\* – nhánh tính năng.
+d. release/\* – nhánh chuẩn bị release.
+e. hotfix/\* – xử lý lỗi khẩn cấp.
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>IV. Các câu hỏi phỏng vấn thường gặp</strong></p>
+
+<p><em>1. Git khác gì SVN?</em></p>
+
+<p><em>2. Sự khác nhau giữa git reset, git revert, git checkout?</em></p>
+
+<p><em>3. Khi nào dùng git merge vs git rebase?</em></p>
+
+<p><em>4. Cách giải quyết conflict?</em></p>
+
+<p><em>5. Quy trình deploy/CI với Git?</em></p>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/17/data-structures-post/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Ôn tập kiến thức về Cấu trúc dữ liệu
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/08/16/docker-post/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Kiến thức về Docker →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

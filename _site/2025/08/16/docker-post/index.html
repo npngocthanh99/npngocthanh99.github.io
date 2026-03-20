@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kiến thức về Docker — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="I. Kiến thức cơ bản về Docker?1. Docker là gì  Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container.  Container đóng gói ứng dụng và tấ..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Kiến thức về Docker | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Kiến thức về Docker" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I. Kiến thức cơ bản về Docker? 1. Docker là gì Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container. Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường. So với VM (Virtual Machine): VM có OS riêng → nặng hơn. Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn. 2. Thành phần chính của Docker Docker Engine: Nền tảng chạy container. Docker Image: File template dùng để tạo container. (VD: nginx:latest) Docker Container: Thực thể chạy từ image. Dockerfile: File mô tả cách build image. Docker Hub / Registry: Nơi lưu trữ image. Docker Compose: Tool để chạy nhiều container cùng lúc (multi-container). 3. Nguyên tắc container Immutable: Container không nên chỉnh sửa trực tiếp; nếu cần thay đổi → tạo image mới. Ephemeral: Container có thể bị xóa và tạo lại. Isolation: Container chạy độc lập về process, network, file system. II. Các lệnh Docker cơ bản Quản lý image 1 2 3 4 docker pull nginx:latest # Tải image từ Docker Hub docker images # Liệt kê image đã có docker rmi &lt;image_id&gt; # Xóa image docker build -t myapp:v1 . # Build image từ Dockerfile Quản lý container 1 2 3 4 5 6 7 8 docker run -d --name mynginx -p 8080:80 nginx:latest # Chạy container docker ps # Xem container đang chạy docker ps -a # Xem tất cả container docker stop mynginx # Dừng container docker start mynginx # Khởi động container đã dừng docker rm mynginx # Xóa container docker logs mynginx # Xem log container docker exec -it mynginx bash # Vào bash container Docker Compose docker-compose.yml định nghĩa nhiều container, network, volume. 1 2 3 4 5 6 7 8 9 10 version: &quot;3&quot; services: web: image: nginx:latest ports: - &quot;8080:80&quot; db: image: mysql:8 environment: MYSQL_ROOT_PASSWORD: example Lệnh thường dùng: 1 2 3 docker-compose up -d # Chạy tất cả service docker-compose down # Dừng và xóa docker-compose logs -f # Xem log III. Docker trong thực tế Triển khai ứng dụng Backend Spring Boot, Node.js, Python: Tạo Dockerfile. Build image → push lên registry → deploy container. Frontend: Docker dùng Nginx serve SPA. Mount code vào container để dev nhanh. b. Docker và môi trường Dev / Test / Prod: Sử dụng cùng image → tránh lỗi “ở máy chạy được mà prod không chạy”. Docker Compose quản lý nhiều service. c. Persistent Data Volume: dùng lưu dữ liệu, không bị mất khi container xóa. 1 docker run -v /host/path:/container/path nginx d. Networking Docker tạo network riêng cho container. Container có thể ping nhau bằng tên service. IV. Best practices(Ưu điểm) Image nhẹ → dùng alpine thay vì ubuntu nếu không cần. Dockerfile: build multi-stage để giảm size. Không lưu dữ liệu trong container → dùng volume. Quản lý environment: .env file hoặc docker-compose.override.yml. Chỉ expose port cần thiết. Container không nên chạy root user." />
+<meta property="og:description" content="I. Kiến thức cơ bản về Docker? 1. Docker là gì Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container. Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường. So với VM (Virtual Machine): VM có OS riêng → nặng hơn. Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn. 2. Thành phần chính của Docker Docker Engine: Nền tảng chạy container. Docker Image: File template dùng để tạo container. (VD: nginx:latest) Docker Container: Thực thể chạy từ image. Dockerfile: File mô tả cách build image. Docker Hub / Registry: Nơi lưu trữ image. Docker Compose: Tool để chạy nhiều container cùng lúc (multi-container). 3. Nguyên tắc container Immutable: Container không nên chỉnh sửa trực tiếp; nếu cần thay đổi → tạo image mới. Ephemeral: Container có thể bị xóa và tạo lại. Isolation: Container chạy độc lập về process, network, file system. II. Các lệnh Docker cơ bản Quản lý image 1 2 3 4 docker pull nginx:latest # Tải image từ Docker Hub docker images # Liệt kê image đã có docker rmi &lt;image_id&gt; # Xóa image docker build -t myapp:v1 . # Build image từ Dockerfile Quản lý container 1 2 3 4 5 6 7 8 docker run -d --name mynginx -p 8080:80 nginx:latest # Chạy container docker ps # Xem container đang chạy docker ps -a # Xem tất cả container docker stop mynginx # Dừng container docker start mynginx # Khởi động container đã dừng docker rm mynginx # Xóa container docker logs mynginx # Xem log container docker exec -it mynginx bash # Vào bash container Docker Compose docker-compose.yml định nghĩa nhiều container, network, volume. 1 2 3 4 5 6 7 8 9 10 version: &quot;3&quot; services: web: image: nginx:latest ports: - &quot;8080:80&quot; db: image: mysql:8 environment: MYSQL_ROOT_PASSWORD: example Lệnh thường dùng: 1 2 3 docker-compose up -d # Chạy tất cả service docker-compose down # Dừng và xóa docker-compose logs -f # Xem log III. Docker trong thực tế Triển khai ứng dụng Backend Spring Boot, Node.js, Python: Tạo Dockerfile. Build image → push lên registry → deploy container. Frontend: Docker dùng Nginx serve SPA. Mount code vào container để dev nhanh. b. Docker và môi trường Dev / Test / Prod: Sử dụng cùng image → tránh lỗi “ở máy chạy được mà prod không chạy”. Docker Compose quản lý nhiều service. c. Persistent Data Volume: dùng lưu dữ liệu, không bị mất khi container xóa. 1 docker run -v /host/path:/container/path nginx d. Networking Docker tạo network riêng cho container. Container có thể ping nhau bằng tên service. IV. Best practices(Ưu điểm) Image nhẹ → dùng alpine thay vì ubuntu nếu không cần. Dockerfile: build multi-stage để giảm size. Không lưu dữ liệu trong container → dùng volume. Quản lý environment: .env file hoặc docker-compose.override.yml. Chỉ expose port cần thiết. Container không nên chạy root user." />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/08/16/docker-post/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/08/16/docker-post/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-08-16T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Kiến thức về Docker" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-08-16T00:00:00-05:00","datePublished":"2025-08-16T00:00:00-05:00","description":"I. Kiến thức cơ bản về Docker? 1. Docker là gì Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container. Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường. So với VM (Virtual Machine): VM có OS riêng → nặng hơn. Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn. 2. Thành phần chính của Docker Docker Engine: Nền tảng chạy container. Docker Image: File template dùng để tạo container. (VD: nginx:latest) Docker Container: Thực thể chạy từ image. Dockerfile: File mô tả cách build image. Docker Hub / Registry: Nơi lưu trữ image. Docker Compose: Tool để chạy nhiều container cùng lúc (multi-container). 3. Nguyên tắc container Immutable: Container không nên chỉnh sửa trực tiếp; nếu cần thay đổi → tạo image mới. Ephemeral: Container có thể bị xóa và tạo lại. Isolation: Container chạy độc lập về process, network, file system. II. Các lệnh Docker cơ bản Quản lý image 1 2 3 4 docker pull nginx:latest # Tải image từ Docker Hub docker images # Liệt kê image đã có docker rmi &lt;image_id&gt; # Xóa image docker build -t myapp:v1 . # Build image từ Dockerfile Quản lý container 1 2 3 4 5 6 7 8 docker run -d --name mynginx -p 8080:80 nginx:latest # Chạy container docker ps # Xem container đang chạy docker ps -a # Xem tất cả container docker stop mynginx # Dừng container docker start mynginx # Khởi động container đã dừng docker rm mynginx # Xóa container docker logs mynginx # Xem log container docker exec -it mynginx bash # Vào bash container Docker Compose docker-compose.yml định nghĩa nhiều container, network, volume. 1 2 3 4 5 6 7 8 9 10 version: &quot;3&quot; services: web: image: nginx:latest ports: - &quot;8080:80&quot; db: image: mysql:8 environment: MYSQL_ROOT_PASSWORD: example Lệnh thường dùng: 1 2 3 docker-compose up -d # Chạy tất cả service docker-compose down # Dừng và xóa docker-compose logs -f # Xem log III. Docker trong thực tế Triển khai ứng dụng Backend Spring Boot, Node.js, Python: Tạo Dockerfile. Build image → push lên registry → deploy container. Frontend: Docker dùng Nginx serve SPA. Mount code vào container để dev nhanh. b. Docker và môi trường Dev / Test / Prod: Sử dụng cùng image → tránh lỗi “ở máy chạy được mà prod không chạy”. Docker Compose quản lý nhiều service. c. Persistent Data Volume: dùng lưu dữ liệu, không bị mất khi container xóa. 1 docker run -v /host/path:/container/path nginx d. Networking Docker tạo network riêng cho container. Container có thể ping nhau bằng tên service. IV. Best practices(Ưu điểm) Image nhẹ → dùng alpine thay vì ubuntu nếu không cần. Dockerfile: build multi-stage để giảm size. Không lưu dữ liệu trong container → dùng volume. Quản lý environment: .env file hoặc docker-compose.override.yml. Chỉ expose port cần thiết. Container không nên chạy root user.","headline":"Kiến thức về Docker","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/08/16/docker-post/"},"url":"http://0.0.0.0:4000/2025/08/16/docker-post/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--devops">
+                      DevOps       
+      </span>
+      <h1 class="post-hero__title">Kiến thức về Docker</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 16/08/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><p><strong>I. Kiến thức cơ bản về Docker?</strong></p>
+
+<p><strong>1. Docker là gì</strong></p>
+
+<ul>
+  <li>Docker là một nền tảng để tạo, triển khai và chạy ứng dụng trong container.</li>
+  <li>Container đóng gói ứng dụng và tất cả dependencies (thư viện, cấu hình) để chạy đồng nhất trên mọi môi trường.</li>
+  <li>So với VM (Virtual Machine):
+    <ul>
+      <li>VM có OS riêng → nặng hơn.</li>
+      <li>Container dùng chung kernel → nhẹ, nhanh, khởi động nhanh hơn.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>2. Thành phần chính của Docker</strong></p>
+
+<ul>
+  <li>Docker Engine: Nền tảng chạy container.</li>
+  <li>Docker Image: File template dùng để tạo container. (VD: nginx:latest)</li>
+  <li>Docker Container: Thực thể chạy từ image.</li>
+  <li>Dockerfile: File mô tả cách build image.</li>
+  <li>Docker Hub / Registry: Nơi lưu trữ image.</li>
+  <li>Docker Compose: Tool để chạy nhiều container cùng lúc (multi-container).</li>
+</ul>
+
+<p><strong>3. Nguyên tắc container</strong></p>
+
+<ul>
+  <li>Immutable: Container không nên chỉnh sửa trực tiếp; nếu cần thay đổi → tạo image mới.</li>
+  <li>Ephemeral: Container có thể bị xóa và tạo lại.</li>
+  <li>Isolation: Container chạy độc lập về process, network, file system.</li>
+</ul>
+
+<p><strong>II. Các lệnh Docker cơ bản</strong></p>
+
+<ol>
+  <li>
+    <p>Quản lý image</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>docker pull nginx:latest       # Tải image từ Docker Hub
+docker images                  # Liệt kê image đã có
+docker rmi &lt;image_id&gt;          # Xóa image
+docker build -t myapp:v1 .     # Build image từ Dockerfile
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Quản lý container</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>docker run -d --name mynginx -p 8080:80 nginx:latest   # Chạy container
+docker ps                    # Xem container đang chạy
+docker ps -a                 # Xem tất cả container
+docker stop mynginx          # Dừng container
+docker start mynginx         # Khởi động container đã dừng
+docker rm mynginx            # Xóa container
+docker logs mynginx          # Xem log container
+docker exec -it mynginx bash # Vào bash container
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Docker Compose</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>docker-compose.yml định nghĩa nhiều container, network, volume.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>  version: "3"
+  services:
+    web:
+      image: nginx:latest
+      ports:
+        - "8080:80"
+    db:
+      image: mysql:8
+      environment:
+        MYSQL_ROOT_PASSWORD: example
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Lệnh thường dùng:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  docker-compose up -d    # Chạy tất cả service
+  docker-compose down     # Dừng và xóa
+  docker-compose logs -f  # Xem log
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>III. Docker trong thực tế</strong></p>
+
+<ol>
+  <li>Triển khai ứng dụng</li>
+</ol>
+
+<ul>
+  <li>Backend Spring Boot, Node.js, Python:
+    <ul>
+      <li>Tạo Dockerfile.</li>
+      <li>Build image → push lên registry → deploy container.</li>
+    </ul>
+  </li>
+  <li>Frontend:
+    <ul>
+      <li>Docker dùng Nginx serve SPA.</li>
+      <li>Mount code vào container để dev nhanh.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>b. Docker và môi trường</p>
+
+<ul>
+  <li>Dev / Test / Prod:
+    <ul>
+      <li>Sử dụng cùng image → tránh lỗi “ở máy chạy được mà prod không chạy”.</li>
+      <li>Docker Compose quản lý nhiều service.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>c. Persistent Data</p>
+
+<ul>
+  <li>
+    <p>Volume: dùng lưu dữ liệu, không bị mất khi container xóa.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>  docker run -v /host/path:/container/path nginx
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>d. Networking</p>
+
+<ul>
+  <li>Docker tạo network riêng cho container.</li>
+  <li>Container có thể ping nhau bằng tên service.</li>
+</ul>
+
+<p><strong>IV. Best practices(Ưu điểm)</strong></p>
+
+<ul>
+  <li>Image nhẹ → dùng alpine thay vì ubuntu nếu không cần.</li>
+  <li>Dockerfile: build multi-stage để giảm size.</li>
+  <li>Không lưu dữ liệu trong container → dùng volume.</li>
+  <li>Quản lý environment: .env file hoặc docker-compose.override.yml.</li>
+  <li>Chỉ expose port cần thiết.</li>
+  <li>Container không nên chạy root user.</li>
+</ul>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/18/git-post/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Tổng hợp kiến thức về Git
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/08/17/basic_algorithms-post/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Ôn tập kiến thức về thuật toán cơ bản →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

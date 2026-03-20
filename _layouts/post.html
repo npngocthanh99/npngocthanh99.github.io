@@ -2,8 +2,77 @@
 layout: base
 ---
 
+{% assign tag = page.tag | default: 'other' %} {% assign tag_labels =
+"java:Java,spring:Spring,react:React,redis:Redis,devops:DevOps,cs:CS,other:Blog"
+| split: ',' %}
+
 <article>
-  <h1>{{ page.title }}</h1>
-  <p><small>{{ page.date | date: "%d-%m-%Y" }}</small></p>
-  {{ content }}
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="{{ '/' | relative_url }}">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--{{ tag }}">
+        {% for pair in tag_labels %} {% assign kv = pair | split: ':' %} {% if
+        kv[0] == tag %}{{ kv[1] }}{% endif %} {% endfor %}
+      </span>
+      <h1 class="post-hero__title">{{ page.title }}</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 {{ page.date | date: "%d/%m/%Y" }}</span
+        >
+        {% if page.author %}<span class="post-hero__date"
+          >✍️ {{ page.author }}</span
+        >{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content">{{ content }}</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      {% if page.previous.url %}
+      <a
+        class="pg__btn"
+        href="{{ page.previous.url | relative_url }}"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← {{ page.previous.title | truncate: 50 }}
+      </a>
+      {% else %}<span></span>{% endif %} {% if page.next.url %}
+      <a
+        class="pg__btn"
+        href="{{ page.next.url | relative_url }}"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        {{ page.next.title | truncate: 50 }} →
+      </a>
+      {% endif %}
+    </div>
+  </div>
 </article>

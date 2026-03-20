@@ -2,6 +2,7 @@
 layout: post
 title: "Ôn tập kiến thức về thuật toán cơ bản"
 date: 2025-08-17
+tag: cs
 ---
 
 **I. Khái niệm nền tảng**
@@ -54,19 +55,16 @@ date: 2025-08-17
 **1. Bubble Sort**
 
 - Ý tưởng:
-
   - Duyệt nhiều lần qua mảng.
   - Mỗi lần duyệt, so sánh cặp phần tử liền kề, nếu sai thứ tự thì hoán đổi.
   - Sau mỗi lượt, phần tử lớn nhất “nổi” lên cuối.
 
 - Độ phức tạp:
-
   - Trung bình / Tệ nhất: O(n²)
   - Tốt nhất (mảng đã sort): O(n)
   - Bộ nhớ: O(1), ổn định.
 
 - Ví dụ:
-
   - Mảng: [5, 1, 4, 2]
   - Lượt 1: (5,1) → swap → [1,5,4,2]; (5,4) → [1,4,5,2]; (5,2) → [1,4,2,5]
   - Lượt 2: (1,4), ok; (4,2) → [1,2,4,5]; (4,5) ok
@@ -94,17 +92,14 @@ date: 2025-08-17
 **2. Selection Sort**
 
 - Ý tưởng:
-
   - Ở mỗi vòng lặp, tìm phần tử nhỏ nhất trong đoạn chưa sort, đưa nó về đầu.
   - Sau vòng thứ i, các phần tử [0..i] đã đúng chỗ.
 
 - Độ phức tạp:
-
   - Trung bình / Tệ nhất: O(n²)
   - Không ổn định, bộ nhớ O(1).
 
 - Ví dụ:
-
   - Mảng [29, 10, 14, 37]
   - Lượt 1: min=10 → swap với 29 → [10,29,14,37]
   - Lượt 2: min=14 → swap với 29 → [10,14,29,37] → Done.
@@ -127,18 +122,15 @@ date: 2025-08-17
 **3. Insertion Sort**
 
 - Ý tưởng:
-
   - Duyệt từ trái sang phải.
   - Với mỗi phần tử, chèn nó vào đúng vị trí trong đoạn đã sort trước đó.
 
 - Độ phức tạp:
-
   - Trung bình / Tệ nhất: O(n²)
   - Tốt nhất (mảng gần như sort): O(n)
   - Ổn định, bộ nhớ O(1).
 
 - Ví dụ:
-
   - Mảng [5, 3, 4]
   - 5: đoạn đã sort [5].
   - 3: chèn vào trước 5 → [3,5].
@@ -161,20 +153,16 @@ date: 2025-08-17
 **4. Merge Sort**
 
 - Ý tưởng:
-
   - Chia để trị:
-
     - Chia mảng thành 2 nửa.
     - Sắp xếp từng nửa đệ quy.
     - Gộp (merge) 2 nửa đã sort.
 
 - Độ phức tạp:
-
   - Luôn O(n log n)
   - Bộ nhớ: O(n), ổn định.
 
 - Ví dụ:
-
   - Mảng [38, 27, 43, 3]
   - Chia: [38,27] và [43,3].
   - Sort trái → [27,38]; sort phải → [3,43].
@@ -210,21 +198,17 @@ date: 2025-08-17
 **5. Quick Sort (chia để trị)**
 
 - Ý tưởng:
-
   - Chia để trị:
-
     1. Chọn pivot (thường là giữa, trái, phải hoặc ngẫu nhiên).
     2. Phân chia mảng thành 2 phần: ≤ pivot và ≥ pivot.
     3. Đệ quy sort 2 nửa.
 
 - Độ phức tạp:
-
   - Trung bình: O(n log n)
   - Tệ nhất: O(n²) (pivot xấu).
   - Bộ nhớ: O(log n), không ổn định.
 
 - Ví dụ:
-
   - Mảng [9,3,7,1], pivot=7
   - Nhỏ hơn pivot: [3,1], lớn hơn: [9].
   - Sort [3,1] → [1,3].
@@ -255,17 +239,14 @@ date: 2025-08-17
 **6. Heap Sort**
 
 - Ý tưởng:
-
   - Xây max-heap từ mảng.
   - Lặp: swap root (max) với phần tử cuối, giảm heap-size, heapify lại.
 
 - Độ phức tạp:
-
   - Luôn O(n log n)
   - In-place, không ổn định.
 
 - Ví dụ:
-
   - Mảng [4,10,3,5,1]
   - Heapify → [10,5,3,4,1]
   - Swap 10 ↔ 1 → [1,5,3,4,10]

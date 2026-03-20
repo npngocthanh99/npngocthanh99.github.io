@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tổng hợp kiến thức về Spring MVC (Web Layer) — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="      Kiến trúc MVC    123456    |------------------------------------------------------------------|    | Thành phần | Vai trò                              ..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tổng hợp kiến thức về Spring MVC (Web Layer) | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tổng hợp kiến thức về Spring MVC (Web Layer)" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kiến trúc MVC 1 2 3 4 5 6 |------------------------------------------------------------------| | Thành phần | Vai trò | |------------------------------------------------------------------| | Model | Chứa dữ liệu (DTO, Entity) | | View | Giao diện người dùng (Thymeleaf, JSP...) | | Controller | Xử lý logic điều hướng, nhận request – trả response | @Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 |----------------------------------------------------------------------------------------------------------------| | Annotation | Chức năng | Dùng khi | |----------------------------------------------------------------------------------------------------------------| | @Controller | Đánh dấu 1 class là controller | web truyền thống (trả về HTML) | | @RestController | = @Controller + @ResponseBody, trả JSON/XML | REST API | | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class | | @GetMapping | GET request | Dùng cho api trả về dữ liệu | | @PostMapping | POST request | Dùng cho api tạo dữ liệu | | @PutMapping | PUT request | Dùng cho api cập nhật toàn bộ một resource | | @PatchMapping | PATCH request | Dùng cho api cập nhật một phần của resource | | @DeleteMapping | DELETE request | dùng cho api xóa một resource | | @PathVariable | Lấy dữ liệu từ URL path | /users/{id} | | @RequestParam | Lấy query param (?key=value) | ?keyword=abc | | @RequestBody | Map JSON body vào Java object | Dùng với POST, PUT | | @ResponseBody | Trả object dưới dạng JSON | Nếu không dùng @RestController | Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 @RestController @RequestMapping(&quot;/users&quot;) public class UserController { @GetMapping(&quot;/{id}&quot;) public UserDto getUser(@PathVariable Long id) { return userService.getUser(id); } @PostMapping public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) { userService.create(userDto); return ResponseEntity.ok(&quot;Created&quot;); } } Binding dữ liệu: DTO, Form object 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 - DTO: Data Transfer Object – trung gian giữa request và service - Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON) - Ví dụ: public class UserDto { @NotBlank private String name; @Email private String email; } | Spring tự map JSON → object thông qua @RequestBody. Exception handling: @ControllerAdvice, @ExceptionHandler a. Tạo custom handler toàn cục 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 @ControllerAdvice public class GlobalExceptionHandler { @ExceptionHandler(EntityNotFoundException.class) public ResponseEntity&lt;String&gt; handleNotFound(EntityNotFoundException ex) { return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()); } @ExceptionHandler(MethodArgumentNotValidException.class) public ResponseEntity&lt;?&gt; handleValidation(MethodArgumentNotValidException ex) { Map&lt;String, String&gt; errors = new HashMap&lt;&gt;(); ex.getBindingResult().getFieldErrors() .forEach(err -&gt; errors.put(err.getField(), err.getDefaultMessage())); return ResponseEntity.badRequest().body(errors); } } b. Custom exception: 1 2 3 4 5 public class EntityNotFoundException extends RuntimeException { public EntityNotFoundException(String message) { super(message); } } Validations: @Valid, @Validated, Bean Validation API (JSR-303) 1 2 3 4 5 6 |--------------------------------------------------------------------------------------------------| | Annotation | Ý nghĩa | |--------------------------------------------------------------------------------------------------| | @Valid | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) | | @Validated | Giống @Valid nhưng hỗ trợ Group | | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API | Ví dụ: 1 2 3 4 5 6 7 8 9 @PostMapping public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) { // Nếu sai -&gt; MethodArgumentNotValidException userService.save(userDto); return ResponseEntity.ok(&quot;Success&quot;); } | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid." />
+<meta property="og:description" content="Kiến trúc MVC 1 2 3 4 5 6 |------------------------------------------------------------------| | Thành phần | Vai trò | |------------------------------------------------------------------| | Model | Chứa dữ liệu (DTO, Entity) | | View | Giao diện người dùng (Thymeleaf, JSP...) | | Controller | Xử lý logic điều hướng, nhận request – trả response | @Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 |----------------------------------------------------------------------------------------------------------------| | Annotation | Chức năng | Dùng khi | |----------------------------------------------------------------------------------------------------------------| | @Controller | Đánh dấu 1 class là controller | web truyền thống (trả về HTML) | | @RestController | = @Controller + @ResponseBody, trả JSON/XML | REST API | | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class | | @GetMapping | GET request | Dùng cho api trả về dữ liệu | | @PostMapping | POST request | Dùng cho api tạo dữ liệu | | @PutMapping | PUT request | Dùng cho api cập nhật toàn bộ một resource | | @PatchMapping | PATCH request | Dùng cho api cập nhật một phần của resource | | @DeleteMapping | DELETE request | dùng cho api xóa một resource | | @PathVariable | Lấy dữ liệu từ URL path | /users/{id} | | @RequestParam | Lấy query param (?key=value) | ?keyword=abc | | @RequestBody | Map JSON body vào Java object | Dùng với POST, PUT | | @ResponseBody | Trả object dưới dạng JSON | Nếu không dùng @RestController | Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 @RestController @RequestMapping(&quot;/users&quot;) public class UserController { @GetMapping(&quot;/{id}&quot;) public UserDto getUser(@PathVariable Long id) { return userService.getUser(id); } @PostMapping public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) { userService.create(userDto); return ResponseEntity.ok(&quot;Created&quot;); } } Binding dữ liệu: DTO, Form object 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 - DTO: Data Transfer Object – trung gian giữa request và service - Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON) - Ví dụ: public class UserDto { @NotBlank private String name; @Email private String email; } | Spring tự map JSON → object thông qua @RequestBody. Exception handling: @ControllerAdvice, @ExceptionHandler a. Tạo custom handler toàn cục 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 @ControllerAdvice public class GlobalExceptionHandler { @ExceptionHandler(EntityNotFoundException.class) public ResponseEntity&lt;String&gt; handleNotFound(EntityNotFoundException ex) { return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()); } @ExceptionHandler(MethodArgumentNotValidException.class) public ResponseEntity&lt;?&gt; handleValidation(MethodArgumentNotValidException ex) { Map&lt;String, String&gt; errors = new HashMap&lt;&gt;(); ex.getBindingResult().getFieldErrors() .forEach(err -&gt; errors.put(err.getField(), err.getDefaultMessage())); return ResponseEntity.badRequest().body(errors); } } b. Custom exception: 1 2 3 4 5 public class EntityNotFoundException extends RuntimeException { public EntityNotFoundException(String message) { super(message); } } Validations: @Valid, @Validated, Bean Validation API (JSR-303) 1 2 3 4 5 6 |--------------------------------------------------------------------------------------------------| | Annotation | Ý nghĩa | |--------------------------------------------------------------------------------------------------| | @Valid | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) | | @Validated | Giống @Valid nhưng hỗ trợ Group | | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API | Ví dụ: 1 2 3 4 5 6 7 8 9 @PostMapping public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) { // Nếu sai -&gt; MethodArgumentNotValidException userService.save(userDto); return ResponseEntity.ok(&quot;Success&quot;); } | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid." />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/07/05/spring-mvc/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/07/05/spring-mvc/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-05T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tổng hợp kiến thức về Spring MVC (Web Layer)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-07-05T00:00:00-05:00","datePublished":"2025-07-05T00:00:00-05:00","description":"Kiến trúc MVC 1 2 3 4 5 6 |------------------------------------------------------------------| | Thành phần | Vai trò | |------------------------------------------------------------------| | Model | Chứa dữ liệu (DTO, Entity) | | View | Giao diện người dùng (Thymeleaf, JSP...) | | Controller | Xử lý logic điều hướng, nhận request – trả response | @Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 |----------------------------------------------------------------------------------------------------------------| | Annotation | Chức năng | Dùng khi | |----------------------------------------------------------------------------------------------------------------| | @Controller | Đánh dấu 1 class là controller | web truyền thống (trả về HTML) | | @RestController | = @Controller + @ResponseBody, trả JSON/XML | REST API | | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class | | @GetMapping | GET request | Dùng cho api trả về dữ liệu | | @PostMapping | POST request | Dùng cho api tạo dữ liệu | | @PutMapping | PUT request | Dùng cho api cập nhật toàn bộ một resource | | @PatchMapping | PATCH request | Dùng cho api cập nhật một phần của resource | | @DeleteMapping | DELETE request | dùng cho api xóa một resource | | @PathVariable | Lấy dữ liệu từ URL path | /users/{id} | | @RequestParam | Lấy query param (?key=value) | ?keyword=abc | | @RequestBody | Map JSON body vào Java object | Dùng với POST, PUT | | @ResponseBody | Trả object dưới dạng JSON | Nếu không dùng @RestController | Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 @RestController @RequestMapping(&quot;/users&quot;) public class UserController { @GetMapping(&quot;/{id}&quot;) public UserDto getUser(@PathVariable Long id) { return userService.getUser(id); } @PostMapping public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) { userService.create(userDto); return ResponseEntity.ok(&quot;Created&quot;); } } Binding dữ liệu: DTO, Form object 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 - DTO: Data Transfer Object – trung gian giữa request và service - Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON) - Ví dụ: public class UserDto { @NotBlank private String name; @Email private String email; } | Spring tự map JSON → object thông qua @RequestBody. Exception handling: @ControllerAdvice, @ExceptionHandler a. Tạo custom handler toàn cục 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 @ControllerAdvice public class GlobalExceptionHandler { @ExceptionHandler(EntityNotFoundException.class) public ResponseEntity&lt;String&gt; handleNotFound(EntityNotFoundException ex) { return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()); } @ExceptionHandler(MethodArgumentNotValidException.class) public ResponseEntity&lt;?&gt; handleValidation(MethodArgumentNotValidException ex) { Map&lt;String, String&gt; errors = new HashMap&lt;&gt;(); ex.getBindingResult().getFieldErrors() .forEach(err -&gt; errors.put(err.getField(), err.getDefaultMessage())); return ResponseEntity.badRequest().body(errors); } } b. Custom exception: 1 2 3 4 5 public class EntityNotFoundException extends RuntimeException { public EntityNotFoundException(String message) { super(message); } } Validations: @Valid, @Validated, Bean Validation API (JSR-303) 1 2 3 4 5 6 |--------------------------------------------------------------------------------------------------| | Annotation | Ý nghĩa | |--------------------------------------------------------------------------------------------------| | @Valid | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) | | @Validated | Giống @Valid nhưng hỗ trợ Group | | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API | Ví dụ: 1 2 3 4 5 6 7 8 9 @PostMapping public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) { // Nếu sai -&gt; MethodArgumentNotValidException userService.save(userDto); return ResponseEntity.ok(&quot;Success&quot;); } | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid.","headline":"Tổng hợp kiến thức về Spring MVC (Web Layer)","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/07/05/spring-mvc/"},"url":"http://0.0.0.0:4000/2025/07/05/spring-mvc/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--spring">
+             Spring                
+      </span>
+      <h1 class="post-hero__title">Tổng hợp kiến thức về Spring MVC (Web Layer)</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 05/07/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><ol>
+  <li>
+    <p>Kiến trúc MVC</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>    |------------------------------------------------------------------|
+    | Thành phần | Vai trò                                             |
+    |------------------------------------------------------------------|
+    | Model      | Chứa dữ liệu (DTO, Entity)                          |
+    | View       | Giao diện người dùng (Thymeleaf, JSP...)            |
+    | Controller | Xử lý logic điều hướng, nhận request – trả response |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>@Controller, @RestController, @RequestMapping, @GetMapping, @PostMapping, @PathVariable, @RequestParam, @RequestBody, @ResponseBody</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre>    |----------------------------------------------------------------------------------------------------------------|
+    | Annotation      | Chức năng                                    | Dùng khi                                      |
+    |----------------------------------------------------------------------------------------------------------------|
+    | @Controller     | Đánh dấu 1 class là controller               | web truyền thống (trả về HTML)                |
+    | @RestController | = @Controller + @ResponseBody, trả JSON/XML  | REST API                                      |
+    | @RequestMapping | Ánh xạ path chung cho controller hoặc method | Cho method/class                              |
+    | @GetMapping     | GET request                                  | Dùng cho api trả về dữ liệu                   |
+    | @PostMapping    | POST request                                 | Dùng cho api tạo dữ liệu                      |
+    | @PutMapping     | PUT request                                  | Dùng cho api cập nhật toàn bộ một resource    |
+    | @PatchMapping   | PATCH request                                  | Dùng cho api cập nhật một phần của resource |
+    | @DeleteMapping  | DELETE request                               | dùng cho api xóa một resource                 |
+    | @PathVariable   | Lấy dữ liệu từ URL path                      | /users/{id}                                   |
+    | @RequestParam   | Lấy query param (?key=value)                 | ?keyword=abc                                  |
+    | @RequestBody    | Map JSON body vào Java object                | Dùng với POST, PUT                            |
+    | @ResponseBody   | Trả object dưới dạng JSON                    | Nếu không dùng @RestController                |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre> @RestController
+ @RequestMapping("/users")
+ public class UserController {
+
+  @GetMapping("/{id}")
+  public UserDto getUser(@PathVariable Long id) {
+    return userService.getUser(id);
+  }
+
+  @PostMapping
+  public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) {
+    userService.create(userDto);
+    return ResponseEntity.ok("Created");
+  }
+ }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Binding dữ liệu: DTO, Form object</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre>- DTO: Data Transfer Object – trung gian giữa request và service
+- Form object: DTO dùng để binding dữ liệu từ form (hoặc JSON)
+- Ví dụ:
+
+           
+       public class UserDto {
+       @NotBlank
+       private String name;
+
+       @Email
+       private String email;
+       }
+           
+
+   | Spring tự map JSON → object thông qua @RequestBody.
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Exception handling: @ControllerAdvice, @ExceptionHandler</p>
+
+    <p>a. Tạo custom handler toàn cục</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre>               @ControllerAdvice
+               public class GlobalExceptionHandler {
+
+                @ExceptionHandler(EntityNotFoundException.class)
+                public ResponseEntity&lt;String&gt; handleNotFound(EntityNotFoundException ex) {
+                  return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+                }
+
+                @ExceptionHandler(MethodArgumentNotValidException.class)
+                public ResponseEntity&lt;?&gt; handleValidation(MethodArgumentNotValidException ex) {
+                  Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+                  ex.getBindingResult().getFieldErrors()
+                    .forEach(err -&gt; errors.put(err.getField(), err.getDefaultMessage()));
+                  return ResponseEntity.badRequest().body(errors);
+                }
+               }
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <p>b. Custom exception:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>               public class EntityNotFoundException extends RuntimeException {
+                public EntityNotFoundException(String message) {
+                super(message);
+                }
+               }
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Validations: @Valid, @Validated, Bean Validation API (JSR-303)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>    |--------------------------------------------------------------------------------------------------|
+    | Annotation                       | Ý nghĩa                                                       |
+    |--------------------------------------------------------------------------------------------------|
+    | @Valid                           | Kiểm tra đối tượng theo rule validation (thường dùng cho DTO) |
+    | @Validated                       | Giống @Valid nhưng hỗ trợ Group                               |
+    | @NotNull, @Size, @Min, @Email... | Các ràng buộc có sẵn từ Bean Validation API                   |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>             @PostMapping
+             public ResponseEntity&lt;?&gt; createUser(@RequestBody @Valid UserDto userDto) {
+              // Nếu sai -&gt; MethodArgumentNotValidException
+              userService.save(userDto);
+              return ResponseEntity.ok("Success");
+             }
+                   
+
+   | Chúng ta cần thêm spring-boot-starter-validation để dùng được @Valid.
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/04/spring-boot/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Tổng hợp kiến thức về Spring Framework
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/07/06/spring-data/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Tổng hợp kiến thức về Spring Data JPA / Spring ... →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

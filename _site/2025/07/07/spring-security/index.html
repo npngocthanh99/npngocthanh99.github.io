@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tổng hợp kiến thức về Spring Security — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="II. Tổng quan về Spring security1. Giới thiệu Spring Security      Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tổng hợp kiến thức về Spring Security | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tổng hợp kiến thức về Spring Security" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="II. Tổng quan về Spring security 1. Giới thiệu Spring Security Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication (xác thực) và Authorization (phân quyền) cho các ứng dụng Java, đặc biệt là Spring Boot. Ngoài ra, nó còn hỗ trợ: Bảo mật API với JWT, OAuth2. Cấu hình linh hoạt qua Java Config hoặc Annotation. Tích hợp dễ dàng với cơ sở dữ liệu, LDAP, SSO, v.v. 2. Các khái niệm chính Authentication (Xác thực): Kiểm tra danh tính của người dùng (username/password, token, SSO…). → Xác định bạn là ai. Authorization (Phân quyền): Xác định người dùng đã xác thực có quyền truy cập vào tài nguyên nào. → Xác định bạn được làm gì. Security Context &amp; Authentication Object: Thông tin người dùng đã đăng nhập được lưu trong SecurityContextHolder. Filter Chain: Spring Security sử dụng chuỗi filter (DelegatingFilterProxy → FilterChainProxy) để xử lý request trước khi đến Controller. 3. Luồng hoạt động cơ bản 1 2 3 4 5 1. Người dùng gửi request (ví dụ login với username/password). 2.Request đi qua Spring Security Filter Chain. 3. Authentication Manager gọi đến Authentication Provider (VD: DaoAuthenticationProvider) để xác thực. 4. Nếu thành công → tạo đối tượng Authentication lưu vào SecurityContext. 5. Dựa trên role/authority, Spring Security quyết định cho phép hoặc từ chối request. 4. Cách cấu hình trong Spring Boot Spring Security Starter (spring-boot-starter-security) tự động thêm cơ chế bảo mật mặc định. Có thể cấu hình: InMemoryUserDetailsManager (tài khoản hardcode). JDBC/Custom UserDetailsService (lấy user từ DB). JWT/OAuth2 cho REST API. Sử dụng annotation: @EnableWebSecurity bật cấu hình bảo mật. @PreAuthorize, @Secured kiểm soát truy cập ở mức method. 5. Ưu điểm &amp; điểm mạnh Tích hợp chặt chẽ với Spring ecosystem. Linh hoạt, có thể thay thế hoặc mở rộng các cơ chế mặc định. Hỗ trợ JWT, OAuth2, SSO hiện đại. Có sẵn nhiều filter bảo mật (CSRF, CORS, Session Fixation, …). 6. Một số tình huống thực tế Trong dự án xây dựng API, mình thường kết hợp Spring Security + JWT: Khi login thành công, trả về token JWT. Các request sau đó client gửi kèm token trong Header. Spring Security viết custom filter để validate token, parse user info → set vào SecurityContext. Với hệ thống nội bộ, có thể dùng Role-based access control hoặc Permission-based access control thông qua annotation. II. Chi tiết về Spring Security Authentication vs Authorization Filter Chain Basic Auth, JWT, OAuth2 Cấu hình WebSecurityConfigurerAdapter (trước Spring Security 6) @EnableWebSecurity, @PreAuthorize, @Secured CSRF, CORS, Session Management" />
+<meta property="og:description" content="II. Tổng quan về Spring security 1. Giới thiệu Spring Security Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication (xác thực) và Authorization (phân quyền) cho các ứng dụng Java, đặc biệt là Spring Boot. Ngoài ra, nó còn hỗ trợ: Bảo mật API với JWT, OAuth2. Cấu hình linh hoạt qua Java Config hoặc Annotation. Tích hợp dễ dàng với cơ sở dữ liệu, LDAP, SSO, v.v. 2. Các khái niệm chính Authentication (Xác thực): Kiểm tra danh tính của người dùng (username/password, token, SSO…). → Xác định bạn là ai. Authorization (Phân quyền): Xác định người dùng đã xác thực có quyền truy cập vào tài nguyên nào. → Xác định bạn được làm gì. Security Context &amp; Authentication Object: Thông tin người dùng đã đăng nhập được lưu trong SecurityContextHolder. Filter Chain: Spring Security sử dụng chuỗi filter (DelegatingFilterProxy → FilterChainProxy) để xử lý request trước khi đến Controller. 3. Luồng hoạt động cơ bản 1 2 3 4 5 1. Người dùng gửi request (ví dụ login với username/password). 2.Request đi qua Spring Security Filter Chain. 3. Authentication Manager gọi đến Authentication Provider (VD: DaoAuthenticationProvider) để xác thực. 4. Nếu thành công → tạo đối tượng Authentication lưu vào SecurityContext. 5. Dựa trên role/authority, Spring Security quyết định cho phép hoặc từ chối request. 4. Cách cấu hình trong Spring Boot Spring Security Starter (spring-boot-starter-security) tự động thêm cơ chế bảo mật mặc định. Có thể cấu hình: InMemoryUserDetailsManager (tài khoản hardcode). JDBC/Custom UserDetailsService (lấy user từ DB). JWT/OAuth2 cho REST API. Sử dụng annotation: @EnableWebSecurity bật cấu hình bảo mật. @PreAuthorize, @Secured kiểm soát truy cập ở mức method. 5. Ưu điểm &amp; điểm mạnh Tích hợp chặt chẽ với Spring ecosystem. Linh hoạt, có thể thay thế hoặc mở rộng các cơ chế mặc định. Hỗ trợ JWT, OAuth2, SSO hiện đại. Có sẵn nhiều filter bảo mật (CSRF, CORS, Session Fixation, …). 6. Một số tình huống thực tế Trong dự án xây dựng API, mình thường kết hợp Spring Security + JWT: Khi login thành công, trả về token JWT. Các request sau đó client gửi kèm token trong Header. Spring Security viết custom filter để validate token, parse user info → set vào SecurityContext. Với hệ thống nội bộ, có thể dùng Role-based access control hoặc Permission-based access control thông qua annotation. II. Chi tiết về Spring Security Authentication vs Authorization Filter Chain Basic Auth, JWT, OAuth2 Cấu hình WebSecurityConfigurerAdapter (trước Spring Security 6) @EnableWebSecurity, @PreAuthorize, @Secured CSRF, CORS, Session Management" />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/07/07/spring-security/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/07/07/spring-security/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-07T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tổng hợp kiến thức về Spring Security" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-07-07T00:00:00-05:00","datePublished":"2025-07-07T00:00:00-05:00","description":"II. Tổng quan về Spring security 1. Giới thiệu Spring Security Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication (xác thực) và Authorization (phân quyền) cho các ứng dụng Java, đặc biệt là Spring Boot. Ngoài ra, nó còn hỗ trợ: Bảo mật API với JWT, OAuth2. Cấu hình linh hoạt qua Java Config hoặc Annotation. Tích hợp dễ dàng với cơ sở dữ liệu, LDAP, SSO, v.v. 2. Các khái niệm chính Authentication (Xác thực): Kiểm tra danh tính của người dùng (username/password, token, SSO…). → Xác định bạn là ai. Authorization (Phân quyền): Xác định người dùng đã xác thực có quyền truy cập vào tài nguyên nào. → Xác định bạn được làm gì. Security Context &amp; Authentication Object: Thông tin người dùng đã đăng nhập được lưu trong SecurityContextHolder. Filter Chain: Spring Security sử dụng chuỗi filter (DelegatingFilterProxy → FilterChainProxy) để xử lý request trước khi đến Controller. 3. Luồng hoạt động cơ bản 1 2 3 4 5 1. Người dùng gửi request (ví dụ login với username/password). 2.Request đi qua Spring Security Filter Chain. 3. Authentication Manager gọi đến Authentication Provider (VD: DaoAuthenticationProvider) để xác thực. 4. Nếu thành công → tạo đối tượng Authentication lưu vào SecurityContext. 5. Dựa trên role/authority, Spring Security quyết định cho phép hoặc từ chối request. 4. Cách cấu hình trong Spring Boot Spring Security Starter (spring-boot-starter-security) tự động thêm cơ chế bảo mật mặc định. Có thể cấu hình: InMemoryUserDetailsManager (tài khoản hardcode). JDBC/Custom UserDetailsService (lấy user từ DB). JWT/OAuth2 cho REST API. Sử dụng annotation: @EnableWebSecurity bật cấu hình bảo mật. @PreAuthorize, @Secured kiểm soát truy cập ở mức method. 5. Ưu điểm &amp; điểm mạnh Tích hợp chặt chẽ với Spring ecosystem. Linh hoạt, có thể thay thế hoặc mở rộng các cơ chế mặc định. Hỗ trợ JWT, OAuth2, SSO hiện đại. Có sẵn nhiều filter bảo mật (CSRF, CORS, Session Fixation, …). 6. Một số tình huống thực tế Trong dự án xây dựng API, mình thường kết hợp Spring Security + JWT: Khi login thành công, trả về token JWT. Các request sau đó client gửi kèm token trong Header. Spring Security viết custom filter để validate token, parse user info → set vào SecurityContext. Với hệ thống nội bộ, có thể dùng Role-based access control hoặc Permission-based access control thông qua annotation. II. Chi tiết về Spring Security Authentication vs Authorization Filter Chain Basic Auth, JWT, OAuth2 Cấu hình WebSecurityConfigurerAdapter (trước Spring Security 6) @EnableWebSecurity, @PreAuthorize, @Secured CSRF, CORS, Session Management","headline":"Tổng hợp kiến thức về Spring Security","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/07/07/spring-security/"},"url":"http://0.0.0.0:4000/2025/07/07/spring-security/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--spring">
+             Spring                
+      </span>
+      <h1 class="post-hero__title">Tổng hợp kiến thức về Spring Security</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 07/07/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><p><strong>II. Tổng quan về Spring security</strong></p>
+
+<p><strong>1. Giới thiệu Spring Security</strong></p>
+
+<ul>
+  <li>
+    <p>Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication (xác thực) và Authorization (phân quyền) cho các ứng dụng Java, đặc biệt là Spring Boot.</p>
+  </li>
+  <li>
+    <p>Ngoài ra, nó còn hỗ trợ:</p>
+    <ul>
+      <li>Bảo mật API với JWT, OAuth2.</li>
+      <li>Cấu hình linh hoạt qua Java Config hoặc Annotation.</li>
+      <li>Tích hợp dễ dàng với cơ sở dữ liệu, LDAP, SSO, v.v.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>2. Các khái niệm chính</strong></p>
+
+<ul>
+  <li>
+    <p>Authentication (Xác thực):
+Kiểm tra danh tính của người dùng (username/password, token, SSO…).
+→ Xác định bạn là ai.</p>
+  </li>
+  <li>
+    <p>Authorization (Phân quyền):
+Xác định người dùng đã xác thực có quyền truy cập vào tài nguyên nào.
+→ Xác định bạn được làm gì.</p>
+  </li>
+  <li>
+    <p>Security Context &amp; Authentication Object:
+Thông tin người dùng đã đăng nhập được lưu trong SecurityContextHolder.</p>
+  </li>
+  <li>
+    <p>Filter Chain:
+Spring Security sử dụng chuỗi filter (DelegatingFilterProxy → FilterChainProxy) để xử lý request trước khi đến Controller.</p>
+  </li>
+</ul>
+
+<p><strong>3. Luồng hoạt động cơ bản</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>1.  Người dùng gửi request (ví dụ login với username/password).
+2.Request đi qua Spring Security Filter Chain.
+3. Authentication Manager gọi đến Authentication Provider (VD: DaoAuthenticationProvider) để xác thực.
+4. Nếu thành công → tạo đối tượng Authentication lưu vào SecurityContext.
+5. Dựa trên role/authority, Spring Security quyết định cho phép hoặc từ chối request.
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>4. Cách cấu hình trong Spring Boot</strong></p>
+
+<ul>
+  <li>Spring Security Starter (spring-boot-starter-security) tự động thêm cơ chế bảo mật mặc định.</li>
+  <li>Có thể cấu hình:
+    <ul>
+      <li>InMemoryUserDetailsManager (tài khoản hardcode).</li>
+      <li>JDBC/Custom UserDetailsService (lấy user từ DB).</li>
+      <li>JWT/OAuth2 cho REST API.</li>
+    </ul>
+  </li>
+  <li>Sử dụng annotation:
+    <ul>
+      <li>@EnableWebSecurity bật cấu hình bảo mật.</li>
+      <li>@PreAuthorize, @Secured kiểm soát truy cập ở mức method.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>5. Ưu điểm &amp; điểm mạnh</strong></p>
+
+<ul>
+  <li>Tích hợp chặt chẽ với Spring ecosystem.</li>
+  <li>Linh hoạt, có thể thay thế hoặc mở rộng các cơ chế mặc định.</li>
+  <li>Hỗ trợ JWT, OAuth2, SSO hiện đại.</li>
+  <li>Có sẵn nhiều filter bảo mật (CSRF, CORS, Session Fixation, …).</li>
+</ul>
+
+<p><strong>6. Một số tình huống thực tế</strong></p>
+
+<ul>
+  <li>Trong dự án xây dựng API, mình thường kết hợp Spring Security + JWT:
+    <ul>
+      <li>Khi login thành công, trả về token JWT.</li>
+      <li>Các request sau đó client gửi kèm token trong Header.</li>
+      <li>Spring Security viết custom filter để validate token, parse user info → set vào SecurityContext.</li>
+    </ul>
+  </li>
+  <li>Với hệ thống nội bộ, có thể dùng Role-based access control hoặc Permission-based access control thông qua annotation.</li>
+</ul>
+
+<p><strong>II. Chi tiết về Spring Security</strong></p>
+
+<ol>
+  <li>Authentication vs Authorization</li>
+  <li>Filter Chain</li>
+  <li>Basic Auth, JWT, OAuth2</li>
+  <li>Cấu hình WebSecurityConfigurerAdapter (trước Spring Security 6)</li>
+  <li>@EnableWebSecurity, @PreAuthorize, @Secured</li>
+  <li>CSRF, CORS, Session Management</li>
+</ol>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/06/spring-data/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Tổng hợp kiến thức về Spring Data JPA / Spring ...
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/07/08/spring-aop/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Tổng hợp kiến thức về Spring AOP (Aspect-Orient... →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

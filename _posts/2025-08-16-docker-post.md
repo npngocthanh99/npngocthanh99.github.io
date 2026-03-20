@@ -3,6 +3,7 @@ layout: post
 title: "Kiến thức về Docker"
 tags: [docker, devops]
 date: 2025-08-16
+tag: devops
 ---
 
 **I. Kiến thức cơ bản về Docker?**

@@ -1,0 +1,289 @@
+---
+layout: base
+title: "Trang Chủ"
+---
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero__stripe-l"></div>
+  <div class="hero__stripe-r"></div>
+  <div class="hero__inner">
+    <div class="hero__left">
+      <div class="hero__badge">⚽ Software Engineer Blog</div>
+      <h1 class="hero__title">
+        __NGUYỄN PHÚC<br />
+        <span>____NGỌC THÀNH</span>
+        ______SOFTWARE ENGINEER
+      </h1>
+      <p class="hero__sub">Ghi chép hành trình · Java · Spring · React</p>
+      <div class="hero__stats">
+        <div>
+          <div class="hero__stat-num">{{ site.posts | size }}</div>
+          <div class="hero__stat-lbl">Bài Viết</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">7+</div>
+          <div class="hero__stat-lbl">Chủ Đề</div>
+        </div>
+        <div>
+          <div class="hero__stat-num">∞</div>
+          <div class="hero__stat-lbl">Đam Mê</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__right">
+      <div class="hero__jersey">11</div>
+      <div class="hero__jersey-caption">REUS · MAN UTD · DFB</div>
+    </div>
+  </div>
+</header>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-bar__inner">
+    <span class="filter-bar__label">Filter:</span>
+    <button class="chip is-active" data-filter="all">Tất Cả</button>
+    <button class="chip" data-filter="java">Java</button>
+    <button class="chip" data-filter="spring">Spring</button>
+    <button class="chip" data-filter="react">React</button>
+    <button class="chip" data-filter="redis">Redis</button>
+    <button class="chip" data-filter="devops">DevOps</button>
+    <button class="chip" data-filter="cs">CS</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="l-main">
+  <div>
+    <div class="section-head">
+      <h2 class="section-title">MATCH <span>LOG</span></h2>
+      <span class="section-count" id="js-count"
+        >{{ site.posts | size }} bài viết</span
+      >
+    </div>
+
+    <!-- POST LIST (Jekyll renders all; JS handles filter + pagination) -->
+    <div class="post-list" id="js-posts">
+      {% assign sorted_posts = site.posts | sort: 'date' | reverse %} {% for
+      post in sorted_posts %} {% assign tag = post.tag | default: 'other' %} {%
+      assign tag_label = 'Blog' %} {% if tag == 'java' %}{% assign tag_label =
+      'Java' %}{% endif %} {% if tag == 'spring' %}{% assign tag_label =
+      'Spring' %}{% endif %} {% if tag == 'react' %}{% assign tag_label =
+      'React' %}{% endif %} {% if tag == 'redis' %}{% assign tag_label = 'Redis'
+      %}{% endif %} {% if tag == 'devops' %}{% assign tag_label = 'DevOps' %}{%
+      endif %} {% if tag == 'cs' %}{% assign tag_label = 'CS' %}{% endif %}
+
+      <a
+        class="post-card reveal"
+        href="{{ post.url | relative_url }}"
+        data-tag="{{ tag }}"
+        data-idx="{{ forloop.index }}"
+      >
+        <div class="post-card__num">
+          {{ forloop.index | prepend: '0' | slice: -2, 2 }}
+        </div>
+        <div class="post-card__body">
+          <span class="post-card__tag tag--{{ tag }}">{{ tag_label }}</span>
+          <div class="post-card__title">{{ post.title }}</div>
+          <div class="post-card__excerpt">
+            {{ post.excerpt | strip_html | truncate: 130 }}
+          </div>
+        </div>
+        <div class="post-card__meta">
+          <div class="post-card__date">{{ post.date | date: "%d/%m/%Y" }}</div>
+          {% if forloop.index <= 3 %}<span class="post-card__new">Mới</span>{%
+          endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination" id="js-pagination"></div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <!-- Profile -->
+    <div class="widget reveal">
+      <div class="widget__head">
+        <span class="widget__icon">👤</span>
+        <span class="widget__title">Cầu Thủ</span>
+      </div>
+      <div class="widget__body">
+        <img
+          class="profile__avatar"
+          src="/assets/avatar.jpg"
+          alt="Ngọc Thanh"
+        />
+        <div class="profile__name">Nguyễn Phúc Ngọc Thành</div>
+        <div class="profile__role">// software_engineer</div>
+        <p class="profile__bio">
+          Ghi chép lại những kiến thức mình học được trong hành trình trở thành
+          một Software Engineer. Mỗi bài viết là một pha bóng.
+        </p>
+        <div class="profile__chips">
+          <span class="profile__chip">Java</span>
+          <span class="profile__chip">Spring Boot</span>
+          <span class="profile__chip">React</span>
+          <span class="profile__chip">Redis</span>
+          <span class="profile__chip">Docker</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fan Corner -->
+    <div class="widget reveal">
+      <div class="widget__head">
+        <span class="widget__icon">⚽</span>
+        <span class="widget__title">Fan Corner</span>
+      </div>
+      <div class="widget__body">
+        <div class="fact">
+          <div class="fact__icon">🟡⚫</div>
+          <div class="fact__text">
+            <strong>Marco Reus #11</strong> — Huyền thoại Dortmund. Kỹ thuật
+            điêu luyện như clean code.
+          </div>
+        </div>
+        <div class="fact">
+          <div class="fact__icon">🔴⚪</div>
+          <div class="fact__text">
+            <strong>Manchester United</strong> — The Red Devils. GGMU! Mỗi bug
+            fix là một bàn thắng phút bù giờ.
+          </div>
+        </div>
+        <div class="fact">
+          <div class="fact__icon">🇩🇪</div>
+          <div class="fact__text">
+            <strong>Die Mannschaft</strong> — Kỷ luật và tổ chức như một Spring
+            application production-ready.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tag cloud -->
+    <div class="widget reveal">
+      <div class="widget__head">
+        <span class="widget__icon">🏷️</span>
+        <span class="widget__title">Tag Cloud</span>
+      </div>
+      <div class="widget__body">
+        <div class="tag-cloud">
+          {% assign tags = site.posts | map: 'tag' | compact | group_by:
+          'yourself' %}
+          <span class="tc-chip" data-filter="spring"
+            >Spring <span class="tc-chip__cnt">11</span></span
+          >
+          <span class="tc-chip" data-filter="java"
+            >Java <span class="tc-chip__cnt">2</span></span
+          >
+          <span class="tc-chip" data-filter="cs"
+            >CS <span class="tc-chip__cnt">3</span></span
+          >
+          <span class="tc-chip" data-filter="devops"
+            >DevOps <span class="tc-chip__cnt">2</span></span
+          >
+          <span class="tc-chip" data-filter="react"
+            >React <span class="tc-chip__cnt">1</span></span
+          >
+          <span class="tc-chip" data-filter="redis"
+            >Redis <span class="tc-chip__cnt">1</span></span
+          >
+          <span class="tc-chip" data-filter="all"
+            >Tất Cả
+            <span class="tc-chip__cnt">{{ site.posts | size }}</span></span
+          >
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- JS: filter + client-side pagination -->
+<script>
+  (function () {
+    const PER_PAGE = 10;
+    let currentFilter = "all";
+    let currentPage = 1;
+
+    const allCards = Array.from(
+      document.querySelectorAll("#js-posts .post-card"),
+    );
+    const countEl = document.getElementById("js-count");
+    const pgEl = document.getElementById("js-pagination");
+
+    function visible() {
+      return currentFilter === "all"
+        ? allCards
+        : allCards.filter((c) => c.dataset.tag === currentFilter);
+    }
+
+    function render() {
+      const pool = visible();
+      const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
+      currentPage = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * PER_PAGE;
+
+      // show/hide cards
+      allCards.forEach((c) => {
+        c.style.display = "none";
+        c.classList.remove("in");
+      });
+      pool.slice(start, start + PER_PAGE).forEach((c, i) => {
+        c.style.display = "grid";
+        setTimeout(() => c.classList.add("in"), i * 40);
+      });
+
+      countEl.textContent = pool.length + " bài viết";
+      renderPg(totalPages);
+    }
+
+    function renderPg(total) {
+      if (total <= 1) {
+        pgEl.innerHTML = "";
+        return;
+      }
+      let h = "";
+      h += btn("← Trước", currentPage - 1, currentPage === 1);
+      for (let i = 1; i <= total; i++) {
+        h += `<button class="pg__btn${i === currentPage ? " is-active" : ""}" data-p="${i}">${i}</button>`;
+      }
+      h += btn("Sau →", currentPage + 1, currentPage === total);
+      h += `<span class="pg__info">Trang ${currentPage}/${total}</span>`;
+      pgEl.innerHTML = h;
+
+      pgEl.querySelectorAll("[data-p]").forEach((b) => {
+        b.addEventListener("click", () => {
+          currentPage = +b.dataset.p;
+          render();
+          document
+            .querySelector(".section-head")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    }
+
+    function btn(label, p, disabled) {
+      return `<button class="pg__btn${disabled ? " is-disabled" : ""}" data-p="${p}" ${disabled ? "disabled" : ""}>${label}</button>`;
+    }
+
+    // filter chips (both filter bar + sidebar tag cloud)
+    document.querySelectorAll("[data-filter]").forEach((el) => {
+      el.addEventListener("click", () => {
+        currentFilter = el.dataset.filter;
+        currentPage = 1;
+        document
+          .querySelectorAll("[data-filter]")
+          .forEach((x) => x.classList.remove("is-active"));
+        document
+          .querySelectorAll(`[data-filter="${currentFilter}"]`)
+          .forEach((x) => x.classList.add("is-active"));
+        render();
+      });
+    });
+
+    render();
+  })();
+</script>

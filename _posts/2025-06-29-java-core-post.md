@@ -2,6 +2,7 @@
 layout: post
 title: "Tổng hợp kiến thức Java Core"
 date: 2025-06-29
+tag: java
 ---
 
 Đây là bài viết mình tổng hợp kiến thức java core theo kiến thức bản thân! Có thể dùng để ôn tập phỏng vấn ...
@@ -435,7 +436,6 @@ _5. So sánh hiệu suất_
 **4. Đa hình (Polymorphism)**
 
 - **Đa hình(Polymorphism)** nghĩa là một đối tượng có thể mang nhiều hình thái khác nhau, hoặc một hành động có thể được thực hiện theo nhiều cách khác nhau tùy thuộc vào ngữ cảnh. Có hai loại đã hình chính là:
-
   - **Đa hình lúc biên dịch(Compile-time Polymorphism)**, thường được biết đến qua **nạp chồng phương thức(Method Overloading)**. tức là trong một lớp, chúng ta có thể có nhiều phương thức cùng tên nhưng khác nhau về số lượng hoặc kiểu dữ liệu của tham số, hoặc dữ liệu trả về. Ví dụ phương thức **tinhTong(int a, int b)** và **tinhTong(double a, double b, double c)**.
   - **Đa hình lúc chạy(Runtime Polymorphism)**, thường được biết đến qua **ghi đè phương thức(Method Overriding)**. Tức là lớp con định nghĩa lại một phương thức đã có ở lớp cha. Ví dụ, lớp **DongVat** có phương thức **tiengKeu()**, nhưng lớp **Cho** và **Meo** đều ghi đè phương thức này để phát ra tiếng kêu riêng của chúng ('gâu gâu' và 'meo meo'). Điều này giúp chương trình linh hoạt hơn khi xử lý các đối tượng thuộc các lớp khác nhau nhưng có cùng một hành vi chung."
 
@@ -449,7 +449,6 @@ _5. So sánh hiệu suất_
 1. this, super
 
 - this: đại diện cho một đối tượng hiện tại.
-
   - Truy cập biến hoặc phương thức của đối tượng đó.
   - Gọi constructor khác trong cùng class
 
@@ -463,7 +462,6 @@ _5. So sánh hiệu suất_
         {% endraw %}
 
 - super: đại diện cho lớp cha (supper class)
-
   - Dùng để gọi constructor hoặc phương thức của lớp cha.
 
         {% raw %}
@@ -685,7 +683,6 @@ e. enum
 - **Phạm vi:**Chỉ truy cập được trong cùng một class.
 - **Không thể** truy cập từ class khác, kể cả trong cùng package.
 - **Thường dùng cho:**
-
   - Thuộc tính (fields) để bảo vệ dữ liệu.
   - Hàm hỗ trợ (helper methods) nội bộ.
 
@@ -706,7 +703,6 @@ Ví dụ:
 - **Phạm vi:** Truy cập được trong cùng package.
 - **Không thể** truy cập từ bên ngoài package.
 - **Thường dùng cho:**
-
   - Class cấp package (helper class)
   - Những method không cần public nhưng vẫn cần dùng trong các class cùng package.
 
@@ -725,12 +721,10 @@ Ví dụ:
 3. Protected
 
 - **Phạm vi:** Truy cập được trong:
-
   - Cùng package
   - Lớp con (subclass), kể cả khi subclass ở package khác.
 
 - **Thường dùng cho:**
-
   - Class cha muốn cho phép lớp con kế thừa và sử dụng.
   - Một cách tiếp cận giữa private và public.
 
@@ -936,7 +930,6 @@ Java Collection Framework là tập hợp các interface và class dùng để l
 3.  Iterator, ListIterator, for-each
 
 - Iterator:
-
   - Duyệt qua collection.
   - Hỗ trợ xóa phần tử khi duyệt.
 
@@ -949,12 +942,10 @@ Java Collection Framework là tập hợp các interface và class dùng để l
             {% endraw %}
 
 - ListIterator:
-
   - Chỉ dùng với List
   - Duyệt hai chiều (next/previous), cho phép thêm, sửa, xóa trong quá trình lặp.
 
 - for-each:
-
   - Dễ dùng, ngắn gọn, không chỉnh sửa collection được.
 
             {% raw %}
@@ -986,7 +977,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 1. Generic Class, Method
 
 - Generic Class: cho phép định nghĩa class có kiểu dữ liệu tổng quát.
-
   - Ví dụ:
 
             {% raw %}
@@ -1006,7 +996,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
             {% endraw %}
 
 - Generic Method: kiểu dữ liệu tổng quát ngay trong method.
-
   - Ví dụ:
 
                 {% raw %}
@@ -1073,7 +1062,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 1. File, FileReader, FileWriter
 
 - File :
-
   - Đại diện cho đường dẫn tới file hoặc thư mục.
   - **Chức năng:** kiểm tra file tồn tại, tạo mới file/thư mục, xóa, lấy thông tin file.
 
@@ -1086,7 +1074,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
             {% endraw %}
 
 - FileReader,FileWriter
-
   - Đọc và ghi ký tự (text) vào file, dùng cho file văn bản.
 
             {% raw %}
@@ -1179,10 +1166,8 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 1. Tạo Thread: Thread, Runnable
 
 - Cách 1: implement Runnable (Interface):
-
   - Cách tạo thread bằng cách triển khai interface Runnable và override run():
   - Ưu điểm:
-
     - Linh hoạt, có thể kế thừa lớp khác.
     - Tách biệt logic run() ra khỏi Thread, tốt cho thiết kế hướng đối tượng (OOP).
     - Nên dùng trong thực tế hơn cách kế thừa Thread.
@@ -1203,12 +1188,10 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
                 {% endraw %}
 
 - Cách 2: extend Thread (Class):
-
   - Có thể kế thừa lớp Thread và override run():
   - Ưu điểm:
     - Dễ viết, trực tiếp override phương thức run().
   - Nhược điểm:
-
     - Không thể kế thừa lớp khác vì Java chỉ cho kế thừa một lớp (single inheritance).
 
                 {% raw %}
@@ -1260,7 +1243,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 3. synchronized, volatile, wait, notify, join
 
 - synchronized
-
   - Dùng để đồng bộ truy cập tài nguyên.
 
             {% raw %}
@@ -1270,7 +1252,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
             {% endraw %}
 
 - volatile
-
   - Báo cho JVM biết biến luôn được đọc trực tiếp từ bộ nhớ chính (main memory) — không cache ở thread-local.
 
             {% raw %}
@@ -1278,7 +1259,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
             {% endraw %}
 
 - wait() / notify() / notifyAll()
-
   - Dùng cho giao tiếp giữa các thread đang chia sẻ monitor lock.
 
             {% raw %}
@@ -1292,7 +1272,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
     - wait() nhả lock, còn sleep() không nhả lock.
 
 - join
-
   - Cho phép một thread chờ thread khác kết thúc.
 
             {% raw %}
@@ -1304,7 +1283,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
 4. ExecutorService, Callable, Future
 
 - ExecutorService
-
   - Cung cấp một pool các thread quản lý hiệu quả hơn.
 
             {% raw %}
@@ -1314,7 +1292,6 @@ Generics giúp bạn viết code tổng quát, tái sử dụng, an toàn kiểu
             {% endraw %}
 
 - Callable<V> & Future<V>
-
   - Khác với Runnable, Callable có thể trả về kết quả và ném exception.
 
             {% raw %}

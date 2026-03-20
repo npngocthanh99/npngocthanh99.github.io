@@ -2,6 +2,7 @@
 layout: post
 title: "Tổng hợp kiến thức về Spring Security"
 date: 2025-07-07
+tag: spring
 ---
 
 **II. Tổng quan về Spring security**
@@ -11,7 +12,6 @@ date: 2025-07-07
 - Spring Security là một framework của Spring cung cấp giải pháp toàn diện về Authentication (xác thực) và Authorization (phân quyền) cho các ứng dụng Java, đặc biệt là Spring Boot.
 
 - Ngoài ra, nó còn hỗ trợ:
-
   - Bảo mật API với JWT, OAuth2.
   - Cấu hình linh hoạt qua Java Config hoặc Annotation.
   - Tích hợp dễ dàng với cơ sở dữ liệu, LDAP, SSO, v.v.
@@ -44,13 +44,11 @@ date: 2025-07-07
 
 - Spring Security Starter (spring-boot-starter-security) tự động thêm cơ chế bảo mật mặc định.
 - Có thể cấu hình:
-
   - InMemoryUserDetailsManager (tài khoản hardcode).
   - JDBC/Custom UserDetailsService (lấy user từ DB).
   - JWT/OAuth2 cho REST API.
 
 - Sử dụng annotation:
-
   - @EnableWebSecurity bật cấu hình bảo mật.
   - @PreAuthorize, @Secured kiểm soát truy cập ở mức method.
 
@@ -64,7 +62,6 @@ date: 2025-07-07
 **6. Một số tình huống thực tế**
 
 - Trong dự án xây dựng API, mình thường kết hợp Spring Security + JWT:
-
   - Khi login thành công, trả về token JWT.
   - Các request sau đó client gửi kèm token trong Header.
   - Spring Security viết custom filter để validate token, parse user info → set vào SecurityContext.

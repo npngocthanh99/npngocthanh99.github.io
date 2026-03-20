@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming) — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="  AOP là gì?  AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming) | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming)" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AOP là gì? AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng. Mục tiêu: Làm code gọn hơn, dễ reuse Tăng tính module hóa Giảm trùng lặp code Ví dụ trước - sau dùng AOP Chưa dùng AOP: public void createOrder() { log.info(“Start”); // business logic log.info(“End”); } Dùng AOP: public void createOrder() { // chỉ business logic } Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving 1 2 3 4 5 6 7 8 9 |--------------------------------------------------------------------------------------------------| | Khái niệm | Mô tả | |--------------------------------------------------------------------------------------------------| | Aspect | Mô tả logic phụ tách ra (logging, security, transaction...) | | JoinPoint | Điểm trong chương trình mà Aspect có thể can thiệp vào (VD: method được gọi) | | Pointcut | Điều kiện lọc để xác định JoinPoint nào được áp dụng (theo tên method, package...) | | Advice | Hành động (code) thực sự được thực thi tại JoinPoint | | Weaving | Quá trình kết hợp Aspect vào target object tại runtime/compile time | | Proxy | Spring tạo ra một đối tượng proxy bao quanh bean gốc để thực hiện AOP | Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing 1 2 3 4 5 6 7 8 |-----------------------------------------------------------------------------------| | Loại Advice/Annotation | Khi nào được gọi | |-----------------------------------------------------------------------------------| | @Before | Trước khi method được gọi | | @After | Sau khi method kết thúc (dù thành công hay exception) | | @AfterReturning | Sau khi method trả về thành công | | @AfterThrowing | Khi method ném ra exception | | @Around | Bao quanh method (có thể chặn, sửa, thực thi trước/sau) | Ví dụ: Logging Aspect 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 @Aspect @Component public class LoggingAspect { @Before(&quot;execution(* com.example.service.*.*(..))&quot;) public void logBefore(JoinPoint joinPoint) { System.out.println(&quot;Start method: &quot; + joinPoint.getSignature().getName()); } @AfterReturning(pointcut = &quot;execution(* com.example.service.*.*(..))&quot;, returning = &quot;result&quot;) public void logAfter(Object result) { System.out.println(&quot;Method returned: &quot; + result); } } Ứng dụng AOP để làm gì: Logging, Transaction, Authorization… 1 2 3 4 5 6 7 8 9 |------------------------------------------------------------------| | Ứng dụng | Mô tả | |------------------------------------------------------------------| | Logging | Ghi log trước/ sau method | | Transaction | Quản lý giao dịch tự động (@Transactional) | | Authorization | Kiểm tra quyền trước khi thực hiện | | Performance Monitor | Đo thời gian chạy của hàm | | Exception Handling | Bắt và xử lý ngoại lệ toàn cục | | Audit | Theo dõi hành động người dùng | Spring AOP hoạt động như thế nào? Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng Tóm tắt 1 2 3 4 5 6 7 8 - Spring AOP cho phép tách logic phụ như logging, transaction ra khỏi logic chính nhờ khái niệm Aspect. Chúng ta thường dùng @Before, @After, @Around để log method, kiểm soát thời gian, hoặc validate quyền. - Các điểm chính trong AOP gồm: + Aspect: logic phụ + JoinPoint: điểm có thể can thiệp (thường là method) + Pointcut: định nghĩa nơi aspect được áp dụng + Advice: hành động khi aspect được thực thi + Weaving: quá trình gắn aspect vào chương trình" />
+<meta property="og:description" content="AOP là gì? AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng. Mục tiêu: Làm code gọn hơn, dễ reuse Tăng tính module hóa Giảm trùng lặp code Ví dụ trước - sau dùng AOP Chưa dùng AOP: public void createOrder() { log.info(“Start”); // business logic log.info(“End”); } Dùng AOP: public void createOrder() { // chỉ business logic } Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving 1 2 3 4 5 6 7 8 9 |--------------------------------------------------------------------------------------------------| | Khái niệm | Mô tả | |--------------------------------------------------------------------------------------------------| | Aspect | Mô tả logic phụ tách ra (logging, security, transaction...) | | JoinPoint | Điểm trong chương trình mà Aspect có thể can thiệp vào (VD: method được gọi) | | Pointcut | Điều kiện lọc để xác định JoinPoint nào được áp dụng (theo tên method, package...) | | Advice | Hành động (code) thực sự được thực thi tại JoinPoint | | Weaving | Quá trình kết hợp Aspect vào target object tại runtime/compile time | | Proxy | Spring tạo ra một đối tượng proxy bao quanh bean gốc để thực hiện AOP | Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing 1 2 3 4 5 6 7 8 |-----------------------------------------------------------------------------------| | Loại Advice/Annotation | Khi nào được gọi | |-----------------------------------------------------------------------------------| | @Before | Trước khi method được gọi | | @After | Sau khi method kết thúc (dù thành công hay exception) | | @AfterReturning | Sau khi method trả về thành công | | @AfterThrowing | Khi method ném ra exception | | @Around | Bao quanh method (có thể chặn, sửa, thực thi trước/sau) | Ví dụ: Logging Aspect 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 @Aspect @Component public class LoggingAspect { @Before(&quot;execution(* com.example.service.*.*(..))&quot;) public void logBefore(JoinPoint joinPoint) { System.out.println(&quot;Start method: &quot; + joinPoint.getSignature().getName()); } @AfterReturning(pointcut = &quot;execution(* com.example.service.*.*(..))&quot;, returning = &quot;result&quot;) public void logAfter(Object result) { System.out.println(&quot;Method returned: &quot; + result); } } Ứng dụng AOP để làm gì: Logging, Transaction, Authorization… 1 2 3 4 5 6 7 8 9 |------------------------------------------------------------------| | Ứng dụng | Mô tả | |------------------------------------------------------------------| | Logging | Ghi log trước/ sau method | | Transaction | Quản lý giao dịch tự động (@Transactional) | | Authorization | Kiểm tra quyền trước khi thực hiện | | Performance Monitor | Đo thời gian chạy của hàm | | Exception Handling | Bắt và xử lý ngoại lệ toàn cục | | Audit | Theo dõi hành động người dùng | Spring AOP hoạt động như thế nào? Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng Tóm tắt 1 2 3 4 5 6 7 8 - Spring AOP cho phép tách logic phụ như logging, transaction ra khỏi logic chính nhờ khái niệm Aspect. Chúng ta thường dùng @Before, @After, @Around để log method, kiểm soát thời gian, hoặc validate quyền. - Các điểm chính trong AOP gồm: + Aspect: logic phụ + JoinPoint: điểm có thể can thiệp (thường là method) + Pointcut: định nghĩa nơi aspect được áp dụng + Advice: hành động khi aspect được thực thi + Weaving: quá trình gắn aspect vào chương trình" />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/07/08/spring-aop/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/07/08/spring-aop/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-08T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-07-08T00:00:00-05:00","datePublished":"2025-07-08T00:00:00-05:00","description":"AOP là gì? AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng. Mục tiêu: Làm code gọn hơn, dễ reuse Tăng tính module hóa Giảm trùng lặp code Ví dụ trước - sau dùng AOP Chưa dùng AOP: public void createOrder() { log.info(“Start”); // business logic log.info(“End”); } Dùng AOP: public void createOrder() { // chỉ business logic } Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving 1 2 3 4 5 6 7 8 9 |--------------------------------------------------------------------------------------------------| | Khái niệm | Mô tả | |--------------------------------------------------------------------------------------------------| | Aspect | Mô tả logic phụ tách ra (logging, security, transaction...) | | JoinPoint | Điểm trong chương trình mà Aspect có thể can thiệp vào (VD: method được gọi) | | Pointcut | Điều kiện lọc để xác định JoinPoint nào được áp dụng (theo tên method, package...) | | Advice | Hành động (code) thực sự được thực thi tại JoinPoint | | Weaving | Quá trình kết hợp Aspect vào target object tại runtime/compile time | | Proxy | Spring tạo ra một đối tượng proxy bao quanh bean gốc để thực hiện AOP | Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing 1 2 3 4 5 6 7 8 |-----------------------------------------------------------------------------------| | Loại Advice/Annotation | Khi nào được gọi | |-----------------------------------------------------------------------------------| | @Before | Trước khi method được gọi | | @After | Sau khi method kết thúc (dù thành công hay exception) | | @AfterReturning | Sau khi method trả về thành công | | @AfterThrowing | Khi method ném ra exception | | @Around | Bao quanh method (có thể chặn, sửa, thực thi trước/sau) | Ví dụ: Logging Aspect 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 @Aspect @Component public class LoggingAspect { @Before(&quot;execution(* com.example.service.*.*(..))&quot;) public void logBefore(JoinPoint joinPoint) { System.out.println(&quot;Start method: &quot; + joinPoint.getSignature().getName()); } @AfterReturning(pointcut = &quot;execution(* com.example.service.*.*(..))&quot;, returning = &quot;result&quot;) public void logAfter(Object result) { System.out.println(&quot;Method returned: &quot; + result); } } Ứng dụng AOP để làm gì: Logging, Transaction, Authorization… 1 2 3 4 5 6 7 8 9 |------------------------------------------------------------------| | Ứng dụng | Mô tả | |------------------------------------------------------------------| | Logging | Ghi log trước/ sau method | | Transaction | Quản lý giao dịch tự động (@Transactional) | | Authorization | Kiểm tra quyền trước khi thực hiện | | Performance Monitor | Đo thời gian chạy của hàm | | Exception Handling | Bắt và xử lý ngoại lệ toàn cục | | Audit | Theo dõi hành động người dùng | Spring AOP hoạt động như thế nào? Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng Tóm tắt 1 2 3 4 5 6 7 8 - Spring AOP cho phép tách logic phụ như logging, transaction ra khỏi logic chính nhờ khái niệm Aspect. Chúng ta thường dùng @Before, @After, @Around để log method, kiểm soát thời gian, hoặc validate quyền. - Các điểm chính trong AOP gồm: + Aspect: logic phụ + JoinPoint: điểm có thể can thiệp (thường là method) + Pointcut: định nghĩa nơi aspect được áp dụng + Advice: hành động khi aspect được thực thi + Weaving: quá trình gắn aspect vào chương trình","headline":"Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming)","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/07/08/spring-aop/"},"url":"http://0.0.0.0:4000/2025/07/08/spring-aop/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--spring">
+             Spring                
+      </span>
+      <h1 class="post-hero__title">Tổng hợp kiến thức về Spring AOP (Aspect-Oriented Programming)</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 08/07/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><ol>
+  <li>AOP là gì?</li>
+</ol>
+
+<ul>
+  <li>AOP (Aspect-Oriented Programming) là lập trình hướng khía cạnh, giúp tách biệt logic phụ (cross-cutting concerns) như logging, transaction, bảo mật… ra khỏi logic chính của ứng dụng.</li>
+  <li>Mục tiêu:
+    <ul>
+      <li>Làm code gọn hơn, dễ reuse</li>
+      <li>Tăng tính module hóa</li>
+      <li>Giảm trùng lặp code</li>
+      <li><strong>Ví dụ trước - sau dùng AOP</strong>
+        <ul>
+          <li>
+            <p>Chưa dùng AOP:</p>
+
+            <p>public void createOrder() {
+log.info(“Start”);
+// business logic
+log.info(“End”);
+}</p>
+          </li>
+          <li>
+            <p>Dùng AOP:</p>
+
+            <p>public void createOrder() {
+// chỉ business logic
+}</p>
+
+            <p>Logging được tách ra riêng bằng AOP → sạch hơn, dễ maintain hơn</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>Các khái niệm: Aspect, JoinPoint, Pointcut, Advice, Weaving</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>|--------------------------------------------------------------------------------------------------|
+| Khái niệm   | Mô tả                                                                              |
+|--------------------------------------------------------------------------------------------------|
+| Aspect      | Mô tả logic phụ tách ra (logging, security, transaction...)                        |
+| JoinPoint   | Điểm trong chương trình mà Aspect có thể can thiệp vào (VD: method được gọi)       |
+| Pointcut    | Điều kiện lọc để xác định JoinPoint nào được áp dụng (theo tên method, package...) |
+| Advice      | Hành động (code) thực sự được thực thi tại JoinPoint                               |
+| Weaving     | Quá trình kết hợp Aspect vào target object tại runtime/compile time                |
+| Proxy       | Spring tạo ra một đối tượng proxy bao quanh bean gốc để thực hiện AOP              |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Các loại Advice: Before, After, Around, AfterReturning, AfterThrowing</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>|-----------------------------------------------------------------------------------|
+| Loại Advice/Annotation | Khi nào được gọi                                         |
+|-----------------------------------------------------------------------------------|
+| @Before                | Trước khi method được gọi                                |
+| @After                 | Sau khi method kết thúc (dù thành công hay exception)    |
+| @AfterReturning        | Sau khi method trả về thành công                         |
+| @AfterThrowing         | Khi method ném ra exception                              |
+| @Around                | Bao quanh method (có thể chặn, sửa, thực thi trước/sau)  |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>Ví dụ: Logging Aspect</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre>@Aspect
+@Component
+public class LoggingAspect {
+
+ @Before("execution(* com.example.service.*.*(..))")
+ public void logBefore(JoinPoint joinPoint) {
+   System.out.println("Start method: " + joinPoint.getSignature().getName());
+ }
+
+ @AfterReturning(pointcut = "execution(* com.example.service.*.*(..))", returning = "result")
+ public void logAfter(Object result) {
+   System.out.println("Method returned: " + result);
+ }
+
+}
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>Ứng dụng AOP để làm gì: Logging, Transaction, Authorization…</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>    |------------------------------------------------------------------|
+    | Ứng dụng            | Mô tả                                      |
+    |------------------------------------------------------------------|
+    | Logging             | Ghi log trước/ sau method                  |
+    | Transaction         | Quản lý giao dịch tự động (@Transactional) |
+    | Authorization       | Kiểm tra quyền trước khi thực hiện         |
+    | Performance Monitor | Đo thời gian chạy của hàm                  |
+    | Exception Handling  | Bắt và xử lý ngoại lệ toàn cục             |
+    | Audit               | Theo dõi hành động người dùng              |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Spring AOP hoạt động như thế nào?</p>
+    <ul>
+      <li>Dùng Proxy pattern (JDK dynamic proxy hoặc CGLIB) để gói bean gốc lại</li>
+      <li>Khi method được gọi, proxy sẽ kiểm tra xem có Aspect nào áp dụng → nếu có thì thực hiện Advice tương ứng</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Tóm tắt</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>- Spring AOP cho phép tách logic phụ như logging, transaction ra khỏi logic chính nhờ khái niệm Aspect. Chúng ta thường dùng @Before, @After, @Around để log method, kiểm soát thời gian, hoặc validate quyền.
+- Các điểm chính trong AOP gồm:
+
+     + Aspect: logic phụ
+     + JoinPoint: điểm có thể can thiệp (thường là method)
+     + Pointcut: định nghĩa nơi aspect được áp dụng
+     + Advice: hành động khi aspect được thực thi
+     + Weaving: quá trình gắn aspect vào chương trình
+</pre></td></tr></tbody></table></code></pre></div></div>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/07/spring-security/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Tổng hợp kiến thức về Spring Security
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/07/09/spring-validation/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Tổng hợp kiến thức về Spring Validation →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

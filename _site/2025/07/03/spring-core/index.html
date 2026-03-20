@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tổng hợp kiến thức về Spring Framework/ Spring Core — NPNgocThanh99 — Dev Blog</title>
+  <meta name="description" content="I. Tổng quan về Spring Framework  Spring là gì? Tại sao lại dùng Spring?          Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng ..."/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tổng hợp kiến thức về Spring Framework/ Spring Core | NPNgocThanh99 — Dev Blog</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tổng hợp kiến thức về Spring Framework/ Spring Core" />
+<meta name="author" content="Nguyễn Phúc Ngọc Thành" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I. Tổng quan về Spring Framework Spring là gì? Tại sao lại dùng Spring? Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao. Đặc điểm nổi bật: Inversion of Control(IoC): tách biệt việc khởi tạo &amp; quản lý đối tượng ra khỏi logic nghiệp vụ. Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain. Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó. Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,…. Lý do sử dụng Spring: Lý do Mô tả Tái sử dụng code &amp; test dễ hơn Nhờ Dependency Injection và cấu trúc rõ ràng Tách biệt concern rõ ràng Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ Tích hợp dễ dàng với các công nghệ khác JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ… Hỗ trợ mạnh mẽ cho Web/MVC/API Spring MVC, RESTful API Tăng tốc phát triển với Spring Boot Giảm cấu hình, hỗ trợ tự động Các module chính: Spring Core, Spring Context, Spring AOP, Spring Data, Spring MVC, Spring Boot, Spring Security… 1 2 3 4 5 6 7 8 9 10 11 |---------------------------------------------------------------------------------------| | Module | Mô tả | |---------------------------------------------------------------------------------------| | Spring Core | Cung cấp nền tảng IoC, DI – là phần lõi bắt buộc | | Spring Context | Mở rộng Spring Core, hỗ trợ ApplicationContext | | Spring AOP | Hỗ trợ lập trình hướng khía cạnh, giúp tách biệt logic phụ trợ | | Spring Data | Tầng dữ liệu: hỗ trợ JPA, JDBC, MongoDB, Redis… | | Spring MVC | Hỗ trợ Web app, RESTful API theo kiến trúc MVC | | Spring Boot | Tự động cấu hình, nhanh chóng tạo project Spring | | Spring Security | Bảo mật (xác thực, phân quyền), JWT, OAuth2 | | Spring Test | Hỗ trợ viết unit test, integration test | Sự khác biệt giữa Spring Framework và Spring Boot 1 2 3 4 5 6 7 8 9 10 |-------------------------------------------------------------------------------------------------------------------| | Tiêu chí | Spring Framework | Spring Boot | |-------------------------------------------------------------------------------------------------------------------| | Cấu hình | Cần cấu hình thủ công (XML, Java Config) | Tự động cấu hình dựa trên classpath và cấu trúc | | Tạo project | Mất thời gian tạo &amp; cấu hình | Dễ dàng tạo bằng Spring Initializr | | Testing | Cần setup nhiều | Hỗ trợ test tốt qua starter | | Phụ thuộc | Phải tự khai báo từng dependency | Cung cấp bộ starter chuẩn | | Web server | Cần cấu hình servlet container | Embedded Tomcat/Jetty sẵn | | Mục tiêu | Dùng cho ứng dụng truyền thống, cấu hình tay | Tăng tốc ứng dụng hiện đại, minimal config | | Triển khai | WAR, EAR | WAR hoặc standalone JAR | Kết luận: Spring Boot là phần mở rộng của Spring Framework giúp đơn giản hóa và tăng tốc phát triển ứng dụng Spring. Chúng ta vẫn đang dùng Spring (Core, MVC, Data…) nhưng được hỗ trợ thêm auto-configuration, starter, embedded server, devtools, v.v… II. Spring Core IOC Container (Inversion of Control): Bean, BeanFactory, ApplicationContext Inversion of Control (IoC) là nguyên lý mà control tạo &amp; quản lý đối tượng được chuyển từ lập trình viên sang container (Spring quản lý). Các thành phần chính: 1 2 3 4 5 6 |----------------------------------------------------------------------------------------------------------------------------| | Thành phần | Mô tả | |----------------------------------------------------------------------------------------------------------------------------| | Bean | Đối tượng được Spring quản lý trong container | | BeanFactory | Interface cung cấp cơ chế IoC, quản lý các bean (ít dùng trực tiếp) | | ApplicationContext | Mở rộng BeanFactory, hỗ trợ nhiều tính năng hơn (i18n, event, AOP, lifecycle hooks...) =&gt; thường dùng | Ví dụ: 1 2 ApplicationContext context = new ClassPathXmlApplicationContext(&quot;beans.xml&quot;); MyService service = context.getBean(MyService.class); Dependency Injection (DI): Constructor injection, Setter injection, Field injection Spring inject dependencies (các bean khác) vào object khi khởi tạo – thay vì ta phải tự tạo thủ công bằng new. Các cách inject: 1 2 3 4 5 6 |-------------------------------------------------------------------------------------------------------------------| | Cách | Mô tả | Ưu/nhược điểm | | ----------------------|-----------------------------| ------------------------------------------------------------| | Constructor Injection | Inject qua constructor | Immutable, test dễ, dùng khi cần dependency bắt buộc | | Setter Injection | Inject qua setter method | Linh hoạt, dễ thay đổi, dễ tạo object không đủ dependency | | Field Injection | Inject trực tiếp vào field | Không nên dùng nhiều, khó test, nhưng tiện | Ví dụ Constructor injection: 1 2 3 4 5 6 7 8 9 @Component public class OrderService { private final CustomerRepo repo; @Autowired public OrderService(CustomerRepo repo) { this.repo = repo; } } Ví dụ Setter Injection: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 @Component public class OrderService { private CustomerRepository customerRepository; @Autowired public void setCustomerRepository(CustomerRepository customerRepository) { this.customerRepository = customerRepository; } public void processOrder() { customerRepository.save(); // sử dụng dependency } } @Repository public class CustomerRepository { public void save() { System.out.println(&quot;Customer saved.&quot;); } } Ví dụ Field Injection: 1 2 3 4 5 6 7 8 9 10 @Component public class OrderService { @Autowired private CustomerRepository customerRepository; public void processOrder() { customerRepository.save(); } } Bean Scope: Singleton, Prototype, Request, Session… 1 2 3 4 5 6 7 8 9 |-----------------------------------------------------------------------------------------| | Scope | Mô tả | Áp dụng | | --------------------|----------------------------------------|--------------------------| | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất | Stateless services | | prototype | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope | | request | Mỗi HTTP request sẽ có bean riêng | Spring Web | | session | Bean tồn tại trong session người dùng | Spring Web | | application | Tồn tại trong ServletContext | Web application | | websocket | Bean sống trong WebSocket session | Realtime apps | Ví dụ: 1 2 3 @Component @Scope(&quot;prototype&quot;) public class SomeBean { } Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ. Quy trình vòng đời Bean cơ bản: Bean được tạo (bằng constructor) Dependency được inject (DI) Các hook được gọi: @PostConstruct hoặc init-method Bean sẵn sàng được sử dụng Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi Annotation vs XML vs Java-based configuration 1 2 3 4 5 6 7 8 9 |---------------------------------------------------------------------------------------------------| | Loại cấu hình | Cách làm | Dùng khi nào | | -----------------|-----------------------------------------------|--------------------------------| | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay | | | @Configuration, @Bean, @Autowired... | | | XML-based | Cấu hình trong file applicationContext.xml, | Cũ, dùng khi không thể dùng | | | khai báo &lt;bean&gt;... | annotation | | Java-based | Dùng class @Configuration và method @Bean | Rõ ràng, mạnh mẽ, dễ kiểm soát | | | | | a. Annotation-based Configuration Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Component public class MyService { public void doSomething() { } } @Service public class OrderService { private final MyService myService; @Autowired public OrderService(MyService myService) { this.myService = myService; } } b. XML-based Configuration (Cũ) Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt. Ví dụ: 1 2 3 4 5 6 &lt;beans&gt; &lt;bean id=&quot;myService&quot; class=&quot;com.example.MyService&quot; /&gt; &lt;bean id=&quot;orderService&quot; class=&quot;com.example.OrderService&quot;&gt; &lt;constructor-arg ref=&quot;myService&quot; /&gt; &lt;/bean&gt; &lt;/beans&gt; c. Java-based Configuration (@Configuration + @Bean) Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 @Configuration public class AppConfig { @Bean public MyService myService() { return new MyService(); } @Bean public OrderService orderService() { return new OrderService(myService()); } } @Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier a. @Component Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container. Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component. Ví dụ: 1 2 3 4 @Component public class EmailSender { public void send(String message) { } } b. @Service Annotation dành riêng cho tầng service – logic nghiệp vụ. Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng). Về bản chất, giống @Component. Ví dụ: 1 2 3 4 @Service public class OrderService { public void processOrder() { } } c. @Repository Annotation cho DAO layer (Data Access Layer) Giống @Component, nhưng có thêm xử lý ngoại lệ tự động: | Chuyển đổi JDBC exceptions thành Spring DataAccessException. Ví dụ: 1 2 3 4 @Repository public class UserRepository { public void save(User u) { } } d. @Controller Dùng cho Spring MVC Controller, xử lý request HTTP. Trả về View (HTML) nếu không kết hợp với @ResponseBody Ví dụ: 1 2 3 4 5 6 7 @Controller public class HomeController { @GetMapping(&quot;/&quot;) public String home() { return &quot;index&quot;; // trả về view name } } e. @Configuration Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean. Tương đương với file applicationContext.xml trong cấu hình XML. Ví dụ: 1 2 3 4 5 6 7 @Configuration public class AppConfig { @Bean public EmailSender emailSender() { return new EmailSender(); } } f. @Bean Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component). Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp. Ví dụ: 1 2 3 4 @Bean public DataSource dataSource() { return new HikariDataSource(); } g. @Autowired Annotation dùng để inject dependency tự động theo kiểu (by type). Có thể dùng cho: Constructor (khuyến khích) Field Setter Ví dụ: 1 2 3 4 5 6 7 8 9 @Service public class NotificationService { private final EmailSender emailSender; @Autowired public NotificationService(EmailSender emailSender) { this.emailSender = emailSender; } } h. @Qualifier Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type. Kết hợp với @Autowired. Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 @Autowired @Qualifier(&quot;smsSender&quot;) private MessageSender sender; @Component(&quot;smsSender&quot;) public class SmsSender implements MessageSender { } @Component(&quot;emailSender&quot;) public class EmailSender implements MessageSender { } Tổng quan mối quan hệ giữa các annotation 1 2 3 4 5 6 7 8 9 10 @Component ← Gốc chung ├── @Service → Service Layer ├── @Repository → DAO Layer, bắt exception └── @Controller → Web Layer @Configuration → class khai báo Bean thủ công @Bean → method tạo Bean trong class @Configuration @Autowired → Inject dependency @Qualifier → Chọn đúng bean nếu có nhiều III. Các chủ đề nâng cao (phỏng vấn trung - cao cấp) Event trong Spring (ApplicationEventPublisher, @EventListener) Spring Retry, Spring Batch, Spring WebFlux (Reactive Programming) Tích hợp Spring với: Redis, RabbitMQ, Kafka Elasticsearch, MongoDB Caching: @Cacheable, @CachePut, @CacheEvict Custom annotation Multi-module Spring Boot project IV. Các kiến thức liên quan khác (rất quan trọng) Kiến trúc RESTful API Exception Handling toàn cục DTO vs Entity Swagger/OpenAPI Build tool: Maven, Gradle Docker hóa ứng dụng Spring Boot Triển khai Spring Boot lên server/cloud" />
+<meta property="og:description" content="I. Tổng quan về Spring Framework Spring là gì? Tại sao lại dùng Spring? Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao. Đặc điểm nổi bật: Inversion of Control(IoC): tách biệt việc khởi tạo &amp; quản lý đối tượng ra khỏi logic nghiệp vụ. Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain. Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó. Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,…. Lý do sử dụng Spring: Lý do Mô tả Tái sử dụng code &amp; test dễ hơn Nhờ Dependency Injection và cấu trúc rõ ràng Tách biệt concern rõ ràng Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ Tích hợp dễ dàng với các công nghệ khác JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ… Hỗ trợ mạnh mẽ cho Web/MVC/API Spring MVC, RESTful API Tăng tốc phát triển với Spring Boot Giảm cấu hình, hỗ trợ tự động Các module chính: Spring Core, Spring Context, Spring AOP, Spring Data, Spring MVC, Spring Boot, Spring Security… 1 2 3 4 5 6 7 8 9 10 11 |---------------------------------------------------------------------------------------| | Module | Mô tả | |---------------------------------------------------------------------------------------| | Spring Core | Cung cấp nền tảng IoC, DI – là phần lõi bắt buộc | | Spring Context | Mở rộng Spring Core, hỗ trợ ApplicationContext | | Spring AOP | Hỗ trợ lập trình hướng khía cạnh, giúp tách biệt logic phụ trợ | | Spring Data | Tầng dữ liệu: hỗ trợ JPA, JDBC, MongoDB, Redis… | | Spring MVC | Hỗ trợ Web app, RESTful API theo kiến trúc MVC | | Spring Boot | Tự động cấu hình, nhanh chóng tạo project Spring | | Spring Security | Bảo mật (xác thực, phân quyền), JWT, OAuth2 | | Spring Test | Hỗ trợ viết unit test, integration test | Sự khác biệt giữa Spring Framework và Spring Boot 1 2 3 4 5 6 7 8 9 10 |-------------------------------------------------------------------------------------------------------------------| | Tiêu chí | Spring Framework | Spring Boot | |-------------------------------------------------------------------------------------------------------------------| | Cấu hình | Cần cấu hình thủ công (XML, Java Config) | Tự động cấu hình dựa trên classpath và cấu trúc | | Tạo project | Mất thời gian tạo &amp; cấu hình | Dễ dàng tạo bằng Spring Initializr | | Testing | Cần setup nhiều | Hỗ trợ test tốt qua starter | | Phụ thuộc | Phải tự khai báo từng dependency | Cung cấp bộ starter chuẩn | | Web server | Cần cấu hình servlet container | Embedded Tomcat/Jetty sẵn | | Mục tiêu | Dùng cho ứng dụng truyền thống, cấu hình tay | Tăng tốc ứng dụng hiện đại, minimal config | | Triển khai | WAR, EAR | WAR hoặc standalone JAR | Kết luận: Spring Boot là phần mở rộng của Spring Framework giúp đơn giản hóa và tăng tốc phát triển ứng dụng Spring. Chúng ta vẫn đang dùng Spring (Core, MVC, Data…) nhưng được hỗ trợ thêm auto-configuration, starter, embedded server, devtools, v.v… II. Spring Core IOC Container (Inversion of Control): Bean, BeanFactory, ApplicationContext Inversion of Control (IoC) là nguyên lý mà control tạo &amp; quản lý đối tượng được chuyển từ lập trình viên sang container (Spring quản lý). Các thành phần chính: 1 2 3 4 5 6 |----------------------------------------------------------------------------------------------------------------------------| | Thành phần | Mô tả | |----------------------------------------------------------------------------------------------------------------------------| | Bean | Đối tượng được Spring quản lý trong container | | BeanFactory | Interface cung cấp cơ chế IoC, quản lý các bean (ít dùng trực tiếp) | | ApplicationContext | Mở rộng BeanFactory, hỗ trợ nhiều tính năng hơn (i18n, event, AOP, lifecycle hooks...) =&gt; thường dùng | Ví dụ: 1 2 ApplicationContext context = new ClassPathXmlApplicationContext(&quot;beans.xml&quot;); MyService service = context.getBean(MyService.class); Dependency Injection (DI): Constructor injection, Setter injection, Field injection Spring inject dependencies (các bean khác) vào object khi khởi tạo – thay vì ta phải tự tạo thủ công bằng new. Các cách inject: 1 2 3 4 5 6 |-------------------------------------------------------------------------------------------------------------------| | Cách | Mô tả | Ưu/nhược điểm | | ----------------------|-----------------------------| ------------------------------------------------------------| | Constructor Injection | Inject qua constructor | Immutable, test dễ, dùng khi cần dependency bắt buộc | | Setter Injection | Inject qua setter method | Linh hoạt, dễ thay đổi, dễ tạo object không đủ dependency | | Field Injection | Inject trực tiếp vào field | Không nên dùng nhiều, khó test, nhưng tiện | Ví dụ Constructor injection: 1 2 3 4 5 6 7 8 9 @Component public class OrderService { private final CustomerRepo repo; @Autowired public OrderService(CustomerRepo repo) { this.repo = repo; } } Ví dụ Setter Injection: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 @Component public class OrderService { private CustomerRepository customerRepository; @Autowired public void setCustomerRepository(CustomerRepository customerRepository) { this.customerRepository = customerRepository; } public void processOrder() { customerRepository.save(); // sử dụng dependency } } @Repository public class CustomerRepository { public void save() { System.out.println(&quot;Customer saved.&quot;); } } Ví dụ Field Injection: 1 2 3 4 5 6 7 8 9 10 @Component public class OrderService { @Autowired private CustomerRepository customerRepository; public void processOrder() { customerRepository.save(); } } Bean Scope: Singleton, Prototype, Request, Session… 1 2 3 4 5 6 7 8 9 |-----------------------------------------------------------------------------------------| | Scope | Mô tả | Áp dụng | | --------------------|----------------------------------------|--------------------------| | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất | Stateless services | | prototype | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope | | request | Mỗi HTTP request sẽ có bean riêng | Spring Web | | session | Bean tồn tại trong session người dùng | Spring Web | | application | Tồn tại trong ServletContext | Web application | | websocket | Bean sống trong WebSocket session | Realtime apps | Ví dụ: 1 2 3 @Component @Scope(&quot;prototype&quot;) public class SomeBean { } Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ. Quy trình vòng đời Bean cơ bản: Bean được tạo (bằng constructor) Dependency được inject (DI) Các hook được gọi: @PostConstruct hoặc init-method Bean sẵn sàng được sử dụng Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi Annotation vs XML vs Java-based configuration 1 2 3 4 5 6 7 8 9 |---------------------------------------------------------------------------------------------------| | Loại cấu hình | Cách làm | Dùng khi nào | | -----------------|-----------------------------------------------|--------------------------------| | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay | | | @Configuration, @Bean, @Autowired... | | | XML-based | Cấu hình trong file applicationContext.xml, | Cũ, dùng khi không thể dùng | | | khai báo &lt;bean&gt;... | annotation | | Java-based | Dùng class @Configuration và method @Bean | Rõ ràng, mạnh mẽ, dễ kiểm soát | | | | | a. Annotation-based Configuration Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Component public class MyService { public void doSomething() { } } @Service public class OrderService { private final MyService myService; @Autowired public OrderService(MyService myService) { this.myService = myService; } } b. XML-based Configuration (Cũ) Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt. Ví dụ: 1 2 3 4 5 6 &lt;beans&gt; &lt;bean id=&quot;myService&quot; class=&quot;com.example.MyService&quot; /&gt; &lt;bean id=&quot;orderService&quot; class=&quot;com.example.OrderService&quot;&gt; &lt;constructor-arg ref=&quot;myService&quot; /&gt; &lt;/bean&gt; &lt;/beans&gt; c. Java-based Configuration (@Configuration + @Bean) Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 @Configuration public class AppConfig { @Bean public MyService myService() { return new MyService(); } @Bean public OrderService orderService() { return new OrderService(myService()); } } @Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier a. @Component Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container. Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component. Ví dụ: 1 2 3 4 @Component public class EmailSender { public void send(String message) { } } b. @Service Annotation dành riêng cho tầng service – logic nghiệp vụ. Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng). Về bản chất, giống @Component. Ví dụ: 1 2 3 4 @Service public class OrderService { public void processOrder() { } } c. @Repository Annotation cho DAO layer (Data Access Layer) Giống @Component, nhưng có thêm xử lý ngoại lệ tự động: | Chuyển đổi JDBC exceptions thành Spring DataAccessException. Ví dụ: 1 2 3 4 @Repository public class UserRepository { public void save(User u) { } } d. @Controller Dùng cho Spring MVC Controller, xử lý request HTTP. Trả về View (HTML) nếu không kết hợp với @ResponseBody Ví dụ: 1 2 3 4 5 6 7 @Controller public class HomeController { @GetMapping(&quot;/&quot;) public String home() { return &quot;index&quot;; // trả về view name } } e. @Configuration Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean. Tương đương với file applicationContext.xml trong cấu hình XML. Ví dụ: 1 2 3 4 5 6 7 @Configuration public class AppConfig { @Bean public EmailSender emailSender() { return new EmailSender(); } } f. @Bean Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component). Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp. Ví dụ: 1 2 3 4 @Bean public DataSource dataSource() { return new HikariDataSource(); } g. @Autowired Annotation dùng để inject dependency tự động theo kiểu (by type). Có thể dùng cho: Constructor (khuyến khích) Field Setter Ví dụ: 1 2 3 4 5 6 7 8 9 @Service public class NotificationService { private final EmailSender emailSender; @Autowired public NotificationService(EmailSender emailSender) { this.emailSender = emailSender; } } h. @Qualifier Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type. Kết hợp với @Autowired. Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 @Autowired @Qualifier(&quot;smsSender&quot;) private MessageSender sender; @Component(&quot;smsSender&quot;) public class SmsSender implements MessageSender { } @Component(&quot;emailSender&quot;) public class EmailSender implements MessageSender { } Tổng quan mối quan hệ giữa các annotation 1 2 3 4 5 6 7 8 9 10 @Component ← Gốc chung ├── @Service → Service Layer ├── @Repository → DAO Layer, bắt exception └── @Controller → Web Layer @Configuration → class khai báo Bean thủ công @Bean → method tạo Bean trong class @Configuration @Autowired → Inject dependency @Qualifier → Chọn đúng bean nếu có nhiều III. Các chủ đề nâng cao (phỏng vấn trung - cao cấp) Event trong Spring (ApplicationEventPublisher, @EventListener) Spring Retry, Spring Batch, Spring WebFlux (Reactive Programming) Tích hợp Spring với: Redis, RabbitMQ, Kafka Elasticsearch, MongoDB Caching: @Cacheable, @CachePut, @CacheEvict Custom annotation Multi-module Spring Boot project IV. Các kiến thức liên quan khác (rất quan trọng) Kiến trúc RESTful API Exception Handling toàn cục DTO vs Entity Swagger/OpenAPI Build tool: Maven, Gradle Docker hóa ứng dụng Spring Boot Triển khai Spring Boot lên server/cloud" />
+<link rel="canonical" href="http://0.0.0.0:4000/2025/07/03/spring-core/" />
+<meta property="og:url" content="http://0.0.0.0:4000/2025/07/03/spring-core/" />
+<meta property="og:site_name" content="NPNgocThanh99 — Dev Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-03T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tổng hợp kiến thức về Spring Framework/ Spring Core" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Nguyễn Phúc Ngọc Thành"},"dateModified":"2025-07-03T00:00:00-05:00","datePublished":"2025-07-03T00:00:00-05:00","description":"I. Tổng quan về Spring Framework Spring là gì? Tại sao lại dùng Spring? Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao. Đặc điểm nổi bật: Inversion of Control(IoC): tách biệt việc khởi tạo &amp; quản lý đối tượng ra khỏi logic nghiệp vụ. Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain. Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó. Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,…. Lý do sử dụng Spring: Lý do Mô tả Tái sử dụng code &amp; test dễ hơn Nhờ Dependency Injection và cấu trúc rõ ràng Tách biệt concern rõ ràng Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ Tích hợp dễ dàng với các công nghệ khác JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ… Hỗ trợ mạnh mẽ cho Web/MVC/API Spring MVC, RESTful API Tăng tốc phát triển với Spring Boot Giảm cấu hình, hỗ trợ tự động Các module chính: Spring Core, Spring Context, Spring AOP, Spring Data, Spring MVC, Spring Boot, Spring Security… 1 2 3 4 5 6 7 8 9 10 11 |---------------------------------------------------------------------------------------| | Module | Mô tả | |---------------------------------------------------------------------------------------| | Spring Core | Cung cấp nền tảng IoC, DI – là phần lõi bắt buộc | | Spring Context | Mở rộng Spring Core, hỗ trợ ApplicationContext | | Spring AOP | Hỗ trợ lập trình hướng khía cạnh, giúp tách biệt logic phụ trợ | | Spring Data | Tầng dữ liệu: hỗ trợ JPA, JDBC, MongoDB, Redis… | | Spring MVC | Hỗ trợ Web app, RESTful API theo kiến trúc MVC | | Spring Boot | Tự động cấu hình, nhanh chóng tạo project Spring | | Spring Security | Bảo mật (xác thực, phân quyền), JWT, OAuth2 | | Spring Test | Hỗ trợ viết unit test, integration test | Sự khác biệt giữa Spring Framework và Spring Boot 1 2 3 4 5 6 7 8 9 10 |-------------------------------------------------------------------------------------------------------------------| | Tiêu chí | Spring Framework | Spring Boot | |-------------------------------------------------------------------------------------------------------------------| | Cấu hình | Cần cấu hình thủ công (XML, Java Config) | Tự động cấu hình dựa trên classpath và cấu trúc | | Tạo project | Mất thời gian tạo &amp; cấu hình | Dễ dàng tạo bằng Spring Initializr | | Testing | Cần setup nhiều | Hỗ trợ test tốt qua starter | | Phụ thuộc | Phải tự khai báo từng dependency | Cung cấp bộ starter chuẩn | | Web server | Cần cấu hình servlet container | Embedded Tomcat/Jetty sẵn | | Mục tiêu | Dùng cho ứng dụng truyền thống, cấu hình tay | Tăng tốc ứng dụng hiện đại, minimal config | | Triển khai | WAR, EAR | WAR hoặc standalone JAR | Kết luận: Spring Boot là phần mở rộng của Spring Framework giúp đơn giản hóa và tăng tốc phát triển ứng dụng Spring. Chúng ta vẫn đang dùng Spring (Core, MVC, Data…) nhưng được hỗ trợ thêm auto-configuration, starter, embedded server, devtools, v.v… II. Spring Core IOC Container (Inversion of Control): Bean, BeanFactory, ApplicationContext Inversion of Control (IoC) là nguyên lý mà control tạo &amp; quản lý đối tượng được chuyển từ lập trình viên sang container (Spring quản lý). Các thành phần chính: 1 2 3 4 5 6 |----------------------------------------------------------------------------------------------------------------------------| | Thành phần | Mô tả | |----------------------------------------------------------------------------------------------------------------------------| | Bean | Đối tượng được Spring quản lý trong container | | BeanFactory | Interface cung cấp cơ chế IoC, quản lý các bean (ít dùng trực tiếp) | | ApplicationContext | Mở rộng BeanFactory, hỗ trợ nhiều tính năng hơn (i18n, event, AOP, lifecycle hooks...) =&gt; thường dùng | Ví dụ: 1 2 ApplicationContext context = new ClassPathXmlApplicationContext(&quot;beans.xml&quot;); MyService service = context.getBean(MyService.class); Dependency Injection (DI): Constructor injection, Setter injection, Field injection Spring inject dependencies (các bean khác) vào object khi khởi tạo – thay vì ta phải tự tạo thủ công bằng new. Các cách inject: 1 2 3 4 5 6 |-------------------------------------------------------------------------------------------------------------------| | Cách | Mô tả | Ưu/nhược điểm | | ----------------------|-----------------------------| ------------------------------------------------------------| | Constructor Injection | Inject qua constructor | Immutable, test dễ, dùng khi cần dependency bắt buộc | | Setter Injection | Inject qua setter method | Linh hoạt, dễ thay đổi, dễ tạo object không đủ dependency | | Field Injection | Inject trực tiếp vào field | Không nên dùng nhiều, khó test, nhưng tiện | Ví dụ Constructor injection: 1 2 3 4 5 6 7 8 9 @Component public class OrderService { private final CustomerRepo repo; @Autowired public OrderService(CustomerRepo repo) { this.repo = repo; } } Ví dụ Setter Injection: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 @Component public class OrderService { private CustomerRepository customerRepository; @Autowired public void setCustomerRepository(CustomerRepository customerRepository) { this.customerRepository = customerRepository; } public void processOrder() { customerRepository.save(); // sử dụng dependency } } @Repository public class CustomerRepository { public void save() { System.out.println(&quot;Customer saved.&quot;); } } Ví dụ Field Injection: 1 2 3 4 5 6 7 8 9 10 @Component public class OrderService { @Autowired private CustomerRepository customerRepository; public void processOrder() { customerRepository.save(); } } Bean Scope: Singleton, Prototype, Request, Session… 1 2 3 4 5 6 7 8 9 |-----------------------------------------------------------------------------------------| | Scope | Mô tả | Áp dụng | | --------------------|----------------------------------------|--------------------------| | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất | Stateless services | | prototype | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope | | request | Mỗi HTTP request sẽ có bean riêng | Spring Web | | session | Bean tồn tại trong session người dùng | Spring Web | | application | Tồn tại trong ServletContext | Web application | | websocket | Bean sống trong WebSocket session | Realtime apps | Ví dụ: 1 2 3 @Component @Scope(&quot;prototype&quot;) public class SomeBean { } Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ. Quy trình vòng đời Bean cơ bản: Bean được tạo (bằng constructor) Dependency được inject (DI) Các hook được gọi: @PostConstruct hoặc init-method Bean sẵn sàng được sử dụng Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi Annotation vs XML vs Java-based configuration 1 2 3 4 5 6 7 8 9 |---------------------------------------------------------------------------------------------------| | Loại cấu hình | Cách làm | Dùng khi nào | | -----------------|-----------------------------------------------|--------------------------------| | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay | | | @Configuration, @Bean, @Autowired... | | | XML-based | Cấu hình trong file applicationContext.xml, | Cũ, dùng khi không thể dùng | | | khai báo &lt;bean&gt;... | annotation | | Java-based | Dùng class @Configuration và method @Bean | Rõ ràng, mạnh mẽ, dễ kiểm soát | | | | | a. Annotation-based Configuration Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @Component public class MyService { public void doSomething() { } } @Service public class OrderService { private final MyService myService; @Autowired public OrderService(MyService myService) { this.myService = myService; } } b. XML-based Configuration (Cũ) Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt. Ví dụ: 1 2 3 4 5 6 &lt;beans&gt; &lt;bean id=&quot;myService&quot; class=&quot;com.example.MyService&quot; /&gt; &lt;bean id=&quot;orderService&quot; class=&quot;com.example.OrderService&quot;&gt; &lt;constructor-arg ref=&quot;myService&quot; /&gt; &lt;/bean&gt; &lt;/beans&gt; c. Java-based Configuration (@Configuration + @Bean) Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 12 13 @Configuration public class AppConfig { @Bean public MyService myService() { return new MyService(); } @Bean public OrderService orderService() { return new OrderService(myService()); } } @Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier a. @Component Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container. Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component. Ví dụ: 1 2 3 4 @Component public class EmailSender { public void send(String message) { } } b. @Service Annotation dành riêng cho tầng service – logic nghiệp vụ. Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng). Về bản chất, giống @Component. Ví dụ: 1 2 3 4 @Service public class OrderService { public void processOrder() { } } c. @Repository Annotation cho DAO layer (Data Access Layer) Giống @Component, nhưng có thêm xử lý ngoại lệ tự động: | Chuyển đổi JDBC exceptions thành Spring DataAccessException. Ví dụ: 1 2 3 4 @Repository public class UserRepository { public void save(User u) { } } d. @Controller Dùng cho Spring MVC Controller, xử lý request HTTP. Trả về View (HTML) nếu không kết hợp với @ResponseBody Ví dụ: 1 2 3 4 5 6 7 @Controller public class HomeController { @GetMapping(&quot;/&quot;) public String home() { return &quot;index&quot;; // trả về view name } } e. @Configuration Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean. Tương đương với file applicationContext.xml trong cấu hình XML. Ví dụ: 1 2 3 4 5 6 7 @Configuration public class AppConfig { @Bean public EmailSender emailSender() { return new EmailSender(); } } f. @Bean Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component). Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp. Ví dụ: 1 2 3 4 @Bean public DataSource dataSource() { return new HikariDataSource(); } g. @Autowired Annotation dùng để inject dependency tự động theo kiểu (by type). Có thể dùng cho: Constructor (khuyến khích) Field Setter Ví dụ: 1 2 3 4 5 6 7 8 9 @Service public class NotificationService { private final EmailSender emailSender; @Autowired public NotificationService(EmailSender emailSender) { this.emailSender = emailSender; } } h. @Qualifier Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type. Kết hợp với @Autowired. Ví dụ: 1 2 3 4 5 6 7 8 9 10 11 @Autowired @Qualifier(&quot;smsSender&quot;) private MessageSender sender; @Component(&quot;smsSender&quot;) public class SmsSender implements MessageSender { } @Component(&quot;emailSender&quot;) public class EmailSender implements MessageSender { } Tổng quan mối quan hệ giữa các annotation 1 2 3 4 5 6 7 8 9 10 @Component ← Gốc chung ├── @Service → Service Layer ├── @Repository → DAO Layer, bắt exception └── @Controller → Web Layer @Configuration → class khai báo Bean thủ công @Bean → method tạo Bean trong class @Configuration @Autowired → Inject dependency @Qualifier → Chọn đúng bean nếu có nhiều III. Các chủ đề nâng cao (phỏng vấn trung - cao cấp) Event trong Spring (ApplicationEventPublisher, @EventListener) Spring Retry, Spring Batch, Spring WebFlux (Reactive Programming) Tích hợp Spring với: Redis, RabbitMQ, Kafka Elasticsearch, MongoDB Caching: @Cacheable, @CachePut, @CacheEvict Custom annotation Multi-module Spring Boot project IV. Các kiến thức liên quan khác (rất quan trọng) Kiến trúc RESTful API Exception Handling toàn cục DTO vs Entity Swagger/OpenAPI Build tool: Maven, Gradle Docker hóa ứng dụng Spring Boot Triển khai Spring Boot lên server/cloud","headline":"Tổng hợp kiến thức về Spring Framework/ Spring Core","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2025/07/03/spring-core/"},"url":"http://0.0.0.0:4000/2025/07/03/spring-core/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__label">LIVE</div>
+    <div class="ticker__track">
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+      <span class="ticker__item">Marco Reus — Huyền thoại Dortmund #11</span>
+      <span class="ticker__item">Manchester United — The Red Devils — GGMU</span>
+      <span class="ticker__item">Đội tuyển Đức — Die Mannschaft</span>
+      <span class="ticker__item">Spring Boot · Java · React · Redis · Docker</span>
+      <span class="ticker__item">Software Engineer — Ghi chép hành trình</span>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a class="logo" href="/">ng<em>oc</em>thanh<em>99</em></a>
+      <ul class="nav">
+        <li><a href="/" >Trang Chủ</a></li>
+        <li><a href="/posts" >Bài Viết</a></li>
+        <li><a href="/about" >Về Tôi</a></li>
+        <li><a href="https://github.com/NPNgocThanh99" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   
+
+<article>
+  <!-- POST HERO -->
+  <div class="post-hero">
+    <div class="post-hero__inner">
+      <a class="post-hero__back" href="/">← Quay lại</a>
+      <br /><br />
+      <span class="post-hero__tag tag--spring">
+             Spring                
+      </span>
+      <h1 class="post-hero__title">Tổng hợp kiến thức về Spring Framework/ Spring Core</h1>
+      <div class="post-hero__meta">
+        <span class="post-hero__date"
+          >📅 03/07/2025</span
+        >
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="post-content-wrap">
+    <div class="post-content"><p><strong>I. Tổng quan về Spring Framework</strong></p>
+
+<ol>
+  <li>Spring là gì? Tại sao lại dùng Spring?
+    <ul>
+      <li>Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao.
+Đặc điểm nổi bật:
+        <ul>
+          <li>Inversion of Control(IoC): tách biệt việc khởi tạo &amp; quản lý đối tượng ra khỏi logic nghiệp vụ.</li>
+          <li>Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain.</li>
+          <li>Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó.</li>
+          <li>Hỗ trợ AOP: dễ dàng xử lý các logic cross-cutting như logging, transaction,….</li>
+        </ul>
+      </li>
+      <li>
+        <p>Lý do sử dụng Spring:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Lý do</th>
+              <th>Mô tả</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tái sử dụng code &amp; test dễ hơn</td>
+              <td>Nhờ Dependency Injection và cấu trúc rõ ràng</td>
+            </tr>
+            <tr>
+              <td>Tách biệt concern rõ ràng</td>
+              <td>Bằng cách sử dụng AOP, tách logic nghiệp vụ với logic phụ trợ</td>
+            </tr>
+            <tr>
+              <td>Tích hợp dễ dàng với các công nghệ khác</td>
+              <td>JDBC, Hibernate, JPA, JMS, Kafka, RabbitMQ…</td>
+            </tr>
+            <tr>
+              <td>Hỗ trợ mạnh mẽ cho Web/MVC/API</td>
+              <td>Spring MVC, RESTful API</td>
+            </tr>
+            <tr>
+              <td>Tăng tốc phát triển với Spring Boot</td>
+              <td>Giảm cấu hình, hỗ trợ tự động</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Các module chính: Spring Core, Spring Context, Spring AOP, Spring Data, Spring MVC, Spring Boot, Spring Security…</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>|---------------------------------------------------------------------------------------|
+| Module               | Mô tả                                                          |
+|---------------------------------------------------------------------------------------|
+| Spring Core          | Cung cấp nền tảng IoC, DI – là phần lõi bắt buộc               |
+| Spring Context       | Mở rộng Spring Core, hỗ trợ ApplicationContext                 |
+| Spring AOP           | Hỗ trợ lập trình hướng khía cạnh, giúp tách biệt logic phụ trợ |
+| Spring Data          | Tầng dữ liệu: hỗ trợ JPA, JDBC, MongoDB, Redis…                |
+| Spring MVC           | Hỗ trợ Web app, RESTful API theo kiến trúc MVC                 |
+| Spring Boot          | Tự động cấu hình, nhanh chóng tạo project Spring               |
+| Spring Security      | Bảo mật (xác thực, phân quyền), JWT, OAuth2                    |
+| Spring Test          | Hỗ trợ viết unit test, integration test                        |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Sự khác biệt giữa Spring Framework và Spring Boot</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>|-------------------------------------------------------------------------------------------------------------------|
+| Tiêu chí      | Spring Framework                              | Spring Boot                                       |
+|-------------------------------------------------------------------------------------------------------------------|
+| Cấu hình      | Cần cấu hình thủ công (XML, Java Config)      | Tự động cấu hình dựa trên classpath và cấu trúc   |
+| Tạo project   | Mất thời gian tạo &amp; cấu hình                  | Dễ dàng tạo bằng Spring Initializr                |
+| Testing       | Cần setup nhiều                               | Hỗ trợ test tốt qua starter                       |
+| Phụ thuộc     | Phải tự khai báo từng dependency              | Cung cấp bộ starter chuẩn                         |
+| Web server    | Cần cấu hình servlet container                | Embedded Tomcat/Jetty sẵn                         |
+| Mục tiêu      | Dùng cho ứng dụng truyền thống, cấu hình tay  | Tăng tốc ứng dụng hiện đại, minimal config        |
+| Triển khai    | WAR, EAR                                      | WAR hoặc standalone JAR                           |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Kết luận:</strong> Spring Boot là phần mở rộng của Spring Framework giúp đơn giản hóa và tăng tốc phát triển ứng dụng Spring. Chúng ta vẫn đang dùng Spring (Core, MVC, Data…) nhưng được hỗ trợ thêm auto-configuration, starter, embedded server, devtools, v.v…</p>
+
+<p><strong>II. Spring Core</strong></p>
+
+<ol>
+  <li>IOC Container (Inversion of Control): Bean, BeanFactory, ApplicationContext
+    <ul>
+      <li>Inversion of Control (IoC) là nguyên lý mà control tạo &amp; quản lý đối tượng được chuyển từ lập trình viên sang container (Spring quản lý).</li>
+    </ul>
+
+    <p><strong>Các thành phần chính:</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>|----------------------------------------------------------------------------------------------------------------------------|
+| Thành phần         | Mô tả                                                                                                 |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Bean               | Đối tượng được Spring quản lý trong container                                                         |
+| BeanFactory        | Interface cung cấp cơ chế IoC, quản lý các bean (ít dùng trực tiếp)                                   |
+| ApplicationContext | Mở rộng BeanFactory, hỗ trợ nhiều tính năng hơn (i18n, event, AOP, lifecycle hooks...) =&gt; thường dùng |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <p>Ví dụ:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    MyService service = context.getBean(MyService.class);
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>Dependency Injection (DI): Constructor injection, Setter injection, Field injection
+    <ul>
+      <li>Spring inject dependencies (các bean khác) vào object khi khởi tạo – thay vì ta phải tự tạo thủ công bằng new.</li>
+      <li>
+        <p>Các cách inject:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>            |-------------------------------------------------------------------------------------------------------------------|
+            | Cách                  | Mô tả                       | Ưu/nhược điểm                                               |
+            | ----------------------|-----------------------------| ------------------------------------------------------------|
+            | Constructor Injection | Inject qua constructor      | Immutable, test dễ, dùng khi cần dependency bắt buộc        |
+            | Setter Injection      | Inject qua setter method    | Linh hoạt, dễ thay đổi, dễ tạo object không đủ dependency   |
+            | Field Injection       | Inject trực tiếp vào field  | Không nên dùng nhiều, khó test, nhưng tiện                  |
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Ví dụ Constructor injection:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>              @Component
+              public class OrderService {
+                private final CustomerRepo repo;
+
+                @Autowired
+                public OrderService(CustomerRepo repo) {
+                  this.repo = repo;
+                }
+              }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Ví dụ Setter Injection:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre>              @Component
+              public class OrderService {
+
+                private CustomerRepository customerRepository;
+
+                @Autowired
+                public void setCustomerRepository(CustomerRepository customerRepository) {
+                  this.customerRepository = customerRepository;
+                }
+
+                public void processOrder() {
+                  customerRepository.save(); // sử dụng dependency
+                }
+              }
+
+              @Repository
+              public class CustomerRepository {
+
+                public void save() {
+                  System.out.println("Customer saved.");
+                }
+              }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Ví dụ Field Injection:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>              @Component
+              public class OrderService {
+
+                @Autowired
+                private CustomerRepository customerRepository;
+
+                public void processOrder() {
+                  customerRepository.save();
+                }
+              }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Bean Scope: Singleton, Prototype, Request, Session…</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>              |-----------------------------------------------------------------------------------------|
+              | Scope               | Mô tả                                  | Áp dụng                  |
+              | --------------------|----------------------------------------|--------------------------|
+              | singleton (default) | Mỗi bean chỉ có 1 instance duy nhất    | Stateless services       |
+              | prototype           | Mỗi lần gọi getBean() tạo 1 object mới | Stateful, custom scope   |
+              | request             | Mỗi HTTP request sẽ có bean riêng      | Spring Web               |
+              | session             | Bean tồn tại trong session người dùng  | Spring Web               |
+              | application         | Tồn tại trong ServletContext           | Web application          |
+              | websocket           | Bean sống trong WebSocket session      | Realtime apps            |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Ví dụ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>                    @Component
+                    @Scope("prototype")
+                    public class SomeBean { }
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ol>
+  <li>Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy
+    <ul>
+      <li>Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ.</li>
+      <li>Quy trình vòng đời Bean cơ bản:
+        <ol>
+          <li>Bean được tạo (bằng constructor)</li>
+          <li>Dependency được inject (DI)</li>
+          <li>Các hook được gọi: @PostConstruct hoặc init-method</li>
+          <li>Bean sẵn sàng được sử dụng</li>
+          <li>Khi Spring container shutdown: @PreDestroy hoặc destroy-method được gọi</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Annotation vs XML vs Java-based configuration</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>                          |---------------------------------------------------------------------------------------------------|
+                          | Loại cấu hình    | Cách làm                                      | Dùng khi nào                   |
+                          | -----------------|-----------------------------------------------|--------------------------------|
+                          | Annotation-based | Dùng các annotation như @Component, @Service, | Phổ biến nhất hiện nay         |
+                          |                  | @Configuration, @Bean, @Autowired...          |                                |
+                          | XML-based        | Cấu hình trong file applicationContext.xml,   | Cũ, dùng khi không thể dùng    |
+                          |                  | khai báo &lt;bean&gt;...                            | annotation                     |
+                          | Java-based       | Dùng class @Configuration và method @Bean     | Rõ ràng, mạnh mẽ, dễ kiểm soát |
+                          |                  |                                               |                                |
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <p>a. Annotation-based Configuration</p>
+    <ul>
+      <li>Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre>                      @Component
+                      public class MyService {
+                        public void doSomething() { }
+                      }
+
+                      @Service
+                      public class OrderService {
+                        private final MyService myService;
+
+                        @Autowired
+                        public OrderService(MyService myService) {
+                          this.myService = myService;
+                        }
+                      }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>b. XML-based Configuration (Cũ)</p>
+    <ul>
+      <li>Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>                &lt;beans&gt;
+                  &lt;bean id="myService" class="com.example.MyService" /&gt;
+                  &lt;bean id="orderService" class="com.example.OrderService"&gt;
+                    &lt;constructor-arg ref="myService" /&gt;
+                  &lt;/bean&gt;
+                &lt;/beans&gt;
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>c. Java-based Configuration (@Configuration + @Bean)</p>
+    <ul>
+      <li>Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>                @Configuration
+                public class AppConfig {
+
+                  @Bean
+                  public MyService myService() {
+                    return new MyService();
+                  }
+
+                  @Bean
+                  public OrderService orderService() {
+                    return new OrderService(myService());
+                  }
+                }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>@Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier
+a. @Component
+    <ul>
+      <li>Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container.</li>
+      <li>Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                  @Component
+                  public class EmailSender {
+                    public void send(String message) { }
+                  }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>b. @Service</p>
+    <ul>
+      <li>Annotation dành riêng cho tầng service – logic nghiệp vụ.</li>
+      <li>Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng).</li>
+      <li>Về bản chất, giống @Component.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                  @Service
+                  public class OrderService {
+                    public void processOrder() { }
+                  }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>c. @Repository</p>
+    <ul>
+      <li>Annotation cho DAO layer (Data Access Layer)</li>
+      <li>Giống @Component, nhưng có thêm xử lý ngoại lệ tự động:
+| Chuyển đổi JDBC exceptions thành Spring DataAccessException.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                  @Repository
+                  public class UserRepository {
+                    public void save(User u) { }
+                  }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>d. @Controller</p>
+    <ul>
+      <li>Dùng cho Spring MVC Controller, xử lý request HTTP.</li>
+      <li>Trả về View (HTML) nếu không kết hợp với @ResponseBody</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>                  @Controller
+                  public class HomeController {
+                    @GetMapping("/")
+                    public String home() {
+                      return "index"; // trả về view name
+                    }
+                  }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>e. @Configuration</p>
+    <ul>
+      <li>Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean.</li>
+      <li>Tương đương với file applicationContext.xml trong cấu hình XML.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>                  @Configuration
+                  public class AppConfig {
+                    @Bean
+                    public EmailSender emailSender() {
+                      return new EmailSender();
+                    }
+                  }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>f. @Bean</p>
+    <ul>
+      <li>Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component).</li>
+      <li>Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                  @Bean
+                  public DataSource dataSource() {
+                    return new HikariDataSource();
+                  }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>g. @Autowired</p>
+    <ul>
+      <li>Annotation dùng để inject dependency tự động theo kiểu (by type).</li>
+      <li>Có thể dùng cho:
+        <ul>
+          <li>Constructor (khuyến khích)</li>
+          <li>Field</li>
+          <li>Setter</li>
+          <li>
+            <p>Ví dụ:</p>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>                @Service
+                public class NotificationService {
+                  private final EmailSender emailSender;
+
+                  @Autowired
+                  public NotificationService(EmailSender emailSender) {
+                    this.emailSender = emailSender;
+                  }
+                }
+</pre></td></tr></tbody></table></code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>h. @Qualifier</p>
+    <ul>
+      <li>Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type.</li>
+      <li>Kết hợp với @Autowired.</li>
+      <li>
+        <p>Ví dụ:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>                  @Autowired
+                  @Qualifier("smsSender")
+                  private MessageSender sender;
+                        
+
+                        
+                  @Component("smsSender")
+                  public class SmsSender implements MessageSender { }
+
+                  @Component("emailSender")
+                  public class EmailSender implements MessageSender { }
+</pre></td></tr></tbody></table></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Tổng quan mối quan hệ giữa các annotation</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>                        @Component     ←  Gốc chung
+                          ├── @Service        →    Service Layer
+                          ├── @Repository     →    DAO Layer, bắt exception
+                          └── @Controller     →    Web Layer
+
+                        @Configuration → class khai báo Bean thủ công
+                        @Bean → method tạo Bean trong class @Configuration
+
+                        @Autowired → Inject dependency
+                        @Qualifier → Chọn đúng bean nếu có nhiều
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>III. Các chủ đề nâng cao (phỏng vấn trung - cao cấp)</strong></p>
+
+<ol>
+  <li>Event trong Spring (ApplicationEventPublisher, @EventListener)</li>
+  <li>Spring Retry, Spring Batch, Spring WebFlux (Reactive Programming)</li>
+  <li>Tích hợp Spring với:</li>
+  <li>Redis, RabbitMQ, Kafka</li>
+  <li>Elasticsearch, MongoDB</li>
+  <li>Caching: @Cacheable, @CachePut, @CacheEvict</li>
+  <li>Custom annotation</li>
+  <li>Multi-module Spring Boot project</li>
+</ol>
+
+<p><strong>IV. Các kiến thức liên quan khác (rất quan trọng)</strong></p>
+
+<ol>
+  <li>Kiến trúc RESTful API</li>
+  <li>Exception Handling toàn cục</li>
+  <li>DTO vs Entity</li>
+  <li>Swagger/OpenAPI</li>
+  <li>Build tool: Maven, Gradle</li>
+  <li>Docker hóa ứng dụng Spring Boot</li>
+  <li>Triển khai Spring Boot lên server/cloud</li>
+</ol>
+</div>
+
+    <!-- NAV BETWEEN POSTS -->
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+      "
+    >
+      
+      <a
+        class="pg__btn"
+        href="/2025/07/01/react-post/"
+        style="
+          max-width: 48%;
+          text-align: left;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        ← Tổng hợp kiến thức về ReactJS
+      </a>
+       
+      <a
+        class="pg__btn"
+        href="/2025/07/04/spring-boot/"
+        style="
+          max-width: 48%;
+          text-align: right;
+          white-space: normal;
+          height: auto;
+          padding: 10px 16px;
+          line-height: 1.4;
+        "
+      >
+        Tổng hợp kiến thức về Spring Framework →
+      </a>
+      
+    </div>
+  </div>
+</article>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <div class="footer-logo">ng<span>oc</span>thanh<span>99</span>.github.io</div>
+        <div class="footer-copy">© 2026 Nguyễn Phúc Ngọc Thành — Built with ❤️ &amp; ⚽</div>
+      </div>
+      <div class="footer-crests">🟡⚫ 🔴⚪ 🇩🇪</div>
+      <div class="footer-quote">"Play like Reus. Code like a champion."</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

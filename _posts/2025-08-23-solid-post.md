@@ -2,6 +2,7 @@
 layout: post
 title: "Kiến thức về nguyên tắc SOLID"
 date: 2025-08-23
+tag: cs
 ---
 
 SOLID là viết tắt của 5 nguyên tắc thiết kế giúp code dễ đọc, dễ mở rộng, dễ bảo trì và hạn chế code smell(code xấu).

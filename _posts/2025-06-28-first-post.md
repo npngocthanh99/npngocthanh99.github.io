@@ -2,6 +2,7 @@
 layout: post
 title: "Bài viết đầu tiên...Hướng dẫn tạo Blog trên GitHub"
 date: 2025-06-28
+tag: other
 ---
 
 Đây là bài viết đầu tiên mình viết bằng GitHub Pages + Jekyll Minima. Rất đơn giản và thú vị!
@@ -11,7 +12,7 @@ date: 2025-06-28
 ✅ Bước 1: Tạo repository trên GitHub
 
 1. Truy cập: https://github.com/new -> Tạo repository với format tên như sau : ten_tai_khoan.github.io
-2. Ví dụ: Nếu tài khoản là npngocthanh99, tên repo là npngocthanh99.github.io
+2. Ví dụ: Nếu tài khoản là NPNgocThanh99, tên repo là NPNgocThanh99.github.io
 3. Đặt là Public
 4. Check chọn “Initialize this repository with a README” -> Bấm “Create repository”
 
@@ -22,7 +23,7 @@ date: 2025-06-28
    - Branch: main
    - Folder: / (root)
 3. Bấm Save
-4. GitHub sẽ build trang blog tại: https://ten_tai_khoan.github.io ( trang blog của mình tại npngocthanh99.github.io)
+4. GitHub sẽ build trang blog tại: https://ten_tai_khoan.github.io ( trang blog của mình tại NPNgocThanh99.github.io)
 
 ✅ Bước 3: Cài giao diện blog với Jekyll (ví dụ: Minima)
 

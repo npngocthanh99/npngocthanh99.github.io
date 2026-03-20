@@ -2,10 +2,10 @@
 layout: post
 title: "Tổng hợp kiến thức về Spring Framework"
 date: 2025-07-04
+tag: spring
 ---
 
 1.  Spring Boot là gì? Ưu điểm?
-
     - Spring Boot là một framework giúp đơn giản hoá việc cấu hình và chạy ứng dụng Spring, bằng cách cung cấp:
       - cấu hình mặc định,
       - auto configuration,
@@ -56,7 +56,6 @@ date: 2025-07-04
           👉 YAML được dùng nhiều hơn trong microservice hoặc cấu hình nhiều profile.
 
 3.  Cấu hình tự động (Auto Configuration)
-
     - Khi bạn thêm starter (VD: spring-boot-starter-web), Spring Boot sẽ tự động cấu hình các bean cần thiết, như DispatcherServlet, Jackson, v.v.
     - Tắt auto config cho một số class:
 
@@ -156,7 +155,6 @@ date: 2025-07-04
             {% endraw %}
 
 7.  Embedded Tomcat, cấu hình port, hot reload
-
     - Spring Boot dùng Tomcat nhúng (Embedded) theo mặc định.
     - Có thể đổi sang Jetty, Undertow nếu cần.
     - Đổi port:

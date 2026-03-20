@@ -2,12 +2,11 @@
 layout: post
 title: "Tổng hợp kiến thức về Spring Data JPA / Spring JDBC"
 date: 2025-07-06
+tag: spring
 ---
 
 1.  ORM là gì?
-
     - ORM (Object Relational Mapping) là kỹ thuật ánh xạ giữa object trong Java và bảng trong CSDL.
-
       - Mỗi class Java ↔ một bảng trong DB
       - Mỗi field ↔ một cột
       - Mỗi instance ↔ một dòng dữ liệu
@@ -17,7 +16,6 @@ date: 2025-07-06
 2.  Spring Data JPA với JpaRepository, CrudRepository, PagingAndSortingRepository
 
     a. Spring Data JPA là gì?
-
     - Spring Data JPA là một abstraction trên JPA giúp tự động sinh code truy vấn CRUD.
     - Nó tích hợp với JPA Provider như Hibernate.
 
@@ -61,7 +59,6 @@ date: 2025-07-06
            {% endraw %}
 
 4.  Transaction management với @Transactional
-
     - Giúp đảm bảo thao tác DB là toàn vẹn (ACID).
     - Nếu có lỗi xảy ra, sẽ rollback toàn bộ.
     - Ví dụ:
@@ -198,7 +195,6 @@ date: 2025-07-06
                   {% endraw %}
 
     - Giải thích:
-
       - @JoinTable tạo bảng trung gian student_course
       - mappedBy = "courses" để định nghĩa quan hệ 2 chiều
 

@@ -2,15 +2,14 @@
 layout: post
 title: "Tổng hợp kiến thức về Spring Framework/ Spring Core"
 date: 2025-07-03
+tag: spring
 ---
 
 **I. Tổng quan về Spring Framework**
 
 1.  Spring là gì? Tại sao lại dùng Spring?
-
     - Spring Framework là một framework mã nguồn mở dành cho phát triển ứng dụng java, đặc biệt trong môi trường Java Enterprise(JEE). Nó cung cấp một nền tảng linh hoạt, nhẹ, dễ test để xây dựng các ứng dụng phức tạp và có khả năng mở rộng cao.
       Đặc điểm nổi bật:
-
       - Inversion of Control(IoC): tách biệt việc khởi tạo & quản lý đối tượng ra khỏi logic nghiệp vụ.
       - Dependency Injection (DI): giảm phụ thuộc giữa các class, dễ test, dễ maintain.
       - Modular: chia thành nhiều module, sử dụng phần nào thì nhúng phần đó.
@@ -59,7 +58,6 @@ date: 2025-07-03
 **II. Spring Core**
 
 1.  IOC Container (Inversion of Control): Bean, BeanFactory, ApplicationContext
-
     - Inversion of Control (IoC) là nguyên lý mà control tạo & quản lý đối tượng được chuyển từ lập trình viên sang container (Spring quản lý).
 
     **Các thành phần chính:**
@@ -79,7 +77,6 @@ date: 2025-07-03
             {% endraw %}
 
 2.  Dependency Injection (DI): Constructor injection, Setter injection, Field injection
-
     - Spring inject dependencies (các bean khác) vào object khi khởi tạo – thay vì ta phải tự tạo thủ công bằng new.
     - Các cách inject:
 
@@ -167,10 +164,8 @@ Ví dụ:
                         {% endraw %}
 
 4.  Bean Lifecycle: init-method, destroy-method, @PostConstruct, @PreDestroy
-
     - Bean Lifecycle là chuỗi các bước mà một Spring Bean trải qua — từ lúc được tạo ra trong container cho đến khi bị huỷ.
     - Quy trình vòng đời Bean cơ bản:
-
       1. Bean được tạo (bằng constructor)
       2. Dependency được inject (DI)
       3. Các hook được gọi: @PostConstruct hoặc init-method
@@ -190,7 +185,6 @@ Ví dụ:
                                   |                  |                                               |                                |
 
     a. Annotation-based Configuration
-
     - Đặc điểm: Rút gọn code, Dễ đọc, dễ quản lý, Không cần XML
     - Ví dụ:
 
@@ -212,7 +206,6 @@ Ví dụ:
                                 {% endraw %}
 
     b. XML-based Configuration (Cũ)
-
     - Đặc điểm: Không phụ thuộc annotation, Tách riêng phần config khỏi code - Nhược điểm: Dài dòng, khó maintain, Không hỗ trợ refactoring tốt.
     - Ví dụ:
 
@@ -226,7 +219,6 @@ Ví dụ:
                           {% endraw %}
 
     c. Java-based Configuration (@Configuration + @Bean)
-
     - Đặc điểm: Viết cấu hình bằng Java thuần, Không cần annotation ở class, Rất mạnh khi cấu hình phức tạp, conditional logic
     - Ví dụ:
 
@@ -248,7 +240,6 @@ Ví dụ:
 
 6.  @Component, @Service, @Repository, @Controller, @Configuration, @Bean, @Autowired, @Qualifier
     a. @Component
-
     - Là annotation gốc để Spring biết rằng class này là một Bean cần quản lý trong IoC Container.
     - Các annotation như @Service, @Repository, @Controller đều là biến thể (specialization) của @Component.
     - Ví dụ:
@@ -261,7 +252,6 @@ Ví dụ:
                             {% endraw %}
 
     b. @Service
-
     - Annotation dành riêng cho tầng service – logic nghiệp vụ.
     - Giúp code rõ ràng hơn về mặt kiến trúc (phân tầng).
     - Về bản chất, giống @Component.
@@ -275,7 +265,6 @@ Ví dụ:
                             {% endraw %}
 
     c. @Repository
-
     - Annotation cho DAO layer (Data Access Layer)
     - Giống @Component, nhưng có thêm xử lý ngoại lệ tự động:
       | Chuyển đổi JDBC exceptions thành Spring DataAccessException.
@@ -289,7 +278,6 @@ Ví dụ:
                             {% endraw %}
 
     d. @Controller
-
     - Dùng cho Spring MVC Controller, xử lý request HTTP.
     - Trả về View (HTML) nếu không kết hợp với @ResponseBody
     - Ví dụ:
@@ -305,7 +293,6 @@ Ví dụ:
                             {% endraw %}
 
     e. @Configuration
-
     - Dùng để đánh dấu class Java config, nơi chúng ta khai báo các @Bean.
     - Tương đương với file applicationContext.xml trong cấu hình XML.
     - Ví dụ:
@@ -321,7 +308,6 @@ Ví dụ:
                             {% endraw %}
 
     f. @Bean
-
     - Dùng trong class @Configuration để khai báo một bean thủ công (không dùng @Component).
     - Hữu ích khi cần khởi tạo bean từ class không thể sửa, hoặc có logic tạo phức tạp.
     - Ví dụ:
@@ -334,10 +320,8 @@ Ví dụ:
                             {% endraw %}
 
     g. @Autowired
-
     - Annotation dùng để inject dependency tự động theo kiểu (by type).
     - Có thể dùng cho:
-
       - Constructor (khuyến khích)
       - Field
       - Setter
@@ -356,7 +340,6 @@ Ví dụ:
                             {% endraw %}
 
     h. @Qualifier
-
     - Dùng để chỉ định rõ bean nào sẽ được inject, khi có nhiều bean cùng type.
     - Kết hợp với @Autowired.
     - Ví dụ:

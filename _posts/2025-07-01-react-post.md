@@ -2,6 +2,7 @@
 layout: post
 title: "Tổng hợp kiến thức về ReactJS"
 date: 2025-07-01
+tag: react
 ---
 
 **I. Kiến thức cơ bản cần nắm vững trong ReactJS**
@@ -51,7 +52,6 @@ b. Biểu thức trong JSX ({}) Dùng để nhúng logic
              {% endraw %}
 
   Chúng ta có thể dùng {} để:
-
   - Hiển thị giá trị
   - Gọi hàm
   - Tính toán trong dòng
@@ -166,7 +166,6 @@ a. Function component vs Class component (hiện nay dùng function là chủ y�
 b. Props và State
 
 - Props (Properties)
-
   - Là dữ liệu truyền từ component cha xuống component con.
   - Là readonly – không được thay đổi trong component con.
   - Dùng để cấu hình/tuỳ biến component.
@@ -182,7 +181,6 @@ b. Props và State
                  {% endraw %}
 
 - State
-
   - Là dữ liệu nội bộ của component, có thể thay đổi trong vòng đời component.
   - Khi state thay đổi, component sẽ re-render lại.
     Dùng trong function component:
@@ -250,7 +248,6 @@ d. Lifting State Up – Nâng state lên cha
                      {% endraw %}
 
   Lý do:
-
   - Tránh trùng lặp state ở nhiều nơi.
   - Giúp data flow một chiều, dễ debug, dễ kiểm soát.
 
@@ -266,12 +263,14 @@ d. Lifting State Up – Nâng state lên cha
          | Lifecycle          | Quản lý bằng useEffect() trong function         |
          | Lifting State Up   | Khi cần chia sẻ state giữa các component con    |
 
-**3. Hooks (Rất quan trọng)**  
-- Hooks là các hàm đặc biệt trong React cho phép chúng ta sử  dụng state, lifecycle, context,... trong function component mà trước đây chỉ có class component mới có thể làm được.  
-- React Hooks ra đời từ phiên bản 16.8 và trở thành tiêu chuẩn phát triển hiện đại.  
+**3. Hooks (Rất quan trọng)**
 
-a. useState - Quản lý state cục bộ  
-- Dùng để  tạo và cập nhật state bên trong function component.  
+- Hooks là các hàm đặc biệt trong React cho phép chúng ta sử dụng state, lifecycle, context,... trong function component mà trước đây chỉ có class component mới có thể làm được.
+- React Hooks ra đời từ phiên bản 16.8 và trở thành tiêu chuẩn phát triển hiện đại.
+
+a. useState - Quản lý state cục bộ
+
+- Dùng để tạo và cập nhật state bên trong function component.
 
                      {% raw %}
                      import { useState } from 'react';
@@ -281,13 +280,14 @@ a. useState - Quản lý state cục bộ
                       return <button onClick={() => setCount(count + 1)}>Clicked {count}</button>;
                      }
 
-                     {% endraw %}        
+                     {% endraw %}
 
 - useState(0) -> 0 là giá trị khởi tạo
-- Trả về một mảng [giá_trị, hàm_cập_nhật]  
+- Trả về một mảng [giá_trị, hàm_cập_nhật]
 
-b.  useEffect - Lifecycle Hook  
-- Dùng để  xử  lý side effect như: gọi API, subcribe, thao tác DOM,...sau khi component render.  
+b. useEffect - Lifecycle Hook
+
+- Dùng để xử lý side effect như: gọi API, subcribe, thao tác DOM,...sau khi component render.
 
                     {% raw %}
                     import { useEffect } from 'react';
@@ -299,19 +299,20 @@ b.  useEffect - Lifecycle Hook
                         console.log('Component unmounted');
                       };
                     }, []);
-                    {% endraw %} 
+                    {% endraw %}
 
-   - [] : Chạy một lần duy nhất(như componentDidMount)  
-   - [dependency] : Chạy lại khi dependency thay đổi  
-   - Không có [] : Chạy lại mỗi lần render  
+  - [] : Chạy một lần duy nhất(như componentDidMount)
+  - [dependency] : Chạy lại khi dependency thay đổi
+  - Không có [] : Chạy lại mỗi lần render
 
-   Dùng để :  
-     - Gọi API  
-     - Lắng nghe sự kiện  
-     - Cleanup (xoá listener, clearInverval,...)                      
+  Dùng để :
+  - Gọi API
+  - Lắng nghe sự kiện
+  - Cleanup (xoá listener, clearInverval,...)
 
-c. useRef – Tham chiếu tới DOM hoặc lưu giá trị không làm re-render  
-- Dùng để giữ giá trị không thay đổi khi re-render hoặc thao tác với DOM.  
+c. useRef – Tham chiếu tới DOM hoặc lưu giá trị không làm re-render
+
+- Dùng để giữ giá trị không thay đổi khi re-render hoặc thao tác với DOM.
 
                     {% raw %}
                     const inputRef = useRef();
@@ -321,57 +322,60 @@ c. useRef – Tham chiếu tới DOM hoặc lưu giá trị không làm re-rende
                     };
 
                     return <input ref={inputRef} />;
-                    {% endraw %} 
+                    {% endraw %}
 
-   Ngoài thao tác DOM, useRef còn dùng để:  
-      - Lưu giá trị trước đó  
-      - Lưu biến cục bộ không gây re-render  
+  Ngoài thao tác DOM, useRef còn dùng để:  
+   - Lưu giá trị trước đó  
+   - Lưu biến cục bộ không gây re-render
 
-d. useMemo – Ghi nhớ giá trị tính toán  
+d. useMemo – Ghi nhớ giá trị tính toán
+
 - Tránh tính toán lại các giá trị tốn hiệu năng, khi dependency không thay đổi.
 
                     {% raw %}
                     const total = useMemo(() => {
                       return calculateTotal(items); // Hàm tính toán nặng
                     }, [items]);
-                    {% endraw %} 
-  
+                    {% endraw %}
+
   - Chỉ re-calculate khi items thay đổi
   - Dùng để tối ưu performance (tránh re-compute không cần thiết)
 
-e. useCallback – Ghi nhớ hàm  
+e. useCallback – Ghi nhớ hàm
+
 - Tránh tạo hàm mới mỗi lần re-render, dùng nhiều trong truyền props xuống component con.
 
                     {% raw %}
                     const handleClick = useCallback(() => {
                       console.log('clicked');
                     }, []);
-                    {% endraw %} 
+                    {% endraw %}
 
   - Giúp tránh re-render không cần thiết ở component con được bọc React.memo
 
-f. useContext – Truyền dữ liệu toàn cục  
+f. useContext – Truyền dữ liệu toàn cục
+
 - Dùng để truy cập giá trị từ Context API, tránh "drilling" props nhiều cấp.
 
   Tạo Context:
 
                     {% raw %}
                     const ThemeContext = React.createContext('light');
-                    {% endraw %} 
+                    {% endraw %}
 
   Dùng:
 
                     {% raw %}
                     const theme = useContext(ThemeContext);
-                    {% endraw %} 
+                    {% endraw %}
 
   Phù hợp với:
+  - Theme, ngôn ngữ (i18n)
+  - Thông tin user, quyền hạn
+  - Dữ liệu cấu hình toàn app
 
-    - Theme, ngôn ngữ (i18n)
-    - Thông tin user, quyền hạn
-    - Dữ liệu cấu hình toàn app 
+g. useReducer – Quản lý state phức tạp
 
-g. useReducer – Quản lý state phức tạp  
 - Dùng thay thế useState khi state có nhiều trạng thái hoặc logic phức tạp.
 
                     {% raw %}
@@ -384,12 +388,13 @@ g. useReducer – Quản lý state phức tạp
                     };
 
                     const [state, dispatch] = useReducer(reducer, { count: 0 });
-                    {% endraw %} 
+                    {% endraw %}
 
   -Tương tự Redux: có state, dispatch, action
   -Hữu ích cho form lớn, table phức tạp, flow điều hướng
 
-h. Custom Hook – Tạo hook riêng  
+h. Custom Hook – Tạo hook riêng
+
 - Khi bạn có logic dùng lại nhiều lần, hãy đóng gói nó thành Custom Hook.
 - Ví dụ:
 
@@ -408,9 +413,9 @@ h. Custom Hook – Tạo hook riêng
 
                     // Sử dụng
                     const width = useWindowWidth();
-                    {% endraw %} 
+                    {% endraw %}
 
-   - Tên custom hook phải bắt đầu bằng use, có thể dùng các hook khác bên trong.
+  - Tên custom hook phải bắt đầu bằng use, có thể dùng các hook khác bên trong.
 
 **Bảng tổng kết Phần 3**
 
